@@ -46,7 +46,7 @@ It should now be completely set up.
 
 == Screenshots ==
 
-screenshot.jpg
+1. Lightbox Plus
 
 == Frequently Asked Questions ==
 
