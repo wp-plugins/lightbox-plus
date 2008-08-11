@@ -1,8 +1,8 @@
 === Lightbox Plus ===
 Contributors: dzappone
-Donate link: http://www.23systems.net/plugins/lightbox-plus/
+Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic
-Requires at least: 2.3
+Requires at least: 2.5
 Tested up to: 2.6
 Stable tag: 1.0.1
 
@@ -60,8 +60,8 @@ Yes, you can add a new stylesheet to the css directory in the plugin directory. 
 
 == Changelog ==
 
-1.0.1 
+= 1.0.1 =
 Modifications to regex usage for image linking
 
-1.0 
+= 1.0 =
 Initial release
