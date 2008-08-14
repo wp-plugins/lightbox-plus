@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic
 Requires at least: 2.5
 Tested up to: 2.6
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 
 This plugin automatically enhances image links in WordPress to use Lightbox to display images and titles in an overlay.
 
@@ -28,21 +28,12 @@ Optional: Use the title attribute if you want to show a caption.
         <a href="images/image-2.jpg" rel="lightbox[roadtrip]">image #2</a>
         <a href="images/image-3.jpg" rel="lightbox[roadtrip]">image #3</a>
 
-Planned in next release:
-
-1. Optional image title capture.
-2. Class based implementation (I should have done it the first time around)
-3. Suggestions welcome
-
 == Installation ==
 
-Extract lightbox-plus.zip to your `wp-content/plugins` directory.
-
-In the admin panel under plugins activate Lightbox Plus.
-
-In the admin panel under setting click on Lightbox Plus, select a color style and choose save settings.
-
-It should now be completely set up.
+1. Extract lightbox-plus.zip to your `wp-content/plugins` directory.
+2. In the admin panel under plugins activate Lightbox Plus.
+3. In the admin panel under setting click on Lightbox Plus, select a color style and choose save settings - you must do this for lightbox to function correctly.
+4. It should now be completely set up and function
 
 == Screenshots ==
 
@@ -60,8 +51,16 @@ Yes, you can add a new stylesheet to the css directory in the plugin directory. 
 
 == Changelog ==
 
+= 1.1.0 =
+* Fixed absolute pathing - should now work in blog residing in subdirectories
+* Rolled code into class structure
+
 = 1.0.1 =
-Modifications to regex usage for image linking
+* Modifications to regex usage for image linking
 
 = 1.0 =
-Initial release
+* Initial release
+
+== Planned Features ==
+
+1. Optional image title capture.
