@@ -2,12 +2,12 @@
 /*
 Plugin Name: Lightbox Plus
 Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
-Description: Used to overlay images on the webpage and to automatically add links to images. Lightbox JS by <a href="http://www.huddletogether.com/projects/lightbox/">Lokesh Dhakar</a>.
+Description: Lightbox permits users to view larger versions of images without having to leave the current page, and is also able to display simple slideshows. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed. Lightbox JS by <a href="http://www.huddletogether.com/projects/lightbox/">Lokesh Dhakar</a>.
 Author: Dan Zappone 
 Author URI: http://www.danzappone.com/
-Version: 1.1.0
+Version: 1.1.1
 */
-global $lightbox_plus_path,$post,$content;
+global $lightbox_plus_path, $post, $content;
 $lightbox_plus_path = WP_PLUGIN_URL.'/lightbox-plus';
 load_plugin_textdomain('lightboxplus', $path = $lightbox_plus_path);
 if (!class_exists('wp_lightboxplus')) {
@@ -34,13 +34,12 @@ if (!class_exists('wp_lightboxplus')) {
 
     function lightbox_plus_replace($content) {
       global $post;
-			$pattern[0] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")([a-zA-Z0-9\s-_!&?^$.;:|*+\[\]{}()#%]*)('|\")([^\>]*?)\/>/i";
-			$pattern[1] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
+			$pattern[0]     = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")([a-zA-Z0-9\s-_!&?^$.;:|*+\[\]{}()#%]*)('|\")([^\>]*?)\/>/i";
+			$pattern[1]     = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
 			$replacement[0] = '<a$1href=$2$3$4$5$6 title="$9" rel="lightbox['.$post->ID.']"><img$7title=$8$9$10$11/>';
 			$replacement[1] = '<a$1href=$2$3$4$5$6$7>';
       $content        = preg_replace($pattern, $replacement, $content);
       return $content;
-
     }
 
     function lightboxplus_styles() {
@@ -50,17 +49,17 @@ if (!class_exists('wp_lightboxplus')) {
     }
 
     function lightbox_plus_add_pages() {
-      add_options_page('Lightbox Plus', 'Lightbox Plus', 8, 'lightboxplus.php', array(&$this,"lightbox_plus_admin_panel"));
+      add_submenu_page('themes.php', "Lightbox Plus", "Lightbox Plus", 10, "lightboxplus", array(&$this, "lightbox_plus_admin_panel"));
     }
 
     function lightbox_plus_admin_panel() {
       load_plugin_textdomain('lightboxplus', $path = $lightbox_plus_path);
-      $location = get_option('siteurl').'/wp-admin/admin.php?page=lightboxplus.php';
-      // Form Action URI
-      /*Lets add some default options if they don't exist*/
+      $location = get_option('siteurl').'/wp-admin/admin.php?page=lightboxplus';
+
+      /*---- Lets add some default options if they don't exist ----*/
       add_option('lightboxplus_style', 'white.css');
 
-      /* Where our theme reside: */
+      /*---- Where the styles reside ----*/
       $lightboxplus_style_path = (dirname(__FILE__)."/css");
       update_option('lightboxplus_style_path', $lightboxplus_style_path);
 
@@ -78,7 +77,7 @@ if (!class_exists('wp_lightboxplus')) {
 						<th scope="row"><?php _e('Lightbox Plus Style')?></th>
 						<td>
 			<?php
-      /* Check if there are themes: */
+      /*---- Check if there are styles ----*/
       $lightboxplus_style_path = get_option('lightboxplus_style_path');
       if ($handle = opendir($lightboxplus_style_path)) {
         while (false !== ($file = readdir($handle))) {
@@ -89,7 +88,7 @@ if (!class_exists('wp_lightboxplus')) {
         closedir($handle);
       }
 
-      /* Create a drop-down menu of the valid themes: */
+      /*---- Create a drop-down menu of the valid styles ----*/
       echo("\n<select name=\"lightboxplus_style\">\n");
       $current_theme = get_option('lightboxplus_style');
       foreach ($styles as $shortname => $fullpath) {
@@ -120,8 +119,8 @@ if (!class_exists('wp_lightboxplus')) {
     }
   }
 }
-//instantiate the class
+
+/*---- instantiate the class  ----*/
 if (class_exists('wp_lightboxplus')) {
   $wp_lightboxplus = new wp_lightboxplus();
 }
-?>
