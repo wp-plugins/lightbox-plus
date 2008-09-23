@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic
 Requires at least: 2.5
 Tested up to: 2.6.1
-Stable tag: 1.1.1
+Stable tag: 1.3.0
 
 Lightbox Plus permits users to view larger versions of images without having to leave the current page, and is also able to display simple slideshows. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed.
 
@@ -32,7 +32,7 @@ Optional: Use the title attribute if you want to show a caption.
 
 1. Extract lightbox-plus.zip to your `wp-content/plugins` directory.
 2. In the admin panel under plugins activate Lightbox Plus.
-3. In the admin panel under setting click on Lightbox Plus, select a color style and choose save settings - you must do this for lightbox to function correctly.
+3. In the admin panel under Design click on Lightbox Plus to configure to your taste.
 4. It should now be completely set up and function
 
 == Screenshots ==
@@ -54,6 +54,11 @@ Yes, you can add a new stylesheet to the css directory in the plugin directory. 
 Performance wise there probably are no advantages.  The regular expressions that handle the text are more robust handling a wider variety of characters and additionally besides just adding the image to a 'lightbox' it will also grab the image title from the image to use for the 'lightbox' caption.
 
 == Changelog ==
+
+= 1.3.0 =
+* Added ability to configure Lightbox options from the admin panel
+* Initializes base options on load
+* Modified and rewrote code for better readability and functionality
 
 = 1.1.1 =
 * Moved admin panel under Design
