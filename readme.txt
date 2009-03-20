@@ -32,7 +32,7 @@ Optional: Use the title attribute if you want to show a caption.
 
 1. Extract lightbox-plus.zip to your `wp-content/plugins` directory.
 2. In the admin panel under plugins activate Lightbox Plus.
-3. In the admin panel under Design click on Lightbox Plus to configure to your taste.
+3. In the admin panel under Design/Appearance click on Lightbox Plus to configure to your taste.
 4. It should now be completely set up and function
 
 == Screenshots ==
