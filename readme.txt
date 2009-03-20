@@ -3,7 +3,7 @@ Contributors: dzappone
 Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic
 Requires at least: 2.5
-Tested up to: 2.7
+Tested up to: 2.7.1
 Stable tag: 1.3.1
 
 Lightbox Plus permits users to view larger versions of images without having to leave the current page, and is also able to display simple slideshows. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed.
