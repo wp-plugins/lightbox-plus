@@ -45,6 +45,7 @@
 //
 //  Configurationl
 //
+/*---- Moved into plugin
 LightboxOptions = Object.extend({
     fileLoadingImage:        '/wp-content/plugins/lightbox-plus/images/loading.gif',
     fileBottomNavCloseImage: '/wp-content/plugins/lightbox-plus/images/close.png',
@@ -61,7 +62,7 @@ LightboxOptions = Object.extend({
 	labelImage: "Image",
 	labelOf: "of"
 }, window.LightboxOptions || {});
-
+*/
 // -----------------------------------------------------------------------------------
 
 var Lightbox = Class.create();
