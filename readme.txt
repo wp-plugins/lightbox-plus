@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 
 Lightbox Plus permits users to view larger versions of images without having to leave the current page, and is also able to display simple slideshows. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed.
 
@@ -54,6 +54,10 @@ Yes, you can add a new stylesheet to the css directory in the plugin directory. 
 Performance wise there probably are no advantages.  The regular expressions that handle the text are more robust handling a wider variety of characters and additionally besides just adding the image to a 'lightbox' it will also grab the image title from the image to use for the 'lightbox' caption.
 
 == Changelog ==
+
+= 1.3.2 =
+* Fixed problem with JavaScript error on IE7.
+* Added some additional color styles.
 
 = 1.3.1 =
 * Updated lightbox.js to allow better control from the admin panel - lightbox was failing sometimes due to duplicate javascript.
