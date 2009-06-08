@@ -90,9 +90,9 @@ Performance wise there probably are no advantages.  The regular expressions that
 == Roadmap ==
 
 1. Rebuild lightbox to use Colorbox for image overlay with the following advantages
-1.1 Supports photos, photo groups, slideshow, ajax, inline, and iframed content.
-1.2 Appearance is completely controlled through CSS so users can restyle the box.
-1.3 Written in jQuery plugin format and can be chained with other jQuery commands.
-1.4 Generates W3C valid XHTML and CSS, adds no JS global variables & passes JSLint.
+ 1 Supports photos, photo groups, slideshow, ajax, inline, and iframed content.
+ 2 Appearance is completely controlled through CSS so users can restyle the box.
+ 3 Written in jQuery plugin format and can be chained with other jQuery commands.
+ 4 Generates W3C valid XHTML and CSS, adds no JS global variables & passes JSLint.
 2. Add enhanced features for use with NextGEN Gallery and WordPress built in gallery.
 3. Solicit and implement language translations 
