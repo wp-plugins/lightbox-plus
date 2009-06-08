@@ -3,8 +3,8 @@ Contributors: dzappone
 Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic
 Requires at least: 2.5
-Tested up to: 2.7.1
-Stable tag: 1.3.3
+Tested up to: 2.8
+Stable tag: 1.3.4
 
 Lightbox Plus permits users to view larger versions of images without having to leave the current page, and is also able to display simple slideshows. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed.
 
@@ -55,6 +55,9 @@ Performance wise there probably are no advantages.  The regular expressions that
 
 == Changelog ==
 
+= 1.3.4 =
+* Updated to work with WordPress 2.8 
+
 = 1.3.3 =
 * Fixed another problem with JavaScript error causing script not to work correctly.  (Thanks to Dirk for pointing it out)
 
@@ -84,6 +87,12 @@ Performance wise there probably are no advantages.  The regular expressions that
 = 1.0 =
 * Initial release
 
-== Planned Features ==
+== Roadmap ==
 
-1. Optional image title capture.
+1. Rebuild lightbox to use Colorbox for image overlay with the following advantages
+1.1 Supports photos, photo groups, slideshow, ajax, inline, and iframed content.
+1.2 Appearance is completely controlled through CSS so users can restyle the box.
+1.3 Written in jQuery plugin format and can be chained with other jQuery commands.
+1.4 Generates W3C valid XHTML and CSS, adds no JS global variables & passes JSLint.
+2. Add enhanced features for use with NextGEN Gallery and WordPress built in gallery.
+3. Solicit and implement language translations 
