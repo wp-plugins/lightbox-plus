@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox permits users to view larger versions of images without having to leave the current page, and is also able to display simple slideshows. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed. Lightbox JS by <a href="http://www.huddletogether.com/projects/lightbox/">Lokesh Dhakar</a>.
 Author: Dan Zappone 
 Author URI: http://www.danzappone.com/
-Version: 1.3.3
+Version: 1.3.4
 */
 /*---- 3/27/2009 12:48:47 PM ----*/
 global $post, $content;  // WordPress Globals
