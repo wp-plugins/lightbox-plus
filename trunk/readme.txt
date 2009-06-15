@@ -1,10 +1,10 @@
 === Lightbox Plus ===
 Contributors: dzappone
 Donate link: http://www.23systems.net/donate/
-Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, lightbox
+Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox
 Requires at least: 2.5
 Tested up to: 2.8
-Stable tag: 1.5
+Stable tag: 1.5.1
 
 Lightbox Plus permits users to view larger versions of images without having to leave the current page, and is also able to display simple slide shows.
 
@@ -40,6 +40,10 @@ Optional: Use the title attribute if you want to show a caption.
 3. In the admin panel under Design/Appearance click on Lightbox Plus to configure to your taste.
 4. It should now be completely set up and functional
 
+= Upgrade Issues =
+* 1.5.X upgrades are not always properly removing old styles and javascript files
+ * If you encounter this the best option is to delete teh existing plugin and reinstall from scratch.
+
 = Caveats =
 
 Flash (i.e. YouTube videos, etc.) will sit atop the Lightbox Plus display not matter what the z-index is.  This is an issue with Flash.
@@ -70,6 +74,9 @@ Yes, you can easily create additional styles by adding a new folder to the css d
 Performance wise the ColorBox jQuery plugin is smaller and generally faster then most lightbox JavaScript plugins.  The regular expressions that handle the text are more robust handling a wider variety of characters and in addtion it will also grab the image title from the image to use for the overlay image caption.
 
 == Change Log ==
+
+= 1.5.1 =
+* Fixed the need to have class=imagebox added to image links
 
 = 1.5 =
 * Rebuilt Lightbox Plus to utilize ColorBox for it's image overlay functions
