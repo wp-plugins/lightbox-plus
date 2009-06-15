@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: Lightbox Plus - Colorbox
+Plugin Name: Lightbox Plus
 Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone 
 Author URI: http://www.danzappone.com/
-Version: 1.5
+Version: 1.5.1
 */
 /*---- 3/27/2009 12:48:47 PM ----*/
 global $post, $content;  // WordPress Globals
@@ -77,8 +77,8 @@ if (!class_exists('wp_lightboxplus')) {
       global $post;
 			$pattern[0]     = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")([a-zA-Z0-9\s-_!&?^$.;:|*+\[\]{}()#%]*)('|\")([^\>]*?)\/>/i";
 			$pattern[1]     = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
-			$replacement[0] = '<a$1href=$2$3$4$5$6 title="$9" rel="lightbox['.$post->ID.']" class="imagebox"><img$7title=$8$9$10$11/>';
-			$replacement[1] = '<a$1href=$2$3$4$5$6$7 class="imagebox">';
+			$replacement[0] = '<a$1href=$2$3$4$5$6 title="$9" rel="lightbox['.$post->ID.']"><img$7title=$8$9$10$11/>';
+			$replacement[1] = '<a$1href=$2$3$4$5$6$7>';
       $content        = preg_replace($pattern, $replacement, $content);
       return $content;
     }
@@ -130,11 +130,11 @@ if (!class_exists('wp_lightboxplus')) {
       $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowSpeed = '.$slideshowSpeed.';'.$this->endLine();
       $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowStart =  "'.$slideshowStart.'";'.$this->endLine();
       $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowStop = "'.$slideshowStop.'";'.$this->endLine();
-      $lightboxPlusJavaScript .= '  $(".imagebox").colorbox();'.$this->endLine();
+      $lightboxPlusJavaScript .= '  $("a[rel*=lightbox]").colorbox();'.$this->endLine();
       $lightboxPlusJavaScript .= '  });'.$this->endLine();
       $lightboxPlusJavaScript .= '});'.$this->endLine();
       $lightboxPlusJavaScript .= '</script>'.$this->endLine();
-
+    
       echo $lightboxPlusJavaScript;
 
       $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$themeStyle.'/colorbox.css" media="screen" />'.$this->endLine();
@@ -145,7 +145,7 @@ if (!class_exists('wp_lightboxplus')) {
           $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$themeStyle.'/colorbox-ie.css" title="IE fixes" />'.$this->endLine();
           $lightboxPlusStyleSheet .= '<![endif]-->'.$this->endLine();
       }
-      $lightboxPlusStyleSheet .= '<!-- STYLE PATH: '.$currentStylePath.' | FILENAME: '.$filename.' -->';
+
       echo $lightboxPlusStyleSheet;
     }
 
