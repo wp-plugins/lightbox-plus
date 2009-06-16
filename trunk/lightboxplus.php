@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone 
 Author URI: http://www.danzappone.com/
-Version: 1.5.1
+Version: 1.5.2
 */
 /*---- 3/27/2009 12:48:47 PM ----*/
 global $post, $content;  // WordPress Globals
@@ -77,8 +77,10 @@ if (!class_exists('wp_lightboxplus')) {
       global $post;
 			$pattern[0]     = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")([a-zA-Z0-9\s-_!&?^$.;:|*+\[\]{}()#%]*)('|\")([^\>]*?)\/>/i";
 			$pattern[1]     = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
+//			$pattern[2]     = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(.*?)('|\")([^\>]*?)><img(.*?)attachment-thumbnail(.*?)title=('|\")([a-zA-Z0-9\s-_!&?^$.;:|*+\[\]{}()#%]*)('|\")([^\>]*?)\/>/i";
 			$replacement[0] = '<a$1href=$2$3$4$5$6 title="$9" rel="lightbox['.$post->ID.']"><img$7title=$8$9$10$11/>';
 			$replacement[1] = '<a$1href=$2$3$4$5$6$7>';
+//			$replacement[2] = '<a$1href=$2$3$4$5$6 title="$9" rel="lightbox['.$post->ID.']"><img$7attachment-thumbnail$8title=$9$10$11$12/>';			
       $content        = preg_replace($pattern, $replacement, $content);
       return $content;
     }
@@ -157,9 +159,18 @@ if (!class_exists('wp_lightboxplus')) {
 		function lightboxPlusInit() {
 			global $g_lightbox_plus_url;
 			$oldOptions = get_option('lightboxplus_style');
+			$oldSettings = get_option('lightboxplus_options');
+			$oldInit    = get_option('lightboxplus_init');
 			if (!empty($oldOptions)) {
 				delete_option('lightboxplus_style');
 			}
+			if (!empty($oldSettings)) {
+				delete_option('lightboxplus_options');
+			}
+			if (!empty($oldInit)) {
+				delete_option('lightboxplus_init');
+			}
+
 			add_option('lightboxplus_init', true);
 			
 			$themeStyle            = $_POST[lightboxplus_style];
@@ -270,11 +281,40 @@ if (!class_exists('wp_lightboxplus')) {
         	if (!empty($reInitialize)) {
 						delete_option($this->lightboxOptionsName);
 						delete_option($this->lightboxInitName);
-						$this->lightboxPlusInit;
-						lightboxPlusReload('reset');
-					}
-        }
+						
+						$pluginPath = (dirname(__FILE__));
+						if (file_exists($pluginPath."/images")) {
+  						echo "Deleting: ".$pluginPath."/images"."<br />";
+	   					$this->delete_directory($pluginPath."/images/");
+	   				}
+	   				else {
+              echo $pluginPath."/images"." already removed<br />";
+            }
+	   				if (file_exists($pluginPath."/js/"."lightbox.js")) {
+						  echo "Deleting: ".$pluginPath."/js/"."lightbox.js"."<br />";
+						  $this->delete_file($pluginPath."/js", "lightbox.js");
+            }
+            else {
+              echo $pluginPath."/js/"."lightbox.js"." already removed<br />";
+            }
+						$oldStyles = $this->dirList($pluginPath."/css/");
+						if (!empty($oldStyles)) {
+						  foreach ($oldStyles as $value) {
+						    if (file_exists($pluginPath."/css/".$value)) {
+						      echo "Deleting: ".$pluginPath."/css/".$value."<br />";
+                  $this->delete_file($pluginPath."/css", $value);
+                }
+              }
+            }
+            else {
+              echo "Old styles already removed";
+            }
+         }
+				 $this->lightboxPlusInit;
+				 lightboxPlusReload('reset');
+				}
       }
+      
       /*---- Get options to load in form ----*/
 			if (!empty($this->lightboxOptions)) {
 				$lightboxPlusOptions   = $this->getAdminOptions($this->lightboxOptionsName);
@@ -329,16 +369,16 @@ if (!class_exists('wp_lightboxplus')) {
 ?>
 			<div class="wrap">
 				  <h2><?php _e('Lightbox Plus Options', 'lightboxplus')?></h2>
-				  <?php _e('Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  ColorBox was created by Jack Moore of <a href="http://colorpowered.com/colorbox/">Color Powered</a> and is licensed under the MIT License. Lightbox Plus allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into you site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  See the <a href="">changelog</a> for important details on this upgrade.',"lightboxplus"); ?>
+				  <?php _e('Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  ColorBox was created by Jack Moore of <a href="http://colorpowered.com/colorbox/">Color Powered</a> and is licensed under the MIT License. Lightbox Plus allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.',"lightboxplus"); ?>
 				  
-      	<h3><?php _e('Reset Lightbox Plus',"lightboxplus"); ?>: </h3>
+      	<h3><?php _e('Reset/Re-initialize Lightbox Plus',"lightboxplus"); ?>: </h3>
 					<form action="<?php echo $location?>&amp;updated=true" method="post" id="lightboxplus_reset" name="lightboxplus_reset">
 					<table>
 					<tr>
-            <td valign="top"><?php _e('This will immediately remove all existing setting and reinitialize the plugin. Be absolutely certain you want to do this. <br /><strong><em>If you are upgrading from a version prior to 1.4 it is highly recommended that you do reset Lightbox Plus</em></strong>',"lightboxplus"); ?></td>
+            <td valign="top"><?php _e('This will immediately remove all existing settings and any files for versions of Lightbox Plus prior to version 1.5 and will also re-initialize the plugin with the new default options. Be absolutely certain you want to do this. <br /><strong><em>If you are upgrading from a version prior to 1.4 it is <strong><em>highly</em></strong> recommended that you reinitialize Lightbox Plus</em></strong>',"lightboxplus"); ?></td>
 					</tr>
 					<tr>
-            <td valign="top"><p class="submit"><input type="hidden" name="reinit_lightboxplus" value="1" /><input type="submit" class="btn" name="save" style="padding:5px 30px 5px 30px;" value="<?php _e('Reset Lightbox Plus',"lightboxplus"); ?>" /></p>
+            <td valign="top"><p class="submit"><input type="hidden" name="reinit_lightboxplus" value="1" /><input type="submit" class="btn" name="save" style="padding:5px 30px 5px 30px;" value="<?php _e('Reset/Re-initialize Lightbox Plus',"lightboxplus"); ?>" /></p>
 					<input type="hidden" name="action" value="action" /><input type="hidden" name="sub" value="reset" /></td>
 					</tr>
 					</table>
@@ -515,21 +555,21 @@ if (!class_exists('wp_lightboxplus')) {
       					  <option value="3000"<?php if ($slideshowSpeed=='3000') echo ' selected="selected"'?>>3000</option>
       					  <option value="3500"<?php if ($slideshowSpeed=='3500') echo ' selected="selected"'?>>3500</option>
       					  <option value="4000"<?php if ($slideshowSpeed=='4000') echo ' selected="selected"'?>>4000</option>
-      					  <option value="4500"<?php if ($slideshowSpeed=='4000') echo ' selected="selected"'?>>4500</option>
-      					  <option value="5000"<?php if ($slideshowSpeed=='4000') echo ' selected="selected"'?>>5000</option>
-      					  <option value="5500"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>5500</option>
-      					  <option value="6000"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>6000</option>
-      					  <option value="6500"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>6500</option>
-      					  <option value="7000"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>7000</option>
-      					  <option value="7500"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>7500</option>
-      					  <option value="8000"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>8000</option>
-      					  <option value="8500"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>8500</option>
-      					  <option value="9000"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>9000</option>
-                  <option value="9500"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>9500</option>
-                  <option value="10000"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>10000</option>
-                  <option value="11000"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>11000</option>
-                  <option value="12000"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>12000</option>
-                  <option value="13000"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>13000</option>
+      					  <option value="4500"<?php if ($slideshowSpeed=='4500') echo ' selected="selected"'?>>4500</option>
+      					  <option value="5000"<?php if ($slideshowSpeed=='5000') echo ' selected="selected"'?>>5000</option>
+      					  <option value="5500"<?php if ($slideshowSpeed=='5500') echo ' selected="selected"'?>>5500</option>
+      					  <option value="6000"<?php if ($slideshowSpeed=='6000') echo ' selected="selected"'?>>6000</option>
+      					  <option value="6500"<?php if ($slideshowSpeed=='6500') echo ' selected="selected"'?>>6500</option>
+      					  <option value="7000"<?php if ($slideshowSpeed=='7000') echo ' selected="selected"'?>>7000</option>
+      					  <option value="7500"<?php if ($slideshowSpeed=='7500') echo ' selected="selected"'?>>7500</option>
+      					  <option value="8000"<?php if ($slideshowSpeed=='8000') echo ' selected="selected"'?>>8000</option>
+      					  <option value="8500"<?php if ($slideshowSpeed=='8500') echo ' selected="selected"'?>>8500</option>
+      					  <option value="9000"<?php if ($slideshowSpeed=='9000') echo ' selected="selected"'?>>9000</option>
+                  <option value="9500"<?php if ($slideshowSpeed=='9500') echo ' selected="selected"'?>>9500</option>
+                  <option value="10000"<?php if ($slideshowSpeed=='10000') echo ' selected="selected"'?>>10000</option>
+                  <option value="11000"<?php if ($slideshowSpeed=='11000') echo ' selected="selected"'?>>11000</option>
+                  <option value="12000"<?php if ($slideshowSpeed=='12000') echo ' selected="selected"'?>>12000</option>
+                  <option value="13000"<?php if ($slideshowSpeed=='13000') echo ' selected="selected"'?>>13000</option>
                   <option value="14000"<?php if ($slideshowSpeed=='14000') echo ' selected="selected"'?>>14000</option>
                   <option value="15000"<?php if ($slideshowSpeed=='15000') echo ' selected="selected"'?>>15000</option>
                   <option value="20000"<?php if ($slideshowSpeed=='20000') echo ' selected="selected"'?>>20000</option>
@@ -596,7 +636,48 @@ if (!class_exists('wp_lightboxplus')) {
       }
       return $booleanName;
     }
-  }
+    
+    function delete_directory($dirname) {
+      if (is_dir($dirname))
+          $dir_handle = opendir($dirname);
+      if (!$dir_handle)
+          return false;
+      while($file = readdir($dir_handle)) {
+          if ($file != "." && $file != "..") {
+              if (!is_dir($dirname."/".$file))
+                  unlink($dirname."/".$file);
+              else
+                  delete_directory($dirname.'/'.$file);          
+          }
+      }
+      closedir($dir_handle);
+      rmdir($dirname);
+      return true;
+    }
+
+    function delete_file($dirname,$file) {
+      if ($file != "." && $file != "..") {
+        if (!is_dir($dirname."/".$file))
+          unlink($dirname."/".$file);
+          }
+      return true;
+    }
+    
+    function dirList ($dirname) {
+  		$types = array ('css');
+  		$results = array ();
+  		$dir_handle = opendir($dirname);
+  		while ($file = readdir($dir_handle)) {
+    		$type = strtolower(substr(strrchr($file, '.'), 1));
+    			if (in_array($type, $types))
+    				array_push($results, $file);
+  		}
+  		closedir($dir_handle);
+  		sort($results);
+      return $results;
+    }
+    
+  } //**** END CLASS **** 
 }
 
 /*---- instantiate the class  ----*/
