@@ -4,9 +4,9 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox
 Requires at least: 2.5
 Tested up to: 2.8
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 
-Lightbox Plus permits users to view larger versions of images without having to leave the current page, and is also able to display simple slide shows.
+Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
 == Description ==
 
@@ -41,8 +41,10 @@ Optional: Use the title attribute if you want to show a caption.
 4. It should now be completely set up and functional
 
 = Upgrade Issues =
-* 1.5.X upgrades are not always properly removing old styles and javascript files
- * If you encounter this the best option is to delete teh existing plugin and reinstall from scratch.
+* 1.5.X upgrades are not always properly removing old styles, JavaScript  and image files
+ * <em>Issue Fixed:</em> Well, mostly, as of version 1.5.2 the reset button will remove the old files <em>assuming</em> the permissions are set correctly.
+* 1.5.X upgrades are sometimes failing
+ * <em>Workaround:</em>Remove the plugin and install a new copy.  Use the reset button afterwards to remove old setting and instantiate new ones.
 
 = Caveats =
 
@@ -52,7 +54,8 @@ See <a href="http://go.adobe.com/kb/ts_tn_15523_en-us">Flash content displays on
 
 To work around this issue you will need to add something like the following to your <code>&lt;param /&gt;</code> and <code>&lt;embed&gt;&lt;/embed&gt;</code> tags:
 <code>
-&lt;object&gt;&lt;param name="wmode" value="opaque" /&gt;&lt;embed wmode="opaque" [all other embed settings, file src etc.]&gt;&lt;/embed&gt;&lt;/object&gt;
+
+        &lt;object&gt;&lt;param name="wmode" value="opaque" /&gt;&lt;embed wmode="opaque" [all other embed settings, file src etc.]&gt;&lt;/embed&gt;&lt;/object&gt;
 </code>
 
 == Screenshots ==
@@ -63,23 +66,36 @@ To work around this issue you will need to add something like the following to y
 
 = Can I use this plugin and Lightview Plus, Lightbox 2 (either one), WP lightbox JS Plugin at the same time? =
 
-Probably not, they they will most likely interfere with each other as they all modify the image URLs.
+No other lightbox plugins can be used, they will most likely interfere with each other as they all modify the image URLs.  Other image overlay plugins may possibly be compatible.
 
 = Can I add my own styles and images for the overlay? =
 
-Yes, you can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/css/</code> by duplicating and modifying any of the existing theme folders or using them as examples to create your own.
+Yes, you can easily create additional styles by adding a new folder to the CSS directory under <code>wp-content/plugins/lightbox-plus/css/</code> by duplicating and modifying any of the existing theme folders or using them as examples to create your own.
 
 = How does Lightbox Plus differ from other Lightbox plugins for WordPress? =
 
-Performance wise the ColorBox jQuery plugin is smaller and generally faster then most lightbox JavaScript plugins.  The regular expressions that handle the text are more robust handling a wider variety of characters and in addtion it will also grab the image title from the image to use for the overlay image caption.
+Performance wise the ColorBox jQuery plugin is smaller and generally faster than most lightbox JavaScript plugins.  The regular expressions that handle the text are more robust handling a wider variety of characters and in addition it will also grab the image title from the image to use for the overlay image caption.
+
+= Lightbox Plus does not work correctly with WordPress' built-in gallery features, how do I make it work =
+
+At present it does not.  WordPress' built in gallery has its own method for  dispaying image within WordPress' base framework. I am still working on an option that will allow Lightbox Plus to over ride this.  In the meantime of you would like to use Lightbox Plus with a gallery I suggest you try one of the many gallery plugins that support lightbox, NextGEN Gallery, Lazyest Gallery, or Inline Gallery for example.
+
+= When reseting/re-initializing LBP the setting do not appear correctly when the page reloads, what gives? =
+
+This problem is only apparent in Chrome and Opera.  It seems to works fine in Internet Explorer, Firefox and Safari.  There may be browser related issues and I am investigating the problem at this time.  For Chrome the settings are being saved but not displayed immediately, click on the Lightbox Plus link under appearance and you will see the current settings.  Opera for whatever reason is completely failing to save re-initialization settings, you must manually set and save them or use another browser.  And, no, it doesn't make sense since it's server side activity.
 
 == Change Log ==
+
+= 1.5.2 =
+* Reset/re-initialize button on the plugin page will now remove the old files that were not removed during upgrade to 1.5.x from pre 1.5 versions.
+* Fixed the slideshow timing to display and save correctly - any amountof time over 5000 milliseconds was displaying as 13000 milliseconds.
+* Miscellaneous cosmetic fixes and text adjustments
 
 = 1.5.1 =
 * Fixed the need to have class=imagebox added to image links
 
 = 1.5 =
-* Rebuilt Lightbox Plus to utilize ColorBox for it's image overlay functions
+* Rebuilt Lightbox Plus to utilize ColorBox for its image overlay functions
  * Supports photos, photo groups, slideshow, ajax, inline, and iframed content.
  * Appearance is completely controlled through CSS so users can restyle the box.
  * Written in jQuery plugin format and can be chained with other jQuery commands.
@@ -88,7 +104,7 @@ Performance wise the ColorBox jQuery plugin is smaller and generally faster then
 * <strong>README!</strong> - There is a reset button that will remove your old options and replace them with the new options, Lightbox Plus will act funny until you either reset it or update the settings.
 * <strong>README!</strong> - If you have custom styles back them up before proceeding.  You will need to convert them to the new directory and ColorBox format to use them again.
 * <strong>README!</strong> - Only the black and white existing styles have been ported to the new format, it is very easy to convert any of the other color styles to the new format.
-* Added reset button to allow for resetting to defualt settings.
+* Added reset button to allow for resetting to default settings.
 * Tested In: Firefox 2, 3, Safari 3, 4, Opera 9, 10, Chrome 1, 2, Internet Explorer 6, 7, 8.
 
 = 1.4 =
@@ -105,7 +121,7 @@ Performance wise the ColorBox jQuery plugin is smaller and generally faster then
 * Added some additional color styles.
 
 = 1.3.1 =
-* Updated lightbox.js to allow better control from the admin panel - lightbox was failing sometimes due to duplicate javascript.
+* Updated lightbox.js to allow better control from the admin panel - lightbox was failing sometimes due to duplicate JavaScript.
 
 = 1.3.0 =
 * Added ability to configure Lightbox options from the admin panel
@@ -114,7 +130,7 @@ Performance wise the ColorBox jQuery plugin is smaller and generally faster then
 
 = 1.1.1 =
 * Moved admin panel under Design/Appearance
-* Minor code formating for better readability
+* Minor code formatting for better readability
 
 = 1.1.0 =
 * Fixed absolute pathing - should now work in blog residing in subdirectories
