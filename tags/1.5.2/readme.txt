@@ -14,6 +14,10 @@ Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress
 
 Lightbox Plus uses WordPress's built in jQuery library.
 
+Read the FAQ first if you are having problems.  
+
+Lightbox Plus <strong><em>DOES NOT</em></strong> work with WordPress' built in gallery feature.
+
 = IMPORTANT 1.5 UPGRADE INFORMATION =
 See the change log for information regarding this upgrading to version 1.5 of Lightbox Plus.  There are significant differences from previous versions.
 
@@ -23,7 +27,7 @@ Note that getting the caption to appear in the overlay image by using the captio
 
 1. Add a rel="lightbox" attribute to any link tag to activate the lightbox. For example:
 
-        <a href="images/image-1.jpg" rel="lightbox" title="my caption">image #1</a>
+        <a href="images/image-1.jpg" rel="lightbox[uniqueID|filename]" title="my caption">image #1</a>
 
 Optional: Use the title attribute if you want to show a caption.
 
@@ -64,6 +68,16 @@ To work around this issue you will need to add something like the following to y
 
 == Frequently Asked Questions ==
 
+= I can't get Lightbox Plus to work, why not? =
+
+The problem may be with your Wordpress theme, mangling image display properties. Try using another theme, that doesn't interfere with posted images.  You may be lacking wp_header() function in your header.php of your Wordpress theme.  Look at the default theme to see how to implement it.
+
+Alternately you may have other plugins that conflict with Lightbox Plus. Try disabling your other plugins and see if that helps. If it does, re-enable each plugin, one at a time to see which one is causing the conflict.  Please let me know which plugin is causing the problem.
+
+= Lightbox Plus doesn't work properly in browser X, Y, or Z (Chrome, Safari, Firefox, Opera, Explorer 6, 7, etc)? =
+
+Yes it does, the problems are the same as above.  It has been tested in Firefox 2, 3, Safari 3, 4, Opera 9, 10, Chrome 1, 2, Internet Explorer 6, 7, 8 on Windows and Firefox 2, 3, Safari 3, 4 and Opera 9 on OS X and Firefox 2, 3, Opera 9, and Konqueror on Linux.
+
 = Can I use this plugin and Lightview Plus, Lightbox 2 (either one), WP lightbox JS Plugin at the same time? =
 
 No other lightbox plugins can be used, they will most likely interfere with each other as they all modify the image URLs.  Other image overlay plugins may possibly be compatible.
@@ -74,15 +88,19 @@ Yes, you can easily create additional styles by adding a new folder to the CSS d
 
 = How does Lightbox Plus differ from other Lightbox plugins for WordPress? =
 
-Performance wise the ColorBox jQuery plugin is smaller and generally faster than most lightbox JavaScript plugins.  The regular expressions that handle the text are more robust handling a wider variety of characters and in addition it will also grab the image title from the image to use for the overlay image caption.
+Performance wise the ColorBox jQuery plugin is smaller and generally faster and has more options than most lightbox JavaScript plugins.  The regular expressions that handle the text are more robust handling a wider variety of characters and in addition it will also grab the image title from the image to use for the overlay image caption.
 
 = Lightbox Plus does not work correctly with WordPress' built-in gallery features, how do I make it work =
 
-At present it does not.  WordPress' built in gallery has its own method for  dispaying image within WordPress' base framework. I am still working on an option that will allow Lightbox Plus to over ride this.  In the meantime of you would like to use Lightbox Plus with a gallery I suggest you try one of the many gallery plugins that support lightbox, NextGEN Gallery, Lazyest Gallery, or Inline Gallery for example.
+At present it does not.  WordPress' built in gallery has its own method for dispaying image within WordPress' base framework. I am still working on an option that will allow Lightbox Plus to override this.  In the meantime of you would like to use Lightbox Plus with a gallery I suggest you try one of the many gallery plugins that support lightbox, NextGEN Gallery, Lazyest Gallery, or Inline Gallery for example.
 
-= When reseting/re-initializing LBP the setting do not appear correctly when the page reloads, what gives? =
+= When resetting/re-initializing LBP the setting do not appear correctly when the page reloads, what gives? =
 
 This problem is only apparent in Chrome and Opera.  It seems to works fine in Internet Explorer, Firefox and Safari.  There may be browser related issues and I am investigating the problem at this time.  For Chrome the settings are being saved but not displayed immediately, click on the Lightbox Plus link under appearance and you will see the current settings.  Opera for whatever reason is completely failing to save re-initialization settings, you must manually set and save them or use another browser.  And, no, it doesn't make sense since it's server side activity.
+
+= Other Problems =
+
+If you have read and tried the above and you are still having problems, then, I please post your issues, in detail (links, error messages) to my site. <a href="http://www,23systems.net/plugins/lightbox-plus/">http://www,23systems.net/plugins/lightbox-plus/</a>
 
 == Change Log ==
 
@@ -92,7 +110,7 @@ This problem is only apparent in Chrome and Opera.  It seems to works fine in In
 * Miscellaneous cosmetic fixes and text adjustments
 
 = 1.5.1 =
-* Fixed the need to have class=imagebox added to image links
+* Fixed the need to have <code>class="imagebox"</code> added to image links
 
 = 1.5 =
 * Rebuilt Lightbox Plus to utilize ColorBox for its image overlay functions
@@ -144,8 +162,10 @@ This problem is only apparent in Chrome and Opera.  It seems to works fine in In
 
 == Road Map ==
 
-1. Add enhanced features for use with NextGEN Gallery and WordPress built in gallery.
-2. Solicit and implement language translations
+1. Attempt to add enhanced features for use with and WordPress' built in gallery.
+2. Class based option - can be set to work with all images or just selected images.
+3. Add languages for which I have completed translations.
+4. Solicit and implement additional language translations.
 
 == Special Thanks ==
 
