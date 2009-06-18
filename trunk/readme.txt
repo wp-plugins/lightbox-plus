@@ -70,7 +70,7 @@ To work around this issue you will need to add something like the following to y
 
 = I can't get Lightbox Plus to work, why not? =
 
-The problem may be with your Wordpress theme, mangling image display properties. Try using another theme, that doesn't interfere with posted images.  You may be lacking wp_header() function in your header.php of your Wordpress theme.  Look at the default theme to see how to implement it.
+The problem may be with your Wordpress theme, mangling image display properties. Try using another theme, that doesn't interfere with posted images.  You may be lacking <code>wp_header()</code> function in your <code>header.php</code> of your Wordpress theme.  Look at the default theme to see how to implement it.
 
 Alternately you may have other plugins that conflict with Lightbox Plus. Try disabling your other plugins and see if that helps. If it does, re-enable each plugin, one at a time to see which one is causing the conflict.  Please let me know which plugin is causing the problem.
 
@@ -100,7 +100,9 @@ This problem is only apparent in Chrome and Opera.  It seems to works fine in In
 
 = Other Problems =
 
-If you have read and tried the above and you are still having problems, then, I please post your issues, in detail (links, error messages) to my site. <a href="http://www,23systems.net/plugins/lightbox-plus/">http://www,23systems.net/plugins/lightbox-plus/</a>
+If you have read and tried the above and you are still having problems, then, please post your issues, in detail (links, error messages) to my site.
+
+<a href="http://www,23systems.net/plugins/lightbox-plus/">http://www,23systems.net/plugins/lightbox-plus/</a>
 
 == Change Log ==
 
