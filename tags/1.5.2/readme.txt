@@ -1,7 +1,7 @@
 === Lightbox Plus ===
 Contributors: dzappone
 Donate link: http://www.23systems.net/donate/
-Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox
+Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay
 Requires at least: 2.5
 Tested up to: 2.8
 Stable tag: 1.5.2
