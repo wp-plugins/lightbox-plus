@@ -62,10 +62,6 @@ To work around this issue you will need to add something like the following to y
         &lt;object&gt;&lt;param name="wmode" value="opaque" /&gt;&lt;embed wmode="opaque" [all other embed settings, file src etc.]&gt;&lt;/embed&gt;&lt;/object&gt;
 </code>
 
-== Screenshots ==
-
-1. Lightbox Plus
-
 == Frequently Asked Questions ==
 
 = I can't get Lightbox Plus to work, why not? =
@@ -105,6 +101,10 @@ This problem is only apparent in Chrome and Opera.  It seems to works fine in In
 If you have read and tried the above and you are still having problems, then, please post your issues, in detail (links, error messages) to my site.
 
 <a href="http://www.23systems.net/plugins/lightbox-plus/">http://www.23systems.net/plugins/lightbox-plus/</a>
+
+== Screenshots ==
+
+1. Lightbox Plus
 
 == Change Log ==
 
