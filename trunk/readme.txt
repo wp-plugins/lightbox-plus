@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay
 Requires at least: 2.5
 Tested up to: 2.8
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -107,6 +107,14 @@ If you have read and tried the above and you are still having problems, then, pl
 1. Lightbox Plus
 
 == Change Log ==
+
+= 1.5.3 =
+* Added class based option.
+ * If options is checked, Lightbox Plus will only lightbox images via class: cpModal attribute. 
+ * Using this method you can manually control which images are affected by Lightbox Plus by adding the cpModal class the image link URL and checking the Don't Auto-Lightbox Images option. 
+* Added option to not automatically add attributes required for Lightbox Plus to work.  This allows for more manual image control.
+* Added option not to display image titles.
+* Updated ColorBox to version 1.2.5
 
 = 1.5.2 =
 * Reset/re-initialize button on the plugin page will now remove the old files that were not removed during upgrade to 1.5.x from pre 1.5 versions.
