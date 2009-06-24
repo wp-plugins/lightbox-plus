@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone 
 Author URI: http://www.danzappone.com/
-Version: 1.5.2
+Version: 1.5.3
 */
 /*---- 3/27/2009 12:48:47 PM ----*/
 global $post, $content;  // WordPress Globals
@@ -39,15 +39,23 @@ if (!class_exists('wp_lightboxplus')) {
 
     /*---- PHP 5 Constructor ----*/
     function __construct() {
-      add_action("admin_menu", array(&$this, "lightboxPlusAddPages"));
-      add_action('wp_head', array(&$this, 'lightboxPlusAddHeader'));
-      add_filter('the_content', array(&$this, 'lightboxPlusReplace'));
-      add_action("init", array(&$this, "addScripts"));
       $this->lightboxOptions = $this->getAdminOptions($this->lightboxOptionsName);
       $this->lightboxInit = get_option($this->lightboxInitName);
 			if (!$this->lightboxInit) {
 		  	$this->lightboxPlusInit();
 			}
+
+      add_action("admin_menu", array(&$this, "lightboxPlusAddPages"));
+      add_action('wp_head', array(&$this, 'lightboxPlusAddHeader'));
+    	if (!empty($this->lightboxOptions)) {
+				$lightboxPlusOptions   = $this->getAdminOptions($this->lightboxOptionsName);
+	      $autoLightbox          = $lightboxPlusOptions['auto_lightbox'];
+	    }
+	    if ($autoLightbox != 1) {
+        add_filter('the_content', array(&$this, 'lightboxPlusReplace'));
+      }
+      add_action("init", array(&$this, "addScripts"));
+
     }
 
     /*---- Retrieves the options from the database.  @return array ----*/
@@ -75,12 +83,32 @@ if (!class_exists('wp_lightboxplus')) {
 
     function lightboxPlusReplace($content) {
       global $post;
+    	if (!empty($this->lightboxOptions)) {
+				$lightboxPlusOptions   = $this->getAdminOptions($this->lightboxOptionsName);
+	      $displayTitle          = $lightboxPlusOptions['display_title'];
+	      $classMethod           = $lightboxPlusOptions['class_method'];
+	    }
+      $postGroupID = $post->ID;
 			$pattern[0]     = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")([a-zA-Z0-9\s-_!&?^$.;:|*+\[\]{}()#%]*)('|\")([^\>]*?)\/>/i";
 			$pattern[1]     = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
-//			$pattern[2]     = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(.*?)('|\")([^\>]*?)><img(.*?)attachment-thumbnail(.*?)title=('|\")([a-zA-Z0-9\s-_!&?^$.;:|*+\[\]{}()#%]*)('|\")([^\>]*?)\/>/i";
-			$replacement[0] = '<a$1href=$2$3$4$5$6 title="$9" rel="lightbox['.$post->ID.']"><img$7title=$8$9$10$11/>';
+			if ($displayTitle != 1) {
+			  if ($classMethod == 1) {			  
+			    $replacement[0] = '<a$1href=$2$3$4$5$6 title="$9" class="cboxModal" rel="lightbox['.$postGroupID.']"><img$7title=$8$9$10$11/>';
+			  }
+			  else {
+          $replacement[0] = '<a$1href=$2$3$4$5$6 title="$9" rel="lightbox['.$postGroupID.']"><img$7title=$8$9$10$11/>';
+        }
+			}
+			else {
+				if ($classMethod == 1) {	
+			    $replacement[0] = '<a$1href=$2$3$4$5$6 class="cboxModal" rel="lightbox['.$postGroupID.']"><img$7$9$10$11/>';
+			  }
+			  else {
+          $replacement[0] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']"><img$7$9$10$11/>';
+        }
+			}
 			$replacement[1] = '<a$1href=$2$3$4$5$6$7>';
-//			$replacement[2] = '<a$1href=$2$3$4$5$6 title="$9" rel="lightbox['.$post->ID.']"><img$7attachment-thumbnail$8title=$9$10$11$12/>';			
+		
       $content        = preg_replace($pattern, $replacement, $content);
       return $content;
     }
@@ -108,6 +136,9 @@ if (!class_exists('wp_lightboxplus')) {
 	      $slideshowSpeed        = $lightboxPlusOptions['slideshow_speed'];
 	      $slideshowStart        = $lightboxPlusOptions['slideshow_start'];
 	      $slideshowStop         = $lightboxPlusOptions['slideshow_stop'];
+	      $displayTitle          = $lightboxPlusOptions['display_title'];
+	      $autoLightbox          = $lightboxPlusOptions['auto_lightbox'];
+	      $classMethod           = $lightboxPlusOptions['class_method'];
 			}
     
       $lightboxPlusJavaScript = "";
@@ -132,7 +163,12 @@ if (!class_exists('wp_lightboxplus')) {
       $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowSpeed = '.$slideshowSpeed.';'.$this->endLine();
       $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowStart =  "'.$slideshowStart.'";'.$this->endLine();
       $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowStop = "'.$slideshowStop.'";'.$this->endLine();
-      $lightboxPlusJavaScript .= '  $("a[rel*=lightbox]").colorbox();'.$this->endLine();
+	    if ($classMethod == 1) {
+        $lightboxPlusJavaScript .= '  $(".cboxModal").colorbox();'.$this->endLine();
+      }
+      else {
+        $lightboxPlusJavaScript .= '  $("a[rel*=lightbox]").colorbox();'.$this->endLine();
+      }
       $lightboxPlusJavaScript .= '  });'.$this->endLine();
       $lightboxPlusJavaScript .= '});'.$this->endLine();
       $lightboxPlusJavaScript .= '</script>'.$this->endLine();
@@ -192,8 +228,10 @@ if (!class_exists('wp_lightboxplus')) {
       $slideshowSpeed        = $_POST[slideshow_speed];
       $slideshowStart        = $_POST[slideshow_start];
       $slideshowStop         = $_POST[slideshow_stop];
-
-			
+	    $displayTitle          = $_POST[display_title];
+	    $autoLightbox          = $_POST[auto_lightbox];
+	    $classMethod           = $_POST[class_method];
+	        
 			$lightboxPlusOptions = array(
 					"lightboxplus_style"       => 'shadow',
           "transition"               => 'elastic',
@@ -214,6 +252,9 @@ if (!class_exists('wp_lightboxplus')) {
           "slideshow_speed"          => '2500',
           "slideshow_start"          => 'start',
           "slideshow_stop"           => 'stop',
+	        "display_title"            => '1',
+	        "auto_lightbox"            => '1',
+	        "class_method"             => '0',
 			);
 			
 			$this->saveAdminOptions($this->lightboxOptionsName, $lightboxPlusOptions);
@@ -250,6 +291,9 @@ if (!class_exists('wp_lightboxplus')) {
           $slideshowSpeed        = $_POST[slideshow_speed];
           $slideshowStart        = $_POST[slideshow_start];
           $slideshowStop         = $_POST[slideshow_stop];
+	        $displayTitle          = $_POST[display_title];
+	        $autoLightbox          = $_POST[auto_lightbox];
+	        $classMethod           = $_POST[class_method];
             $lightboxPlusOptions = array(
     					"lightboxplus_style"       => $themeStyle,
               "transition"               => $transition,
@@ -270,6 +314,9 @@ if (!class_exists('wp_lightboxplus')) {
               "slideshow_speed"          => $slideshowSpeed,
               "slideshow_start"          => $slideshowStart,
               "slideshow_stop"           => $slideshowStop,
+	            "display_title"            => $displayTitle,
+	            "auto_lightbox"            => $autoLightbox,
+	            "class_method"             => $classMethod,
               );
     
     			  $this->saveAdminOptions($this->lightboxOptionsName, $lightboxPlusOptions);
@@ -337,6 +384,9 @@ if (!class_exists('wp_lightboxplus')) {
 	      $slideshowSpeed        = $lightboxPlusOptions['slideshow_speed'];
 	      $slideshowStart        = $lightboxPlusOptions['slideshow_start'];
 	      $slideshowStop         = $lightboxPlusOptions['slideshow_stop'];
+	      $displayTitle          = $lightboxPlusOptions['display_title'];
+	      $autoLightbox          = $lightboxPlusOptions['auto_lightbox'];
+	      $classMethod           = $lightboxPlusOptions['class_method'];
 			}
 					
       /*---- Check if there are styles ----*/
@@ -586,6 +636,26 @@ if (!class_exists('wp_lightboxplus')) {
               <th scope="row"><?php _e('Slideshow stop text', 'lightboxplus')?>: </th>
               <td><input type="text" size="15" name="slideshow_stop" id="slideshow_stop" value="<?php if (!empty($slideshowStop)) { echo $slideshowStop;} else { echo 'stop'; } ?>" /><br /><?php _e('Text for the slideshow stop button.  <strong><em>Default: stop</em></strong>', 'lightboxplus')?></td>
             </tr>
+
+					  <tr>
+              <th scope="row" colspan="2"><h3><?php _e('Other Settings', 'lightboxplus')?></h3></th>
+            </tr>
+
+					  <tr>
+              <th scope="row"><?php _e('Use Class Method', 'lightboxplus')?>: </th>
+              <td><input type="checkbox" name="class_method" id="class_method" value="1"<?php if ($classMethod) echo ' checked="checked"';?> /><br /><?php _e('If checked, Lightbox Plus will only lightbox images via <code>class: cpModal</code> attribute.  Using this method you can manually control which images are affected by Lightbox Plus by adding the cpModal class to the Advanced Link Settings in the WordPress Edit Image tool or by adding it to the image link URL and checking the <strong>Do Not Auto-Lightbox Images</strong> option.<br /><strong><em>Default: Unchecked</em></strong>', 'lightboxplus')?></td>
+            </tr>
+
+					  <tr>
+              <th scope="row"><?php _e('<strong>Do Not</strong> Auto-Lightbox Images', 'lightboxplus')?>: </th>
+              <td><input type="checkbox" name="auto_lightbox" id="auto_lightbox" value="1"<?php if ($autoLightbox) echo ' checked="checked"';?> /><br /><?php _e('If checked, Lightbox Plus <em>will not</em> automatically add appropriate attibutes (either <code>rel="lightbox[postID]"</code> or <code>class: cpModal</code>) to Image URL.  You will need to manually add the appropriate attribute for Lightbox Plus to work.<br /><strong><em>Default: Unchecked</em></strong>', 'lightboxplus')?></td>
+            </tr>
+            
+					  <tr>
+              <th scope="row"><?php _e('<strong>Do Not</strong> Display Image Title', 'lightboxplus')?>: </th>
+              <td><input type="checkbox" name="display_title" id="display_title" value="1"<?php if ($displayTitle) echo ' checked="checked"';?> /><br /><?php _e('If checked, Lightbox Plus <em>will not</em> display image titles automatically.  This has no effect if the <strong>Do Not Auto-Lightbox Images</strong> option is checked.<br /><strong><em>Default: Unchecked</em></strong>', 'lightboxplus')?></td>
+            </tr>
+            
 
 					 </table>
 			    <p class="submit">
