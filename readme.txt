@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay
 Requires at least: 2.5
 Tested up to: 2.8
-Stable tag: 1.5.3
+Stable tag: 1.5.3.1
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -102,11 +102,24 @@ If you have read and tried the above and you are still having problems, then, pl
 
 <a href="http://www.23systems.net/plugins/lightbox-plus/">http://www.23systems.net/plugins/lightbox-plus/</a>
 
+= Known Problems =
+
+* Diacritics and other extended characters may cause the image overlay to fail.  Not sure why yet.
+
+= Plugin Conflicts =
+
+* Tabbed Widgets - Verified
+* DMSGuestbook - Un-verified
+* Gengo - Un-verified
+
 == Screenshots ==
 
 1. Lightbox Plus
 
 == Change Log ==
+
+= 1.5.3.1 =
+* Fixed bug causing plugin not to use correct stylesheet on initial install or reset. It was pointing to a non exsitent style (shadow instead of shadowed.)
 
 = 1.5.3 =
 * Added class based option.
