@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay
 Requires at least: 2.5
 Tested up to: 2.8
-Stable tag: 1.5.3.1
+Stable tag: 1.5.4
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -117,6 +117,13 @@ If you have read and tried the above and you are still having problems, then, pl
 1. Lightbox Plus
 
 == Change Log ==
+
+= 1.5.4 =
+* Fixed bug where titles were being broken when DO NOT USE TITLE was checked.
+* Fixed issue with limited character sets - should allow any characters in the title
+* Optimized code to use less memory and run faster
+* Updated ColorBox to version 1.2.9
+* No new features at this time
 
 = 1.5.3.1 =
 * Fixed bug causing plugin not to use correct stylesheet on initial install or reset. It was pointing to a non exsitent style (shadow instead of shadowed.)
