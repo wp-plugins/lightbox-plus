@@ -2,9 +2,9 @@
 Contributors: dzappone
 Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay
-Requires at least: 2.5
-Tested up to: 2.8
-Stable tag: 1.5.4
+Requires at least: 2.6
+Tested up to: 2.8.4
+Stable tag: 1.5.5
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -117,6 +117,12 @@ If you have read and tried the above and you are still having problems, then, pl
 1. Lightbox Plus
 
 == Change Log ==
+
+= 1.5.5 =
+* Updated additional code that didn't make it into 1.5.4 to use less memory and run faster
+* Separated the admin panel output to a separate file
+** Added some custom admin panel styles
+* Cosmetic changes to admin panel
 
 = 1.5.4 =
 * Fixed bug where titles were being broken when DO NOT USE TITLE was checked.
