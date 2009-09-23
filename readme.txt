@@ -18,6 +18,8 @@ Read the FAQ first if you are having problems.
 
 = Lightbox Plus <em>NOW</em> works with WordPress' built in gallery feature. =
 
+I'm happy to say Lightbox Plus now works with WordPress' built in gallery.  This has been the most requested feature by far.  There are few simple requirements however.  You you must set <strong>Link thumbnails to: Image File</strong> or use <code>[gallery link="file"</code> for the gallery options.  You must check <em>Use For WP Gallery</em> box under <stong>Other Lightbox Plus Settings</strong>
+
 = IMPORTANT 1.5+ UPGRADE INFORMATION =
 See the change log for information regarding this upgrading to version 1.5 of Lightbox Plus.  There are significant differences from previous versions.
 
