@@ -217,7 +217,12 @@
             </tr>
 
 					  <tr>
-              <th scope="row" colspan="2"><h3><?php _e( 'Other Settings', 'lightboxplus' )?></h3></th>
+              <th scope="row" colspan="2"><h3><?php _e( 'Other Lightbox Plus Settings', 'lightboxplus' )?></h3></th>
+            </tr>
+
+					  <tr>
+              <th scope="row"><?php _e( 'Use For WP Gallery', 'lightboxplus' )?>: </th>
+              <td><input type="checkbox" name="gallery_lightboxplus" id="gallery_lightboxplus" value="1"<?php if ( $lightboxPlusOptions['gallery_lightboxplus'] ) echo ' checked="checked"';?> /><br /><?php _e( 'If checked, Lightbox Plus will add the Lightboxing feature to the WordPress built in gallery feature.  In order for this to work correcly you must set <strong>Link thumbnails to: Image File</strong> or use <code>[gallery link="file"</code> for the gallery options.<br /><strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?></td>
             </tr>
 
 					  <tr>
@@ -227,7 +232,7 @@
 
 					  <tr>
               <th scope="row"><?php _e( '<strong>Do Not</strong> Auto-Lightbox Images', 'lightboxplus' )?>: </th>
-              <td><input type="checkbox" name="auto_lightbox" id="auto_lightbox" value="1"<?php if ( $lightboxPlusOptions['auto_lightbox'] ) echo ' checked="checked"';?> /><br /><?php _e( 'If checked, Lightbox Plus <em>will not</em> automatically add appropriate attibutes (either <code>rel="lightbox[postID]"</code> or <code>class: cpModal</code>) to Image URL.  You will need to manually add the appropriate attribute for Lightbox Plus to work.<br /><strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?></td>
+              <td><input type="checkbox" name="auto_lightbox" id="auto_lightbox" value="1"<?php if ( $lightboxPlusOptions['auto_lightbox'] ) echo ' checked="checked"';?> /><br /><?php _e( 'If checked, Lightbox Plus <em>will not</em> automatically add appropriate attibutes (either <code>rel="lightbox[postID]"</code> or <code>class: cboxModal</code>) to Image URL.  You will need to manually add the appropriate attribute for Lightbox Plus to work.<br /><strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?></td>
             </tr>
 
 					  <tr>

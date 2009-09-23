@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone
 Author URI: http://www.danzappone.com/
-Version: 1.5.5
+Version: 1.6
 */
 /*---- 8/30/2009 9:30:03 AM ----*/
 global $post, $content;  // WordPress Globals
@@ -51,14 +51,18 @@ if (!class_exists('wp_lightboxplus')) {
       if ( !empty( $this->lightboxOptions ) ) {
         $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
         $autoLightbox = $lightboxPlusOptions['auto_lightbox'];
+        $lightboxGallery = $lightboxPlusOptions['gallery_lightboxplus'];
       }
       if ( $autoLightbox != 1 ) {
-        add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ) );
+        if ($lightboxGallery != 1) {
+          add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ) );
+        }
+        else {
+          add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ), 12  );
+        }
       }
       add_action( "init", array( &$this, "addScripts" ) );
     }
-
-
 
     /*---- Retrieves the options from the database.  @return array ----*/
     function getAdminOptions( $optionsName ) {
@@ -132,7 +136,7 @@ if (!class_exists('wp_lightboxplus')) {
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.speed = '.$lightboxPlusOptions['speed'].';'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.maxWidth = "'.$lightboxPlusOptions['max_width'].'";'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.maxHeight = "'.$lightboxPlusOptions['max_height'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.resize = '.$this->setBoolean( $lightboxPlusOptions['resize'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.scalePhotos = '.$this->setBoolean( $lightboxPlusOptions['resize'] ).';'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.opacity = '.$lightboxPlusOptions['opacity'].';'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.preloading = '.$this->setBoolean( $lightboxPlusOptions['preloading'] ).';'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.current = "'.$lightboxPlusOptions['label_image'].' {current} '.$lightboxPlusOptions['label_of'].' {total}";'.$this->EOL( );
@@ -179,28 +183,29 @@ if (!class_exists('wp_lightboxplus')) {
       delete_option( $this->lightboxStylePathName );
       $this->saveAdminOptions( $this->lightboxInitName, true );
       $lightboxPlusOptions = array(
-        "lightboxplus_style" => 'shadowed',
-        "transition"         => 'elastic',
-        "speed"              => '350',
-        "max_width"          => 'false',
-        "max_height"         => 'false',
-        "resize"             => '1',
-        "opacity"            => '0.8',
-        "preloading"         => '1',
-        "label_image"        => 'Image',
-        "label_of"           => 'of',
-        "previous"           => 'previous',
-        "next"               => 'next',
-        "close"              => 'close',
-        "overlay_close"      => '1',
-        "slideshow"          => '0',
-        "slideshow_auto"     => '1',
-        "slideshow_speed"    => '2500',
-        "slideshow_start"    => 'start',
-        "slideshow_stop"     => 'stop',
-        "display_title"      => '0',
-        "auto_lightbox"      => '0',
-        "class_method"       => '0',
+        "lightboxplus_style"    => 'shadowed',
+        "transition"            => 'elastic',
+        "speed"                 => '350',
+        "max_width"             => 'false',
+        "max_height"            => 'false',
+        "resize"                => '1',
+        "opacity"               => '0.8',
+        "preloading"            => '1',
+        "label_image"           => 'Image',
+        "label_of"              => 'of',
+        "previous"              => 'previous',
+        "next"                  => 'next',
+        "close"                 => 'close',
+        "overlay_close"         => '1',
+        "slideshow"             => '0',
+        "slideshow_auto"        => '1',
+        "slideshow_speed"       => '2500',
+        "slideshow_start"       => 'start',
+        "slideshow_stop"        => 'stop',
+        "display_title"         => '0',
+        "auto_lightbox"         => '0',
+        "class_method"          => '0',
+        "gallery_lightboxplus"  => '0'
       );
       $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusOptions );
 
@@ -231,28 +236,29 @@ if (!class_exists('wp_lightboxplus')) {
         switch ( $_POST['sub'] ) {
           case 'settings':
             $lightboxPlusOptions = array(
-              "lightboxplus_style" => $_POST[lightboxplus_style],
-              "transition"         => $_POST[transition],
-              "speed"              => $_POST[speed],
-              "max_width"          => $_POST[max_width],
-              "max_height"         => $_POST[max_height],
-              "resize"             => $_POST[resize],
-              "opacity"            => $_POST[opacity],
-              "preloading"         => $_POST[preloading],
-              "label_image"        => $_POST[label_image],
-              "label_of"           => $_POST[label_of],
-              "previous"           => $_POST[previous],
-              "next"               => $_POST[next],
-              "close"              => $_POST[close],
-              "overlay_close"      => $_POST[overlay_close],
-              "slideshow"          => $_POST[slideshow],
-              "slideshow_auto"     => $_POST[slideshow_auto],
-              "slideshow_speed"    => $_POST[slideshow_speed],
-              "slideshow_start"    => $_POST[slideshow_start],
-              "slideshow_stop"     => $_POST[slideshow_stop],
-              "display_title"      => $_POST[display_title],
-              "auto_lightbox"      => $_POST[auto_lightbox],
-              "class_method"       => $_POST[class_method],
+              "lightboxplus_style"    => $_POST[lightboxplus_style],
+              "transition"            => $_POST[transition],
+              "speed"                 => $_POST[speed],
+              "max_width"             => $_POST[max_width],
+              "max_height"            => $_POST[max_height],
+              "resize"                => $_POST[resize],
+              "opacity"               => $_POST[opacity],
+              "preloading"            => $_POST[preloading],
+              "label_image"           => $_POST[label_image],
+              "label_of"              => $_POST[label_of],
+              "previous"              => $_POST[previous],
+              "next"                  => $_POST[next],
+              "close"                 => $_POST[close],
+              "overlay_close"         => $_POST[overlay_close],
+              "slideshow"             => $_POST[slideshow],
+              "slideshow_auto"        => $_POST[slideshow_auto],
+              "slideshow_speed"       => $_POST[slideshow_speed],
+              "slideshow_start"       => $_POST[slideshow_start],
+              "slideshow_stop"        => $_POST[slideshow_stop],
+              "display_title"         => $_POST[display_title],
+              "auto_lightbox"         => $_POST[auto_lightbox],
+              "class_method"          => $_POST[class_method],
+              "gallery_lightboxplus"  => $_POST[gallery_lightboxplus],
             );
 
             $this->saveAdminOptions($this->lightboxOptionsName, $lightboxPlusOptions);

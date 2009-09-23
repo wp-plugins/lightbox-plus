@@ -1,24 +1,24 @@
 === Lightbox Plus ===
 Contributors: dzappone
 Donate link: http://www.23systems.net/donate/
-Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay
+Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay, wp gallery, lightview
 Requires at least: 2.6
 Tested up to: 2.8.4
-Stable tag: 1.5.5
+Stable tag: 1.6
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
 == Description ==
 
-Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus permits users to view larger versions of images without having to leave the current page, and is also able to display simple slide shows. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed.  Lightbox Plus captures the image title for display in the overlay.
+Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus permits users to view larger versions of images without having to leave the current page, and is also able to display simple slide shows. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed.  Lightbox Plus captures the image title for display in the overlay.  Lightbox Plus is able to lightbox images displayed using WordPress build in gallery. 
 
 Lightbox Plus uses WordPress's built in jQuery library.
 
 Read the FAQ first if you are having problems.  
 
-Lightbox Plus <strong><em>DOES NOT</em></strong> work with WordPress' built in gallery feature.
+= Lightbox Plus <em>NOW</em> works with WordPress' built in gallery feature. =
 
-= IMPORTANT 1.5 UPGRADE INFORMATION =
+= IMPORTANT 1.5+ UPGRADE INFORMATION =
 See the change log for information regarding this upgrading to version 1.5 of Lightbox Plus.  There are significant differences from previous versions.
 
 = Usage =
@@ -88,13 +88,13 @@ Yes, you can easily create additional styles by adding a new folder to the CSS d
 
 Performance wise the ColorBox jQuery plugin is smaller and generally faster and has more options than most lightbox JavaScript plugins.  The regular expressions that handle the text are more robust handling a wider variety of characters and in addition it will also grab the image title from the image to use for the overlay image caption.
 
-= Lightbox Plus does not work correctly with WordPress' built-in gallery features, how do I make it work =
+= Does Lightbox Plus work with WordPress' built in gallery =
 
-At present it does not.  WordPress' built in gallery has its own method for dispaying image within WordPress' base framework. I am still working on an option that will allow Lightbox Plus to override this.  In the meantime of you would like to use Lightbox Plus with a gallery I suggest you try one of the many gallery plugins that support lightbox, NextGEN Gallery, Lazyest Gallery, or Inline Gallery for example.
+Yes it does.  There are few simple requirements however.  You you must set <strong>Link thumbnails to: Image File</strong> or use <code>[gallery link="file"</code> for the gallery options.  You must check <em>Use For WP Gallery</em> box under <stong>Other Lightbox Plus Settings</strong>
 
 = When resetting/re-initializing LBP the setting do not appear correctly when the page reloads, what gives? =
 
-This problem is only apparent in Chrome and Opera.  It seems to works fine in Internet Explorer, Firefox and Safari.  There may be browser related issues and I am investigating the problem at this time.  For Chrome the settings are being saved but not displayed immediately, click on the Lightbox Plus link under appearance and you will see the current settings.  Opera for whatever reason is completely failing to save re-initialization settings, you must manually set and save them or use another browser.  And, no, it doesn't make sense since it's server side activity.
+This problem is only apparent in Chrome and Opera.  It seems to works fine in Internet Explorer, Firefox and Safari.  There are some browser related issues and I am investigating the problem at this time.  For Chrome the settings are being saved but not displayed immediately, click on the Lightbox Plus link under appearance and you will see the current settings.  Opera for whatever reason is completely failing to save re-initialization settings, you must manually set and save them or use another browser.  And, no, it doesn't make sense since it's server side activity.
 
 = Other Problems =
 
@@ -104,7 +104,9 @@ If you have read and tried the above and you are still having problems, then, pl
 
 = Known Problems =
 
-* Diacritics and other extended characters may cause the image overlay to fail.  Not sure why yet.
+* Sometimes functionality degrades in Firefox - may be corrected in this version - please let me know.
+* Reset re-initialize doesn't appear to work in some browsers.  It does in fact work, however, the changes are not reflect on the page.
+* In some instances performance may be slow in IE - this may be due to plugin conflicts or slow JavaScript performance in IE. 
 
 = Plugin Conflicts =
 
@@ -118,15 +120,31 @@ If you have read and tried the above and you are still having problems, then, pl
 
 == Change Log ==
 
+= 1.6 =
+* Added the much requested feature for Lightbox Plus to work with WordPress' built in gallery
+ * Added checkbox to select whether to use with WP built in gallery. 
+* Updated LightBox Plus to use new version of ColorBox
+* Updated ColorBox to version 1.3.1 with the following changes
+  * Removed the IE-only stylesheets and conditional comments.  All CSS is handled by a single CSS file for all examples.
+  * Removed user-agent sniffing from the js and replaced it with feature detection.  This will allow correct rendering for visitors masking their agent type.
+  * Added `$.fn.colorbox.resize()` method to allow ColorBox to resize it's height if it's contents change.
+  * Added `scrollbars` option to allow users to turn off scrollbars when using the `resize()` method.
+  * Renamed the `resize` option to be less ambiguous.  It's now `scalePhotos`.
+  * Renamed the `cbox_close` event to be less ambiguous.  It's now `cbox_cleanup`.  It is the first thing to happen in the close method while the 'cbox_closed' event is the last to happen.
+  * Fixed a bug with the slideshow mouseover graphics that appeared after ColorBox is opened a 2nd time.
+  * Fixed a bug where ClearType may not work in IE 6 & 7 if using the fade transition.
+  * Minor code optimizations to increase compression.
+* Minor corrections to admin interface.
+
 = 1.5.5 =
 * Updated additional code that didn't make it into 1.5.4 to use less memory and run faster
 * Separated the admin panel output to a separate file
-** Added some custom admin panel styles
-* Cosmetic changes to admin panel
+ * Added some custom admin panel styles
+ * Cosmetic changes to admin panel
 
 = 1.5.4 =
 * Fixed bug where titles were being broken when DO NOT USE TITLE was checked.
-* Fixed issue with limited character sets - should allow any characters in the title
+* Fixed issue with limited character sets - should allow any characters in the title (diacritics, umlauts, etc.)
 * Optimized code to use less memory and run faster
 * Updated ColorBox to version 1.2.9
 * No new features at this time
@@ -200,11 +218,9 @@ If you have read and tried the above and you are still having problems, then, pl
 
 == Road Map ==
 
-1. Attempt to add enhanced features for use with and WordPress' built in gallery.
-2. Class based option - can be set to work with all images or just selected images.
-3. Add languages for which I have completed translations.
-4. Solicit and implement additional language translations.
+1. Add languages for which I have completed translations - planned for verison 1.7
+2. Solicit and implement additional language translations - planned for verison 1.7
 
 == Special Thanks ==
 
-Dirk Schmitz (for pointing out an obvious bug that I kept overlooking), Ken Williams (for testing version 1.5), <a href="http://www.melaniesallis.com">Melanie Sallis</a> for needing a lightbox for her site which prompted me to create this plugin, Jack Moore for creating the awesome jQuery plugin, ColorBox, and everyone who has contributed to the support in developing this plugin.
+Dirk Schmitz (for pointing out an obvious bug that I kept overlooking), Ken Williams (for testing version 1.5), <a href="http://www.melaniesallis.com">Melanie Sallis</a> for needing a lightbox for her site which prompted me to create this plugin, <a href="http://www.colorpowered.com">Jack Moore</a> for creating the awesome jQuery plugin, ColorBox, and everyone who has contributed to the support in developing this plugin.
