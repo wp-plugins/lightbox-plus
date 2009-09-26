@@ -112,6 +112,7 @@ If you have read and tried the above and you are still having problems, then, pl
 
 = Plugin Conflicts =
 
+* Flickr Mini Gallery - Verified.  Download hot fix for <a href="http://23systems.net/downloads/file/flickr-mini-gallery-jquery-hotfix.zip">Flickr Mini Gallery</a> (includes instructions)
 * Tabbed Widgets - Verified
 * DMSGuestbook - Un-verified
 * Gengo - Un-verified
