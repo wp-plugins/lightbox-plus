@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone
 Author URI: http://www.danzappone.com/
-Version: 1.6
+Version: 1.6.1
 */
 /*---- 8/30/2009 9:30:03 AM ----*/
 global $post, $content;  // WordPress Globals
@@ -129,6 +129,7 @@ if (!class_exists('wp_lightboxplus')) {
       if ( !empty( $this->lightboxOptions ) ) {
         $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
         $lightboxPlusJavaScript  = "";
+        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.1 -->'.$this->EOL( );
         $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
         $lightboxPlusJavaScript .= 'jQuery(function($){'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $(document).ready(function(){'.$this->EOL( );
@@ -165,10 +166,10 @@ if (!class_exists('wp_lightboxplus')) {
         
         /*---- Check for and add conditional IE specific CSS fixes ----*/
         $currentStylePath       = get_option( 'lightboxplus_style_path' );
-        $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.css';
+        $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
         if ( file_exists( $filename ) ) {
           $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
-          $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.css" title="IE fixes" />'.$this->EOL( );
+          $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
           $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
         }
         echo $lightboxPlusStyleSheet;

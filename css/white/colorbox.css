@@ -26,40 +26,11 @@
                 #cboxTitle{position:absolute; bottom:-25px; left:5px; color:#ccc;}
                 #cboxCurrent{position:absolute; bottom:-25px; right:35px; color:#ccc;}
                 #cboxSlideshow{position:absolute; top:-20px; right:90px; color:#fff;}
-                #cboxPrevious{position:absolute; top:50%; left:5px; margin-top:-41px; background:url(images/prevwhite.png) top left no-repeat; width:63px; height:32px; text-indent:-9999px;}
-                #cboxPrevious.hover{background-position:bottom left;}
-                #cboxNext{position:absolute; top:50%; right:5px; margin-top:-41px; background:url(images/nextwhite.png) top right no-repeat; width:63px; height:32px; text-indent:-9999px;}
-                #cboxNext.hover{background-position:bottom right;}
+                #cboxPrevious{position:absolute; top:50%; left:5px; margin-top:-41px; background-image: url(data:image/gif;base64,AAAA); width:49%; height:100%; text-indent:-9999px;}
+                #cboxPrevious.hover{background-position:bottom left; background:url(images/prevwhite.png) top left no-repeat;}
+                #cboxNext{position:absolute; top:50%; right:5px; margin-top:-41px; background-image: url(data:image/gif;base64,AAAA); width:49%; height:100%; text-indent:-9999px;}
+                #cboxNext.hover{background-position:bottom right; background:url(images/nextwhite.png) top right no-repeat;}
                 #cboxLoadingOverlay{background:#fff;}
 		#cboxLoadingGraphic{background:url(images/loading.gif) center center no-repeat;}
 		#cboxClose{position:absolute; bottom:-25px; right:5px; display:block; background:url(images/close.png) top center no-repeat; width:22px; height:22px; text-indent:-9999px;}
 		#cboxClose.hover{background-position:bottom center;}
-
-/*
-#lightbox{	position: absolute;	left: 0; width: 100%; z-index: 100; text-align: center; line-height: 0;}
-#lightbox img{ width: auto; height: auto;}
-#lightbox a img{ border: none; }
-
-#outerImageContainer{ position: relative; background-color: #fff; width: 250px; height: 250px; margin: 0 auto; }
-#imageContainer{ padding: 10px; }
-
-#loading{ position: absolute; top: 40%; left: 0%; height: 25%; width: 100%; text-align: center; line-height: 0; }
-#hoverNav{ position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 10; }
-#imageContainer>#hoverNav{ left: 0;}
-#hoverNav a{ outline: none;}
-
-#prevLink, #nextLink{ width: 49%; height: 100%; background-image: url(data:image/gif;base64,AAAA); display: block; }
-#prevLink { left: 0; float: left;}
-#nextLink { right: 0; float: right;}
-#prevLink:hover, #prevLink:visited:hover { background: url(../images/prevwhite.png) left 15% no-repeat; }
-#nextLink:hover, #nextLink:visited:hover { background: url(../images/nextwhite.png) right 15% no-repeat; }
-
-#imageDataContainer{ font: 10px inherit; background-color: #fff; margin: 0 auto; line-height: 1.4em; overflow: auto; width: 100%	; }
-
-#imageData{	padding:0 10px; color: #666; }
-#imageData #imageDetails{ width: 70%; float: left; text-align: left; }	
-#imageData #caption{ font-weight: bold;	}
-#imageData #numberDisplay{ display: block; clear: left; padding-bottom: 1.0em;	}			
-#imageData #bottomNavClose{ width: 22px; float: right;  padding-bottom: 0.7em; outline: none;}	 	
-
-#overlay{ position: absolute; top: 0; left: 0; z-index: 90; width: 100%; height: 500px; background-color: #fff; } */

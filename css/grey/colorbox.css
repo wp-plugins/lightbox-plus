@@ -17,20 +17,20 @@
 	These rules are ordered and tabbed in a way that represents the order/nesting of the generated HTML, 
 	in hope that this will make the relationship easier to understand. Thanks, jack@colorpowered.com
 */
-#cboxOverlay{background:#000;}
+#cboxOverlay{background:#666;}
 
 #colorbox{}
-	#cboxContent{background:#000; margin-top:20px;}
-		#cboxBottomCenter{height:30px; background:#000;}
-		#cboxLoadedContent{background:#000; padding:5px;}
+	#cboxContent{background:#666; margin-top:20px;}
+		#cboxBottomCenter{height:30px; background:#666;}
+		#cboxLoadedContent{background:#666; padding:5px;}
                 #cboxTitle{position:absolute; bottom:-25px; left:5px; color:#ccc;}
                 #cboxCurrent{position:absolute; bottom:-25px; right:35px; color:#ccc;}
                 #cboxSlideshow{position:absolute; top:-20px; right:90px; color:#fff;}
                 #cboxPrevious{position:absolute; top:50%; left:5px; margin-top:-41px; background-image: url(data:image/gif;base64,AAAA); width:49%; height:100%; text-indent:-9999px;}
-                #cboxPrevious.hover{background-position:bottom left; background:url(images/prevblack.png) top left no-repeat;}
+                #cboxPrevious.hover{background-position:bottom left; background:url(images/prevgrey.png) top left no-repeat;}
                 #cboxNext{position:absolute; top:50%; right:5px; margin-top:-41px; background-image: url(data:image/gif;base64,AAAA); width:49%; height:100%; text-indent:-9999px;}
-                #cboxNext.hover{background-position:bottom right; background:url(images/nextblack.png) top right no-repeat;}
-                #cboxLoadingOverlay{background:#000;}
+                #cboxNext.hover{background-position:bottom right; background:url(images/nextgrey.png) top right no-repeat;}
+                #cboxLoadingOverlay{background:#666;}
 		#cboxLoadingGraphic{background:url(images/loading.gif) center center no-repeat;}
 		#cboxClose{position:absolute; bottom:-25px; right:5px; display:block; background:url(images/close.png) top center no-repeat; width:22px; height:22px; text-indent:-9999px;}
 		#cboxClose.hover{background-position:bottom center;}

@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay, wp gallery, lightview
 Requires at least: 2.6
 Tested up to: 2.8.4
-Stable tag: 1.6
+Stable tag: 1.6.1
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -123,6 +123,12 @@ If you have read and tried the above and you are still having problems, then, pl
 
 == Change Log ==
 
+= 1.6.1 =
+* Fixed IE display issues for elegant and shadowed themes.
+ * Should now correctly grab path to images for IE 6/7/8
+* Re-added additional simple styles blue, green, grey, purple, red, teal, yellow in addition to balck and white
+  * Fixed prev/next buttons in simple styles to only display when cursor hovers over left or right of image.
+
 = 1.6 =
 * Added the much requested feature for Lightbox Plus to work with WordPress' built in gallery
  * Added checkbox to select whether to use with WP built in gallery. 
@@ -223,6 +229,7 @@ If you have read and tried the above and you are still having problems, then, pl
 
 1. Add languages for which I have completed translations - planned for verison 1.7
 2. Solicit and implement additional language translations - planned for verison 1.7
+3. Add ability to place iframed content (flash video, html pages, inline content) on a per item basis - planned for version 1.8
 
 == Special Thanks ==
 
