@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone
 Author URI: http://www.danzappone.com/
-Version: 1.6.1
+Version: 1.6.2
 */
 /*---- 8/30/2009 9:30:03 AM ----*/
 global $post, $content;  // WordPress Globals
@@ -45,6 +45,7 @@ if (!class_exists('wp_lightboxplus')) {
       if ( !$this->lightboxInit ) {
         $this->lightboxPlusInit( );
       }
+		  add_filter( 'plugin_row_meta',array( &$this, 'RegisterLBPLinks'),10,2);
       add_action( 'admin_menu', array( &$this, 'lightboxPlusAddPages' ) );
       add_action( 'admin_head', array( &$this, 'lightboxPlusAdminHead' ) );
       add_action( 'wp_head', array( &$this, 'lightboxPlusAddHeader' ) );
@@ -58,7 +59,9 @@ if (!class_exists('wp_lightboxplus')) {
           add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ) );
         }
         else {
-          add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ), 12  );
+          remove_shortcode( 'gallery' );
+          add_shortcode( 'gallery', array( &$this, 'lightboxPlusGallery' ), 10);
+          add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ), 12 );
         }
       }
       add_action( "init", array( &$this, "addScripts" ) );
@@ -87,6 +90,22 @@ if (!class_exists('wp_lightboxplus')) {
       wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ) );
     }
 
+    function getBaseName() {
+		  return plugin_basename(__FILE__);
+	  }
+
+    function RegisterLBPLinks($links, $file) {
+    	$base = wp_lightboxplus::getBaseName();
+    	if ($file == $base) {
+    		$links[] = '<a href="themes.php?page=lightboxplus">' . __('Settings') . '</a>';
+    		$links[] = '<a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">' . __('FAQ') . '</a>';
+    		$links[] = '<a href="http://www.23systems.net/bbpress/forum/lightbox-plus">' . __('Support') . '</a>';
+    		$links[] = '<a href="http://www.23systems.net/donate/">' . __('Donate') . '</a>';
+    		$links[] = '<a href="http://twitter.com/23systems">' . __('Follow on Twitter') . '</a>';
+    	}
+    	return $links;
+    }
+
     /*---- Parse page content looking for RegEx matches and add modify HTML to acomodate LBP display ----*/
     function lightboxPlusReplace( $content ) {
       global $post;
@@ -94,32 +113,42 @@ if (!class_exists('wp_lightboxplus')) {
 				$lightboxPlusOptions   = $this->getAdminOptions($this->lightboxOptionsName);
 	    }
       $postGroupID = $post->ID;
-			$pattern[0] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")(.*?)('|\")([^\>]*?)\/>/i";
-			$pattern[1] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
+			$pattern_a[0] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")(.*?)('|\")([^\>]*?)\/>/i";
+			$pattern_a[1] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
+
+      /*---- Do Not Display Title ----*/
+      /*---- Contrary to what the option is called it now does the opposite ----*/
 			switch ( $lightboxPlusOptions['display_title'] ) {
         case 1:
           switch ( $lightboxPlusOptions['class_method'] ) {
             case 1:
-              $replacement[0] = '<a$1href=$2$3$4$5$6 class="cboxModal" rel="lightbox['.$postGroupID.']"><img$7$11/>';
+              $replacement_a[0] = '<a$1href=$2$3$4$5$6 class="cboxModal" rel="lightbox['.$postGroupID.']"><img$7$11/>';
               break;
             default:
-              $replacement[0] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']"><img$7$11/>';
+              $replacement_a[0] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']"><img$7$11/>';
               break;
           }
           break;
+        /*---- Display title ----*/
         default:
 			    switch ( $lightboxPlusOptions['class_method'] ) {
   			    case 1:
-  			      $replacement[0] = '<a$1href=$2$3$4$5$6 title="$9" class="cboxModal" rel="lightbox['.$postGroupID.']"><img$7title=$8$9$10$11/>';
+  			      $replacement_a[0] = '<a$1href=$2$3$4$5$6 title="$9" class="cboxModal" rel="lightbox['.$postGroupID.']"><img$7title=$8$9$10$11/>';
   			      break;
             default:
-              $replacement[0] = '<a$1href=$2$3$4$5$6 title="$9" rel="lightbox['.$postGroupID.']"><img$7title=$8$9$10$11/>';
+              $replacement_a[0] = '<a$1href=$2$3$4$5$6 title="$9" rel="lightbox['.$postGroupID.']"><img$7title=$8$9$10$11/>';
               break;
           }
         break;
 			}
-			$replacement[1] = '<a$1href=$2$3$4$5$6$7>';
-      $content = preg_replace( $pattern, $replacement, $content );
+			$replacement_a[1] = '<a$1href=$2$3$4$5$6$7>';
+      $content = preg_replace( $pattern_a, $replacement_a, $content );
+      /*---- Correct extra title and standardize quotes to double for links ---*/
+      $pattern_b[0] = "/title='(.*?)'/i";
+      $pattern_b[1] = "/href='([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)'/i";
+      $replacement_b[0] = '';
+      $replacement_b[1] = 'href="$1$2"';
+      $content = preg_replace( $pattern_b, $replacement_b, $content );
       return $content;
     }
 
@@ -131,31 +160,32 @@ if (!class_exists('wp_lightboxplus')) {
         $lightboxPlusJavaScript  = "";
         $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.1 -->'.$this->EOL( );
         $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
-        $lightboxPlusJavaScript .= 'jQuery(function($){'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $(document).ready(function(){'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.transition = "'.$lightboxPlusOptions['transition'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.speed = '.$lightboxPlusOptions['speed'].';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.maxWidth = "'.$lightboxPlusOptions['max_width'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.maxHeight = "'.$lightboxPlusOptions['max_height'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.scalePhotos = '.$this->setBoolean( $lightboxPlusOptions['resize'] ).';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.opacity = '.$lightboxPlusOptions['opacity'].';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.preloading = '.$this->setBoolean( $lightboxPlusOptions['preloading'] ).';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.current = "'.$lightboxPlusOptions['label_image'].' {current} '.$lightboxPlusOptions['label_of'].' {total}";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.previous = "'.$lightboxPlusOptions['previous'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.next = "'.$lightboxPlusOptions['next'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.close = "'.$lightboxPlusOptions['close'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.overlayClose = '.$this->setBoolean( $lightboxPlusOptions['overlay_close'] ).';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshow = '.$this->setBoolean( $lightboxPlusOptions['slideshow'] ).';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowAuto = '.$this->setBoolean( $lightboxPlusOptions['slideshow_auto'] ).';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowSpeed = '.$lightboxPlusOptions['slideshow_speed'].';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowStart =  "'.$lightboxPlusOptions['slideshow_start'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowStop = "'.$lightboxPlusOptions['slideshow_stop'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= 'var $lbp = jQuery.noConflict();'.$this->EOL( );
+        $lightboxPlusJavaScript .= 'jQuery(function($lbp){'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp(document).ready(function(){'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.transition = "'.$lightboxPlusOptions['transition'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.speed = '.$lightboxPlusOptions['speed'].';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.maxWidth = "'.$lightboxPlusOptions['max_width'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.maxHeight = "'.$lightboxPlusOptions['max_height'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.scalePhotos = '.$this->setBoolean( $lightboxPlusOptions['resize'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.opacity = '.$lightboxPlusOptions['opacity'].';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.preloading = '.$this->setBoolean( $lightboxPlusOptions['preloading'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.current = "'.$lightboxPlusOptions['label_image'].' {current} '.$lightboxPlusOptions['label_of'].' {total}";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.previous = "'.$lightboxPlusOptions['previous'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.next = "'.$lightboxPlusOptions['next'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.close = "'.$lightboxPlusOptions['close'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.overlayClose = '.$this->setBoolean( $lightboxPlusOptions['overlay_close'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.slideshow = '.$this->setBoolean( $lightboxPlusOptions['slideshow'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.slideshowAuto = '.$this->setBoolean( $lightboxPlusOptions['slideshow_auto'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.slideshowSpeed = '.$lightboxPlusOptions['slideshow_speed'].';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.slideshowStart =  "'.$lightboxPlusOptions['slideshow_start'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.slideshowStop = "'.$lightboxPlusOptions['slideshow_stop'].'";'.$this->EOL( );
         switch ( $lightboxPlusOptions['class_method'] ) {
           case 1:
-            $lightboxPlusJavaScript .= '  $(".cboxModal").colorbox();'.$this->EOL( );
+            $lightboxPlusJavaScript .= '  $lbp(".cboxModal").colorbox();'.$this->EOL( );
             break;
           default:
-            $lightboxPlusJavaScript .= '  $("a[rel*=lightbox]").colorbox();'.$this->EOL( );
+            $lightboxPlusJavaScript .= '  $lbp("a[rel*=lightbox]").colorbox();'.$this->EOL( );
             break;
         }
         $lightboxPlusJavaScript .= '  });'.$this->EOL( );
@@ -174,6 +204,105 @@ if (!class_exists('wp_lightboxplus')) {
         }
         echo $lightboxPlusStyleSheet;
       }
+    }
+
+    /*---- Replacement shortcode gallery function adds rel="lightbox" or class="cboxModal" ----*/
+    function lightboxPlusGallery($attr) {
+    	global $post;
+    
+    	static $instance = 0;
+    	$instance++;
+    
+    	// Allow plugins/themes to override the default gallery template.
+    	$output = apply_filters('post_gallery', '', $attr);
+    	if ( $output != '' )
+    		return $output;
+    
+    	// We're trusting author input, so let's at least make sure it looks like a valid orderby statement
+    	if ( isset( $attr['orderby'] ) ) {
+    		$attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
+    		if ( !$attr['orderby'] )
+    			unset( $attr['orderby'] );
+    	}
+    
+    	extract(shortcode_atts(array(
+    		'order'      => 'ASC',
+    		'orderby'    => 'menu_order ID',
+    		'id'         => $post->ID,
+    		'itemtag'    => 'dl',
+    		'icontag'    => 'dt',
+    		'captiontag' => 'dd',
+    		'columns'    => 3,
+    		'size'       => 'thumbnail'
+    	), $attr));
+    
+    	$id = intval($id);
+    	$attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+    
+    	if ( empty($attachments) )
+    		return '';
+    
+    	if ( is_feed() ) {
+    		$output = "\n";
+    		foreach ( $attachments as $att_id => $attachment )
+    			$output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+    		return $output;
+    	}
+    
+    	$itemtag = tag_escape($itemtag);
+    	$captiontag = tag_escape($captiontag);
+    	$columns = intval($columns);
+    	$itemwidth = $columns > 0 ? floor(100/$columns) : 100;
+    
+    	$selector = "gallery-{$instance}";
+    
+    	$output = apply_filters('gallery_style', "
+    		<style type='text/css'>
+    			#{$selector} {
+    				margin: auto;
+    			}
+    			#{$selector} .gallery-item {
+    				float: left;
+    				margin-top: 10px;
+    				text-align: center;
+    				width: {$itemwidth}%;			}
+    			#{$selector} img {
+    				border: 2px solid #cfcfcf;
+    			}
+    			#{$selector} .gallery-caption {
+    				margin-left: 0;
+    			}
+    		</style>
+    		<!-- see gallery_shortcode() in wp-includes/media.php -->
+    		<div id='$selector' class='gallery galleryid-{$id}'>");
+    
+    	$i = 0;
+    	foreach ( $attachments as $id => $attachment ) {
+    		$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+        
+        $link = $this->lightboxPlusReplace($link);
+    
+    		$output .= "<{$itemtag} class='gallery-item'>";
+    		$output .= "
+    			<{$icontag} class='gallery-icon'>
+    				$link
+    			</{$icontag}>";
+    		if ( $captiontag && trim($attachment->post_excerpt) ) {
+    			$output .= "
+    				<{$captiontag} class='gallery-caption'>
+    				" . wptexturize($attachment->post_excerpt) . "
+    				</{$captiontag}>";
+    		}
+    		$output .= "</{$itemtag}>";
+    		if ( $columns > 0 && ++$i % $columns == 0 )
+    			$output .= '<br style="clear: both" />';
+    	}
+    
+    	$output .= "
+    			<br style='clear: both;' />
+    		</div>\n";
+    
+    	return $output;
     }
 
     /*---- Add some default options if they don't exist or if reinitialized ----*/

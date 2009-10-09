@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay, wp gallery, lightview
 Requires at least: 2.6
 Tested up to: 2.8.4
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -117,11 +117,22 @@ If you have read and tried the above and you are still having problems, then, pl
 * DMSGuestbook - Un-verified
 * Gengo - Un-verified
 
+Note: These conflicts may now be mitigated as of version 1.6.2.
+
 == Screenshots ==
 
 1. Lightbox Plus
 
 == Change Log ==
+
+= 1.6.2 =
+* Added `jQuery.noConflict()` to the initiator to hopefully eliminate issues with other jQuery libraries loading and causing conflicts.
+ * Changed jQuery `$` variable to `$lbp` to give a unique constructor.
+* Added replacement shortcode gallery method to allow Lightbox Plus to work with shortcode galleries called via the `echo do_shortcode('[gallery link="file" size="thumbnail"]');` method in templates.
+ * Replacement shortcode gallery function automatically adds `rel="lightbox"` or `class="cboxModal"` as selected in options.
+* Added code to automatically cleanup doubled title tags from shortcode galleries.
+* Added quicklinks to the plugin listing on the plugin page.
+* Some minor UI tweaks to the admin page.
 
 = 1.6.1 =
 * Fixed IE display issues for elegant and shadowed themes.
