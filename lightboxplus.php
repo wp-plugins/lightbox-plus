@@ -4,8 +4,8 @@ Plugin Name: Lightbox Plus
 Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone
-Author URI: http://www.danzappone.com/
-Version: 1.6.2
+Author URI: http://www.23systems.net/
+Version: 1.6.3
 */
 /*---- 8/30/2009 9:30:03 AM ----*/
 global $post, $content;  // WordPress Globals
@@ -87,7 +87,7 @@ if (!class_exists('wp_lightboxplus')) {
     /*---- Tells WordPress to load the plugin JavaScript files and what library to use ----*/
     function addScripts( ) {
       global $g_lightbox_plus_url;
-      wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ) );
+      wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.1' );
     }
 
     function getBaseName() {
@@ -158,9 +158,8 @@ if (!class_exists('wp_lightboxplus')) {
       if ( !empty( $this->lightboxOptions ) ) {
         $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
         $lightboxPlusJavaScript  = "";
-        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.1 -->'.$this->EOL( );
+        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.3 -->'.$this->EOL( );
         $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
-        $lightboxPlusJavaScript .= 'var $lbp = jQuery.noConflict();'.$this->EOL( );
         $lightboxPlusJavaScript .= 'jQuery(function($lbp){'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $lbp(document).ready(function(){'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.transition = "'.$lightboxPlusOptions['transition'].'";'.$this->EOL( );

@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay, wp gallery, lightview
 Requires at least: 2.6
 Tested up to: 2.8.4
-Stable tag: 1.6.2
+Stable tag: 1.6.3
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -54,7 +54,7 @@ Optional: Use the title attribute if you want to show a caption.
 
 = Caveats =
 
-Flash (i.e. YouTube videos, etc.) will sit atop the Lightbox Plus display not matter what the z-index is.  This is an issue with Flash.
+Flash (i.e. YouTube videos, etc.) will sit atop the Lightbox Plus display no matter what the z-index is.  This is an issue with Flash.
 
 See <a href="http://go.adobe.com/kb/ts_tn_15523_en-us">Flash content displays on top of all DHTML layers</a> at Adobe for details.
 
@@ -117,13 +117,22 @@ If you have read and tried the above and you are still having problems, then, pl
 * DMSGuestbook - Un-verified
 * Gengo - Un-verified
 
-Note: These conflicts may now be mitigated as of version 1.6.2.
+Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Screenshots ==
 
 1. Lightbox Plus
 
 == Change Log ==
+
+= 1.6.3 =
+* Eliminated conflict with Featured Content plug-in
+ * Removed `jQuery.noConflict()` due to poor implementation on my part.
+ * Kept `$lbp` jQuery variable.
+* jQuery conflicts should all be resolved - hopefully.
+* Minor modification to `wp_enqueue_script` function cal to include colorbox version.
+* Now works with WordPress Mu if `rel=lightbox[]` is added manually.
+ * Working on solving auto lightboxing issues with WordPress Mu 
 
 = 1.6.2 =
 * Added `jQuery.noConflict()` to the initiator to hopefully eliminate issues with other jQuery libraries loading and causing conflicts.
@@ -238,9 +247,10 @@ Note: These conflicts may now be mitigated as of version 1.6.2.
 
 == Road Map ==
 
-1. Add languages for which I have completed translations - planned for verison 1.7
-2. Solicit and implement additional language translations - planned for verison 1.7
-3. Add ability to place iframed content (flash video, html pages, inline content) on a per item basis - planned for version 1.8
+1. Get Lightbox Plus working automatically with WordPress Mu - planned for version 1.6.9 or earlier. 
+2. Add languages for which I have completed translations - planned for verison 1.7
+3. Solicit and implement additional language translations - planned for verison 1.7
+4. Add ability to place iframed content (flash video, html pages, inline content) on a per item basis - planned for version 1.8
 
 == Special Thanks ==
 
