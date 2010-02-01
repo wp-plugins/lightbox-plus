@@ -24,7 +24,7 @@ I'm happy to say Lightbox Plus now works with WordPress' built in gallery.  This
 See the change log for information regarding this upgrading to version 1.5 of Lightbox Plus.  There are significant differences from previous versions.
 
 = IMPORTANT 1.6.6+ UPGRADE INFORMATION =
-Must have WordPress 2.8+ and the `wp_footer()`` hook for Lightbox Plus to work correctly from 1.6.6 forward.  If using and older version of WordPress please continue using version 1.6.3 of Lightbox Plus.
+Must have WordPress 2.8+ and the `wp_footer()` hook for Lightbox Plus to work correctly from 1.6.6 forward.  If using and older version of WordPress please continue using version 1.6.3 of Lightbox Plus.
 
 = Usage =
 
@@ -130,7 +130,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 = 1.6.6 =
 * Tested with WordPress 2.9.1
- * Only works with WordPress 2.8+ due to the use of the `$in_foote`r parameter used in the `wp_enqueue_script()` function. 
+ * Only works with WordPress 2.8+ due to the use of the `$in_footer` parameter used in the `wp_enqueue_script()` function. 
 * Moved all possible JavaScript to the footer to improve load speed
  * Requires theme has the `wp_footer()` hook
 * Cleaned up jQuery call to correctly work in no conflict mode per definition. 
@@ -140,15 +140,15 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Fixed a bug introduced in 1.3.4 where colorbox could not be launched by triggering an element's click event through JavaScript.
  * Minor refinements.
  * Event delegation is now used for elements that ColorBox is assigned to, rather than individual click events.
- * Additional callbacks have been added to represent other stages of ColorBox's lifecycle. Available callbacks, in order of their execution: onOpen, onLoad, onComplete, onCleanup, onClosed These take place at the same time as the event hooks, but will be better suited than the hooks for targeting specific instances of ColorBox.
+ * Additional callbacks have been added to represent other stages of ColorBox's lifecycle. Available callbacks, in order of their execution: `onOpen`, `onLoad`, `onComplete`, `onCleanup`, `onClosed` These take place at the same time as the event hooks, but will be better suited than the hooks for targeting specific instances of ColorBox.
  * Ajax content is now immediately added to the DOM to be more compatible if that content contains script tags.
  * Focus is now returned to the calling element on closing.
- * Fixed a bug where maxHeight and maxWidth did not work for non-photo content.
- * Direct calls no longer need 'open:true', it is assumed.  Example: $.fn.colorbox({html:"<p>Hi</p>"});
- * Changed $.fn.colorbox.element() to return a jQuery object rather the DOM element.
+ * Fixed a bug where `maxHeight` and `maxWidth` did not work for non-photo content.
+ * Direct calls no longer need `'open:true'`, it is assumed.  Example: `$.fn.colorbox({html:"<p>Hi</p>"});`
+ * Changed `$.fn.colorbox.element()` to return a jQuery object rather the DOM element.
  * jQuery.colorbox-min.js is compressed with Google's Closure Compiler rather than YUI Compressor.
- * Added 'innerWidth' and 'innerHeight' options to allow people to easily set the size dimensions for ColorBox, without having to anticipate the size of the borders and buttons.
- * Renamed 'scrollbars' option to 'scrolling' to be in keeping with the existing HTML attribute.  The option now also applies to iframes.
+ * Added `'innerWidth'` and `'innerHeight'` options to allow people to easily set the size dimensions for ColorBox, without having to anticipate the size of the borders and buttons.
+ * Renamed `'scrollbars'` option to `'scrolling'` to be in keeping with the existing HTML attribute.  The option now also applies to iframes.
  * Bug fix: In Safari, positioning occassionally incorrect when using '100%' dimensions.
  * Bug fix: In IE6, the background overlay is briefly not full size when first viewing.
  * Bug fix: In Firefox, opening ColorBox causes a split second shift with a small minority of webpage layouts.
