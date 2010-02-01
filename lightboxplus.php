@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone
 Author URI: http://www.23systems.net/
-Version: 1.6.3
+Version: 1.6.6
 */
 /*---- 8/30/2009 9:30:03 AM ----*/
 global $post, $content;  // WordPress Globals
@@ -49,6 +49,7 @@ if (!class_exists('wp_lightboxplus')) {
       add_action( 'admin_menu', array( &$this, 'lightboxPlusAddPages' ) );
       add_action( 'admin_head', array( &$this, 'lightboxPlusAdminHead' ) );
       add_action( 'wp_head', array( &$this, 'lightboxPlusAddHeader' ) );
+      add_action( 'wp_footer', array( &$this, 'lightboxPlusAddFooter' ) );
       if ( !empty( $this->lightboxOptions ) ) {
         $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
         $autoLightbox = $lightboxPlusOptions['auto_lightbox'];
@@ -87,7 +88,7 @@ if (!class_exists('wp_lightboxplus')) {
     /*---- Tells WordPress to load the plugin JavaScript files and what library to use ----*/
     function addScripts( ) {
       global $g_lightbox_plus_url;
-      wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.1' );
+      wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.6', true);
     }
 
     function getBaseName() {
@@ -152,45 +153,11 @@ if (!class_exists('wp_lightboxplus')) {
       return $content;
     }
 
-    /*---- Add JavaScript (jQuery) to page header to activate LBP ----*/
+    /*---- Add CSS styles to page header to activate LBP ----*/
     function lightboxPlusAddHeader( ) {
       global $g_lightbox_plus_url;
       if ( !empty( $this->lightboxOptions ) ) {
         $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
-        $lightboxPlusJavaScript  = "";
-        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.3 -->'.$this->EOL( );
-        $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
-        $lightboxPlusJavaScript .= 'jQuery(function($lbp){'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp(document).ready(function(){'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.transition = "'.$lightboxPlusOptions['transition'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.speed = '.$lightboxPlusOptions['speed'].';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.maxWidth = "'.$lightboxPlusOptions['max_width'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.maxHeight = "'.$lightboxPlusOptions['max_height'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.scalePhotos = '.$this->setBoolean( $lightboxPlusOptions['resize'] ).';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.opacity = '.$lightboxPlusOptions['opacity'].';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.preloading = '.$this->setBoolean( $lightboxPlusOptions['preloading'] ).';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.current = "'.$lightboxPlusOptions['label_image'].' {current} '.$lightboxPlusOptions['label_of'].' {total}";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.previous = "'.$lightboxPlusOptions['previous'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.next = "'.$lightboxPlusOptions['next'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.close = "'.$lightboxPlusOptions['close'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.overlayClose = '.$this->setBoolean( $lightboxPlusOptions['overlay_close'] ).';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.slideshow = '.$this->setBoolean( $lightboxPlusOptions['slideshow'] ).';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.slideshowAuto = '.$this->setBoolean( $lightboxPlusOptions['slideshow_auto'] ).';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.slideshowSpeed = '.$lightboxPlusOptions['slideshow_speed'].';'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.slideshowStart =  "'.$lightboxPlusOptions['slideshow_start'].'";'.$this->EOL( );
-        $lightboxPlusJavaScript .= '  $lbp.fn.colorbox.settings.slideshowStop = "'.$lightboxPlusOptions['slideshow_stop'].'";'.$this->EOL( );
-        switch ( $lightboxPlusOptions['class_method'] ) {
-          case 1:
-            $lightboxPlusJavaScript .= '  $lbp(".cboxModal").colorbox();'.$this->EOL( );
-            break;
-          default:
-            $lightboxPlusJavaScript .= '  $lbp("a[rel*=lightbox]").colorbox();'.$this->EOL( );
-            break;
-        }
-        $lightboxPlusJavaScript .= '  });'.$this->EOL( );
-        $lightboxPlusJavaScript .= '});'.$this->EOL( );
-        $lightboxPlusJavaScript .= '</script>'.$this->EOL( );
-        echo $lightboxPlusJavaScript;
         $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css" media="screen" />'.$this->EOL( );
         
         /*---- Check for and add conditional IE specific CSS fixes ----*/
@@ -205,6 +172,46 @@ if (!class_exists('wp_lightboxplus')) {
       }
     }
 
+    /*---- Add JavaScript (jQuery) to page footer to activate LBP ----*/
+    function lightboxPlusAddFooter( ) {
+      global $g_lightbox_plus_url;
+      if ( !empty( $this->lightboxOptions ) ) {
+        $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
+        $lightboxPlusJavaScript  = "";
+        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.3 -->'.$this->EOL( );
+        $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
+        $lightboxPlusJavaScript .= 'jQuery(document).ready(function($){'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.transition = "'.$lightboxPlusOptions['transition'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.speed = '.$lightboxPlusOptions['speed'].';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.maxWidth = "'.$lightboxPlusOptions['max_width'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.maxHeight = "'.$lightboxPlusOptions['max_height'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.scalePhotos = '.$this->setBoolean( $lightboxPlusOptions['resize'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.opacity = '.$lightboxPlusOptions['opacity'].';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.preloading = '.$this->setBoolean( $lightboxPlusOptions['preloading'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.current = "'.$lightboxPlusOptions['label_image'].' {current} '.$lightboxPlusOptions['label_of'].' {total}";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.previous = "'.$lightboxPlusOptions['previous'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.next = "'.$lightboxPlusOptions['next'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.close = "'.$lightboxPlusOptions['close'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.overlayClose = '.$this->setBoolean( $lightboxPlusOptions['overlay_close'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshow = '.$this->setBoolean( $lightboxPlusOptions['slideshow'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowAuto = '.$this->setBoolean( $lightboxPlusOptions['slideshow_auto'] ).';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowSpeed = '.$lightboxPlusOptions['slideshow_speed'].';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowStart =  "'.$lightboxPlusOptions['slideshow_start'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.slideshowStop = "'.$lightboxPlusOptions['slideshow_stop'].'";'.$this->EOL( );
+        switch ( $lightboxPlusOptions['class_method'] ) {
+          case 1:
+            $lightboxPlusJavaScript .= '  $(".cboxModal").colorbox();'.$this->EOL( );
+            break;
+          default:
+            $lightboxPlusJavaScript .= '  $("a[rel*=lightbox]").colorbox();'.$this->EOL( );
+            break;
+        }
+        $lightboxPlusJavaScript .= '});'.$this->EOL( );
+        $lightboxPlusJavaScript .= '</script>'.$this->EOL( );
+        echo $lightboxPlusJavaScript;
+      }
+    }
+        
     /*---- Replacement shortcode gallery function adds rel="lightbox" or class="cboxModal" ----*/
     function lightboxPlusGallery($attr) {
     	global $post;
@@ -232,11 +239,33 @@ if (!class_exists('wp_lightboxplus')) {
     		'icontag'    => 'dt',
     		'captiontag' => 'dd',
     		'columns'    => 3,
-    		'size'       => 'thumbnail'
+    		'size'       => 'thumbnail',
+        'include'    => '',
+        'exclude'    => ''
     	), $attr));
     
     	$id = intval($id);
-    	$attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+		  
+      if ( 'RAND' == $order )
+		  $orderby = 'none';
+
+      if ( !empty($include) ) {
+      	$include = preg_replace( '/[^0-9,]+/', '', $include );
+      	$_attachments = get_posts( array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+      
+      	$attachments = array();
+      	foreach ( $_attachments as $key => $val ) {
+      		$attachments[$val->ID] = $_attachments[$key];
+      	}
+      } 
+      elseif ( !empty($exclude) ) {
+        $exclude = preg_replace( '/[^0-9,]+/', '', $exclude );
+        $attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+      }
+      else
+      {
+        $attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+      }
     
     	if ( empty($attachments) )
     		return '';
