@@ -24,7 +24,7 @@ I'm happy to say Lightbox Plus now works with WordPress' built in gallery.  This
 See the change log for information regarding this upgrading to version 1.5 of Lightbox Plus.  There are significant differences from previous versions.
 
 = IMPORTANT 1.6.6+ UPGRADE INFORMATION =
-Must have WordPress 2.8+ and the `wp_footer()` hook for Lightbox Plus to work correctly from 1.6.6 forward.  If using and older version of WordPress please continue using version 1.6.3 of Lightbox Plus.
+Must have WordPress 2.8+ and the `wp_footer()` hook for Lightbox Plus to work correctly from 1.6.6 forward.  If using and older version of WordPress please continue using version 1.6.3 of Lightbox Plus.  Lightbox Plus will stop working if `wp_footer()` does not exist in the template.  See `/wp-content/themes/default/footer.php` for an example of how to place it.
 
 = Usage =
 
