@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay, wp gallery, lightview
 Requires at least: 2.8
 Tested up to: 2.9.1
-Stable tag: 1.6.6
+Stable tag: 1.6.7
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -157,7 +157,9 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Changed admin panel to work that same way as my other plugins and thereby ease code maintainence 
  * Quick links in plugins list
  * Added additiona support and FAQ links to admin panel 
-* Readme and faq update   
+* Readme and faq update
+* Actually includes ColorBox 1.3.6 which some how was replaced by 1.3.1 in last release (1.6.6) for which I apologize.
+* Includes `lightbox-plus.pot` for language translations for interested parties.     
 
 = 1.6.6 =
 * Tested with WordPress 2.9.1

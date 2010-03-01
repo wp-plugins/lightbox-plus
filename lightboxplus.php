@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone
 Author URI: http://www.23systems.net/
-Version: 1.6.6
+Version: 1.6.7
 */
 /*---- 8/30/2009 9:30:03 AM ----*/
 global $post, $content;  // WordPress Globals
