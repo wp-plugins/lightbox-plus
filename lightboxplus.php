@@ -103,6 +103,7 @@ if (!class_exists('wp_lightboxplus')) {
     		$links[] = '<a href="http://www.23systems.net/bbpress/forum/lightbox-plus">' . __('Support') . '</a>';
     		$links[] = '<a href="http://www.23systems.net/donate/">' . __('Donate') . '</a>';
     		$links[] = '<a href="http://twitter.com/23systems">' . __('Follow on Twitter') . '</a>';
+    		$links[] = '<a href="http://www.facebook.com/pages/Austin-TX/23Systems-Web-Devsign/94195762502">' . __('Facebook Page') . '</a>';
     	}
     	return $links;
     }
@@ -116,7 +117,8 @@ if (!class_exists('wp_lightboxplus')) {
       $postGroupID = $post->ID;
 			$pattern_a[0] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")(.*?)('|\")([^\>]*?)\/>/i";
 			$pattern_a[1] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
-
+      $pattern_a[3] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)/i";
+      
       /*---- Do Not Display Title ----*/
       /*---- Contrary to what the option is called it now does the opposite ----*/
 			switch ( $lightboxPlusOptions['display_title'] ) {
@@ -143,6 +145,7 @@ if (!class_exists('wp_lightboxplus')) {
         break;
 			}
 			$replacement_a[1] = '<a$1href=$2$3$4$5$6$7>';
+			$replacement_a[3] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']"><img$7';
       $content = preg_replace( $pattern_a, $replacement_a, $content );
       /*---- Correct extra title and standardize quotes to double for links ---*/
       $pattern_b[0] = "/title='(.*?)'/i";
@@ -495,11 +498,27 @@ if (!class_exists('wp_lightboxplus')) {
 ?>
 			<div class="wrap">
 				  <h2><?php _e( 'Lightbox Plus Options', 'lightboxplus' )?></h2>
-				  <?php _e( 'Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  ColorBox was created by Jack Moore of <a href="http://colorpowered.com/colorbox/">Color Powered</a> and is licensed under the MIT License. Lightbox Plus allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.','lightboxplus' ); ?>
+				  <br style="clear:both;" />
 <?php
 			require('admin/admin-html.php');
 ?>
 			</div>
+      <script type="text/javascript">
+  		<!--
+  		jQuery('.postbox h3').click( function() { jQuery(jQuery(this).parent().get(0)).toggleClass('closed'); } );
+  		jQuery('.postbox.close-me').each(function(){
+  		jQuery(this).addClass("closed");
+  		});
+		
+      function toggleVisibility(id) {
+      var elmt = document.getElementById(id);
+        if(elmt.style.display == 'block')
+          elmt.style.display = 'none';
+      else
+        elmt.style.display = 'block';
+      }
+		  //-->
+    	</script>      
 <?php
     }
 

@@ -2,7 +2,7 @@
 Contributors: dzappone
 Donate link: http://www.23systems.net/donate/
 Tags: lightbox, images, photo, image, ajax, picture, gallery, automatic, colorbox, overlay, wp gallery, lightview
-Requires at least: 2.6
+Requires at least: 2.8
 Tested up to: 2.9.1
 Stable tag: 1.6.6
 
@@ -101,6 +101,28 @@ Yes it does.  There are few simple requirements however.  You you must set <stro
 
 This problem is only apparent in Chrome and Opera.  It seems to works fine in Internet Explorer, Firefox and Safari.  There are some browser related issues and I am investigating the problem at this time.  For Chrome the settings are being saved but not displayed immediately, click on the Lightbox Plus link under appearance and you will see the current settings.  Opera for whatever reason is completely failing to save re-initialization settings, you must manually set and save them or use another browser.  And, no, it doesn't make sense since it's server side activity.
 
+= Additional FAQs from Colorbox =
+
+= ColorBox is positioned incorrectly or behaving strangely in Internet Explorer =
+
+This is likely a doctype issue. ColorBox requires a valid doctype and rendering in quirks mode is not supported. Make sure you are using the full doctype declaration to insure rendering in standards mode.
+
+This abbreviated doctype renders the document in quirks mode for Internet Explorer: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+The doctype with URI renders in standards mode for all browsers: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+For more information, see A List Apart's <a href="http://www.alistapart.com/articles/doctype/">primer on doctypes</a>.
+
+= ColorBox's borders do not display in Internet Explorer =
+
+Some of the example styles provided make use of transparent .PNG files. Alpha transparencies aren't supported by default in IE6, and can cause an undesirable 'black halo' effect in IE7 and IE8 when changing their opacity. ColorBox resolves this by using one of IE's CSS filters. You can see these at the bottom of colorbox.css. The filter src paths are relative to the HTML document (just like an IMG element), while CSS background image paths are relative to the CSS document. In the examples I provide the relative path is the same, but users often change the directory structure once they move the files over to their own host. The filter src path needs to reflect this change with the appropriate relative path or an absolute path. Here is an example that assumes the 'images' folder is in the root directory:
+
+Original CSS with incorrect relative path: .AlphaImageLoader(src=images/internet_explorer/borderTopLeft.png
+
+Corrected relative path: .AlphaImageLoader(src=/images/internet_explorer/borderTopLeft.png
+
+Corrected absolute path: .AlphaImageLoader(src=http://your_domain.com/images/internet_explorer/borderTopLeft.png
+
 = Other Problems =
 
 If you have read and tried the above and you are still having problems, then, please post your issues, in detail (links, error messages) to my site.
@@ -127,6 +149,15 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 1. Lightbox Plus
 
 == Change Log ==
+
+= 1.6.7 =
+* Added fix to auto-lightbox images that are missing title attributes (Thanks Jörn)
+ * This primarily affects images that were placed using older verisons of WordPress
+* Interface updates
+ * Changed admin panel to work that same way as my other plugins and thereby ease code maintainence 
+ * Quick links in plugins list
+ * Added additiona support and FAQ links to admin panel 
+* Readme and faq update   
 
 = 1.6.6 =
 * Tested with WordPress 2.9.1
