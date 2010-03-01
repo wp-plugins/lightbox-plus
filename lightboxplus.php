@@ -497,7 +497,7 @@ if (!class_exists('wp_lightboxplus')) {
       }
 ?>
 			<div class="wrap">
-				  <h2><?php _e( 'Lightbox Plus Options', 'lightboxplus' )?></h2>
+				  <h2><?php _e( 'Lightbox Plus Options v1.7 (ColorBox v1.3.6)', 'lightboxplus' )?></h2>
 				  <br style="clear:both;" />
 <?php
 			require('admin/admin-html.php');
