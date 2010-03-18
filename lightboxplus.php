@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone
 Author URI: http://www.23systems.net/
-Version: 1.6.7
+Version: 1.6.8
 */
 /*---- 8/30/2009 9:30:03 AM ----*/
 global $post, $content;  // WordPress Globals
@@ -115,11 +115,16 @@ if (!class_exists('wp_lightboxplus')) {
 				$lightboxPlusOptions   = $this->getAdminOptions($this->lightboxOptionsName);
 	    }
       $postGroupID = $post->ID;
-			$pattern_a[0] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")(.*?)('|\")([^\>]*?)\/>/i";
-			$pattern_a[1] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
-      $pattern_a[3] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)/i";
+      /*---- Auto-Lightbox Match Patterns ----*/			
+      $pattern_a[0] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")(.*?)('|\")([^\>]*?)\/>/i";
+			$pattern_a[1] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)/i";
+			if ( $lightboxPlusOptions['text_links'] ) {
+			  $pattern_a[2] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)>/i";
+			}
+      $pattern_a[3] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
       
-      /*---- Do Not Display Title ----*/
+      /*---- Replacement Patterns ---*/      
+      /*---- In case Do Not Display Title is selected ----*/
       /*---- Contrary to what the option is called it now does the opposite ----*/
 			switch ( $lightboxPlusOptions['display_title'] ) {
         case 1:
@@ -144,14 +149,20 @@ if (!class_exists('wp_lightboxplus')) {
           }
         break;
 			}
-			$replacement_a[1] = '<a$1href=$2$3$4$5$6$7>';
-			$replacement_a[3] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']"><img$7';
+			$replacement_a[1] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']"><img$7';
+      if ( $lightboxPlusOptions['text_links'] ) {
+        $replacement_a[2] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']">';
+      }
+      $replacement_a[3] = '<a$1href=$2$3$4$5$6$7>';
+      
       $content = preg_replace( $pattern_a, $replacement_a, $content );
       /*---- Correct extra title and standardize quotes to double for links ---*/
       $pattern_b[0] = "/title='(.*?)'/i";
       $pattern_b[1] = "/href='([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)'/i";
+      $pattern_b[2] = "/rel=('|\")lightbox(.*?)('|\") rel=('|\")lightbox(.*?)('|\")/i";
       $replacement_b[0] = '';
       $replacement_b[1] = 'href="$1$2"';
+      $replacement_b[2] = 'rel=$1lightbox$2$3';
       $content = preg_replace( $pattern_b, $replacement_b, $content );
       return $content;
     }
@@ -167,7 +178,7 @@ if (!class_exists('wp_lightboxplus')) {
         $currentStylePath       = get_option( 'lightboxplus_style_path' );
         $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
         if ( file_exists( $filename ) ) {
-          $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
+          $lightboxPlusStyleSheet .= '<!--[if lte IE 6]>'.$this->EOL( );
           $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
           $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
         }
@@ -181,11 +192,17 @@ if (!class_exists('wp_lightboxplus')) {
       if ( !empty( $this->lightboxOptions ) ) {
         $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
         $lightboxPlusJavaScript  = "";
-        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.3 -->'.$this->EOL( );
+        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.8 - 3/18/2010 -->'.$this->EOL( );
         $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
         $lightboxPlusJavaScript .= 'jQuery(document).ready(function($){'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.transition = "'.$lightboxPlusOptions['transition'].'";'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.speed = '.$lightboxPlusOptions['speed'].';'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.width = "'.$lightboxPlusOptions['width'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.height = "'.$lightboxPlusOptions['height'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.innerWidth = "'.$lightboxPlusOptions['inner_width'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.innerHeight = "'.$lightboxPlusOptions['inner_height'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.initialWidth = "'.$lightboxPlusOptions['initial_width'].'";'.$this->EOL( );
+        $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.initialHeight = "'.$lightboxPlusOptions['initial_height'].'";'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.maxWidth = "'.$lightboxPlusOptions['max_width'].'";'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.maxHeight = "'.$lightboxPlusOptions['max_height'].'";'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.scalePhotos = '.$this->setBoolean( $lightboxPlusOptions['resize'] ).';'.$this->EOL( );
@@ -347,6 +364,12 @@ if (!class_exists('wp_lightboxplus')) {
         "lightboxplus_style"    => 'shadowed',
         "transition"            => 'elastic',
         "speed"                 => '350',
+        "width"                 => 'false',
+        "height"                => 'false',
+        "inner_width"           => 'false',
+        "inner_height"          => 'false',
+        "initial_width"         => '300',
+        "initial_height"        => '100',
         "max_width"             => 'false',
         "max_height"            => 'false',
         "resize"                => '1',
@@ -400,6 +423,12 @@ if (!class_exists('wp_lightboxplus')) {
               "lightboxplus_style"    => $_POST[lightboxplus_style],
               "transition"            => $_POST[transition],
               "speed"                 => $_POST[speed],
+              "width"                 => $_POST[width],
+              "height"                => $_POST[height],
+              "inner_width"           => $_POST[inner_width],
+              "inner_height"          => $_POST[inner_height],
+              "initial_width"           => $_POST[initial_width],
+              "initial_height"          => $_POST[initial_height],
               "max_width"             => $_POST[max_width],
               "max_height"            => $_POST[max_height],
               "resize"                => $_POST[resize],
@@ -418,6 +447,7 @@ if (!class_exists('wp_lightboxplus')) {
               "slideshow_stop"        => $_POST[slideshow_stop],
               "display_title"         => $_POST[display_title],
               "auto_lightbox"         => $_POST[auto_lightbox],
+              "text_links"            => $_POST[text_links],
               "class_method"          => $_POST[class_method],
               "gallery_lightboxplus"  => $_POST[gallery_lightboxplus],
             );
@@ -496,8 +526,8 @@ if (!class_exists('wp_lightboxplus')) {
 				}
       }
 ?>
-			<div class="wrap">
-				  <h2><?php _e( 'Lightbox Plus Options v1.7 (ColorBox v1.3.6)', 'lightboxplus' )?></h2>
+			<div class="wrap" id="lightbox">
+				  <h2><?php _e( 'Lightbox Plus Options v1.6.8 (ColorBox v1.3.6)', 'lightboxplus' )?></h2>
 				  <br style="clear:both;" />
 <?php
 			require('admin/admin-html.php');

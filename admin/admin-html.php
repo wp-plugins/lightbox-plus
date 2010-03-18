@@ -95,6 +95,42 @@
             </tr>
 
 					  <tr>
+              <th scope="row"><?php _e( 'Width', 'lightboxplus' )?>: </th>
+              <td><input type="text" size="15" name="width" id="width" value="<?php if ( !empty( $lightboxPlusOptions['width'] )) { echo $lightboxPlusOptions['width'];} else { echo ''; } ?>" />
+              <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_width_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_width_tip"><?php _e( 'Set a fixed total width. This includes borders and buttons. Example: "100%", "500px", or 500, or false for no defined width.  <strong><em>Default: false</em></strong>', 'lightboxplus' )?></div></td>
+            </tr>
+
+					  <tr>
+              <th scope="row"><?php _e( 'Height', 'lightboxplus' )?>: </th>
+              <td><input type="text" size="15" name="height" id="height" value="<?php if ( !empty( $lightboxPlusOptions['height'] )) { echo $lightboxPlusOptions['height'];} else { echo ''; } ?>" />
+              <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_height_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_height_tip"><?php _e( 'Set a fixed total height. This includes borders and buttons. Example: "100%", "500px", or 500, or false for no defined height. <strong><em>Default: false</em></strong>', 'lightboxplus' )?></div></td>
+            </tr>
+            
+					  <tr>
+              <th scope="row"><?php _e( 'Inner Width', 'lightboxplus' )?>: </th>
+              <td><input type="text" size="15" name="inner_width" id="inner_width" value="<?php if ( !empty( $lightboxPlusOptions['inner_width'] )) { echo $lightboxPlusOptions['inner_width'];} else { echo ''; } ?>" />
+              <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_inner_width_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_inner_width_tip"><?php _e( 'This is an alternative to "width" used to set a fixed inner width. This excludes borders and buttons. Example: "50%", "500px", or 500, or false for no inner width.  <strong><em>Default: false</em></strong>', 'lightboxplus' )?></div></td>
+            </tr>
+
+					  <tr>
+              <th scope="row"><?php _e( 'Inner Height', 'lightboxplus' )?>: </th>
+              <td><input type="text" size="15" name="inner_height" id="inner_height" value="<?php if ( !empty( $lightboxPlusOptions['inner_height'] )) { echo $lightboxPlusOptions['inner_height'];} else { echo ''; } ?>" />
+              <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_inner_height_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_inner_height_tip"><?php _e( 'This is an alternative to "height" used to set a fixed inner height. This excludes borders and buttons. Example: "50%", "500px", or 500 or false for no inner height. <strong><em>Default: false</em></strong>', 'lightboxplus' )?></div></td>
+            </tr>
+
+					  <tr>
+              <th scope="row"><?php _e( 'Initial Width', 'lightboxplus' )?>: </th>
+              <td><input type="text" size="15" name="initial_width" id="initial_width" value="<?php if ( !empty( $lightboxPlusOptions['initial_width'] )) { echo $lightboxPlusOptions['initial_width'];} else { echo ''; } ?>" />
+              <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_initial_width_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_initial_width_tip"><?php _e( 'Set the initial width, prior to any content being loaded.  <strong><em>Default: 300</em></strong>', 'lightboxplus' )?></div></td>
+            </tr>
+
+					  <tr>
+              <th scope="row"><?php _e( 'Initial Height', 'lightboxplus' )?>: </th>
+              <td><input type="text" size="15" name="initial_height" id="initial_height" value="<?php if ( !empty( $lightboxPlusOptions['initial_height'] )) { echo $lightboxPlusOptions['initial_height'];} else { echo ''; } ?>" />
+              <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_initial_height_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_initial_height_tip"><?php _e( 'Set the initial height, prior to any content being loaded. <strong><em>Default: 100</em></strong>', 'lightboxplus' )?></div></td>
+            </tr>            
+
+					  <tr>
               <th scope="row"><?php _e( 'Maximum Width', 'lightboxplus' )?>: </th>
               <td><input type="text" size="15" name="max_width" id="max_width" value="<?php if ( !empty( $lightboxPlusOptions['max_width'] )) { echo $lightboxPlusOptions['max_width'];} else { echo ''; } ?>" />
               <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_max_width_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_max_width_tip"><?php _e( 'Set a maximum width for loaded content.  Example: "75%", "500px", 500, or false for no maximum width.  <strong><em>Default: false</em></strong>', 'lightboxplus' )?></div></td>
@@ -103,12 +139,12 @@
 					  <tr>
               <th scope="row"><?php _e( 'Maximum Height', 'lightboxplus' )?>: </th>
               <td><input type="text" size="15" name="max_height" id="max_height" value="<?php if ( !empty( $lightboxPlusOptions['max_height'] )) { echo $lightboxPlusOptions['max_height'];} else { echo ''; } ?>" />
-              <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_max_height_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_max_height_tip"><?php _e( 'Set a maximum height for loaded content.  Example: "75%", "500px",, 500, or false for no maximum height. <strong><em>Default: false</em></strong>', 'lightboxplus' )?></div></td>
+              <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_max_height_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_max_height_tip"><?php _e( 'Set a maximum height for loaded content.  Example: "75%", "500px", 500, or false for no maximum height. <strong><em>Default: false</em></strong>', 'lightboxplus' )?></div></td>
             </tr>
 
 					  <tr>
               <th scope="row"><?php _e( 'Resize', 'lightboxplus' )?>: </th>
-              <td><input type="checkbox" name="resize"id="resize" value="1"<?php if ( $lightboxPlusOptions['resize'] ) echo ' checked="checked"';?> />
+              <td><input type="checkbox" name="resize" id="resize" value="1"<?php if ( $lightboxPlusOptions['resize'] ) echo ' checked="checked"';?> />
               <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_resize_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_resize_tip"><?php _e( 'If checked and if Maximum Width or Maximum Height have been defined, Lightbx Plus will resize photos to fit within the those values.<br /><strong><em>Default: Checked</em></strong>', 'lightboxplus' )?></div></td>
             </tr>
 
@@ -266,6 +302,12 @@
               <th scope="row"><?php _e( 'Use Class Method', 'lightboxplus' )?>: </th>
               <td><input type="checkbox" name="class_method" id="class_method" value="1"<?php if ( $lightboxPlusOptions['class_method'] ) echo ' checked="checked"';?> />
               <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_class_method_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_class_method_tip"><?php _e( 'If checked, Lightbox Plus will only lightbox images via <code>class: cboxModal</code> attribute.  Using this method you can manually control which images are affected by Lightbox Plus by adding the cboxModal class to the Advanced Link Settings in the WordPress Edit Image tool or by adding it to the image link URL and checking the <strong>Do Not Auto-Lightbox Images</strong> option.<br /><strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?></div></td>
+            </tr>
+
+					  <tr>
+              <th scope="row"><?php _e( 'Auto-Lightbox Text Links', 'lightboxplus' )?>: </th>
+              <td><input type="checkbox" name="text_links" id="text_links" value="1"<?php if ( $lightboxPlusOptions['text_links'] ) echo ' checked="checked"';?> />
+              <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_text_links_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_text_links_tip"><?php _e( 'If checked, Lightbox Plus will lightbox images that are linked to images via text as well as those link by images.  Use with care as there is a small possibility that you will get double or triple images in the lightbox display if you have invalidly nested html.<br /><strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?></div></td>
             </tr>
 
 					  <tr>

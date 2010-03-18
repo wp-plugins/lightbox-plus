@@ -121,7 +121,7 @@ a.togbox:hover {
   text-align:left;
   display:none;
 }
-input {
+.lbp input {
   max-width:500px;
 }
 .lbp-elements {

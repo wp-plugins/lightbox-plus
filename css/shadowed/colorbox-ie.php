@@ -9,8 +9,8 @@
     !! Important Note: AlphaImageLoader src paths are relative to the HTML document,
     while regular CSS background images are relative to the CSS document.
 */
-?>
 header('Content-type: text/css');
+?>
 .cboxIE #cboxTopLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?php bloginfo('wpurl'); ?>/wp-content/lightbox-plus/css/shadowed/images/internet_explorer/borderTopLeft.png', sizingMethod='scale');}
 .cboxIE #cboxTopCenter{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?php bloginfo('wpurl'); ?>/wp-content/lightbox-plus/css/css/shadowed/images/internet_explorer/borderTopCenter.png', sizingMethod='scale');}
 .cboxIE #cboxTopRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?php bloginfo('wpurl'); ?>/wp-content/lightbox-plus/css/css/shadowed/images/internet_explorer/borderTopRight.png', sizingMethod='scale');}
