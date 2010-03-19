@@ -156,6 +156,13 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 * As of this version IE 6 or less are no longer supported.
  * If you are using IE 6 or less it is recommended that you upgrade your browser.   
 * Added option to auto-lightbox text links to images
+* Added additional width and height options
+ * width - can set a fixed total width. This includes borders and buttons.
+ * height	- can	set a fixed total height. This includes borders and buttons.
+ * innerWidth - This is an alternative to 'width' used to set a fixed inner width. This excludes borders and buttons.
+ * innerHeight - This is an alternative to 'height' used to set a fixed inner height. This excludes borders and buttons.
+ * initialWidth	- can set the initial width, prior to any content being loaded.
+ * initialHeight - can set the initial height, prior to any content being loaded.
 * Updated `admin.css` and `admin-html.php` to correct a top level class that may effect global styles.
 * Now works correctly with WordPress MU
  * Tested with WordPress MU 2.9.2   
