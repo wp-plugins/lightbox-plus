@@ -197,7 +197,7 @@ if (!class_exists('wp_lightboxplus')) {
       if ( !empty( $this->lightboxOptions ) ) {
         $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
         $lightboxPlusJavaScript  = "";
-        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.8 - 3/18/2010 -->'.$this->EOL( );
+        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.9 - 3/20/2010 -->'.$this->EOL( );
         $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
         $lightboxPlusJavaScript .= 'jQuery(document).ready(function($){'.$this->EOL( );
         $lightboxPlusJavaScript .= '  $.fn.colorbox.settings.transition = "'.$lightboxPlusOptions['transition'].'";'.$this->EOL( );
@@ -534,7 +534,7 @@ if (!class_exists('wp_lightboxplus')) {
       }
 ?>
 			<div class="wrap" id="lightbox">
-				  <h2><?php _e( 'Lightbox Plus Options v1.6.8 (ColorBox v1.3.6)', 'lightboxplus' )?></h2>
+				  <h2><?php _e( 'Lightbox Plus Options v1.6.9 (ColorBox v1.3.6)', 'lightboxplus' )?></h2>
 				  <br style="clear:both;" />
 <?php
 			require('admin/admin-html.php');
