@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone
 Author URI: http://www.23systems.net/
-Version: 1.6.8
+Version: 1.6.9
 */
 /*---- 8/30/2009 9:30:03 AM ----*/
 global $post, $content;  // WordPress Globals
@@ -171,18 +171,23 @@ if (!class_exists('wp_lightboxplus')) {
     function lightboxPlusAddHeader( ) {
       global $g_lightbox_plus_url;
       if ( !empty( $this->lightboxOptions ) ) {
+      
         $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
-        $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css" media="screen" />'.$this->EOL( );
-        
-        /*---- Check for and add conditional IE specific CSS fixes ----*/
-        $currentStylePath       = get_option( 'lightboxplus_style_path' );
-        $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
-        if ( file_exists( $filename ) ) {
-          $lightboxPlusStyleSheet .= '<!--[if lte IE 6]>'.$this->EOL( );
-          $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
-          $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
+        if ( $lightboxPlusOptions['disable_css'] ) {
+          echo "<!-- User set lightbox styles -->".$this->EOL( ); 
+        } else {
+          $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css" media="screen" />'.$this->EOL( );
+          
+          /*---- Check for and add conditional IE specific CSS fixes ----*/
+          $currentStylePath       = get_option( 'lightboxplus_style_path' );
+          $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
+          if ( file_exists( $filename ) ) {
+            $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
+            $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
+            $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
+          }
+          echo $lightboxPlusStyleSheet;
         }
-        echo $lightboxPlusStyleSheet;
       }
     }
 
@@ -388,6 +393,7 @@ if (!class_exists('wp_lightboxplus')) {
         "slideshow_stop"        => 'stop',
         "display_title"         => '0',
         "auto_lightbox"         => '0',
+        "disable_css"           => '0',
         "class_method"          => '0',
         "gallery_lightboxplus"  => '0'
       );
@@ -427,8 +433,8 @@ if (!class_exists('wp_lightboxplus')) {
               "height"                => $_POST[height],
               "inner_width"           => $_POST[inner_width],
               "inner_height"          => $_POST[inner_height],
-              "initial_width"           => $_POST[initial_width],
-              "initial_height"          => $_POST[initial_height],
+              "initial_width"         => $_POST[initial_width],
+              "initial_height"        => $_POST[initial_height],
               "max_width"             => $_POST[max_width],
               "max_height"            => $_POST[max_height],
               "resize"                => $_POST[resize],
@@ -448,6 +454,7 @@ if (!class_exists('wp_lightboxplus')) {
               "display_title"         => $_POST[display_title],
               "auto_lightbox"         => $_POST[auto_lightbox],
               "text_links"            => $_POST[text_links],
+              "disable_css"           => $_POST[disable_css],
               "class_method"          => $_POST[class_method],
               "gallery_lightboxplus"  => $_POST[gallery_lightboxplus],
             );

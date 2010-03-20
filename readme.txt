@@ -149,6 +149,10 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
+= 1.6.9 =
+* Fixed problem with styles in IE 6/7/8 not working under various circumstnaces (hopefully)
+* Added the option to disable Lightbox Plus from adding it's own styles allowing the user to place Lightbox/Colorbox styles in their theme stylesheet and reduce number of files loading. 
+                                                                                                                                                                                         
 = 1.6.8 =
 * Fixed duplicate `rel=lightbox[]` tags being generated.
 * Fixed IE 6 specific stylesheets - should provide correct headers for php based css documents.

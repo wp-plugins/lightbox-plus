@@ -305,6 +305,12 @@
             </tr>
 
 					  <tr>
+              <th scope="row"><?php _e( 'Disable Lightbox CSS', 'lightboxplus' )?>: </th>
+              <td><input type="checkbox" name="disable_css" id="disable_css" value="1"<?php if ( $lightboxPlusOptions['disable_css'] ) echo ' checked="checked"';?> />
+              <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_disable_css_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_disable_css_tip"><?php _e( 'If checked, the built in stylsheets for Lightbox Plus will be disabled.  This will allow you to include customized Lightbox Plus styles in your theme stylesheets which can reduce files loaded, and making editing easier. Note, that if you do not have the Lightbox styles set in your stylesheet your Lightboxed images will appear at the top of your page.<br /><strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?></div></td>
+            </tr>
+
+					  <tr>
               <th scope="row"><?php _e( 'Auto-Lightbox Text Links', 'lightboxplus' )?>: </th>
               <td><input type="checkbox" name="text_links" id="text_links" value="1"<?php if ( $lightboxPlusOptions['text_links'] ) echo ' checked="checked"';?> />
               <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_text_links_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a><div class="lbp-tip" id="lbp_text_links_tip"><?php _e( 'If checked, Lightbox Plus will lightbox images that are linked to images via text as well as those link by images.  Use with care as there is a small possibility that you will get double or triple images in the lightbox display if you have invalidly nested html.<br /><strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?></div></td>
