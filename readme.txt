@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: picture, photo, lightbox, image, ajax, gallery, colorbox, lightview, wordpress mu
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 1.6.9
+Stable tag: 1.6.9.5
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -148,6 +148,13 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 1. Lightbox Plus
 
 == Change Log ==
+
+= 1.6.9.5 =
+* No really, the IE problems should be resolved.
+ * Correctly handle new settings when empty to render correct JavaScript on out put - was causing IE to choke and wierd sliding effect on lightbox in all browsers.
+ * Fixed invalid function call that would prevent older versions of IE (7 or less) from rendering lightbox at all.  
+* Fixed issue that if admin was being accessed via SSL you could not save settings.
+* Fixed some skipping of images being auto-lightboxed.  May not resolve all issues - please let me know at <href="http://www.23systems.net/bbpress/forum/lightbox-plus">Lightbox Plus Suport</a>.
 
 = 1.6.9 =
 * Fixed problem with styles in IE 6/7/8 not working under various circumstnaces (hopefully)
