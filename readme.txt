@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: picture, photo, lightbox, image, ajax, gallery, colorbox, lightview, wordpress mu
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 1.6.9.5
+Stable tag: 1.6.9.6
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -149,9 +149,17 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
+= 1.6.9.6 =
+* Skipping of auto-lightboxing of second image when image links were next to each other in html source should be fixed. At least in my testing.
+* Fixed do not display image titles to work with text links.
+ * Note - must already not have title tag in links elements. 
+* Fixed ability to use class method in text only links and gallery. 
+* Added ability to specify the class name used with class method.  Defaults to cboxModal for the class.
+* Changed jQuery implementation of colorbox on the page to both reduce size and prepare for allowing two different colorboxes. (see Road Map) 
+
 = 1.6.9.5 =
 * No really, the IE problems should be resolved.
- * Correctly handle new settings when empty to render correct JavaScript on out put - was causing IE to choke and wierd sliding effect on lightbox in all browsers.
+ * Correctly handle new settings when empty to render correct JavaScript on output - was causing IE to not display lightbox and wierd sliding effect on lightbox in all browsers.
  * Fixed invalid function call that would prevent older versions of IE (7 or less) from rendering lightbox at all.  
 * Fixed issue that if admin was being accessed via SSL you could not save settings.
 * Fixed some skipping of images being auto-lightboxed.  May not resolve all issues - please let me know at <href="http://www.23systems.net/bbpress/forum/lightbox-plus">Lightbox Plus Suport</a>.
@@ -340,9 +348,11 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Road Map ==
 
-1. Add languages for which I have completed translations - planned for verison 1.7
-2. Solicit and implement additional language translations - planned for verison 1.7
-3. Add ability to place iframed content (flash video, html pages, inline content) on a per item basis - planned for version 1.8
+1. Ability add secondary colorbox with full set of controls so that you can auto lightbox images and add a second set of iframed or inline) content. Version 1.7
+2. Ability to place iframed content (flash video, html pages, inline content) on a per item basis using secondary colorbox. Version 1.7.
+3. Add languages for which I have completed translations. Verision 1.8
+4. Solicit and implement additional language translations. Verision 1.8
+
 
 == Special Thanks ==
 
