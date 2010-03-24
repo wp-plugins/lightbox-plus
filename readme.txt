@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: picture, photo, lightbox, image, ajax, gallery, colorbox, lightview, wordpress mu
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 1.6.9.6
+Stable tag: 1.6.9.7
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -148,6 +148,10 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 1. Lightbox Plus
 
 == Change Log ==
+
+= 1.6.9.7 =
+* Fixed auto-lightbox breaking links that contained manually created `rel="lightbox[]"` attributes.
+
 
 = 1.6.9.6 =
 * Skipping of auto-lightboxing of second image when image links were next to each other in html source should be fixed. At least in my testing.

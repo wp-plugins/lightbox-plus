@@ -5,7 +5,7 @@ Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
 Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
 Author: Dan Zappone
 Author URI: http://www.23systems.net/
-Version: 1.6.9.6
+Version: 1.6.9.7
 */
 /*---- 8/30/2009 9:30:03 AM ----*/
 global $post, $content;  // WordPress Globals
@@ -172,10 +172,10 @@ if (!class_exists('wp_lightboxplus')) {
       /*---- Correct extra title and standardize quotes to double for links ---*/
       $pattern_b[0] = "/title='(.*?)'/i";
       $pattern_b[1] = "/href='([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)'/i";
-      $pattern_b[2] = "/(.*?)rel=('|\")lightbox(.*?)('|\")(.*?)rel=('|\")lightbox(.*?)('|\")(.*?)/i";
+      $pattern_b[2] = "/rel=('|\")lightbox(.*?)('|\") rel=('|\")lightbox(.*?)('|\")/i";
       $replacement_b[0] = '';
       $replacement_b[1] = 'href="$1$2"';
-      $replacement_b[2] = '$1rel=$2lightbox$3$4$9';
+      $replacement_b[2] = 'rel=$1lightbox$2$3';
       $content = preg_replace( $pattern_b, $replacement_b, $content );
       return $content;
     }
@@ -210,7 +210,7 @@ if (!class_exists('wp_lightboxplus')) {
       if ( !empty( $this->lightboxOptions ) ) {
         $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
         $lightboxPlusJavaScript  = "";
-        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.9.5 - 3/20/2010 PM -->'.$this->EOL( );
+        $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.6.9.7 - 3/24/2010 AM -->'.$this->EOL( );
         $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
         $lightboxPlusJavaScript .= 'jQuery(document).ready(function($){'.$this->EOL( );
         $lightboxPlusFnA = '{transition:"'.$lightboxPlusOptions['transition'].'",speed:'.$lightboxPlusOptions['speed'].',width:'.$this->setValue( $lightboxPlusOptions['width'] ).',height:'.$this->setValue( $lightboxPlusOptions['height'] ).',innerWidth:'.$this->setValue( $lightboxPlusOptions['inner_width'] ).',innerHeight:'.$this->setValue( $lightboxPlusOptions['inner_height'] ).',initialWidth:'.$this->setValue( $lightboxPlusOptions['initial_width'] ).',initialHeight:'.$this->setValue( $lightboxPlusOptions['initial_height'] ).',maxWidth:'.$this->setValue( $lightboxPlusOptions['max_width'] ).',maxHeight:'.$this->setValue( $lightboxPlusOptions['max_height'] ).',scalePhotos:'.$this->setBoolean( $lightboxPlusOptions['resize'] ).',opacity:'.$lightboxPlusOptions['opacity'].',preloading:'.$this->setBoolean( $lightboxPlusOptions['preloading'] ).',current:"'.$lightboxPlusOptions['label_image'].' {current} '.$lightboxPlusOptions['label_of'].' {total}",previous:"'.$lightboxPlusOptions['previous'].'",next:"'.$lightboxPlusOptions['next'].'",close:"'.$lightboxPlusOptions['close'].'",overlayClose:'.$this->setBoolean( $lightboxPlusOptions['overlay_close'] ).',slideshow:'.$this->setBoolean( $lightboxPlusOptions['slideshow'] ).',slideshowAuto:'.$this->setBoolean( $lightboxPlusOptions['slideshow_auto'] ).',slideshowSpeed:'.$lightboxPlusOptions['slideshow_speed'].',slideshowStart:"'.$lightboxPlusOptions['slideshow_start'].'",slideshowStop:"'.$lightboxPlusOptions['slideshow_stop'].'"}';
@@ -529,7 +529,7 @@ if (!class_exists('wp_lightboxplus')) {
       }
 ?>
 			<div class="wrap" id="lightbox">
-				  <h2><?php _e( 'Lightbox Plus Options v1.6.9.5 (ColorBox v1.3.6)', 'lightboxplus' )?></h2>
+				  <h2><?php _e( 'Lightbox Plus Options v1.6.9.7 (ColorBox v1.3.6)', 'lightboxplus' )?></h2>
 				  <br style="clear:both;" />
 <?php
 			require('admin/admin-html.php');
