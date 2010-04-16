@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: picture, photo, lightbox, image, ajax, gallery, colorbox, lightview, wordpress mu
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 1.6.9.7
+Stable tag: 1.7b1
 
 Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
 
@@ -148,6 +148,21 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 1. Lightbox Plus
 
 == Change Log ==
+
+= 1.7b1 =
+* Added secondary lightbox option
+ * There is no auto-lightboxing for the secondary lightbox
+ * Allows the creation of a secondary lightbox with iFrame capabilities
+ * Allows lightboxing of video, flash, and content that resides elsewhere
+* Added inline lightbox options
+ * Can have multiple inline lightboxes (up to 20)
+ * Can be used to display hidden inline content, forms and more...       
+* Added backend demos areas
+ * Allows user to test lightbox settings in the admin panel 
+ * Provides demos and examples for secondary lightbox using video and outside webpages
+* Improved interface in admin panel.
+* Fixed issue with saving setting and changes not being reflected.
+* More information to be added... *this is a beta*   
 
 = 1.6.9.7 =
 * Fixed auto-lightbox breaking links that contained manually created `rel="lightbox[]"` attributes.
