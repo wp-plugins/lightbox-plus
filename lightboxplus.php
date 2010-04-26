@@ -22,7 +22,7 @@ if (!function_exists("lightboxPlusReload")) {
 		echo '<!--'."\r\n";
   	echo 'window.location="'.$location.'&updated='.$update.'&detail='.$detail.'"'."\r\n";
   	echo '//-->'."\r\n";
-   	echo '</script>'."\r\n"; */ 
+   	echo '</script>'."\r\n"; */
   }
 }
 
@@ -94,7 +94,7 @@ if (!class_exists('wp_lightboxplus')) {
       wp_enqueue_script('jquery','','','1.3.6',true);
 	    wp_enqueue_script('jquery-ui-core','','','1.7.1',true);
 	    wp_enqueue_script('jquery-ui-dialog','','','1.7.1',true);
-	    
+
       wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.6', true);
     }
 
@@ -122,22 +122,22 @@ if (!class_exists('wp_lightboxplus')) {
 				$lightboxPlusOptions   = $this->getAdminOptions($this->lightboxOptionsName);
 	    }
       $postGroupID = $post->ID;
-      /*---- Auto-Lightbox Match Patterns ----*/			
+      /*---- Auto-Lightbox Match Patterns ----*/
       $pattern_a[0] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)title=('|\")(.*?)('|\")([^\>]*?)\/>/i";
-			
+
 			if ( $lightboxPlusOptions['text_links'] ) {
 			  $pattern_a[1] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)>/i";
 			}
       $pattern_a[2] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")(.*?)(rel=('|\")lightbox(.*?)('|\"))([ \t\r\n\v\f]*?)((rel=('|\")lightbox(.*?)('|\"))?)([ \t\r\n\v\f]?)([^\>]*?)>/i";
       $pattern_a[3] = "/<a(.*?)href=('|\")([A-Za-z0-9\/_\.\~\:-]*?)(\.bmp|\.gif|\.jpg|\.jpeg|\.png)('|\")([^\>]*?)><img(.*?)/i";
-      /*---- Replacement Patterns ---*/      
+      /*---- Replacement Patterns ---*/
       /*---- In case Do Not Display Title is selected ----*/
       /*---- Contrary to what the option is called it now does the opposite ----*/
 			switch ( $lightboxPlusOptions['display_title'] ) {
         case 1:
           switch ( $lightboxPlusOptions['class_method'] ) {
             case 1:
-              $replacement_a[0] = '<a$1href=$2$3$4$5$6 class="'.$lightboxPlusOptions['class_name'].'" rel="lightbox['.$postGroupID.']"><img$7$11/>';   
+              $replacement_a[0] = '<a$1href=$2$3$4$5$6 class="'.$lightboxPlusOptions['class_name'].'" rel="lightbox['.$postGroupID.']"><img$7$11/>';
               break;
             default:
               $replacement_a[0] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']"><img$7$11/>';
@@ -156,7 +156,7 @@ if (!class_exists('wp_lightboxplus')) {
           }
         break;
 			}
-			
+
       switch ( $lightboxPlusOptions['text_links'] ) {
         case 1:
           switch ( $lightboxPlusOptions['class_method'] ) {
@@ -171,10 +171,10 @@ if (!class_exists('wp_lightboxplus')) {
             break;
         }
       }
-      
+
       $replacement_a[2] = '<a$1href=$2$3$4$5$6$7>';
       $replacement_a[3] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']"><img$7';
-      
+
       $content = preg_replace( $pattern_a, $replacement_a, $content );
       /*---- Correct extra title and standardize quotes to double for links ---*/
       $pattern_b[0] = "/title='(.*?)'/i";
@@ -191,13 +191,13 @@ if (!class_exists('wp_lightboxplus')) {
     function lightboxPlusAddHeader( ) {
       global $g_lightbox_plus_url;
       if ( !empty( $this->lightboxOptions ) ) {
-      
+
         $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
         if ( $lightboxPlusOptions['disable_css'] ) {
-          echo "<!-- User set lightbox styles -->".$this->EOL( ); 
+          echo "<!-- User set lightbox styles -->".$this->EOL( );
         } else {
           $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css" media="screen" />'.$this->EOL( );
-          
+
           /*---- Check for and add conditional IE specific CSS fixes ----*/
           $currentStylePath       = get_option( 'lightboxplus_style_path' );
           $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
@@ -255,7 +255,7 @@ if (!class_exists('wp_lightboxplus')) {
             $lightboxPlusJavaScript .= '  $("a[rel*=lightbox]").colorbox('.$lightboxPlusFnPrimary.');'.$this->EOL( );
             break;
         }
-        
+
         switch ( $lightboxPlusOptions['lightboxplus_multi'] ) {
           case 1:
             $lbpArraySecondary = array();
@@ -297,7 +297,7 @@ if (!class_exists('wp_lightboxplus')) {
             break;
           default:
             break;
-          }                               
+          }
 
           if ($lightboxPlusOptions['use_inline'] && $lightboxPlusOptions['inline_num'] != '') {
             $inline_links = array();
@@ -310,34 +310,34 @@ if (!class_exists('wp_lightboxplus')) {
               $inline_widths = $lightboxPlusOptions['inline_widths'];
               $inline_heights = $lightboxPlusOptions['inline_heights'];
               $lightboxPlusJavaScript .= '  $(".'.$inline_links[$i - 1].'").colorbox({width:"'.$inline_widths[$i - 1].'", height:'.$this->setValue( $inline_heights[$i - 1] ).', inline:true, href:"#'.$inline_hrefs[$i - 1].'"});'.$this->EOL( );
-            } 
-          }                
-        
+            }
+          }
+
         $lightboxPlusJavaScript .= '});'.$this->EOL( );
         $lightboxPlusJavaScript .= '</script>'.$this->EOL( );
         echo $lightboxPlusJavaScript;
       }
     }
-        
+
     /*---- Replacement shortcode gallery function adds rel="lightbox" or class="cboxModal" ----*/
     function lightboxPlusGallery($attr) {
     	global $post;
-    
+
     	static $instance = 0;
     	$instance++;
-    
+
     	// Allow plugins/themes to override the default gallery template.
     	$output = apply_filters('post_gallery', '', $attr);
     	if ( $output != '' )
     		return $output;
-    
+
     	// We're trusting author input, so let's at least make sure it looks like a valid orderby statement
     	if ( isset( $attr['orderby'] ) ) {
     		$attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
     		if ( !$attr['orderby'] )
     			unset( $attr['orderby'] );
     	}
-    
+
     	extract(shortcode_atts(array(
     		'order'      => 'ASC',
     		'orderby'    => 'menu_order ID',
@@ -350,21 +350,21 @@ if (!class_exists('wp_lightboxplus')) {
         'include'    => '',
         'exclude'    => ''
     	), $attr));
-    
+
     	$id = intval($id);
-		  
+
       if ( 'RAND' == $order )
 		  $orderby = 'none';
 
       if ( !empty($include) ) {
       	$include = preg_replace( '/[^0-9,]+/', '', $include );
       	$_attachments = get_posts( array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
-      
+
       	$attachments = array();
       	foreach ( $_attachments as $key => $val ) {
       		$attachments[$val->ID] = $_attachments[$key];
       	}
-      } 
+      }
       elseif ( !empty($exclude) ) {
         $exclude = preg_replace( '/[^0-9,]+/', '', $exclude );
         $attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
@@ -373,24 +373,24 @@ if (!class_exists('wp_lightboxplus')) {
       {
         $attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
       }
-    
+
     	if ( empty($attachments) )
     		return '';
-    
+
     	if ( is_feed() ) {
     		$output = "\n";
     		foreach ( $attachments as $att_id => $attachment )
     			$output .= wp_get_attachment_link($att_id, $size, true) . "\n";
     		return $output;
     	}
-    
+
     	$itemtag = tag_escape($itemtag);
     	$captiontag = tag_escape($captiontag);
     	$columns = intval($columns);
     	$itemwidth = $columns > 0 ? floor(100/$columns) : 100;
-    
+
     	$selector = "gallery-{$instance}";
-    
+
     	$output = apply_filters('gallery_style', "
     		<style type='text/css'>
     			#{$selector} {
@@ -410,13 +410,13 @@ if (!class_exists('wp_lightboxplus')) {
     		</style>
     		<!-- see gallery_shortcode() in wp-includes/media.php -->
     		<div id='$selector' class='gallery galleryid-{$id}'>");
-    
+
     	$i = 0;
     	foreach ( $attachments as $id => $attachment ) {
     		$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
-        
+
         $link = $this->lightboxPlusReplace($link);
-    
+
     		$output .= "<{$itemtag} class='gallery-item'>";
     		$output .= "
     			<{$icontag} class='gallery-icon'>
@@ -432,11 +432,11 @@ if (!class_exists('wp_lightboxplus')) {
     		if ( $columns > 0 && ++$i % $columns == 0 )
     			$output .= '<br style="clear: both" />';
     	}
-    
+
     	$output .= "
     			<br style='clear: both;' />
     		</div>\n";
-    
+
     	return $output;
     }
 
@@ -449,21 +449,21 @@ if (!class_exists('wp_lightboxplus')) {
 
       /*-- If Lightbox Plus has been initialized - set to true --*/
       $this->saveAdminOptions( $this->lightboxInitName, true );
-     
+
 //      $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusOptions );
 
       /*---- Where the default styles aew located ----*/
       $stylePath = ( dirname( __FILE__ )."/css" );
       $this->saveAdminOptions( $this->lightboxStylePathName, $stylePath );
-      
+
       $this->lightboxPlusPrimaryInit(); /*--- Initialize Primary Lightbox ---*/
-      
+
       $this->lightboxPlusSecondaryInit(); /*--- Initialize Secondary Lightbox if activated ---*/
       $this->lightboxPlusInlineInit(1);  /*--- Initialize Inline Lightboxes if activated ---*/
-      
+
 //      $lightboxPlusOptions = array_merge($lbpPrimary, $lbpSecondary);
 //      $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lbpInline);
-      
+
       return $lightboxPlusOptions;
     }
 
@@ -474,7 +474,7 @@ if (!class_exists('wp_lightboxplus')) {
         "disable_css"           => '0',
         "use_inline"            => '0',
         "inline_num"            => '1',
-                        
+
         "transition"            => 'elastic',
         "speed"                 => '350',
         "width"                 => 'false',
@@ -501,20 +501,20 @@ if (!class_exists('wp_lightboxplus')) {
         "slideshow_stop"        => 'stop',
         "gallery_lightboxplus"  => '0',
         "class_method"          => '0',
-        "class_name"            => 'cboxModal',        
+        "class_name"            => 'cboxModal',
         "auto_lightbox"         => '0',
         "text_links"            => '0',
         "display_title"         => '0'
       );
-      
+
       $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusPrimaryOptions );
-//      return $lightboxPlusPrimaryOptions; 
+//      return $lightboxPlusPrimaryOptions;
       unset($lightboxPlusPrimaryOptions);
     }
 
     function lightboxPlusSecondaryInit() {
       if ( !empty( $this->lightboxOptions )) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
-      
+
       $lightboxPlusSecondaryOptions = array(
         "transition_sec"        => 'elastic',
         "speed_sec"             => '350',
@@ -545,17 +545,17 @@ if (!class_exists('wp_lightboxplus')) {
         "class_name_sec"        => 'lbpModal',
         "display_title_sec"     => '0'
       );
-      
+
       $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusSecondaryOptions);
       $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusOptions );
 //      return $lightboxPlusSecondaryOptions;
       unset($lightboxPlusSecondaryOptions);
       unset($lightboxPlusOptions);
     }
-    
+
     function lightboxPlusInlineInit( $inline_number ) {
       if ( !empty( $this->lightboxOptions )) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
-      
+
       if ($lightboxPlusOptions['use_inline'] && $inline_number != '') {
         $inline_links = array();
         $inline_hrefs = array();
@@ -567,15 +567,15 @@ if (!class_exists('wp_lightboxplus')) {
           $inline_widths[] = '50%';
           $inline_heights[] = '50%';
         }
-      } 
-      
-      $lightboxPlusInlineOptions = array(            
+      }
+
+      $lightboxPlusInlineOptions = array(
         "inline_links"          => $inline_links,
         "inline_hrefs"          => $inline_hrefs,
         "inline_widths"         => $inline_widths,
         "inline_heights"        => $inline_heights
-      );      
-      
+      );
+
       $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusInlineOptions);
       $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusOptions );
 //      return $lightboxPlusInlineOptions;
@@ -588,13 +588,13 @@ if (!class_exists('wp_lightboxplus')) {
       global $g_lightbox_plus_url;
       echo '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/admin/admin.css" media="screen" />'.$this->EOL( );
       if ( !empty( $this->lightboxOptions ) ) {
-      
+
         $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
         if ( $lightboxPlusOptions['disable_css'] ) {
-          echo "<!-- User set lightbox styles -->".$this->EOL( ); 
+          echo "<!-- User set lightbox styles -->".$this->EOL( );
         } else {
           $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css" media="screen" />'.$this->EOL( );
-          
+
           /*---- Check for and add conditional IE specific CSS fixes ----*/
           $currentStylePath       = get_option( 'lightboxplus_style_path' );
           $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
@@ -607,7 +607,7 @@ if (!class_exists('wp_lightboxplus')) {
         }
       }
     }
-
+// FIXME
     /*---- Add new panel to WordPress under the Appearance category ----*/
     function lightboxPlusAddPages( ) {
       add_submenu_page( 'themes.php', "Lightbox Plus", "Lightbox Plus", 10, "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) );
@@ -618,7 +618,7 @@ if (!class_exists('wp_lightboxplus')) {
       global $g_lightbox_plus_url, $g_lbp_messages;
       load_plugin_textdomain( 'lightboxplus', $path = $g_lightbox_plus_url );
       $location = admin_url('/admin.php?page=lightboxplus');
-
+// TODO
       /*---- check form submission and update setting ----*/
       if ( $_POST['action'] ) {
         switch ( $_POST['sub'] ) {
@@ -630,7 +630,7 @@ if (!class_exists('wp_lightboxplus')) {
               "lightboxplus_multi"    => $_POST['lightboxplus_multi'],
               "use_inline"            => $_POST['use_inline'],
               "inline_num"            => $_POST['inline_num'],
-                   
+
               "transition"            => $_POST['transition'],
               "speed"                 => $_POST['speed'],
               "width"                 => $_POST['width'],
@@ -658,14 +658,14 @@ if (!class_exists('wp_lightboxplus')) {
               "gallery_lightboxplus"  => $_POST['gallery_lightboxplus'],
               "class_method"          => $_POST['class_method'],
               "class_name"            => $_POST['class_name'],
-              "auto_lightbox"         => $_POST['auto_lightbox'],              
+              "auto_lightbox"         => $_POST['auto_lightbox'],
               "text_links"            => $_POST['text_links'],
               "display_title"         => $_POST['display_title']
             );
-            
+
             $g_lbp_messages .= __('Primary lightbox settings updated.','lightboxplus').'<br /><br />';
-            
-            if ( $_POST['lightboxplus_multi'] ) { 
+
+            if ( $_POST['lightboxplus_multi'] ) {
               $lightboxPlusSecondaryOptions = array(
                 "transition_sec"        => $_POST['transition_sec'],
                 "speed_sec"             => $_POST['speed_sec'],
@@ -698,14 +698,14 @@ if (!class_exists('wp_lightboxplus')) {
               );
               $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusSecondaryOptions);
               unset($lightboxPlusSecondaryOptions);
-              $g_lbp_messages .= __('Secondary lightbox settings updated.','lightboxplus').'<br /><br />'; 
+              $g_lbp_messages .= __('Secondary lightbox settings updated.','lightboxplus').'<br /><br />';
             }
 
-            if ( $_POST['use_inline'] ) { 
+            if ( $_POST['use_inline'] ) {
               if (!empty($this->lightboxOptions)) {
                 $lightboxPlusInlineOptions   = $this->getAdminOptions($this->lightboxOptionsName);
               }
-              
+
               if ($lightboxPlusInlineOptions['use_inline'] && $lightboxPlusInlineOptions['inline_num'] != '') {
                 $inline_links = array();
                 $inline_hrefs = array();
@@ -718,21 +718,21 @@ if (!class_exists('wp_lightboxplus')) {
                   $inline_heights[] = $_POST["inline_height_$i"];
                 }
               }
-              
-              $lightboxPlusInlineOptions = array(            
+
+              $lightboxPlusInlineOptions = array(
                 "inline_links"          => $inline_links,
                 "inline_hrefs"          => $inline_hrefs,
                 "inline_widths"         => $inline_widths,
                 "inline_heights"        => $inline_heights
               );
-               
+
               $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusInlineOptions);
-              unset($lightboxPlusInlineOptions); 
+              unset($lightboxPlusInlineOptions);
               $g_lbp_messages .= __('Inline lightbox settings updated.','lightboxplus').'<br /><br />';
             }
- 
+
             $this->saveAdminOptions($this->lightboxOptionsName, $lightboxPlusOptions);
-            
+
             if ( $_POST['lightboxplus_multi'] && !$_POST['class_name_sec'] ) {
               $this->lightboxPlusSecondaryInit();
               $g_lbp_messages .= __('Secondary lightbox settings initialized.','lightboxplus').'<br /><br />';
@@ -741,9 +741,9 @@ if (!class_exists('wp_lightboxplus')) {
               $this->lightboxPlusInlineInit($_POST['inline_num']);
               $g_lbp_messages .= __('Inline lightbox settings initialized.','lightboxplus').'<br /><br />';
             }   /*--- Initialize Inline Lightboxes if activated ---*/
-            
-            unset($lightboxPlusOptions); 
-            
+
+            unset($lightboxPlusOptions);
+
 //            lightboxPlusReload( 'settings', $detail_code );
             break;
           case 'reset':
@@ -752,7 +752,7 @@ if (!class_exists('wp_lightboxplus')) {
               delete_option( $this->lightboxInitName );
               delete_option( $this->lightboxStylePathName );
               $g_lbp_messages .= '<strong>'.__('Lightbox Plus has been reset to default settings.','lightboxplus').'</strong><br /><br />';
-              
+
               /*---- Used to remove old setting from previous versions of LBP ----*/
               $pluginPath = ( dirname( __FILE__ ));
               if ( file_exists( $pluginPath."/images" )) {
@@ -788,7 +788,7 @@ if (!class_exists('wp_lightboxplus')) {
             break;
           default:
             break;
-				} 
+				}
       }
 
       /*---- Get options to load in form ----*/
@@ -809,13 +809,13 @@ if (!class_exists('wp_lightboxplus')) {
 				  <h2><?php _e( 'Lightbox Plus Options v1.6.9.7 (ColorBox v1.3.6)', 'lightboxplus' )?></h2>
 				  <br style="clear:both;" />
 <?php
-      if ($g_lbp_messages) { 
-        echo '<div id="lbp_message" title="'.__('Settings Saved', 'lightboxplus').'" style="display:none">'.$g_lbp_messages.'</div>'; 
+      if ($g_lbp_messages) {
+        echo '<div id="lbp_message" title="'.__('Settings Saved', 'lightboxplus').'" style="display:none">'.$g_lbp_messages.'</div>';
         echo '<script type="text/javascript">';
       	echo 'jQuery(function() {';
   	    echo '  jQuery("#lbp_message").dialog({ buttons: { "Ok": function() { jQuery(this).dialog("close"); } },open: function() { jQuery(".ui-dialog").fadeOut(9000); },resizable:false,width: 480 });';
         echo '});';
-        echo '</script>';        
+        echo '</script>';
         }
 			require('admin/admin-html.php');
 ?>
@@ -825,7 +825,7 @@ if (!class_exists('wp_lightboxplus')) {
 /*  		jQuery('.postbox h3').click( function() {
         jQuery(jQuery(this).parent().get(0)).toggleClass('closed'); }
       ); */
-      
+
   		jQuery('.postbox .close-me').each(function() {
   		  jQuery(this).addClass("closed");
   		});
@@ -833,13 +833,13 @@ if (!class_exists('wp_lightboxplus')) {
 		  jQuery('#lbp_message').each(function() {
         jQuery(this).fadeOut(5000);
       });
-		
+
 		  jQuery('.postbox h3').click( function() {
         jQuery(this).next('.toggle').slideToggle('fast');
       });
 
 		  //-->
-    	</script>      
+    	</script>
 <?php
     }
 
@@ -883,7 +883,7 @@ if (!class_exists('wp_lightboxplus')) {
     /*---- Convert DB booleans to text for use with JavaScript (jQuery) parameters ----*/
     function setValue( $rValue ) {
       if ($rValue == '' || $rValue == 'false') {
-        $tmpValue = 'false';      
+        $tmpValue = 'false';
       } else {
         $tmpValue = '"'.$rValue.'"';
       }

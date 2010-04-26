@@ -90,13 +90,13 @@
       				    </th>
       				    <td>
       				      <input type="text" name="inline_link_test" id="inline_link_test" value="&lt;a class='<?php echo $inline_links[0]; ?>' href='#'>Inline HTML Form&lt;/a>" />
-      				    <td>
+      				    </td>
       				  </tr>
       					<tr valign="top">
       						<th scope="row">
       							<?php _e( 'Inline Test HTML', 'lightboxplus' )?>: </th>
       						<td>
-      						<textarea rows="7" name="inline_html_test" id="inline_html_test" class="inline_html_test" value="" />
+      						<textarea rows="7" name="inline_html_test" id="inline_html_test" class="inline_html_test" />
 <h3>Contact Us</h3>
 We would love to hear from you.
 <p><label for="inline_name">Name:</label>
@@ -125,12 +125,12 @@ We would love to hear from you.
                       <p class="inline_html_test_item">
                       <h3>Contact Us</h3>
                       We would love to hear from you.
-                      	<p><label for="inline_name">Name:</label>
-                      	<input type="text" name="inline_name" id="inline_name" tabindex="1" /></p>
-                      	<p><label for="inline_email">Email:</label>
-                      	<input type="text" name="inline_email" id="inline_email" tabindex="2" /></p>
-                      	<p><label for="inline_message">Message:</label>
-                      	<input type="text" name="inline_message" id="inline_message" tabindex="3"  /></p>
+                      	<label for="inline_name">Name:</label>
+                      	<input type="text" name="inline_name" id="inline_name" tabindex="1" /><br />
+                      	<label for="inline_email">Email:</label>
+                      	<input type="text" name="inline_email" id="inline_email" tabindex="2" /><br />
+                      	<label for="inline_message">Message:</label>
+                      	<input type="text" name="inline_message" id="inline_message" tabindex="3"  /><br />
                       </p>
                       
                       </div>

@@ -557,21 +557,9 @@
 						</div>
 					</div>
 					<!-- begin testin - wrap in postbox -->
-      		<div class="postbox close-me"><h3 class="hndle" title="Click to toggle"><?php _e( 'Primary Lightbox - Test Area','lightboxplus' ); ?>:</h3>
+      		<div class="postbox close-me"><h3 class="hndle" title="Click to toggle"><?php _e( 'Primary Lightbox - Demo','lightboxplus' ); ?>:</h3>
       			<div class="inside toggle">
       				<table class="form-table">
-      					<tr valign="top">
-      						<th scope="row">
-      							<?php _e( 'Test Code', 'lightboxplus' )?>: </th>
-      						<td>
-      						<textarea rows="7" name="primary_test" id="primary_test" class="primary_test" value="" /><a href="<?php echo $g_lightbox_plus_url ?>/screenshot-1.jpg" <?php if ( $lightboxPlusOptions['class_method'] ) { echo 'class="'.$lightboxPlusOptions['class_name'].'"'; } else { echo 'rel="lightbox[test demo]"'; } ?> title="Screenshot 1"><img title="Screenshot 1" src="<?php echo $g_lightbox_plus_url ?>/screenshot-1.jpg" alt="Screenshot 1" width="120" height="90" /></a><br />
-<a href="<?php echo $g_lightbox_plus_url ?>/screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_method'] ) { echo 'class="'.$lightboxPlusOptions['class_name'].'"'; } else { echo 'rel="lightbox[test demo]"'; } ?> title="Screenshot 2">Screenshot 2 Text Link</a></textarea>
-      							<a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_primary_test_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-      							<div class="lbp-tip" id="lbp_primary_test_tip">
-      								<?php _e('Enter test markup box this box then click outside the box to view your test code.  Note, you must add your own <code>rel=lightbox[id]</code> or <code>class="cboxModal"</code> attributes to test your code.',"lightboxplus"); ?>
-      							</div>
-      						</td>
-      					</tr>
       					<tr>
       						<th scope="row">
       							<?php _e( 'Result: ', 'lightboxplus' )?>: </th>
