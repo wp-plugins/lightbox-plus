@@ -1,16 +1,16 @@
 === Lightbox Plus ===
 Contributors: dzappone
 Donate link: http://www.23systems.net/donate/
-Tags: picture, photo, lightbox, image, ajax, gallery, colorbox, lightview, wordpress mu
+Tags: picture, photo, lightbox, image, video, ajax, gallery, colorbox, lightview, wordpress mu
 Requires at least: 2.8
-Tested up to: 2.9.2
-Stable tag: 1.6.9.7
+Tested up to: 3.0
+Stable tag: 1.7
 
-Lightbox Plus permits users to view larger versions of images from the current page and display simple slide shows, all in an overlay.
+Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
 == Description ==
 
-Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus permits users to view larger versions of images without having to leave the current page, and is also able to display simple slide shows. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed.  Lightbox Plus captures the image title for display in the overlay.  Lightbox Plus is able to lightbox images displayed using WordPress build in gallery. 
+Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus permits users to view larger versions of images without having to leave the current page. Lightbox is able able to lightbox WordPress galery images, display simple slide shows, along with video and content in overlays. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed.  Lightbox Plus captures the image title for display in the overlay.
 
 Lightbox Plus uses WordPress's built in jQuery library.
 
@@ -145,11 +145,14 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Screenshots ==
 
-1. Lightbox Plus
+1. Lightbox Plus - Image
+2. Lightbox Plus - Video
+3. Lightbox Plus - External Content
+4. Lightbox Plus - Inline Content (Form)
 
 == Change Log ==
 
-= 1.7b1 =
+= 1.7.1 =
 * Added secondary lightbox option
  * There is no auto-lightboxing for the secondary lightbox
  * Allows the creation of a secondary lightbox with iFrame capabilities
@@ -162,7 +165,24 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Provides demos and examples for secondary lightbox using video and outside webpages
 * Improved interface in admin panel.
 * Fixed issue with saving setting and changes not being reflected.
-* More information to be added... *this is a beta*   
+* Updated ColorBox to verion 1.3.8
+ * Fixed a bug in Chrome where it would sometimes render photos at 0 by 0 width and height (behavior introduced in recent update to Chrome).
+ * Fixed a bug where the onClosed callback would fire twice (only affected 1.3.7).
+ * Fixed a bug in IE7 that existed with some iframed websites that use JS to reposition the viewport caused ColorBox to move out of position.
+ * Abstracted the identifiers (HTML ids & classes, and JS plugin name, method, and events) so that the plugin can be easily rebranded.
+ * Small changes to improve either code readability or compression.
+
+= 1.7 = 
+* Updated ColorBox to verion 1.3.7
+ * $.colorbox can now be used for direct calls and accessing public methods.  Example: $.colorbox.close();
+ * Resize now accepts 'width', 'innerWidth', 'height' and 'innerHeight'. Example: $.colorbox.resize({width:"100%"})
+ * Added option (loop:false) to disable looping in a group.
+ * Added options (escKey:false, arrowKey:false) to disable esc-key and arrow-key bindings.
+ * Added method for removing ColorBox from a document: $.colorbox.remove();
+ * Fixed a bug where iframed URLs would be truncated if they contained an unencoded apostrophe.
+ * Now uses the exact href specified on an anchor, rather than the version returned by 'this.href'. This was causing "#example" to be normalized to "http://domain/#example" which interfered with how some users were setting up links to inline content.
+ * Changed example documents over to HTML5.
+ * More information to be added... *this is a beta*   
 
 = 1.6.9.7 =
 * Fixed auto-lightbox breaking links that contained manually created `rel="lightbox[]"` attributes.
@@ -207,7 +227,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Note: with the release of Firefox 3.0.19 the 3.0.x branch of Firefox will reach its end of life on March 30, 2010 
  
 = 1.6.7 =
-* Added fix to auto-lightbox images that are missing title attributes (Thanks Jörn)
+* Added fix to auto-lightbox images that are missing title attributes (Thanks J?rn)
  * This primarily affects images that were placed using older verisons of WordPress
 * Interface updates
  * Changed admin panel to work that same way as my other plugins and thereby ease code maintainence 
