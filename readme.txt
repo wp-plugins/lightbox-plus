@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: picture, photo, lightbox, image, video, ajax, gallery, colorbox, lightview, wordpress mu
 Requires at least: 2.8
 Tested up to: 3.0
-Stable tag: 1.7
+Stable tag: 1.6.9.7
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -131,7 +131,7 @@ If you have read and tried the above and you are still having problems, then, pl
 
 = Known Problems =
 
-* Reset re-initialize doesn't appear to work in some browsers.  It does in fact work, however, the changes are not reflect on the page.
+* No support for iPad (if someone wants to donate an iPad to me I will guarantee support)
 * In some instances performance may be slow in IE - this may be due to plugin conflicts or slow JavaScript performance in IE. 
 
 = Plugin Conflicts =
@@ -152,18 +152,21 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
-= 1.7.1 =
+= 1.7 =
 * Added secondary lightbox option
  * There is no auto-lightboxing for the secondary lightbox
  * Allows the creation of a secondary lightbox with iFrame capabilities
  * Allows lightboxing of video, flash, and content that resides elsewhere
 * Added inline lightbox options
+ * There is no auto-lightboxing for the inline lightbox
  * Can have multiple inline lightboxes (up to 20)
- * Can be used to display hidden inline content, forms and more...       
-* Added backend demos areas
- * Allows user to test lightbox settings in the admin panel 
- * Provides demos and examples for secondary lightbox using video and outside webpages
+ * Can be used to display hidden inline content, forms and more...
 * Improved interface in admin panel.
+ * Added better feedback for users
+* Added backend test/demo areas
+ * Allows user to test lightbox settings in the admin panel 
+ * Provides demos and examples for secondary lightbox using video,external webpages and interactive flash
+ * Provides demos and examples for inline lightbox using inline content
 * Fixed issue with saving setting and changes not being reflected.
 * Updated ColorBox to verion 1.3.8
  * Fixed a bug in Chrome where it would sometimes render photos at 0 by 0 width and height (behavior introduced in recent update to Chrome).
@@ -171,8 +174,6 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Fixed a bug in IE7 that existed with some iframed websites that use JS to reposition the viewport caused ColorBox to move out of position.
  * Abstracted the identifiers (HTML ids & classes, and JS plugin name, method, and events) so that the plugin can be easily rebranded.
  * Small changes to improve either code readability or compression.
-
-= 1.7 = 
 * Updated ColorBox to verion 1.3.7
  * $.colorbox can now be used for direct calls and accessing public methods.  Example: $.colorbox.close();
  * Resize now accepts 'width', 'innerWidth', 'height' and 'innerHeight'. Example: $.colorbox.resize({width:"100%"})
@@ -181,8 +182,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Added method for removing ColorBox from a document: $.colorbox.remove();
  * Fixed a bug where iframed URLs would be truncated if they contained an unencoded apostrophe.
  * Now uses the exact href specified on an anchor, rather than the version returned by 'this.href'. This was causing "#example" to be normalized to "http://domain/#example" which interfered with how some users were setting up links to inline content.
- * Changed example documents over to HTML5.
- * More information to be added... *this is a beta*   
+* 
 
 = 1.6.9.7 =
 * Fixed auto-lightbox breaking links that contained manually created `rel="lightbox[]"` attributes.
@@ -215,12 +215,12 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 * Added option to auto-lightbox text links to images
 * Added additional width and height options
  * width - can set a fixed total width. This includes borders and buttons.
- * height	- can	set a fixed total height. This includes borders and buttons.
+ * height    - can    set a fixed total height. This includes borders and buttons.
  * innerWidth - This is an alternative to 'width' used to set a fixed inner width. This excludes borders and buttons.
  * innerHeight - This is an alternative to 'height' used to set a fixed inner height. This excludes borders and buttons.
- * initialWidth	- can set the initial width, prior to any content being loaded.
+ * initialWidth    - can set the initial width, prior to any content being loaded.
  * initialHeight - can set the initial height, prior to any content being loaded.
-* Updated `admin.css` and `admin-html.php` to correct a top level class that may effect global styles.
+* Updated `admin.css` and `admin-lightbox.php` to correct a top level class that may effect global styles.
 * Now works correctly with WordPress MU
  * Tested with WordPress MU 2.9.2   
 * Degradation of performance in Firefox corrected.  May still occur in older versions
@@ -386,11 +386,8 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Road Map ==
 
-1. Ability add secondary colorbox with full set of controls so that you can auto lightbox images and add a second set of iframed or inline) content. Version 1.7
-2. Ability to place iframed content (flash video, html pages, inline content) on a per item basis using secondary colorbox. Version 1.7.
-3. Add languages for which I have completed translations. Verision 1.8
-4. Solicit and implement additional language translations. Verision 1.8
-
+1. Add languages for which I have completed translations. Verision 1.8
+2. Solicit and implement additional language translations. Verision 1.8
 
 == Special Thanks ==
 

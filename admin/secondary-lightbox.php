@@ -9,7 +9,6 @@
                 <table class="form-table">
                     <tr>
                         <td>
-                        <?php //TODO -c Help -o Dan Zappone: Finish writing help section for Using Secondary Lightbox for Video Content ?>
                         <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_video_tip');">Using Secondary Lightbox for Video Content <img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                         <div class="lbp-bigtip" id="lbp_for_video_tip">
                             <?php _e( 'In order to display video using Lightbox Plus and Colorbox you must at a minimum have the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
@@ -19,8 +18,6 @@
                     </tr>
                     <tr>
                         <td>
-
-                            <?php //TODO -o Dan Zappone -c Help: Finish writing help section for Using Secondary Lightbox for External Content ?>
                             <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_external_tip');">Using Secondary Lightbox for External Content <img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                             <div class="lbp-bigtip" id="lbp_for_external_tip">
                                 <?php _e( 'In order to display external content using Lightbox Plus and Colorbox you must at a minimum has the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
@@ -30,7 +27,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <?php //TODO -c Help -o Dan Zappone: Finish writing help section for Using Secondary Lightbox for Other Content  ?>
                             <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_other_tip');">Using Secondary Lightbox for Other Content<img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                             <div class="lbp-bigtip" id="lbp_for_other_tip">
                                 <?php _e( 'In order to display other content, such as interactive flash, using Lightbox Plus and Colorbox you must at a minimum has the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
@@ -477,5 +473,5 @@
             </p>
         </div>
     </div>
-	</div>
-	<!-- Begin Secondary Lightbox -->
+    </div>
+    <!-- Begin Secondary Lightbox -->

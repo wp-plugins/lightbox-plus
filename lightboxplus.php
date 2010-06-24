@@ -60,6 +60,7 @@
                 add_filter( 'plugin_row_meta',array( &$this, 'RegisterLBPLinks'),10,2);
                 add_action( 'admin_menu', array( &$this, 'lightboxPlusAddPages' ) );
                 add_action( 'admin_head', array( &$this, 'lightboxPlusAdminHead' ) );
+                add_action( 'admin_footer-'. $plugin_page, array( &$this, 'addscripts' ) );
                 add_action( 'admin_footer', array( &$this, 'lightboxPlusAddFooter' ) );
                 add_action( 'wp_head', array( &$this, 'lightboxPlusAddHeader' ) );
                 add_action( 'wp_footer', array( &$this, 'lightboxPlusAddFooter' ) );
@@ -117,7 +118,7 @@
                 wp_enqueue_script('jquery-ui-core','','','1.7.1',true);
                 wp_enqueue_script('jquery-ui-dialog','','','1.7.1',true);
 
-                wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.6', true);
+                wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.8', true);
             }
 
             /**
@@ -348,12 +349,12 @@
                         echo '});';
                         echo '</script>';
                     }
-                    require('admin/admin-html.php');
+                    require('admin/admin-lightbox.php');
                 ?>
             </div>
             <script type="text/javascript">
                 <!--
-                /*  		jQuery('.postbox h3').click( function() {
+                /*          jQuery('.postbox h3').click( function() {
                 jQuery(jQuery(this).parent().get(0)).toggleClass('closed'); }
                 ); */
 
