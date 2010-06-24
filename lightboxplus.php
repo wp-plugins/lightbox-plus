@@ -128,7 +128,7 @@
                 global $g_lightbox_plus_url, $g_lbp_messages;
                 load_plugin_textdomain( 'lightboxplus', $path = $g_lightbox_plus_url );
                 $location = admin_url('/admin.php?page=lightboxplus');
-                // TODO: Not sure what needs done.  Old comment?
+                // TODO -c Unknown -o Dan Zappone: Not sure what needs done.  Old comment?
                 /**
                 * Check form submission and update setting
                 */

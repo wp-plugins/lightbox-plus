@@ -516,9 +516,12 @@
                     <div class="postbox close-me"><h3 class="hndle" title="Click to toggle"><?php _e( 'Primary Lightbox - Demo','lightboxplus' ); ?>:</h3>
                         <div class="inside toggle">
                             <table class="form-table">
+                                <tr valign="top">
+                                    <td>
+                                        <?php _e('Here you can test your settings for Lightbox Plus using image and text links.  If they do not work please check your settings and ensure that you have transition type and resize speed set ',"lightboxplus"); ?>
+                                    </td>
+                                </tr>
                                 <tr>
-                                    <th scope="row">
-                                        <?php _e( 'Result: ', 'lightboxplus' )?>: </th>
                                     <td>
                                         <p class="primary_test_item"><a href="<?php echo $g_lightbox_plus_url ?>/screenshot-1.jpg" <?php if ( $lightboxPlusOptions['class_method'] ) { echo 'class="'.$lightboxPlusOptions['class_name'].'"'; } else { echo 'rel="lightbox[test demo]"'; } ?> title="Screenshot 1"><img title="Screenshot 1" src="<?php echo $g_lightbox_plus_url ?>/screenshot-1.jpg" alt="Screenshot 1" width="120" height="90" /></a><br />
                                             <a href="<?php echo $g_lightbox_plus_url ?>/screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_method'] ) { echo 'class="'.$lightboxPlusOptions['class_name'].'"'; } else { echo 'rel="lightbox[test demo]"'; } ?> title="Screenshot 2">Screenshot 2 Text Link</a></p>
@@ -543,7 +546,7 @@
             </div>
         </div>
     </div>
-        <div id="poststuff" class="lbp">
+    <div id="poststuff" class="lbp">
         <div class="postbox close-me"><h3 class="hndle" title="Click to toggle"><?php _e( 'Lightbox Plus - Enable Optional/Advanced Settings','lightboxplus' ); ?>:</h3>
             <div class="inside toggle">
                 <table class="form-table">
@@ -609,8 +612,8 @@
     ?>
 </form>
 <div class="alert">
-    <h3>
-        <?php _e( 'Reset/Re-initialize Lightbox Plus','lightboxplus' ); ?>: <a class="lbp-reinit" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_reinit_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a></h3>
+    <h4>
+        <?php _e( 'Reset/Re-initialize Lightbox Plus','lightboxplus' ); ?>: <a class="lbp-reinit" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_reinit_tip');"><img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a></h4>
     <form action="<?php echo $location?>&amp;updated=reset" method="post" id="lightboxplus_reset" name="lightboxplus_reset">
         <table>
             <tr>
@@ -632,4 +635,34 @@
             </tr>
         </table>
     </form>
+</div>
+
+
+<div style="display:none">
+    <div id="<?php echo $inline_hrefs[0]; ?>" style="padding: 10px;background: #fff">
+        <h3><?php _e( 'About Lightbox Plus for WordPress','lightboxplus' ); ?>: </h3>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="float:right;">
+            <input name="cmd" type="hidden" value="_donations" />
+            <input name="business" type="hidden" value="dzappone@gmail.com" />
+            <input name="item_name" type="hidden" value="Dan Zappone" />
+            <input name="item_number" type="hidden" value="23SDONWP" />
+            <input name="no_shipping" type="hidden" value="0" />
+            <input name="no_note" type="hidden" value="1" />
+            <input name="currency_code" type="hidden" value="EUR" />
+            <input name="tax" type="hidden" value="0" />
+            <input name="lc" type="hidden" value="US" />
+            <input name="bn" type="hidden" value="PP-DonationsBF" />
+            <input alt="PayPal - The safer, easier way to pay online!" name="submit" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" type="image" />
+            <img src="https://www.paypal.com/en_US/i/scr/pixel.gif" border="0" alt="" width="1" height="1" />
+        </form>
+        <h5>
+            <?php _e( 'Thank you for downloading and installing Lightbox Plus for WordPress<br /><br /><a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/bbpress/forum/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/pages/Austin-TX/23Systems-Web-Devsign/94195762502">Add Facebook Page</a>','lightboxplus' ); ?>
+        </h5>
+        <p>
+            <?php _e( 'Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  ColorBox was created by Jack Moore of <a href="http://colorpowered.com/colorbox/">Color Powered</a> and is licensed under the MIT License. Lightbox Plus allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.','lightboxplus' ); ?>
+        </p>
+        <p>
+            <?php _e( 'Like many developers I spend a lot of my spare time working on WordPress plugins and themes and any donation to the cause is appreciated.  I know a lot of other developers do the same and I try to donate to them whenever I can.  As a developer I greatly appreciate any donation you can make to help support further development of quality plugins and themes for WordPress. <em>You have my sincere thanks and appreciation for using Lightbox Plus</em>.','lightboxplus' ); ?>
+        </p>
+    </div>
 </div>

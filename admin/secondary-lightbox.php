@@ -8,37 +8,37 @@
             <div id="poststuff" class="lbp">
                 <table class="form-table">
                     <tr>
-                        <?php //TODO: Finish writing help section for Using Secondary Lightbox for Video Content ?>
-                        <td width="33%">
-                            <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_video_tip');">Using Secondary Lightbox for Video Content <img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                        </td>
-                        <?php //TODO: Finish writing help section for Using Secondary Lightbox for External Content ?>
-                        <td width="33%">
+                        <td>
+                        <?php //TODO -c Help -o Dan Zappone: Finish writing help section for Using Secondary Lightbox for Video Content ?>
+                        <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_video_tip');">Using Secondary Lightbox for Video Content <img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                        <div class="lbp-bigtip" id="lbp_for_video_tip">
+                            <?php _e( 'In order to display video using Lightbox Plus and Colorbox you must at a minimum have the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
+                                <code>&lt;a title="Projection Animation Test" class="lbpModal" href="http://www.youtube.com/v/pUPrCCP73Ws">YouTube Flash / Video (Iframe/Direct Link To YouTube)&lt;/a></code><br />
+                                <code>&lt;a title="Projection Animation Test" class="lbpModal" href="http://vimeo.com/moogaloop.swf?clip_id=9730308&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1">Vimeo Flash / Video (Iframe/Direct Link To Vimeo)&lt;/a></code>', 'lightboxplus' )?>
+                        </div>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <?php //TODO -o Dan Zappone -c Help: Finish writing help section for Using Secondary Lightbox for External Content ?>
                             <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_external_tip');">Using Secondary Lightbox for External Content <img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                        </td>
-                        <td width="33%">
-                        <?php //TODO: Finish writing help section for Using Secondary Lightbox for Other Content ?>
-                            <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_other_tip');">Using Secondary Lightbox for Other Content<img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                            <div class="lbp-bigtip" id="lbp_for_external_tip">
+                                <?php _e( 'In order to display external content using Lightbox Plus and Colorbox you must at a minimum has the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
+                                    <code>&lt;a class="lbpModal" href="http://wordpress.org/extend/plugins/lightbox-plus/">External Content (Iframe/Direct Link To WordPress plugins)&lt;/a></code>', 'lightboxplus' )?>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
-                            <div class="lbp-bigtip" id="lbp_for_video_tip">
-                                <?php _e( 'In order to display video using Lightbox Plus and Colorbox you must at a minimum has the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
-                                    <code>&lt;a title="Projection Animation Test" class="lbpModal" href="http://www.youtube.com/v/pUPrCCP73Ws">YouTube Flash / Video (Iframe/Direct Link To YouTube)&lt;/a></code><br />
-                                    <code>&lt;a title="Projection Animation Test" class="lbpModal" href="http://vimeo.com/moogaloop.swf?clip_id=9730308&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1">Vimeo Flash / Video (Iframe/Direct Link To Vimeo)&lt;/a></code>', 'lightboxplus' )?>
-                                <br /><a title="Projection Animation Test" class="lbpModal" href="http://vimeo.com/moogaloop.swf?clip_id=9730308&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1">Demo (using current settings)</a>
-                            </div>
-                            <div class="lbp-bigtip" id="lbp_for_external_tip">
-                                <?php _e( 'Specifies the transition type. Can be set to "elastic", "fade", or "none". <strong><em>Default: Elastic</em></strong>', 'lightboxplus' )?>
-                            </div>
+                        <td>
+                            <?php //TODO -c Help -o Dan Zappone: Finish writing help section for Using Secondary Lightbox for Other Content  ?>
+                            <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_other_tip');">Using Secondary Lightbox for Other Content<img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                             <div class="lbp-bigtip" id="lbp_for_other_tip">
-                                <?php _e( 'Specifies the transition type. Can be set to "elastic", "fade", or "none". <strong><em>Default: Elastic</em></strong>', 'lightboxplus' )?>
+                                <?php _e( 'In order to display other content, such as interactive flash, using Lightbox Plus and Colorbox you must at a minimum has the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
+                                    <code>&lt;a href="'.$g_lightbox_plus_url.'/trivia.swf" class="lbpModal" title="Interactive Flash Demo">Interactive Flash (Iframe/Local Flash File)&lt;/a></code>', 'lightboxplus' )?>
                             </div>
                         </td>
                     </tr>
                 </table>
-
                 <div class="postbox close-me">
                     <h3>
                         <?php _e( 'Secondary Lightbox - Base Settings','lightboxplus' ); ?>: </h3>
@@ -455,12 +455,16 @@
                         <table class="form-table">
                             <tr valign="top">
                                 <td>
-                                    <?php _e('Here you can test you settings with various different implementation of Lightbox Plus for Video, External Pages and Interactive Flash.  If they do not work please check that you have the following items set: Inner Width, Inner Height, and Use Iframe must be checked.  You will not be able to display any of these without the minimum options set.',"lightboxplus"); ?>
+                                    <?php _e('Here you can test you settings with various different implementations of Lightbox Plus for Video, External Pages and Interactive Flash.  If they do not work please check that you have the following items set: Inner Width, Inner Height, and Use Iframe must be checked.  You will not be able to display any of these without the minimum options set.',"lightboxplus"); ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p class="secondary_test_item"><a href="<?php echo $g_lightbox_plus_url ?>/screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link</a><br /><a title="Projection Animation Test" href="http://www.youtube.com/v/pUPrCCP73Ws" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - Video Test</a><br /><a title="Facelift Image Replacement @ WordPress.Org" href="http://wordpress.org/extend/plugins/facelift-image-replacement/" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - External Page Test</a><br /><a href="<?php echo $g_lightbox_plus_url ?>/trivia.swf" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash</a></p>
+                                    <p class="secondary_test_item">
+                                    <a href="<?php echo $g_lightbox_plus_url ?>/screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link</a><br /><code>&lt;a href="<?php echo $g_lightbox_plus_url ?>/screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link&lt;/a></code><br /><br />
+                                    <a title="Projection Animation Test" href="http://www.youtube.com/v/pUPrCCP73Ws" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - Video Test</a><br /><code>&lt;a title="Projection Animation Test" href="http://www.youtube.com/v/pUPrCCP73Ws" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - Video Test&lt;/a></code><br /><br />
+                                    <a title="Facelift Image Replacement @ WordPress.Org" href="http://wordpress.org/extend/plugins/facelift-image-replacement/" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - External Page Test</a><br /><code>&lt;a title="Facelift Image Replacement @ WordPress.Org" href="http://wordpress.org/extend/plugins/facelift-image-replacement/" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - External Page Test&lt;/a></code><br /><br />
+                                    <a href="<?php echo $g_lightbox_plus_url ?>/trivia.swf" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash</a><br /><code>&lt;a href="<?php echo $g_lightbox_plus_url ?>/trivia.swf" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash&lt;/a></code></p>
                                 </td>
                             </tr>
                         </table>
