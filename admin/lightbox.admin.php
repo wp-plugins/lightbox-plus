@@ -604,10 +604,10 @@
     </div>  
     <?php
         if ($lightboxPlusOptions['lightboxplus_multi']) { 
-            require('secondary-lightbox.php');
+            require('lightbox.secondary.php');
         } 
         if ($lightboxPlusOptions['use_inline']) { 
-            require('inline-lightbox.php');
+            require('lightbox.inline.php');
         }
     ?>
 </form>

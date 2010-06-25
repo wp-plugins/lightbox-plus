@@ -356,7 +356,7 @@
                         echo '});';
                         echo '</script>';
                     }
-                    require('admin/admin-lightbox.php');
+                    require('admin/lightbox.admin.php');
             ?></div>
             <script type="text/javascript">
                 <!--

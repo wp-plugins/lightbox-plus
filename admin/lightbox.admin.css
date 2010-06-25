@@ -1,7 +1,7 @@
 /*---- Lightbox Plus Styles ----*/
-.notice{background:#dff0f5 url(information.png) center no-repeat;background-position:15px 50%;text-align:left;border:1px solid #3796b3;display:block;padding:5px 20px 5px 45px;color:#046380;width:90%;margin:10px auto;-webkit-border-radius:10px;-moz-border-radius:10px;-khtml-border-radius:10px;}
+.notice{background:#dff0f5 url(images/information.png) center no-repeat;background-position:15px 50%;text-align:left;border:1px solid #3796b3;display:block;padding:5px 20px 5px 45px;color:#046380;width:90%;margin:10px auto;-webkit-border-radius:10px;-moz-border-radius:10px;-khtml-border-radius:10px;}
 .about{background:#dff0f5;text-align:left;border:1px solid #3796b3;display:block;padding:5px 20px 5px 20px;color:#046380;width:90%;margin:10px auto;-webkit-border-radius:10px;-moz-border-radius:10px;-khtml-border-radius:10px;}
-.alert{background:#faf0e6 url(exclamation.png) no-repeat center;background-position:15px 50%;text-align:left;border:1px solid #800000;display:block;padding:5px 20px 5px 45px;color:#800000;width:90%;margin:10px auto;-webkit-border-radius:10px;-moz-border-radius:10px;-khtml-border-radius:10px;}
+.alert{background:#faf0e6 url(images/exclamation.png) no-repeat center;background-position:15px 50%;text-align:left;border:1px solid #800000;display:block;padding:5px 20px 5px 45px;color:#800000;width:90%;margin:10px auto;-webkit-border-radius:10px;-moz-border-radius:10px;-khtml-border-radius:10px;}
 .notice h3,.about h3{font-weight:bold;font-size:1.2em;display:block;}
 .notice h4,.about h4{font-weight:bold;font-size:1.1em;display:block;}
 .notice h5,.about h5{font-weight:bold;font-size:1.0em;display:block;}

@@ -16,7 +16,7 @@
             */
             function lightboxPlusAdminHead( ) {
                 global $g_lightbox_plus_url;
-                echo '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/admin/admin.css" media="screen" />'.$this->EOL( );
+                echo '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/admin/lightbox.admin.css" media="screen" />'.$this->EOL( );
                 if ( !empty( $this->lightboxOptions ) ) {
 
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
