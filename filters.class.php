@@ -2,34 +2,6 @@
     if (!class_exists('lbp_filters')) {
         class lbp_filters extends lbp_shortcode {
             /**
-            * put your comment there...
-            * 
-            */
-            function getBaseName() {
-                return plugin_basename(__FILE__);
-            }
-
-            /**
-            * put your comment there...
-            * 
-            * @param mixed $links
-            * @param mixed $file
-            */
-
-            function RegisterLBPLinks($links, $file) {
-                $base = $this->getBaseName();
-                if ($file == $base) {
-                    $links[] = '<a href="themes.php?page=lightboxplus">' . __('Settings') . '</a>';
-                    $links[] = '<a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">' . __('FAQ') . '</a>';
-                    $links[] = '<a href="http://www.23systems.net/bbpress/forum/lightbox-plus">' . __('Support') . '</a>';
-                    $links[] = '<a href="http://www.23systems.net/donate/">' . __('Donate') . '</a>';
-                    $links[] = '<a href="http://twitter.com/23systems">' . __('Follow on Twitter') . '</a>';
-                    $links[] = '<a href="http://www.facebook.com/pages/Austin-TX/23Systems-Web-Devsign/94195762502">' . __('Facebook Page') . '</a>';
-                }
-                return $links;
-            }
-
-            /**
             * Parse page content looking for RegEx matches and add modify HTML to acomodate LBP display
             * 
             * @param mixed $content
@@ -52,7 +24,8 @@
                 /**
                 * Replacement Patterns
                 * In case Do Not Display Title is selected
-                * Contrary to what the option is called it now does the opposite
+                * Contrary to what the option is called it now does the opposite i.e. switch ( $lightboxPlusOptions['dont_display_title'] ) 
+                * Option name was not changed to prevent conflicts
                 */
                 switch ( $lightboxPlusOptions['display_title'] ) {
                     case 1:
@@ -99,7 +72,7 @@
                 $replacement_a[3] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']"><img$7';
 
                 $content = preg_replace( $pattern_a, $replacement_a, $content );
-                
+
                 /**
                 * Correct extra title and standardize quotes to double for links
                 * 

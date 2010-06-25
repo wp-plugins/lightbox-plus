@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin/admin-lightbox.php:3
+#: admin/lightbox.admin.php:3
 msgid "About Lightbox Plus for WordPress"
 msgstr ""
 
-#: admin/admin-lightbox.php:7
+#: admin/lightbox.admin.php:7
 msgid ""
 "Thank you for downloading and installing Lightbox Plus for WordPress<br /"
 "><br /><a href=\"http://www.23systems.net/plugins/lightbox-plus/\">Visit "
@@ -31,7 +31,7 @@ msgid ""
 "pages/Austin-TX/23Systems-Web-Devsign/94195762502\">Add Facebook Page</a>"
 msgstr ""
 
-#: admin/admin-lightbox.php:8
+#: admin/lightbox.admin.php:8
 msgid ""
 "Lightbox Plus implements ColorBox as a lightbox image overlay tool for "
 "WordPress.  ColorBox was created by Jack Moore of <a href=\"http://"
@@ -45,7 +45,7 @@ msgid ""
 "plugins/lightbox-plus/\">changelog</a> for important details on this upgrade."
 msgstr ""
 
-#: admin/admin-lightbox.php:9
+#: admin/lightbox.admin.php:9
 msgid ""
 "Like many developers I spend a lot of my spare time working on WordPress "
 "plugins and themes and any donation to the cause is appreciated.  I know a "
@@ -55,97 +55,97 @@ msgid ""
 "<em>You have my sincere thanks and appreciation for using Lightbox Plus</em>."
 msgstr ""
 
-#: admin/admin-lightbox.php:21
+#: admin/lightbox.admin.php:21
 msgid "Lightbox Plus Settings"
 msgstr ""
 
-#: admin/admin-lightbox.php:27
+#: admin/lightbox.admin.php:27
 msgid "Lightbox Plus Style"
 msgstr ""
 
-#: admin/admin-lightbox.php:40 admin/admin-lightbox.php:53 admin/admin-lightbox.php:93
-#: admin/admin-lightbox.php:100 admin/admin-lightbox.php:106 admin/admin-lightbox.php:112
-#: admin/admin-lightbox.php:141 admin/admin-lightbox.php:148 admin/admin-lightbox.php:154
-#: admin/admin-lightbox.php:160 admin/admin-lightbox.php:166 admin/admin-lightbox.php:172
-#: admin/admin-lightbox.php:178 admin/admin-lightbox.php:194 admin/admin-lightbox.php:200
-#: admin/admin-lightbox.php:234 admin/admin-lightbox.php:241 admin/admin-lightbox.php:247
-#: admin/admin-lightbox.php:262 admin/admin-lightbox.php:268 admin/admin-lightbox.php:274
-#: admin/admin-lightbox.php:280
+#: admin/lightbox.admin.php:40 admin/lightbox.admin.php:53 admin/lightbox.admin.php:93
+#: admin/lightbox.admin.php:100 admin/lightbox.admin.php:106 admin/lightbox.admin.php:112
+#: admin/lightbox.admin.php:141 admin/lightbox.admin.php:148 admin/lightbox.admin.php:154
+#: admin/lightbox.admin.php:160 admin/lightbox.admin.php:166 admin/lightbox.admin.php:172
+#: admin/lightbox.admin.php:178 admin/lightbox.admin.php:194 admin/lightbox.admin.php:200
+#: admin/lightbox.admin.php:234 admin/lightbox.admin.php:241 admin/lightbox.admin.php:247
+#: admin/lightbox.admin.php:262 admin/lightbox.admin.php:268 admin/lightbox.admin.php:274
+#: admin/lightbox.admin.php:280
 msgid "Click for Help!"
 msgstr ""
 
-#: admin/admin-lightbox.php:42
+#: admin/lightbox.admin.php:42
 msgid ""
 "Select Lightbox Plus theme/style here.<br /><strong><em>Default: Shadowed</"
 "em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:46
+#: admin/lightbox.admin.php:46
 msgid "Transition Type"
 msgstr ""
 
-#: admin/admin-lightbox.php:54
+#: admin/lightbox.admin.php:54
 msgid ""
 "Specifies the transition type. Can be set to \"elastic\", \"fade\", or \"none"
 "\".<br /><strong><em>Default: Elastic</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:58
+#: admin/lightbox.admin.php:58
 msgid "Resize Speed"
 msgstr ""
 
-#: admin/admin-lightbox.php:93
+#: admin/lightbox.admin.php:93
 msgid ""
 "Controls the speed of the fade and elastic transitions, in milliseconds.<br /"
 "><strong><em>Default: 350</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:98
+#: admin/lightbox.admin.php:98
 msgid "Maximum Width"
 msgstr ""
 
-#: admin/admin-lightbox.php:100
+#: admin/lightbox.admin.php:100
 msgid ""
 "Set a maximum width for loaded content.  Example: \"75%\", \"500px\", 500, "
 "or false for no maximum width.  <strong><em>Default: false</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:104
+#: admin/lightbox.admin.php:104
 msgid "Maximum Height"
 msgstr ""
 
-#: admin/admin-lightbox.php:106
+#: admin/lightbox.admin.php:106
 msgid ""
 "Set a maximum height for loaded content.  Example: \"75%\", \"500px\",, 500, "
 "or false for no maximum height. <strong><em>Default: false</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:110
+#: admin/lightbox.admin.php:110
 msgid "Resize"
 msgstr ""
 
-#: admin/admin-lightbox.php:112
+#: admin/lightbox.admin.php:112
 msgid ""
 "If checked and if Maximum Width or Maximum Height have been defined, Lightbx "
 "Plus will resize photos to fit within the those values.<br /"
 "><strong><em>Default: Checked</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:116
+#: admin/lightbox.admin.php:116
 msgid "Overlay Opacity"
 msgstr ""
 
-#: admin/admin-lightbox.php:141
+#: admin/lightbox.admin.php:141
 msgid ""
 "Controls transparency of shadow overlay. Lower numbers are more transparent."
 "<br /><strong><em>Default: 80%</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:146
+#: admin/lightbox.admin.php:146
 msgid "Pre-load images"
 msgstr ""
 
-#: admin/admin-lightbox.php:148
+#: admin/lightbox.admin.php:148
 msgid ""
 "Allows for preloading of \"Next\" and \"Previous\" content in a shared "
 "relation group (same values for the \"rel\" attribute), after the current "
@@ -153,118 +153,118 @@ msgid ""
 "Checked</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:152
+#: admin/lightbox.admin.php:152
 msgid "Grouping Labels"
 msgstr ""
 
-#: admin/admin-lightbox.php:154
+#: admin/lightbox.admin.php:154
 msgid ""
 "Text format for the content group / gallery count. {current} and {total} are "
 "detected and replaced with actual numbers while ColorBox runs."
 "<strong><em>Default: Image {current} of {total}</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:158
+#: admin/lightbox.admin.php:158
 msgid "Previous image text"
 msgstr ""
 
-#: admin/admin-lightbox.php:160
+#: admin/lightbox.admin.php:160
 msgid ""
 "Text for the previous button in a shared relation group (same values for "
 "\"rel\" attribute). <strong><em>Default: previous</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:164
+#: admin/lightbox.admin.php:164
 msgid "Next image text"
 msgstr ""
 
-#: admin/admin-lightbox.php:166
+#: admin/lightbox.admin.php:166
 msgid ""
 "Text for the next button in a shared relation group (same values for \"rel\" "
 "attribute).  <strong><em>Default: next</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:170
+#: admin/lightbox.admin.php:170
 msgid "Close image text"
 msgstr ""
 
-#: admin/admin-lightbox.php:172
+#: admin/lightbox.admin.php:172
 msgid ""
 "Text for the close button. The \"Esc\" key will also close Lightbox Plus. "
 "<strong><em>Default: close</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:176
+#: admin/lightbox.admin.php:176
 msgid "Overlay Close"
 msgstr ""
 
-#: admin/admin-lightbox.php:178
+#: admin/lightbox.admin.php:178
 msgid ""
 "If checked, enables closing Lightbox Plus by clicking on the background "
 "overlay.<br /><strong><em>Default: Checked</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:187
+#: admin/lightbox.admin.php:187
 msgid "Slideshow Settings:"
 msgstr ""
 
-#: admin/admin-lightbox.php:192
+#: admin/lightbox.admin.php:192
 msgid "Slideshow"
 msgstr ""
 
-#: admin/admin-lightbox.php:194
+#: admin/lightbox.admin.php:194
 msgid ""
 "If checked, adds slideshow capablity to a content group / gallery. <br /"
 "><strong><em>Default: Unchecked</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:198
+#: admin/lightbox.admin.php:198
 msgid "Auto-Start Slideshow"
 msgstr ""
 
-#: admin/admin-lightbox.php:200
+#: admin/lightbox.admin.php:200
 msgid ""
 "If checked, the slideshows will automatically start to play when content "
 "grou opened. <br /><strong><em>Default: Checked</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:204
+#: admin/lightbox.admin.php:204
 msgid "Slideshow Speed"
 msgstr ""
 
-#: admin/admin-lightbox.php:234
+#: admin/lightbox.admin.php:234
 msgid ""
 "Controls the speed of the slideshow, in milliseconds.<br /"
 "><strong><em>Default: 2500</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:239
+#: admin/lightbox.admin.php:239
 msgid "Slideshow start text"
 msgstr ""
 
-#: admin/admin-lightbox.php:241
+#: admin/lightbox.admin.php:241
 msgid ""
 "Text for the slideshow start button. <strong><em>Default: start</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:245
+#: admin/lightbox.admin.php:245
 msgid "Slideshow stop text"
 msgstr ""
 
-#: admin/admin-lightbox.php:247
+#: admin/lightbox.admin.php:247
 msgid ""
 "Text for the slideshow stop button.  <strong><em>Default: stop</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:256
+#: admin/lightbox.admin.php:256
 msgid "Other Lightbox Plus Settings:"
 msgstr ""
 
-#: admin/admin-lightbox.php:260
+#: admin/lightbox.admin.php:260
 msgid "Use For WP Gallery"
 msgstr ""
 
-#: admin/admin-lightbox.php:262
+#: admin/lightbox.admin.php:262
 msgid ""
 "If checked, Lightbox Plus will add the Lightboxing feature to the WordPress "
 "built in gallery feature.  In order for this to work correcly you must set "
@@ -273,11 +273,11 @@ msgid ""
 "Unchecked</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:266
+#: admin/lightbox.admin.php:266
 msgid "Use Class Method"
 msgstr ""
 
-#: admin/admin-lightbox.php:268
+#: admin/lightbox.admin.php:268
 msgid ""
 "If checked, Lightbox Plus will only lightbox images via <code>class: "
 "cboxModal</code> attribute.  Using this method you can manually control "
@@ -287,11 +287,11 @@ msgid ""
 "strong> option.<br /><strong><em>Default: Unchecked</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:272
+#: admin/lightbox.admin.php:272
 msgid "<strong>Do Not</strong> Auto-Lightbox Images"
 msgstr ""
 
-#: admin/admin-lightbox.php:274
+#: admin/lightbox.admin.php:274
 msgid ""
 "If checked, Lightbox Plus <em>will not</em> automatically add appropriate "
 "attibutes (either <code>rel=\"lightbox[postID]\"</code> or <code>class: "
@@ -300,11 +300,11 @@ msgid ""
 "Unchecked</em></strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:278
+#: admin/lightbox.admin.php:278
 msgid "<strong>Do Not</strong> Display Image Title"
 msgstr ""
 
-#: admin/admin-lightbox.php:280
+#: admin/lightbox.admin.php:280
 msgid ""
 "If checked, Lightbox Plus <em>will not</em> display image titles "
 "automatically.  This has no effect if the <strong>Do Not Auto-Lightbox "
@@ -312,15 +312,15 @@ msgid ""
 "strong>"
 msgstr ""
 
-#: admin/admin-lightbox.php:288
+#: admin/lightbox.admin.php:288
 msgid "Save settings"
 msgstr ""
 
-#: admin/admin-lightbox.php:295 admin/admin-lightbox.php:302
+#: admin/lightbox.admin.php:295 admin/lightbox.admin.php:302
 msgid "Reset/Re-initialize Lightbox Plus"
 msgstr ""
 
-#: admin/admin-lightbox.php:299
+#: admin/lightbox.admin.php:299
 msgid ""
 "This will immediately remove all existing settings and any files for "
 "versions of Lightbox Plus prior to version 1.5 and will also re-initialize "

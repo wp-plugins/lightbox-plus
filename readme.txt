@@ -220,7 +220,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * innerHeight - This is an alternative to 'height' used to set a fixed inner height. This excludes borders and buttons.
  * initialWidth    - can set the initial width, prior to any content being loaded.
  * initialHeight - can set the initial height, prior to any content being loaded.
-* Updated `admin.css` and `admin-lightbox.php` to correct a top level class that may effect global styles.
+* Updated `lightbox.admin.css` and `lightbox.admin.php` to correct a top level class that may effect global styles.
 * Now works correctly with WordPress MU
  * Tested with WordPress MU 2.9.2   
 * Degradation of performance in Firefox corrected.  May still occur in older versions

@@ -5,11 +5,10 @@
             * Add new panel to WordPress under the Appearance category
             * 
             */
-            // FIXME: Not sure what needs fixing - old comment?
             function lightboxPlusAddPages( ) {
                 global $g_lbp_plugin_page;
-                //$g_lbp_plugin_page = add_theme_page( "Lightbox Plus", "Lightbox Plus", 'manage_options', "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) );
-                $plugin_page=add_submenu_page( 'themes.php', "Lightbox Plus", "Lightbox Plus", 10, "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) ); 
+                $plugin_page = add_theme_page( "Lightbox Plus", "Lightbox Plus", 'manage_options', "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) );
+                //$plugin_page=add_submenu_page( 'themes.php', "Lightbox Plus", "Lightbox Plus", 10, "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) ); 
             }
 
             /**
@@ -27,19 +26,21 @@
                         $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css" media="screen" />'.$this->EOL( );
 
                         /**
-                        * Check for and add conditional IE specific CSS fixes
+                        * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles
+                        * 
+                        * Experimental should not be used currently Check for and add conditional IE specific CSS fixes
                         * 
                         * @var mixed
-                        * 
-                        * FIXME: IE Styles
                         */
-                        /* $currentStylePath       = get_option( 'lightboxplus_style_path' );
-                        $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
-                        if ( file_exists( $filename ) ) {
-                            $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
-                            $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
-                            $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
-                        } */
+                        /**
+                        * $currentStylePath       = get_option( 'lightboxplus_style_path' );
+                        * $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
+                        * if ( file_exists( $filename ) ) {
+                        *     $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
+                        *     $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
+                        *     $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
+                        * }
+                        */
                         echo $lightboxPlusStyleSheet;
                     }
                 }
@@ -55,7 +56,7 @@
 
                 //wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.8', true);
             }
-            
+
             /**
             * Add JavaScript (jQuery) to page footer to activate LBP
             */
@@ -180,25 +181,26 @@
                     } else {
                         $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css" media="screen" />'.$this->EOL( );
                         /**
-                        * Check for and add conditional IE specific CSS fixes
+                        * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles
+                        * 
+                        * Experimental should not be used currently Check for and add conditional IE specific CSS fixes
                         * 
                         * @var mixed
-                        * 
-                        * FIXME - check and fix IE styles
                         */
                         /* $currentStylePath       = get_option( 'lightboxplus_style_path' );
-                        $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
-                        if ( file_exists( $filename ) ) {
-                            $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
-                            $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
-                            $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
-                        } */
+                        * $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
+                        * if ( file_exists( $filename ) ) {
+                        *     $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
+                        *     $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
+                        *     $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
+                        * }
+                        */
                         echo $lightboxPlusStyleSheet;
                     }
                 }
             }
-            
-                        /**
+
+            /**
             * Tells WordPress to load the plugin JavaScript files and what library to use
             */
             function lightboxPlusAddScripts( ) {

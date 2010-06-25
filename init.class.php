@@ -22,8 +22,9 @@
                 * Where the default styles aew located
                 * 
                 * @var mixed
+                *
+                * TODO 4 -c filesystem -o Dan Zappone: Add path outside for user generatoed styles ~version 2.1
                 */
-                // TODO: Add path outside for user generatoed styles
                 $stylePath = ( dirname( __FILE__ )."/css" );
                 $this->saveAdminOptions( $this->lightboxStylePathName, $stylePath );
 
@@ -50,8 +51,7 @@
             }
 
             /**
-            * Initialize Primary Lightbox by buiding array of 
-            * options and committing to database
+            * Initialize Primary Lightbox by buiding array of options and committing to database
             */
             function lightboxPlusPrimaryInit() {
                 $lightboxPlusPrimaryOptions = array(
@@ -98,8 +98,7 @@
             }
 
             /**
-            * Initialize Secondary Lightbox by buiding array of 
-            * options and committing to database
+            * Initialize Secondary Lightbox by buiding array of options and committing to database
             */
             function lightboxPlusSecondaryInit() {
                 if ( !empty( $this->lightboxOptions )) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
@@ -143,8 +142,8 @@
             }
 
             /**
-            * Initialize Inline Lightbox by buiding array of 
-            * options and committing to database
+            * Initialize Inline Lightbox by buiding array of options and committing to database
+            * 
             * @param mixed $inline_number
             */
             function lightboxPlusInlineInit( $inline_number ) {

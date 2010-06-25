@@ -109,7 +109,25 @@
                 update_option( $optionsName, $options );
             }
 
-
+            /**
+            * Adds links to the plugin row on the plugins page.
+            * This add_filter function must be in this file or it does not work correctly, requires plugin_basename and file match 
+            * 
+            * @param mixed $links
+            * @param mixed $file
+            */
+            function RegisterLBPLinks($links, $file) {
+                $base = plugin_basename(__FILE__);
+                if ($file == $base) {
+                    $links[] = '<a href="themes.php?page=lightboxplus">' . __('Settings') . '</a>';
+                    $links[] = '<a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">' . __('FAQ') . '</a>';
+                    $links[] = '<a href="http://www.23systems.net/bbpress/forum/lightbox-plus">' . __('Support') . '</a>';
+                    $links[] = '<a href="http://www.23systems.net/donate/">' . __('Donate') . '</a>';
+                    $links[] = '<a href="http://twitter.com/23systems">' . __('Follow on Twitter') . '</a>';
+                    $links[] = '<a href="http://www.facebook.com/pages/Austin-TX/23Systems-Web-Devsign/94195762502">' . __('Facebook Page') . '</a>';
+                }
+                return $links;
+            }
 
             /**
             * The admin panel funtion
@@ -342,9 +360,9 @@
             ?></div>
             <script type="text/javascript">
                 <!--
-                /*          jQuery('.postbox h3').click( function() {
+                          jQuery('.postbox h3').click( function() {
                 jQuery(jQuery(this).parent().get(0)).toggleClass('closed'); }
-                ); */
+                ); 
 
                 jQuery('.postbox .close-me').each(function() {
                     jQuery(this).addClass("closed");
