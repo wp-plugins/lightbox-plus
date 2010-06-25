@@ -388,8 +388,8 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Road Map ==
 
-1. Add languages for which I have completed translations. Verision 1.8
-2. Solicit and implement additional language translations. Verision 1.8
+1. Add languages for which I have completed translations. Verision 2.1
+2. Solicit and implement additional language translations. Verision 2.1
 
 == Special Thanks ==
 
