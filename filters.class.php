@@ -99,6 +99,7 @@
                 $replacement_a[3] = '<a$1href=$2$3$4$5$6 rel="lightbox['.$postGroupID.']"><img$7';
 
                 $content = preg_replace( $pattern_a, $replacement_a, $content );
+                
                 /**
                 * Correct extra title and standardize quotes to double for links
                 * 

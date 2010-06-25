@@ -5,12 +5,13 @@
     Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 1.7
+    Version: 1.7.1
     */
     /*---- 6/23/2010 ----*/
     global $post, $content;  // WordPress Globals
     global $g_lightbox_plus_url;
     global $g_lbp_messages;
+    global $g_lbp_plugin_page;
     $g_lbp_messages = '';
     $g_lightbox_plus_url = WP_PLUGIN_URL.'/lightbox-plus';
     load_plugin_textdomain('lightboxplus', $path = $g_lightbox_plus_url);
@@ -25,7 +26,7 @@
     require_once('init.class.php');
 
     /**
-    * Ensure class doesn't already exist        
+    * Ensure class doesn't already exist
     */
     if (!class_exists('wp_lightboxplus')) {
 
@@ -33,7 +34,7 @@
 
             /**
             * The name the options are saved under in the database
-            * 
+            *
             * @var mixed
             */
             var $lightboxOptionsName   = 'lightboxplus_options';
@@ -42,7 +43,6 @@
 
             /**
             * The PHP 4 Compatible Constructor
-            * 
             */
             function wp_lightboxplus( ) {
                 $this->__construct( );
@@ -50,9 +50,10 @@
 
             /**
             * The PHP 5 Constructor
-            * 
+            *
             */
             function __construct( ) {
+                global $g_lbp_plugin_page;  
                 $this->lightboxOptions = $this->getAdminOptions( $this->lightboxOptionsName );
                 if ( !get_option( $this->lightboxInitName ) ) {
                     $this->lightboxPlusInit( );
@@ -60,7 +61,7 @@
                 add_filter( 'plugin_row_meta',array( &$this, 'RegisterLBPLinks'),10,2);
                 add_action( 'admin_menu', array( &$this, 'lightboxPlusAddPages' ) );
                 add_action( 'admin_head', array( &$this, 'lightboxPlusAdminHead' ) );
-                add_action( 'admin_footer-'. $plugin_page, array( &$this, 'addscripts' ) );
+                add_action( 'admin_footer-' . $g_lbp_plugin_page, array( &$this, 'lightboxPlusAddAdminScripts' ) );  
                 add_action( 'admin_footer', array( &$this, 'lightboxPlusAddFooter' ) );
                 add_action( 'wp_head', array( &$this, 'lightboxPlusAddHeader' ) );
                 add_action( 'wp_footer', array( &$this, 'lightboxPlusAddFooter' ) );
@@ -79,12 +80,12 @@
                         add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ), 12 );
                     }
                 }
-                add_action( "init", array( &$this, "addScripts" ) );
+                add_action( "init", array( &$this, "lightboxPlusAddScripts" ) );
             }
 
             /**
             * Retrieves the options from the database.
-            * 
+            *
             * @param mixed $optionsName
             */
             function getAdminOptions( $optionsName ) {
@@ -100,7 +101,7 @@
 
             /**
             * Saves the admin options to the database.
-            * 
+            *
             * @param mixed $optionsName
             * @param mixed $options
             */
@@ -108,18 +109,7 @@
                 update_option( $optionsName, $options );
             }
 
-            /**
-            * Tells WordPress to load the plugin JavaScript files and what library to use
-            * 
-            */
-            function addScripts( ) {
-                global $g_lightbox_plus_url;
-                wp_enqueue_script('jquery','','','1.4.2',true);
-                wp_enqueue_script('jquery-ui-core','','','1.7.1',true);
-                wp_enqueue_script('jquery-ui-dialog','','','1.7.1',true);
 
-                wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.8', true);
-            }
 
             /**
             * The admin panel funtion
@@ -129,7 +119,6 @@
                 global $g_lightbox_plus_url, $g_lbp_messages;
                 load_plugin_textdomain( 'lightboxplus', $path = $g_lightbox_plus_url );
                 $location = admin_url('/admin.php?page=lightboxplus');
-                // TODO -c Unknown -o Dan Zappone: Not sure what needs done.  Old comment?
                 /**
                 * Check form submission and update setting
                 */
@@ -252,7 +241,7 @@
                             if ( $_POST['lightboxplus_multi'] && !$_POST['class_name_sec'] ) {
                                 $this->lightboxPlusSecondaryInit();
                                 $g_lbp_messages .= __('Secondary lightbox settings initialized.','lightboxplus').'<br /><br />';
-                            }  
+                            }
                             /**
                             *  Initialize Inline Lightboxes if enabled
                             */
@@ -273,7 +262,7 @@
 
                                 /**
                                 * Used to remove old setting from previous versions of LBP
-                                * 
+                                *
                                 * @var string
                                 */
                                 $pluginPath = ( dirname( __FILE__ ));
@@ -306,7 +295,7 @@
 
                             /**
                             * Will reinitilize on reload where option lightboxplus_init is null
-                            * 
+                            *
                             * @var wp_lightboxplus
                             */
                             $this->lightboxPlusInit();
@@ -324,7 +313,7 @@
 
                 /**
                 * Check if there are styles
-                * 
+                *
                 * @var mixed
                 */
                 $stylePath = get_option( 'lightboxplus_style_path' );
@@ -339,7 +328,7 @@
             ?>
             <div class="wrap" id="lightbox">
                 <h2><?php _e( 'Lightbox Plus Options v1.7 (ColorBox v1.3.8)', 'lightboxplus' )?></h2>
-                <br style="clear:both;" />
+                <br style="clear: both;" />
                 <?php
                     if ($g_lbp_messages) {
                         echo '<div id="lbp_message" title="'.__('Settings Saved', 'lightboxplus').'" style="display:none">'.$g_lbp_messages.'</div>';
@@ -350,8 +339,7 @@
                         echo '</script>';
                     }
                     require('admin/admin-lightbox.php');
-                ?>
-            </div>
+            ?></div>
             <script type="text/javascript">
                 <!--
                 /*          jQuery('.postbox h3').click( function() {
