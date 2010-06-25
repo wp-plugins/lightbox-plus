@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: picture, photo, lightbox, image, video, ajax, gallery, colorbox, lightview, wordpress mu
 Requires at least: 2.8
 Tested up to: 3.0
-Stable tag: 1.6.9.7
+Stable tag: 2.0
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -133,6 +133,7 @@ If you have read and tried the above and you are still having problems, then, pl
 
 * No support for iPad (if someone wants to donate an iPad to me I will guarantee support)
 * In some instances performance may be slow in IE - this may be due to plugin conflicts or slow JavaScript performance in IE. 
+* Lightboxed video does not seem to work in IE on locally installed sites, for example viewing in IE 7.0 while running XAMPP, this seems to be a Windows only issue.
 
 = Plugin Conflicts =
 
@@ -152,7 +153,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
-= 1.7 =
+= 2.0 =
 * Added secondary lightbox option
  * There is no auto-lightboxing for the secondary lightbox
  * Allows the creation of a secondary lightbox with iFrame capabilities
@@ -174,6 +175,8 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Fixed a bug in IE7 that existed with some iframed websites that use JS to reposition the viewport caused ColorBox to move out of position.
  * Abstracted the identifiers (HTML ids & classes, and JS plugin name, method, and events) so that the plugin can be easily rebranded.
  * Small changes to improve either code readability or compression.
+
+= 1.7 =
 * Updated ColorBox to verion 1.3.7
  * $.colorbox can now be used for direct calls and accessing public methods.  Example: $.colorbox.close();
  * Resize now accepts 'width', 'innerWidth', 'height' and 'innerHeight'. Example: $.colorbox.resize({width:"100%"})
@@ -181,8 +184,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Added options (escKey:false, arrowKey:false) to disable esc-key and arrow-key bindings.
  * Added method for removing ColorBox from a document: $.colorbox.remove();
  * Fixed a bug where iframed URLs would be truncated if they contained an unencoded apostrophe.
- * Now uses the exact href specified on an anchor, rather than the version returned by 'this.href'. This was causing "#example" to be normalized to "http://domain/#example" which interfered with how some users were setting up links to inline content.
-* 
+ * Now uses the exact href specified on an anchor, rather than the version returned by 'this.href'. This was causing "#example" to be normalized to "http://domain/#example" which interfered with how some users were setting up links to inline content. 
 
 = 1.6.9.7 =
 * Fixed auto-lightbox breaking links that contained manually created `rel="lightbox[]"` attributes.

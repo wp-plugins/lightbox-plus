@@ -9,7 +9,7 @@
             <table class="form-table"><!-- Instructions -->
                 <tr>
                     <td>
-                        <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_inline_tip');">Using Inline Lightboxes <img src="<?php echo $g_lightbox_plus_url.'/admin/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                        <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_inline_tip');">Using Inline Lightboxes <img src="<?php echo $g_lightbox_plus_url.'/admin/images/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                     </td>
                     <td>
                     </td>

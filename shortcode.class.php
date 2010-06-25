@@ -3,6 +3,7 @@
         class lbp_shortcode extends lbp_utilities {
             /**
             * Replacement shortcode gallery function adds rel="lightbox" or class="cboxModal"
+            * Overrides the default gallery template
             * 
             * @param string|false $attr
             */

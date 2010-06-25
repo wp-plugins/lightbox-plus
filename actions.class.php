@@ -8,11 +8,16 @@
             function lightboxPlusAddPages( ) {
                 global $g_lbp_plugin_page;
                 $plugin_page = add_theme_page( "Lightbox Plus", "Lightbox Plus", 'manage_options', "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) );
-                //$plugin_page=add_submenu_page( 'themes.php', "Lightbox Plus", "Lightbox Plus", 10, "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) ); 
+                /**
+                * The above seems to work fine - leaving previous code commented
+                *
+                * $plugin_page=add_submenu_page( 'themes.php', "Lightbox Plus", "Lightbox Plus", 10, "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) ); 
+                */
+                
             }
 
             /**
-            * Add styles to Admin Panel
+            * Add CSS styles to Admin Panel page headers to display lightboxed images
             */
             function lightboxPlusAdminHead( ) {
                 global $g_lightbox_plus_url;
@@ -47,14 +52,12 @@
             }
 
             /**
-            * Tells WordPress to load the plugin JavaScript files and what library to use
+            * Tells WordPress to load the jquery, jquery-ui-core and jquery-ui-dialog in the admin panel
             */
             function lightboxPlusAddAdminScripts( ) {
                 wp_enqueue_script('jquery','','','1.4.2',true);
                 wp_enqueue_script('jquery-ui-core','','','1.8',true);
                 wp_enqueue_script('jquery-ui-dialog','','','1.8',true);
-
-                //wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.8', true);
             }
 
             /**
@@ -168,8 +171,7 @@
             }
 
             /**
-            * Add CSS styles to page header to activate LBP
-            * 
+            * Add CSS styles to site page headers to display lightboxed images
             */
             function lightboxPlusAddHeader( ) {
                 global $g_lightbox_plus_url;
@@ -201,7 +203,7 @@
             }
 
             /**
-            * Tells WordPress to load the plugin JavaScript files and what library to use
+            * Tell WordPress to load jquery and jquery-colorbox-min.js in the front end and the admin panel
             */
             function lightboxPlusAddScripts( ) {
                 global $g_lightbox_plus_url;
