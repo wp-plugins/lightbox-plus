@@ -5,13 +5,14 @@
     Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 2.0
+    Version: 2.0.1
     */
     /*---- 6/23/2010 ----*/
     global $post, $content;  // WordPress Globals
     global $g_lightbox_plus_url;
     global $g_lbp_messages;
     global $g_lbp_plugin_page;
+    $g_lbp_plugin_page = '';
     $g_lbp_messages = '';
     $g_lightbox_plus_url = WP_PLUGIN_URL.'/lightbox-plus';
     load_plugin_textdomain('lightboxplus', $path = $g_lightbox_plus_url);
@@ -53,7 +54,7 @@
             *
             */
             function __construct( ) {
-                global $g_lbp_plugin_page;  
+                global $g_lbp_plugin_page;
                 $this->lightboxOptions = $this->getAdminOptions( $this->lightboxOptionsName );
                 if ( !get_option( $this->lightboxInitName ) ) {
                     $this->lightboxPlusInit( );
@@ -61,7 +62,6 @@
                 add_filter( 'plugin_row_meta',array( &$this, 'RegisterLBPLinks'),10,2);
                 add_action( 'admin_menu', array( &$this, 'lightboxPlusAddPages' ) );
                 add_action( 'admin_head', array( &$this, 'lightboxPlusAdminHead' ) );
-                add_action( 'admin_footer-' . $g_lbp_plugin_page, array( &$this, 'lightboxPlusAddAdminScripts' ) );  
                 add_action( 'admin_footer', array( &$this, 'lightboxPlusAddFooter' ) );
                 add_action( 'wp_head', array( &$this, 'lightboxPlusAddHeader' ) );
                 add_action( 'wp_footer', array( &$this, 'lightboxPlusAddFooter' ) );
@@ -360,10 +360,6 @@
             ?></div>
             <script type="text/javascript">
                 <!--
-                          jQuery('.postbox h3').click( function() {
-                jQuery(jQuery(this).parent().get(0)).toggleClass('closed'); }
-                ); 
-
                 jQuery('.postbox .close-me').each(function() {
                     jQuery(this).addClass("closed");
                 });

@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: picture, photo, lightbox, image, video, ajax, gallery, colorbox, lightview, wordpress mu
 Requires at least: 2.8
 Tested up to: 3.0
-Stable tag: 2.0
+Stable tag: 2.0.1
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -152,6 +152,10 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 4. Lightbox Plus - Inline Content (Form)
 
 == Change Log ==
+
+= 2.0.1 =
+* Fixed several interface issues in the admin panel.
+ * User feedback was not reporting updates because admin scripts were not loading properly - this hs been fixed.
 
 = 2.0 =
 * Added secondary lightbox option

@@ -6,14 +6,7 @@
             * 
             */
             function lightboxPlusAddPages( ) {
-                global $g_lbp_plugin_page;
-                $plugin_page = add_theme_page( "Lightbox Plus", "Lightbox Plus", 'manage_options', "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) );
-                /**
-                * The above seems to work fine - leaving previous code commented
-                *
-                * $plugin_page=add_submenu_page( 'themes.php', "Lightbox Plus", "Lightbox Plus", 10, "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) ); 
-                */
-                
+                add_theme_page( "Lightbox Plus", "Lightbox Plus", 'manage_options', "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) );
             }
 
             /**
@@ -49,15 +42,6 @@
                         echo $lightboxPlusStyleSheet;
                     }
                 }
-            }
-
-            /**
-            * Tells WordPress to load the jquery, jquery-ui-core and jquery-ui-dialog in the admin panel
-            */
-            function lightboxPlusAddAdminScripts( ) {
-                wp_enqueue_script('jquery','','','1.4.2',true);
-                wp_enqueue_script('jquery-ui-core','','','1.8',true);
-                wp_enqueue_script('jquery-ui-dialog','','','1.8',true);
             }
 
             /**
@@ -208,7 +192,13 @@
             function lightboxPlusAddScripts( ) {
                 global $g_lightbox_plus_url;
                 wp_enqueue_script('jquery','','','1.4.2',true);
-
+                /**
+                * Tells WordPress to load the jquery, jquery-ui-core and jquery-ui-dialog in the admin panel
+                */
+                if (is_admin()) {
+                    wp_enqueue_script('jquery-ui-core','','','1.8',true);
+                    wp_enqueue_script('jquery-ui-dialog','','','1.8',true);
+                }
                 wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.8', true);
             }
 
