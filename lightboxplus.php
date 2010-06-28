@@ -345,7 +345,7 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options v1.7 (ColorBox v1.3.8)', 'lightboxplus' )?></h2>
+                <h2><?php _e( 'Lightbox Plus Options v2.0.1 (ColorBox v1.3.8)', 'lightboxplus' )?></h2>
                 <br style="clear: both;" />
                 <?php
                     if ($g_lbp_messages) {
