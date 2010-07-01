@@ -1,10 +1,10 @@
 === Lightbox Plus ===
 Contributors: dzappone
 Donate link: http://www.23systems.net/donate/
-Tags: picture, photo, lightbox, image, video, ajax, gallery, colorbox, lightview, wordpress mu
+Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
 Tested up to: 3.0
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -14,7 +14,7 @@ Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress
 
 Lightbox Plus uses WordPress's built in jQuery library.
 
-Read the FAQ first if you are having problems.  
+Read the FAQ first if you are having problems.
 
 = Lightbox Plus <em>NOW</em> works with WordPress' built in gallery feature. =
 
@@ -132,7 +132,7 @@ If you have read and tried the above and you are still having problems, then, pl
 = Known Problems =
 
 * No support for iPad (if someone wants to donate an iPad to me I will guarantee support)
-* In some instances performance may be slow in IE - this may be due to plugin conflicts or slow JavaScript performance in IE. 
+* In some instances performance may be slow in IE - this may be due to plugin conflicts or slow JavaScript performance in IE.
 * Lightboxed video does not seem to work in IE on locally installed sites, for example viewing in IE 7.0 while running XAMPP, this seems to be a Windows only issue.
 
 = Plugin Conflicts =
@@ -153,6 +153,12 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
+= 2.0.2 =
+* Add quick fix/hack for a big interface issue on the admin panel. See roadmap for long term solution.
+ * jQuery UI themes were overloading other plugins that were using the jQuery UI
+ * Lightbox Plus specific themes and scripts should only load on Lightbox Plus panel
+ * The exception is colorbox.min.js will load in any admin panel due to the way it is initilized. Expect version 2.0.5 to address this.
+
 = 2.0.1 =
 * Fixed several interface issues in the admin panel.
  * User feedback was not reporting updates because admin scripts were not loading properly - this hs been fixed.
@@ -169,7 +175,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 * Improved interface in admin panel.
  * Added better feedback for users
 * Added backend test/demo areas
- * Allows user to test lightbox settings in the admin panel 
+ * Allows user to test lightbox settings in the admin panel
  * Provides demos and examples for secondary lightbox using video,external webpages and interactive flash
  * Provides demos and examples for inline lightbox using inline content
 * Fixed issue with saving setting and changes not being reflected.
@@ -188,7 +194,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Added options (escKey:false, arrowKey:false) to disable esc-key and arrow-key bindings.
  * Added method for removing ColorBox from a document: $.colorbox.remove();
  * Fixed a bug where iframed URLs would be truncated if they contained an unencoded apostrophe.
- * Now uses the exact href specified on an anchor, rather than the version returned by 'this.href'. This was causing "#example" to be normalized to "http://domain/#example" which interfered with how some users were setting up links to inline content. 
+ * Now uses the exact href specified on an anchor, rather than the version returned by 'this.href'. This was causing "#example" to be normalized to "http://domain/#example" which interfered with how some users were setting up links to inline content.
 
 = 1.6.9.7 =
 * Fixed auto-lightbox breaking links that contained manually created `rel="lightbox[]"` attributes.
@@ -196,28 +202,28 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 = 1.6.9.6 =
 * Skipping of auto-lightboxing of second image when image links were next to each other in html source should be fixed. At least in my testing.
 * Fixed do not display image titles to work with text links.
- * Note - must already not have title tag in links elements. 
-* Fixed ability to use class method in text only links and gallery. 
+ * Note - must already not have title tag in links elements.
+* Fixed ability to use class method in text only links and gallery.
 * Added ability to specify the class name used with class method.  Defaults to cboxModal for the class.
-* Changed jQuery implementation of colorbox on the page to both reduce size and prepare for allowing two different colorboxes. (see Road Map) 
+* Changed jQuery implementation of colorbox on the page to both reduce size and prepare for allowing two different colorboxes. (see Road Map)
 
 = 1.6.9.5 =
 * No really, the IE problems should be resolved.
  * Correctly handle new settings when empty to render correct JavaScript on output - was causing IE to not display lightbox and wierd sliding effect on lightbox in all browsers.
- * Fixed invalid function call that would prevent older versions of IE (7 or less) from rendering lightbox at all.  
+ * Fixed invalid function call that would prevent older versions of IE (7 or less) from rendering lightbox at all.
 * Fixed issue that if admin was being accessed via SSL you could not save settings.
 * Fixed some skipping of images being auto-lightboxed.  May not resolve all issues - please let me know at <href="http://www.23systems.net/bbpress/forum/lightbox-plus">Lightbox Plus Suport</a>.
 
 = 1.6.9 =
 * Fixed problem with styles in IE 6/7/8 not working under various circumstnaces (hopefully)
-* Added the option to disable Lightbox Plus from adding it's own styles allowing the user to place Lightbox/Colorbox styles in their theme stylesheet and reduce number of files loading. 
-                                                                                                                                                                                         
+* Added the option to disable Lightbox Plus from adding it's own styles allowing the user to place Lightbox/Colorbox styles in their theme stylesheet and reduce number of files loading.
+
 = 1.6.8 =
 * Fixed duplicate `rel=lightbox[]` tags being generated.
 * Fixed IE 6 specific stylesheets - should provide correct headers for php based css documents.
  * AlphaImageLoader should automatically be configure for old verions of IE - 6 or less
 * As of this version IE 6 or less are no longer supported.
- * If you are using IE 6 or less it is recommended that you upgrade your browser.   
+ * If you are using IE 6 or less it is recommended that you upgrade your browser.
 * Added option to auto-lightbox text links to images
 * Added additional width and height options
  * width - can set a fixed total width. This includes borders and buttons.
@@ -228,27 +234,27 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * initialHeight - can set the initial height, prior to any content being loaded.
 * Updated `lightbox.admin.css` and `lightbox.admin.php` to correct a top level class that may effect global styles.
 * Now works correctly with WordPress MU
- * Tested with WordPress MU 2.9.2   
+ * Tested with WordPress MU 2.9.2
 * Degradation of performance in Firefox corrected.  May still occur in older versions
- * Note: with the release of Firefox 3.0.19 the 3.0.x branch of Firefox will reach its end of life on March 30, 2010 
- 
+ * Note: with the release of Firefox 3.0.19 the 3.0.x branch of Firefox will reach its end of life on March 30, 2010
+
 = 1.6.7 =
 * Added fix to auto-lightbox images that are missing title attributes (Thanks J?rn)
  * This primarily affects images that were placed using older verisons of WordPress
 * Interface updates
- * Changed admin panel to work that same way as my other plugins and thereby ease code maintainence 
+ * Changed admin panel to work that same way as my other plugins and thereby ease code maintainence
  * Quick links in plugins list
- * Added additiona support and FAQ links to admin panel 
+ * Added additiona support and FAQ links to admin panel
 * Readme and faq update
 * Actually includes ColorBox 1.3.6 which some how was replaced by 1.3.1 in last release (1.6.6) for which I apologize.
-* Includes `lightbox-plus.pot` for language translations for interested parties.     
+* Includes `lightbox-plus.pot` for language translations for interested parties.
 
 = 1.6.6 =
 * Tested with WordPress 2.9.1
- * Only works with WordPress 2.8+ due to the use of the `$in_footer` parameter used in the `wp_enqueue_script()` function. 
+ * Only works with WordPress 2.8+ due to the use of the `$in_footer` parameter used in the `wp_enqueue_script()` function.
 * Moved all possible JavaScript to the footer to improve load speed
  * Requires theme has the `wp_footer()` hook
-* Cleaned up jQuery call to correctly work in no conflict mode per definition. 
+* Cleaned up jQuery call to correctly work in no conflict mode per definition.
 * Updated Colorbox to 1.3.6 which include the following fixes
  * Small change to make Colorbox compatible with jQuery 1.4
  * Fixed a bug introduced in 1.3.4 with IE7's display of example 2 and example 3, and auto-width in Opera.
@@ -277,7 +283,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 * jQuery conflicts should all be resolved - hopefully.
 * Minor modification to `wp_enqueue_script` function cal to include colorbox version.
 * Now works with WordPress Mu if `rel=lightbox[]` is added manually.
- * Working on solving auto lightboxing issues with WordPress Mu 
+ * Working on solving auto lightboxing issues with WordPress Mu
 
 = 1.6.2 =
 * Added `jQuery.noConflict()` to the initiator to hopefully eliminate issues with other jQuery libraries loading and causing conflicts.
@@ -296,7 +302,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 = 1.6 =
 * Added the much requested feature for Lightbox Plus to work with WordPress' built in gallery
- * Added checkbox to select whether to use with WP built in gallery. 
+ * Added checkbox to select whether to use with WP built in gallery.
 * Updated LightBox Plus to use new version of ColorBox
 * Updated ColorBox to version 1.3.1 with the following changes
   * Removed the IE-only stylesheets and conditional comments.  All CSS is handled by a single CSS file for all examples.
@@ -328,8 +334,8 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 = 1.5.3 =
 * Added class based option.
- * If options is checked, Lightbox Plus will only lightbox images via class: cpModal attribute. 
- * Using this method you can manually control which images are affected by Lightbox Plus by adding the cpModal class the image link URL and checking the Don't Auto-Lightbox Images option. 
+ * If options is checked, Lightbox Plus will only lightbox images via class: cpModal attribute.
+ * Using this method you can manually control which images are affected by Lightbox Plus by adding the cpModal class the image link URL and checking the Don't Auto-Lightbox Images option.
 * Added option to not automatically add attributes required for Lightbox Plus to work.  This allows for more manual image control.
 * Added option not to display image titles.
 * Updated ColorBox to version 1.2.5
@@ -392,8 +398,10 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Road Map ==
 
-1. Add languages for which I have completed translations. Verision 2.1
-2. Solicit and implement additional language translations. Verision 2.1
+1. Rewrite the way the plugin is instantiated to provide better conrol over how actions and filters are added by Lightbox Plus as well as provide permanent fix for jQuery UI styles. Version 2.0.5
+2. Rewrite several function to provide better compaibility with other plugins. Version 2.0.5
+3. Add languages for which I have completed translations. Verision 2.1
+4. Solicit and implement additional language translations. Verision 2.1
 
 == Special Thanks ==
 

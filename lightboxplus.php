@@ -5,10 +5,10 @@
     Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 2.0.1
+    Version: 2.0.2
     */
     /*---- 6/23/2010 ----*/
-    global $post, $content;  // WordPress Globals
+    global $post, $content, $page;  // WordPress Globals
     global $g_lightbox_plus_url;
     global $g_lbp_messages;
     global $g_lbp_plugin_page;
@@ -52,17 +52,22 @@
             /**
             * The PHP 5 Constructor
             *
+            * TODO: Rewrite constructor to allow for passing of $plugin_page variable back to add_action calls
             */
             function __construct( ) {
-                global $g_lbp_plugin_page;
                 $this->lightboxOptions = $this->getAdminOptions( $this->lightboxOptionsName );
                 if ( !get_option( $this->lightboxInitName ) ) {
                     $this->lightboxPlusInit( );
                 }
                 add_filter( 'plugin_row_meta',array( &$this, 'RegisterLBPLinks'),10,2);
                 add_action( 'admin_menu', array( &$this, 'lightboxPlusAddPages' ) );
-                add_action( 'admin_head', array( &$this, 'lightboxPlusAdminHead' ) );
-                add_action( 'admin_footer', array( &$this, 'lightboxPlusAddFooter' ) );
+                /**
+                * FIXME: Get the folling working add_action( 'admin_head-'.$g_lbp_plugin_page, array( &$this, 'lightboxPlusAdminHead' ) );
+                * Maunally added theme page to admin_head-(plugin_page) as passing reference does not work with current design pattern
+                */
+                add_action( 'admin_head-appearance_page_lightboxplus', array( &$this, 'lightboxPlusAdminHead' ) );
+                add_action( 'admin_head-appearance_page_lightboxplus', array( &$this, 'lightboxPlusAddFooter' ) );
+                //add_action( 'admin_footer', array( &$this, 'lightboxPlusAddFooter' ) );
                 add_action( 'wp_head', array( &$this, 'lightboxPlusAddHeader' ) );
                 add_action( 'wp_footer', array( &$this, 'lightboxPlusAddFooter' ) );
                 if ( !empty( $this->lightboxOptions ) ) {
@@ -111,8 +116,8 @@
 
             /**
             * Adds links to the plugin row on the plugins page.
-            * This add_filter function must be in this file or it does not work correctly, requires plugin_basename and file match 
-            * 
+            * This add_filter function must be in this file or it does not work correctly, requires plugin_basename and file match
+            *
             * @param mixed $links
             * @param mixed $file
             */

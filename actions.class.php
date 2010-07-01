@@ -3,10 +3,9 @@
         class lbp_actions extends lbp_filters {
             /**
             * Add new panel to WordPress under the Appearance category
-            * 
             */
             function lightboxPlusAddPages( ) {
-                add_theme_page( "Lightbox Plus", "Lightbox Plus", 'manage_options', "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) );
+                add_theme_page( "Lightbox Plus", "Lightbox Plus", "manage_options", "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) );
             }
 
             /**
@@ -25,9 +24,9 @@
 
                         /**
                         * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles
-                        * 
+                        *
                         * Experimental should not be used currently Check for and add conditional IE specific CSS fixes
-                        * 
+                        *
                         * @var mixed
                         */
                         /**
@@ -168,9 +167,9 @@
                         $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css" media="screen" />'.$this->EOL( );
                         /**
                         * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles
-                        * 
+                        *
                         * Experimental should not be used currently Check for and add conditional IE specific CSS fixes
-                        * 
+                        *
                         * @var mixed
                         */
                         /* $currentStylePath       = get_option( 'lightboxplus_style_path' );
