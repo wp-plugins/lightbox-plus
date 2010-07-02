@@ -1,11 +1,17 @@
 <?php
     if (!class_exists('lbp_utilities')) {
 
+        /**
+        * Lightbox Plus Utiltiy Functions used throughout plugin
+        * 
+        * Not sure if WordPress has equivelents but cannot locate in API docs if so
+        */
         class lbp_utilities {
-            /*---- CLASS UTILITY FUNCTIONS ----*/
-            /*---- Not sure if WordPress has equivelents but cannot locate in API docs if so ----*/
-
-            /*---- Create clean eols for source ----*/
+            /**
+            * Create clean eols for source
+            * 
+            * @return string
+            */
             function EOL( ) {
                 switch ( strtoupper( substr( PHP_OS, 0, 3 ) ) ) {
                     case 'WIN':
@@ -21,15 +27,15 @@
             }
 
             /**
-            * Create dropdown name from stylesheet
+            * Create dropdown name from stylesheet listing - make user friendly
             * 
             * @param mixed $styleName
             * @return string
             */
             function setProperName( $styleName ) {
-                $proper = str_replace( '.css', '', $styleName );
-                $proper = ucfirst( $proper );
-                return $proper;
+                $styleName = str_replace( '.css', '', $styleName );
+                $styleName = ucfirst( $styleName );
+                return $styleName;
             }
 
             /**

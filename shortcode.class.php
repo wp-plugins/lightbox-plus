@@ -102,6 +102,11 @@
                 foreach ( $attachments as $id => $attachment ) {
                     $link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
 
+                    /**
+                    * Rewrite links for wp-gallery to add lightbox plus properties (class or rel=[])
+                    * 
+                    * @var mixed
+                    */
                     $link = $this->lightboxPlusReplace($link);
 
                     $output .= "<{$itemtag} class='gallery-item'>";

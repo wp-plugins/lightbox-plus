@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
 Tested up to: 3.0
-Stable tag: 2.0.2
+Stable tag: 2.0.5
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -153,6 +153,23 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
+= 2.0.5 =
+* Rewrote the way the plugin is instantiated.
+ * Provide better conrol over how actions and filters are added by Lightbox Plus.
+ * Provides fix for jQuery UI styles loading on all admin panels.
+ * Prevented jquery.colorbox.min.js from loading on admin panels other than Lightbox Plus.
+* Rewrote several functions to provide better compaibility with other plugins.
+ * Admin scripts are now enqued correctly.
+ * Admin and plugin styles are now enqueued correctly.
+* Fixed slideshow always auto-starting if slideshow enabled.
+* Changed several variables and related fields
+ * <em>Do Not Auto-Lightbox Images</em> using `auto_lightbox` to `no_auto_lightbox` to accurately reflect it's use.
+ * <em>Do Not Display Image Title</em> using `display_titles` to `no_display_titles` to accurately reflect it's use.
+ * <em>Use Class Method using</em> `class_method` to `use_class_method` to accurately reflect it's use.
+ * If you use any of these settings you will need to re-check them and save your settings.
+* Reduced size of inline JavaScript and converted all to jQuery.
+ * Reduced size of some scripts using old toggle method for help.
+  
 = 2.0.2 =
 * Add quick fix/hack for a big interface issue on the admin panel. See roadmap for long term solution.
  * jQuery UI themes were overloading other plugins that were using the jQuery UI
@@ -398,11 +415,20 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Road Map ==
 
-1. Rewrite the way the plugin is instantiated to provide better conrol over how actions and filters are added by Lightbox Plus as well as provide permanent fix for jQuery UI styles. Version 2.0.5
-2. Rewrite several function to provide better compaibility with other plugins. Version 2.0.5
-3. Add languages for which I have completed translations. Verision 2.1
-4. Solicit and implement additional language translations. Verision 2.1
+1. Move Lightbox Plus stylesheet directory out of the plugin path to wp-content/lbp-styles/
+2. Add languages for which I have completed translations. Verision 2.1
+3. Solicit and implement additional language translations. Verision 2.1
 
 == Special Thanks ==
 
-Dirk Schmitz (for pointing out an obvious bug that I kept overlooking), Ken Williams (for testing version 1.5), <a href="http://www.melaniesallis.com">Melanie Sallis</a> for needing a lightbox for her site which prompted me to create this plugin, <a href="http://www.colorpowered.com">Jack Moore</a> for creating the awesome jQuery plugin, ColorBox, and everyone who has contributed to the support in developing this plugin.
+* Dirk Schmitz (for pointing out an obvious bug that I kept overlooking)
+* <a href="http://www.hightechdad.com/">Michael Sheehan</a> and <a href="http://www.funnybunny.se/">Helena Hultén</a> for constinued support and testing.
+* Ken Williams (for testing version 1.5)
+* navjotsingh (for bug fix in gellery shortcode with version 1.6.x)
+* <a href="http://www.dev4press.com/">Milan Petrovic</a> for some quick debugging of version 2.0 admin panel
+* <a href="http://www.melaniesallis.com">Melanie Sallis</a> for needing a lightbox for her site which prompted me to create this plugin
+* <a href="http://www.colorpowered.com">Jack Moore</a> for creating the awesome jQuery plugin, ColorBox, and everyone who has contributed to the support in developing this plugin.
+
+== More Information ==
+
+<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/bbpress/forum/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/pages/Austin-TX/23Systems-Web-Devsign/94195762502">Add Facebook Page</a>

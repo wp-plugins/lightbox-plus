@@ -5,7 +5,7 @@
     Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 2.0.2
+    Version: 2.0.5
     */
     /*---- 6/23/2010 ----*/
     global $post, $content, $page;  // WordPress Globals
@@ -43,49 +43,49 @@
             var $lightboxStylePathName = 'lightboxplus_style_path';
 
             /**
-            * The PHP 4 Compatible Constructor
+            * The PHP 4 Compatible Constructor - calls the constructor function if using php4 
+            * 
+            * NOTE: Lightbox Plus may not work with PHP4 and no support is offered as PHP4 has reached its end of life
             */
             function wp_lightboxplus( ) {
                 $this->__construct( );
             }
 
             /**
-            * The PHP 5 Constructor
-            *
-            * TODO: Rewrite constructor to allow for passing of $plugin_page variable back to add_action calls
+            * The PHP 5 Constructor - initializes the plugin and sets up panels
             */
             function __construct( ) {
                 $this->lightboxOptions = $this->getAdminOptions( $this->lightboxOptionsName );
-                if ( !get_option( $this->lightboxInitName ) ) {
-                    $this->lightboxPlusInit( );
-                }
+                if ( !get_option( $this->lightboxInitName ) ) { $this->lightboxPlusInit( ); }
                 add_filter( 'plugin_row_meta',array( &$this, 'RegisterLBPLinks'),10,2);
-                add_action( 'admin_menu', array( &$this, 'lightboxPlusAddPages' ) );
+                add_action( "init", array( &$this, "lightboxPlusInitScripts" ) );
+                add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
                 /**
-                * FIXME: Get the folling working add_action( 'admin_head-'.$g_lbp_plugin_page, array( &$this, 'lightboxPlusAdminHead' ) );
-                * Maunally added theme page to admin_head-(plugin_page) as passing reference does not work with current design pattern
+                * Get lightbox options to check for auto-lightbox and gallery
                 */
-                add_action( 'admin_head-appearance_page_lightboxplus', array( &$this, 'lightboxPlusAdminHead' ) );
-                add_action( 'admin_head-appearance_page_lightboxplus', array( &$this, 'lightboxPlusAddFooter' ) );
-                //add_action( 'admin_footer', array( &$this, 'lightboxPlusAddFooter' ) );
-                add_action( 'wp_head', array( &$this, 'lightboxPlusAddHeader' ) );
-                add_action( 'wp_footer', array( &$this, 'lightboxPlusAddFooter' ) );
                 if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
-                    $autoLightbox = $lightboxPlusOptions['auto_lightbox'];
-                    $lightboxGallery = $lightboxPlusOptions['gallery_lightboxplus'];
+                    /**
+                    * Check to see if users wants images auto-lightboxed
+                    */
+                    if ( $lightboxPlusOptions['no_auto_lightbox'] != 1 ) {
+                        /**
+                        * Check to see if user wants to have gallery images lightboxed
+                        */
+                        if ($lightboxPlusOptions['gallery_lightboxplus'] != 1) {
+                            add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ) );
+                        }
+                        else {
+                            remove_shortcode( 'gallery' );
+                            add_shortcode( 'gallery', array( &$this, 'lightboxPlusGallery' ), 10);
+                            add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ), 12 );
+                        }
+                    } 
                 }
-                if ( $autoLightbox != 1 ) {
-                    if ($lightboxGallery != 1) {
-                        add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ) );
-                    }
-                    else {
-                        remove_shortcode( 'gallery' );
-                        add_shortcode( 'gallery', array( &$this, 'lightboxPlusGallery' ), 10);
-                        add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ), 12 );
-                    }
+                add_action( 'wp_footer', array( &$this, 'lightboxPlusColorbox' ) );
+                if (is_admin()) {
+                    add_action( 'admin_menu', array( &$this, 'lightboxPlusAddPanel' ) );
                 }
-                add_action( "init", array( &$this, "lightboxPlusAddScripts" ) );
             }
 
             /**
@@ -155,7 +155,6 @@
                             "lightboxplus_multi"    => $_POST['lightboxplus_multi'],
                             "use_inline"            => $_POST['use_inline'],
                             "inline_num"            => $_POST['inline_num'],
-
                             "transition"            => $_POST['transition'],
                             "speed"                 => $_POST['speed'],
                             "width"                 => $_POST['width'],
@@ -181,11 +180,11 @@
                             "slideshow_start"       => $_POST['slideshow_start'],
                             "slideshow_stop"        => $_POST['slideshow_stop'],
                             "gallery_lightboxplus"  => $_POST['gallery_lightboxplus'],
-                            "class_method"          => $_POST['class_method'],
+                            "use_class_method"          => $_POST['use_class_method'],
                             "class_name"            => $_POST['class_name'],
-                            "auto_lightbox"         => $_POST['auto_lightbox'],
+                            "no_auto_lightbox"      => $_POST['no_auto_lightbox'],
                             "text_links"            => $_POST['text_links'],
-                            "display_title"         => $_POST['display_title']
+                            "no_display_title"         => $_POST['no_display_title']
                             );
 
                             $g_lbp_messages .= __('Primary lightbox settings updated.','lightboxplus').'<br /><br />';
@@ -217,9 +216,9 @@
                                 "slideshow_start_sec"   => $_POST['slideshow_start_sec'],
                                 "slideshow_stop_sec"    => $_POST['slideshow_stop_sec'],
                                 "iframe_sec"            => $_POST['iframe_sec'],
-                                "class_method_sec"      => $_POST['class_method_sec'],
+                                "use_class_method_sec"      => $_POST['use_class_method_sec'],
                                 "class_name_sec"        => $_POST['class_name_sec'],
-                                "display_title_sec"     => $_POST['display_title_sec'],
+                                "no_display_title_sec"     => $_POST['no_display_title_sec'],
                                 );
                                 $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusSecondaryOptions);
                                 unset($lightboxPlusSecondaryOptions);
@@ -350,7 +349,7 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options v2.0.1 (ColorBox v1.3.8)', 'lightboxplus' )?></h2>
+                <h2><?php _e( 'Lightbox Plus Options v2.0.5 (ColorBox v1.3.8)', 'lightboxplus' )?></h2>
                 <br style="clear: both;" />
                 <?php
                     if ($g_lbp_messages) {
@@ -365,25 +364,11 @@
             ?></div>
             <script type="text/javascript">
                 <!--
-                jQuery('.postbox .close-me').each(function() {
-                    jQuery(this).addClass("closed");
-                });
+                jQuery('.postbox .close-me').each(function() {jQuery(this).addClass("closed");});
+                jQuery('#lbp_message').each(function() {jQuery(this).fadeOut(5000);});
+                jQuery('.postbox h3').click( function() {jQuery(this).next('.toggle').slideToggle('fast');});
+                jQuery('.lbp-info').click( function() {jQuery(this).next('.lbp-bigtip').slideToggle(100);});
 
-                jQuery('#lbp_message').each(function() {
-                    jQuery(this).fadeOut(5000);
-                });
-
-                jQuery('.postbox h3').click( function() {
-                    jQuery(this).next('.toggle').slideToggle('fast');
-                });
-
-                function toggleVisibility(id) {
-                    var elmt = document.getElementById(id);
-                    if(elmt.style.display == 'block')
-                        elmt.style.display = 'none';
-                    else
-                        elmt.style.display = 'block';
-                }
                 //-->
             </script>
             <?php

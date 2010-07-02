@@ -86,11 +86,11 @@
                 "slideshow_start"       => 'start',
                 "slideshow_stop"        => 'stop',
                 "gallery_lightboxplus"  => '0',
-                "class_method"          => '0',
+                "use_class_method"          => '0',
                 "class_name"            => 'cboxModal',
-                "auto_lightbox"         => '0',
+                "no_auto_lightbox"      => '0',
                 "text_links"            => '0',
-                "display_title"         => '0'
+                "no_display_title"         => '0'
                 );
 
                 $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusPrimaryOptions );
@@ -129,9 +129,9 @@
                 "slideshow_start_sec"   => 'start',
                 "slideshow_stop_sec"    => 'stop',
                 "iframe_sec"            => '1',
-                "class_method_sec"      => '0',
+                "use_class_method_sec"      => '0',
                 "class_name_sec"        => 'lbpModal',
-                "display_title_sec"     => '0'
+                "no_display_title_sec"     => '0'
                 );
 
                 $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusSecondaryOptions);

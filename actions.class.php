@@ -2,30 +2,32 @@
     if (!class_exists('lbp_actions')) {
         class lbp_actions extends lbp_filters {
             /**
-            * Add new panel to WordPress under the Appearance category
+            * Tell WordPress to load jquery and jquery-colorbox-min.js in the front end and the admin panel
             */
-            function lightboxPlusAddPages( ) {
-                add_theme_page( "Lightbox Plus", "Lightbox Plus", "manage_options", "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) );
+            function lightboxPlusInitScripts( ) {
+                global $g_lightbox_plus_url;
+                if (!is_admin()) {
+                    wp_enqueue_script('jquery','','','1.4.2',true);
+                    wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.8', true);
+                }
             }
 
             /**
-            * Add CSS styles to Admin Panel page headers to display lightboxed images
+            * Add CSS styles to site page headers to display lightboxed images
             */
-            function lightboxPlusAdminHead( ) {
+            function lightboxPlusAddHeader( ) {
                 global $g_lightbox_plus_url;
-                echo '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/admin/lightbox.admin.css" media="screen" />'.$this->EOL( );
                 if ( !empty( $this->lightboxOptions ) ) {
-
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
                     if ( $lightboxPlusOptions['disable_css'] ) {
                         echo "<!-- User set lightbox styles -->".$this->EOL( );
                     } else {
-                        $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css" media="screen" />'.$this->EOL( );
-
+                        wp_register_style('lightboxStyle', $g_lightbox_plus_url . '/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.0.2','screen');
+                        wp_enqueue_style('lightboxStyle');
                         /**
                         * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles
-                        *
                         * Experimental should not be used currently Check for and add conditional IE specific CSS fixes
+                        * These seem t not actually work correctly anymore so bypassing for now
                         *
                         * @var mixed
                         */
@@ -36,22 +38,24 @@
                         *     $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
                         *     $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
                         *     $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
+                        *     echo $lightboxPlusStyleSheet;
                         * }
                         */
-                        echo $lightboxPlusStyleSheet;
                     }
-                }
+                }    
             }
 
             /**
-            * Add JavaScript (jQuery) to page footer to activate LBP
+            * Add JavaScript (jQuery based) to page footer to activate LBP
+            * 
+            * @echo string
             */
-            function lightboxPlusAddFooter( ) {
+            function lightboxPlusColorbox( ) {
                 global $g_lightbox_plus_url;
                 if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
                     $lightboxPlusJavaScript  = "";
-                    $lightboxPlusJavaScript .= '<!-- Lightbox Plus v1.7 - 3/24/2010 AM - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.$this->EOL( );
+                    $lightboxPlusJavaScript .= '<!-- Lightbox Plus v2.0.5 - 2010.07.02 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.$this->EOL( );
                     $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
                     $lightboxPlusJavaScript .= 'jQuery(document).ready(function($){'.$this->EOL( );
                     $lbpArrayPrimary = array();
@@ -75,13 +79,13 @@
                     if ( $lightboxPlusOptions['overlay_close'] != '1' ) { $lbpArrayPrimary[] = 'overlayClose:'.$this->setBoolean( $lightboxPlusOptions['overlay_close'] ); }
                     if ( $lightboxPlusOptions['slideshow'] == '1' ) { $lbpArrayPrimary[] = 'slideshow:'.$this->setBoolean( $lightboxPlusOptions['slideshow'] ); }
                     if ( $lightboxPlusOptions['slideshow'] == '1' ) {
-                        if ( $lightboxPlusOptions['slideshow_auto'] ) { $lbpArrayPrimary[] = 'slideshowAuto:'.$this->setBoolean( $lightboxPlusOptions['slideshow_auto'] ); }
+                        if ( $lightboxPlusOptions['slideshow_auto'] != '1') { $lbpArrayPrimary[] = 'slideshowAuto:'.$this->setBoolean( $lightboxPlusOptions['slideshow_auto'] ); }
                         if ( $lightboxPlusOptions['slideshow_speed'] ) { $lbpArrayPrimary[] = 'slideshowSpeed:'.$lightboxPlusOptions['slideshow_speed']; }
                         if ( $lightboxPlusOptions['slideshow_start' ]) { $lbpArrayPrimary[] = 'slideshowStart:"'.$lightboxPlusOptions['slideshow_start'].'"'; }
                         if ( $lightboxPlusOptions['slideshow_stop'] ) { $lbpArrayPrimary[] =  'slideshowStop:"'.$lightboxPlusOptions['slideshow_stop'].'"'; }
                     }
                     $lightboxPlusFnPrimary = '{'.implode(",", $lbpArrayPrimary).'}';
-                    switch ( $lightboxPlusOptions['class_method'] ) {
+                    switch ( $lightboxPlusOptions['use_class_method'] ) {
                         case 1:
                             $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").colorbox('.$lightboxPlusFnPrimary.');'.$this->EOL( );
                             break;
@@ -113,14 +117,14 @@
                         if ( $lightboxPlusOptions['overlay_close_sec'] != '1' ) { $lbpArraySecondary[] = 'overlayClose:'.$this->setBoolean( $lightboxPlusOptions['overlay_close_sec'] ); }
                         if ( $lightboxPlusOptions['slideshow_sec'] == '1' ) { $lbpArraySecondary[] = 'slideshow:'.$this->setBoolean( $lightboxPlusOptions['slideshow_sec'] ); }
                         if ( $lightboxPlusOptions['slideshow_sec']== '1' ) {
-                            if ( $lightboxPlusOptions['slideshow_auto_sec'] ) { $lbpArraySecondary[] = 'slideshowAuto:'.$this->setBoolean( $lightboxPlusOptions['slideshow_auto_sec'] ); }
+                            if ( $lightboxPlusOptions['slideshow_auto_sec']  != '1' ) { $lbpArraySecondary[] = 'slideshowAuto:'.$this->setBoolean( $lightboxPlusOptions['slideshow_auto_sec'] ); }
                             if ( $lightboxPlusOptions['slideshow_speed_sec'] ) { $lbpArraySecondary[] = 'slideshowSpeed:'.$lightboxPlusOptions['slideshow_speed_sec']; }
                             if ( $lightboxPlusOptions['slideshow_start_sec'] ) { $lbpArraySecondary[] = 'slideshowStart:"'.$lightboxPlusOptions['slideshow_start_sec'].'"'; }
                             if ( $lightboxPlusOptions['slideshow_stop_sec'] ) { $lbpArraySecondary[] =  'slideshowStop:"'.$lightboxPlusOptions['slideshow_stop_sec'].'"'; }
                         }
                         if ( $lightboxPlusOptions['iframe_sec'] != '0' ) { $lbpArraySecondary[] = 'iframe:'.$this->setBoolean( $lightboxPlusOptions['iframe_sec'] ); }
                         $lightboxPlusFnSecondary = '{'.implode(",", $lbpArraySecondary).'}';
-                        switch ( $lightboxPlusOptions['class_method_sec'] ) {
+                        switch ( $lightboxPlusOptions['use_class_method_sec'] ) {
                             case 1:
                                 $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name_sec'].'").colorbox('.$lightboxPlusFnSecondary.');'.$this->EOL( );
                                 break;
@@ -152,54 +156,68 @@
                     echo $lightboxPlusJavaScript;
                 }
             }
+            
+            /**
+            * Add new admin panel to WordPress under the Appearance category
+            */
+            function lightboxPlusAddPanel() {
+                $plugin_page = add_theme_page( "Lightbox Plus", "Lightbox Plus", "manage_options", "lightboxplus", array( &$this, "lightboxPlusAdminPanel" ) );
+                add_action('admin_print_scripts-'.$plugin_page, array( &$this, 'lightboxPlusAdminScripts'));
+                add_action('admin_head-'.$plugin_page, array( &$this, 'lightboxPlusColorbox'));
+                add_action('admin_print_styles-'.$plugin_page, array( &$this, 'lightboxPlusAdminStyles'));
+            }
 
             /**
-            * Add CSS styles to site page headers to display lightboxed images
+            * Tells WordPress to load the jquery, jquery-ui-core and jquery-ui-dialog in the lightbox plus admin panel
             */
-            function lightboxPlusAddHeader( ) {
+            function lightboxPlusAdminScripts( ) {
                 global $g_lightbox_plus_url;
-                if ( !empty( $this->lightboxOptions ) ) {
+                wp_enqueue_script('jquery','','','1.4.2',true);
+                wp_enqueue_script('jquery-ui-core','','','1.7.3',true);
+                wp_enqueue_script('jquery-ui-dialog','','','1.7.3',true);
+                wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.8', true);
+            }
 
+            /**
+            * Add CSS styles to lightbox plus admin panel page headers to display lightboxed images
+            */
+            function lightboxPlusAdminStyles() {
+                global $g_lightbox_plus_url;
+                wp_register_style('lightboxplusStyles', $g_lightbox_plus_url.'/admin/lightbox.admin.css','','2.0.2','screen');
+                wp_enqueue_style('lightboxplusStyles');
+                if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
                     if ( $lightboxPlusOptions['disable_css'] ) {
                         echo "<!-- User set lightbox styles -->".$this->EOL( );
                     } else {
-                        $lightboxPlusStyleSheet = '<link rel="stylesheet" type="text/css" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css" media="screen" />'.$this->EOL( );
+                        wp_register_style('lightboxStyle', $g_lightbox_plus_url . '/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.0.2','screen');
+                        wp_enqueue_style('lightboxStyle');
                         /**
                         * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles
-                        *
                         * Experimental should not be used currently Check for and add conditional IE specific CSS fixes
+                        * These seem t not actually work correctly anymore so bypassing for now
                         *
                         * @var mixed
                         */
-                        /* $currentStylePath       = get_option( 'lightboxplus_style_path' );
+                        /**
+                        * $currentStylePath       = get_option( 'lightboxplus_style_path' );
                         * $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
                         * if ( file_exists( $filename ) ) {
                         *     $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
                         *     $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
                         *     $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
+                        *     echo $lightboxPlusStyleSheet;
                         * }
                         */
-                        echo $lightboxPlusStyleSheet;
                     }
-                }
+                }                
             }
 
-            /**
-            * Tell WordPress to load jquery and jquery-colorbox-min.js in the front end and the admin panel
-            */
-            function lightboxPlusAddScripts( ) {
-                global $g_lightbox_plus_url;
-                wp_enqueue_script('jquery','','','1.4.2',true);
-                /**
-                * Tells WordPress to load the jquery, jquery-ui-core and jquery-ui-dialog in the admin panel
-                */
-                if (is_admin()) {
-                    wp_enqueue_script('jquery-ui-core','','','1.8',true);
-                    wp_enqueue_script('jquery-ui-dialog','','','1.8',true);
-                }
-                wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.8', true);
-            }
+
+
+
+
+
 
         }
     }

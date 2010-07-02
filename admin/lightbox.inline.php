@@ -9,16 +9,7 @@
             <table class="form-table"><!-- Instructions -->
                 <tr>
                     <td>
-                        <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>" onclick="toggleVisibility('lbp_for_inline_tip');">Using Inline Lightboxes <img src="<?php echo $g_lightbox_plus_url.'/admin/images/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">
+                        <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>">Using Inline Lightboxes <img src="<?php echo $g_lightbox_plus_url.'/admin/images/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                         <div class="lbp-bigtip" id="lbp_for_inline_tip">
                             <?php _e( 'In order to display inline content using Lightbox Plus and Colorbox you must at a minimum has the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
                                 <code>
@@ -30,7 +21,6 @@
                                 &lt;/div></code>', 'lightboxplus' )?>
                             <br />
                         </div>
-
                     </td>
                 </tr>
             </table>
@@ -54,13 +44,13 @@
                         <tbody>
                             <?php 
                                 for ($i = 1; $i <= $lightboxPlusOptions['inline_num']; $i++) {
-                                    $inline_links = array();
-                                    $inline_hrefs = array();
-                                    $inline_widths = array();
+                                    $inline_links   = array();
+                                    $inline_hrefs   = array();
+                                    $inline_widths  = array();
                                     $inline_heights = array();
-                                    $inline_links = $lightboxPlusOptions['inline_links'];
-                                    $inline_hrefs = $lightboxPlusOptions['inline_hrefs'];
-                                    $inline_widths = $lightboxPlusOptions['inline_widths'];
+                                    $inline_links   = $lightboxPlusOptions['inline_links'];
+                                    $inline_hrefs   = $lightboxPlusOptions['inline_hrefs'];
+                                    $inline_widths  = $lightboxPlusOptions['inline_widths'];
                                     $inline_heights = $lightboxPlusOptions['inline_heights'];
                                 ?>
                                 <tr <?php if ($i % 2 == 0) {echo 'class="alternate"';} ?>>
