@@ -57,6 +57,8 @@ Optional: Use the title attribute if you want to show a caption.
 
 = Caveats =
 
+Requires PHP 5+.
+
 Flash (i.e. YouTube videos, etc.) will sit atop the Lightbox Plus display no matter what the z-index is.  This is an issue with Flash.
 
 See <a href="http://go.adobe.com/kb/ts_tn_15523_en-us">Flash content displays on top of all DHTML layers</a> at Adobe for details.
