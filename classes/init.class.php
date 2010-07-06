@@ -23,7 +23,7 @@
                 * 
                 * @var mixed
                 *
-                * TODO 4 -c filesystem -o Dan Zappone: Add path outside for user generatoed styles ~version 2.1
+                * TODO 4 -c filesystem -o Dan Zappone: Add path outside for user generated styles ~version 2.1
                 */
                 $stylePath = ( dirname( __FILE__ )."/css" );
                 $this->saveAdminOptions( $this->lightboxStylePathName, $stylePath );

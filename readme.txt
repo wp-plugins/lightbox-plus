@@ -153,6 +153,13 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
+= 2.5 =
+* Added true HTML parser instead of regular expressions
+ * Should mitigate issues of not consuming the HTML content and correctly modifying it
+* Added option for stylesheet directory to reside outside of plugin directory
+* Added support for multiple galleries on a single page displaying separate slide shows
+* Added support for the following languages: ..., ..., ...
+
 = 2.0.5 =
 * Rewrote the way the plugin is instantiated.
  * Provide better conrol over how actions and filters are added by Lightbox Plus.
@@ -169,7 +176,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * If you use any of these settings you will need to re-check them and save your settings.
 * Reduced size of inline JavaScript and converted all to jQuery.
  * Reduced size of some scripts using old toggle method for help.
-  
+
 = 2.0.2 =
 * Add quick fix/hack for a big interface issue on the admin panel. See roadmap for long term solution.
  * jQuery UI themes were overloading other plugins that were using the jQuery UI
@@ -415,14 +422,14 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Road Map ==
 
-1. Move Lightbox Plus stylesheet directory out of the plugin path to wp-content/lbp-styles/
+1. Move Lightbox Plus stylesheet directory out of the plugin path to `wp-content/lbp-styles/` Verision 2.1
 2. Add languages for which I have completed translations. Verision 2.1
 3. Solicit and implement additional language translations. Verision 2.1
 
 == Special Thanks ==
 
 * Dirk Schmitz (for pointing out an obvious bug that I kept overlooking)
-* <a href="http://www.hightechdad.com/">Michael Sheehan</a> and <a href="http://www.funnybunny.se/">Helena Hultén</a> for constinued support and testing.
+* <a href="http://www.hightechdad.com/">Michael Sheehan</a> and <a href="http://www.funnybunny.se/">Helena Hulten</a> for constinued support and testing.
 * Ken Williams (for testing version 1.5)
 * navjotsingh (for bug fix in gellery shortcode with version 1.6.x)
 * <a href="http://www.dev4press.com/">Milan Petrovic</a> for some quick debugging of version 2.0 admin panel

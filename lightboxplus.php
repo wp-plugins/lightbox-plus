@@ -5,7 +5,7 @@
     Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 2.0.5
+    Version: 2.1
     */
     /*---- 6/23/2010 ----*/
     global $post, $content, $page;  // WordPress Globals
@@ -20,12 +20,13 @@
     /**
     * Require extented classes
     */
-    require_once('utility.class.php');
-    require_once('shortcode.class.php');
-    require_once('filters.class.php');
-    require_once('actions.class.php');
-    require_once('init.class.php');
-
+    require_once('classes/shd.class.php');
+    require_once('classes/utility.class.php');
+    require_once('classes/shortcode.class.php');
+    require_once('classes/filters.class.php');
+    require_once('classes/actions.class.php');
+    require_once('classes/init.class.php');
+    
     /**
     * Ensure class doesn't already exist
     */
@@ -180,11 +181,11 @@
                             "slideshow_start"       => $_POST['slideshow_start'],
                             "slideshow_stop"        => $_POST['slideshow_stop'],
                             "gallery_lightboxplus"  => $_POST['gallery_lightboxplus'],
-                            "use_class_method"          => $_POST['use_class_method'],
+                            "use_class_method"      => $_POST['use_class_method'],
                             "class_name"            => $_POST['class_name'],
                             "no_auto_lightbox"      => $_POST['no_auto_lightbox'],
                             "text_links"            => $_POST['text_links'],
-                            "no_display_title"         => $_POST['no_display_title']
+                            "no_display_title"      => $_POST['no_display_title']
                             );
 
                             $g_lbp_messages .= __('Primary lightbox settings updated.','lightboxplus').'<br /><br />';
@@ -216,9 +217,9 @@
                                 "slideshow_start_sec"   => $_POST['slideshow_start_sec'],
                                 "slideshow_stop_sec"    => $_POST['slideshow_stop_sec'],
                                 "iframe_sec"            => $_POST['iframe_sec'],
-                                "use_class_method_sec"      => $_POST['use_class_method_sec'],
+                                "use_class_method_sec"  => $_POST['use_class_method_sec'],
                                 "class_name_sec"        => $_POST['class_name_sec'],
-                                "no_display_title_sec"     => $_POST['no_display_title_sec'],
+                                "no_display_title_sec"  => $_POST['no_display_title_sec'],
                                 );
                                 $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusSecondaryOptions);
                                 unset($lightboxPlusSecondaryOptions);
