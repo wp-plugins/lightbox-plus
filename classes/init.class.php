@@ -46,11 +46,11 @@
             function lightboxPlusPrimaryInit() {
                 $lightboxPlusPrimaryOptions = array(
                 "lightboxplus_style"    => 'shadowed',
+                "use_custom_style"      => '0',
                 "lightboxplus_multi"    => '0',
                 "disable_css"           => '0',
                 "use_inline"            => '0',
                 "inline_num"            => '1',
-
                 "transition"            => 'elastic',
                 "speed"                 => '350',
                 "width"                 => 'false',
@@ -71,16 +71,18 @@
                 "close"                 => 'close',
                 "overlay_close"         => '1',
                 "slideshow"             => '0',
-                "slideshow_auto"        => '1',
+                "slideshow_auto"        => '0',
                 "slideshow_speed"       => '2500',
                 "slideshow_start"       => 'start',
                 "slideshow_stop"        => 'stop',
+                "use_caption_title"     => '0',
                 "gallery_lightboxplus"  => '0',
-                "use_class_method"          => '0',
+                "multiple_galleries"    => '0',
+                "use_class_method"      => '0',
                 "class_name"            => 'cboxModal',
                 "no_auto_lightbox"      => '0',
                 "text_links"            => '0',
-                "no_display_title"         => '0'
+                "no_display_title"      => '0'
                 );
 
                 $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusPrimaryOptions );
@@ -119,9 +121,9 @@
                 "slideshow_start_sec"   => 'start',
                 "slideshow_stop_sec"    => 'stop',
                 "iframe_sec"            => '1',
-                "use_class_method_sec"      => '0',
+                "use_class_method_sec"  => '0',
                 "class_name_sec"        => 'lbpModal',
-                "no_display_title_sec"     => '0'
+                "no_display_title_sec"  => '0'
                 );
 
                 $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusSecondaryOptions);
@@ -145,18 +147,18 @@
                     $inline_widths = array();
                     $inline_heights = array();
                     for ($i = 1; $i <= $inline_number; $i++) {
-                        $inline_links[] = 'lbp-inline-link-'.$i;
-                        $inline_hrefs[] = 'lbp-inline-href-'.$i;
-                        $inline_widths[] = '50%';
+                        $inline_links[]   = 'lbp-inline-link-'.$i;
+                        $inline_hrefs[]   = 'lbp-inline-href-'.$i;
+                        $inline_widths[]  = '50%';
                         $inline_heights[] = '50%';
                     }
                 }
 
                 $lightboxPlusInlineOptions = array(
-                "inline_links"          => $inline_links,
-                "inline_hrefs"          => $inline_hrefs,
-                "inline_widths"         => $inline_widths,
-                "inline_heights"        => $inline_heights
+                "inline_links"     => $inline_links,
+                "inline_hrefs"     => $inline_hrefs,
+                "inline_widths"    => $inline_widths,
+                "inline_heights"   => $inline_heights
                 );
 
                 $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusInlineOptions);

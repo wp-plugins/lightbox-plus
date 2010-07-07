@@ -471,12 +471,34 @@
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
+                                        <?php _e( 'Use WP Caption for LBP Caption', 'lightboxplus' )?>: </th>
+                                    <td>
+                                        <input type="checkbox" name="use_caption_title" id="use_caption_title" value="1"<?php if ( $lightboxPlusOptions['use_caption_title'] ) echo ' checked="checked"';?> />
+                                        <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                        <div class="lbp-bigtip" id="lbp_use_caption_title_tip">
+                                            <?php _e( 'If checked, Lightbox Plus will attempt to use the displayed caption for the image on the page as the caption for the image in the Lightbox Plus overlay. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
                                         <?php _e( 'Use For WP Gallery', 'lightboxplus' )?>: </th>
                                     <td>
                                         <input type="checkbox" name="gallery_lightboxplus" id="gallery_lightboxplus" value="1"<?php if ( $lightboxPlusOptions['gallery_lightboxplus'] ) echo ' checked="checked"';?> />
                                         <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                         <div class="lbp-bigtip" id="lbp_gallery_lightboxplus_tip">
                                             <?php _e( 'If checked, Lightbox Plus will add the Lightboxing feature to the WordPress built in gallery feature.  In order for this to work correcly you must set <strong>Link thumbnails to: Image File</strong> or use <code>[gallery link="file"</code> for the gallery options. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                <tr>
+                                    <th scope="row">
+                                        <?php _e( 'Seperate Galleries in Post?', 'lightboxplus' )?>: </th>
+                                    <td>
+                                        <input type="checkbox" name="multiple_galleries" id="multiple_galleries" value="1"<?php if ( $lightboxPlusOptions['multiple_galleries'] ) echo ' checked="checked"';?> /><a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                        <div class="lbp-bigtip" id="lbp_multiple_galleries_tip">
+                                            <?php _e( 'If the option to separate multiple gallries in a single post is check Lightbox Plus will create separate sets of lightbox display for each gallery in the post. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
                                         </div>
                                     </td>
                                 </tr>

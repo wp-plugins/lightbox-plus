@@ -98,7 +98,6 @@
                 <!-- see gallery_shortcode() in wp-includes/media.php -->
                 <div id='$selector' class='gallery galleryid-{$id}'>");
 
-
                 $i = 0;
                 foreach ( $attachments as $id => $attachment ) {
                     $link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
@@ -108,8 +107,13 @@
                     *
                     * @var mixed
                     */
-                    $link = $this->lightboxPlusReplace($link,$selector);
-                    
+                    if (!empty($this->lightboxOptions)) {$lightboxPlusOptions = $this->getAdminOptions($this->lightboxOptionsName);}
+                    if ($lightboxPlusOptions['multiple_galleries']) {
+                        $link = $this->lightboxPlusReplace($link,'-'.$instance);
+                    }
+                    else {
+                        $link = $this->lightboxPlusReplace($link,'');
+                    }
                     $output .= "<{$itemtag} class='gallery-item'>";
                     $output .= "
                     <{$icontag} class='gallery-icon'>

@@ -194,7 +194,9 @@
                             "slideshow_speed"       => $_POST['slideshow_speed'],
                             "slideshow_start"       => $_POST['slideshow_start'],
                             "slideshow_stop"        => $_POST['slideshow_stop'],
+                            "use_caption_title"     => $_POST['use_caption_title'],
                             "gallery_lightboxplus"  => $_POST['gallery_lightboxplus'],
+                            "multiple_galleries"    => $_POST['multiple_galleries'],
                             "use_class_method"      => $_POST['use_class_method'],
                             "class_name"            => $_POST['class_name'],
                             "no_auto_lightbox"      => $_POST['no_auto_lightbox'],
@@ -388,7 +390,7 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options v2.0.5 (ColorBox v1.3.8)', 'lightboxplus' )?></h2>
+                <h2><?php _e( 'Lightbox Plus Options v2.5 (ColorBox v1.3.8)', 'lightboxplus' )?></h2>
                 <br style="clear: both;" />
                 <?php
                     if ($g_lbp_messages) {
