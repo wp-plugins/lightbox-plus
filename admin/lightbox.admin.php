@@ -68,6 +68,17 @@
                     </tr>
                     <tr>
                         <th scope="row">
+                            <?php _e( 'Use Custom Styles', 'lightboxplus' )?>: </th>
+                        <td>
+                            <input type="checkbox" name="use_custom_style" id="use_custom_style" value="1"<?php if ( $lightboxPlusOptions['use_custom_style'] ) echo ' checked="checked"';?> />
+                            <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                            <div class="lbp-bigtip" id="lbp_use_custom_style_tip">
+                                <?php _e( 'If checked, the built in stylsheets for Lightbox Plus will be located at <code>wp-content/lbp-css</code>.  Lightbox Plus will attempt to create this directory and copy default styles to it.  This will allow you to create custom styles in that directory with fear of the styles being deleted when you upgrade he plugin. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
                             <?php _e( 'Disable Lightbox CSS', 'lightboxplus' )?>: </th>
                         <td>
                             <input type="checkbox" name="disable_css" id="disable_css" value="1"<?php if ( $lightboxPlusOptions['disable_css'] ) echo ' checked="checked"';?> />

@@ -17,12 +17,22 @@
             */
             function lightboxPlusAddHeader( ) {
                 global $g_lightbox_plus_url;
+                global $g_lbp_local_style_url;
+                global $g_lbp_global_style_url;
                 if ( !empty( $this->lightboxOptions ) ) {
-                    $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
+                    $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
+
+                    if ($lightboxPlusOptions['use_custom_style']) {
+                        $style_path = $g_lbp_global_style_url;
+                    }
+                    else {
+                        $style_path = $g_lbp_local_style_url;
+                    }
+
                     if ( $lightboxPlusOptions['disable_css'] ) {
                         echo "<!-- User set lightbox styles -->".$this->EOL( );
                     } else {
-                        wp_register_style('lightboxStyle', $g_lightbox_plus_url . '/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.0.2','screen');
+                        wp_register_style('lightboxStyle', $style_path.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.0.2','screen');
                         wp_enqueue_style('lightboxStyle');
                         /**
                         * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles
@@ -156,7 +166,7 @@
                     echo $lightboxPlusJavaScript;
                 }
             }
-            
+
             /**
             * Add new admin panel to WordPress under the Appearance category
             */
@@ -183,14 +193,26 @@
             */
             function lightboxPlusAdminStyles() {
                 global $g_lightbox_plus_url;
+                global $g_lbp_local_style_url;
+                global $g_lbp_global_style_url;
+
                 wp_register_style('lightboxplusStyles', $g_lightbox_plus_url.'/admin/lightbox.admin.css','','2.0.2','screen');
                 wp_enqueue_style('lightboxplusStyles');
+
                 if ( !empty( $this->lightboxOptions ) ) {
-                    $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
+                    $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
+
+                    if ($lightboxPlusOptions['use_custom_style']) {
+                        $style_path = $g_lbp_global_style_url;
+                    }
+                    else {
+                        $style_path = $g_lbp_local_style_url;
+                    }
+
                     if ( $lightboxPlusOptions['disable_css'] ) {
                         echo "<!-- User set lightbox styles -->".$this->EOL( );
                     } else {
-                        wp_register_style('lightboxStyle', $g_lightbox_plus_url . '/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.0.2','screen');
+                        wp_register_style('lightboxStyle', $style_path.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.0.2','screen');
                         wp_enqueue_style('lightboxStyle');
                         /**
                         * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles

@@ -3,13 +3,13 @@
 
         /**
         * Lightbox Plus Utiltiy Functions used throughout plugin
-        * 
+        *
         * Not sure if WordPress has equivelents but cannot locate in API docs if so
         */
         class lbp_utilities {
             /**
             * Create clean eols for source
-            * 
+            *
             * @return string
             */
             function EOL( ) {
@@ -28,7 +28,7 @@
 
             /**
             * Create dropdown name from stylesheet listing - make user friendly
-            * 
+            *
             * @param mixed $styleName
             * @return string
             */
@@ -40,7 +40,7 @@
 
             /**
             * Convert DB booleans to text for use with JavaScript (jQuery) parameters
-            * 
+            *
             * @param mixed $nValue
             * @return mixed
             */
@@ -57,7 +57,7 @@
 
             /**
             * Convert DB booleans to text for use with JavaScript (jQuery) parameters
-            * 
+            *
             * @param mixed $rValue
             */
             function setValue( $rValue ) {
@@ -71,7 +71,7 @@
 
             /**
             * Delete directory function used to remove old directories during upgrade from versions prior to 1.4
-            * 
+            *
             * @param mixed $dirname
             */
             function delete_directory( $dirname ) {
@@ -97,7 +97,7 @@
 
             /**
             * Delete directory function used to remove old directories during upgrade from versions prior to 1.4
-            * 
+            *
             * @param mixed $dirname
             * @param mixed $file
             */
@@ -112,7 +112,7 @@
 
             /**
             * List directory function used to iterate theme directories
-            * 
+            *
             * @param mixed $dirname
             */
             function dirList( $dirname ) {
@@ -130,6 +130,35 @@
                 closedir( $dir_handle );
                 sort( $results );
                 return $results;
+            }
+
+            /**
+            * Recursively copy a directory
+            *
+            * @param mixed $source
+            * @param mixed $destination
+            */
+            function copy_directory( $source, $destination ) {
+                if ( is_dir( $source ) ) {
+                    @mkdir( $destination );
+                    $directory = dir( $source );
+                    while ( FALSE !== ( $readdirectory = $directory->read() ) ) {
+                        if ( $readdirectory == '.' || $readdirectory == '..' ) {
+                            continue;
+                        }
+                        $PathDir = $source . '/' . $readdirectory;
+                        if ( is_dir( $PathDir ) ) {
+                            $this->copy_directory( $PathDir, $destination . '/' . $readdirectory );
+                            continue;
+                        }
+                        copy( $PathDir, $destination . '/' . $readdirectory );
+                    }
+
+                    $directory->close();
+                }
+                else {
+                    copy( $source, $destination );
+                }
             }
         }
     }

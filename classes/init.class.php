@@ -19,16 +19,6 @@
                 $this->saveAdminOptions( $this->lightboxInitName, true );
 
                 /**
-                * Where the default styles aew located
-                * 
-                * @var mixed
-                *
-                * TODO 4 -c filesystem -o Dan Zappone: Add path outside for user generated styles ~version 2.1
-                */
-                $stylePath = ( dirname( __FILE__ )."/css" );
-                $this->saveAdminOptions( $this->lightboxStylePathName, $stylePath );
-
-                /**
                 * Call Initialize Primary Lightbox
                 * 
                 * @var wp_lightboxplus
@@ -173,6 +163,24 @@
                 $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusOptions );
                 unset($lightboxPlusInlineOptions);
                 unset($lightboxPlusOptions);
+            }
+            
+            /**
+            * Initialize the external style directory
+            * 
+            * @return boolean
+            */
+            function lightboxPlusGlobalStylesinit() {
+                global $g_lbp_local_style_path, $g_lbp_global_style_path;
+                $dir_create = mkdir($g_lbp_global_style_path, 0755);
+                if ($dir_create) {
+                    $this->copy_directory($g_lbp_local_style_path,$g_lbp_global_style_path.'/');
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
             }
 
 

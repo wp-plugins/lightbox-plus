@@ -156,9 +156,15 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 == Change Log ==
 
 = 2.5 =
+* Now requires PHP 5+
+ * PHP4 is no longer supported by 
 * Added true HTML parser instead of regular expressions
+ * Using <a href="http://simplehtmldom.sourceforge.net/">PHP Simple HTML DOM Parser</a> for parsing HTML
  * Should mitigate issues of not consuming the HTML content and correctly modifying it
-* Added option for stylesheet directory to reside outside of plugin directory
+* Change method for finding and selecting styles
+ * Added option for stylesheet directory to reside outside of plugin directory
+ * Lightbox Plus no longer stores stylesheet path in options, it is now pulled from global definitions
+ * It should now be easier to use on multiple servers with different paths.
 * Added support for multiple galleries on a single page displaying separate slide shows
 * Added support for the following languages: ..., ..., ...
 

@@ -4,7 +4,7 @@
             /**
             * Replacement shortcode gallery function adds rel="lightbox" or class="cboxModal"
             * Overrides the default gallery template
-            * 
+            *
             * @param string|false $attr
             */
             function lightboxPlusGallery($attr) {
@@ -98,17 +98,18 @@
                 <!-- see gallery_shortcode() in wp-includes/media.php -->
                 <div id='$selector' class='gallery galleryid-{$id}'>");
 
+
                 $i = 0;
                 foreach ( $attachments as $id => $attachment ) {
                     $link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
 
                     /**
                     * Rewrite links for wp-gallery to add lightbox plus properties (class or rel=[])
-                    * 
+                    *
                     * @var mixed
                     */
-                    $link = $this->lightboxPlusReplace($link);
-
+                    $link = $this->lightboxPlusReplace($link,$selector);
+                    
                     $output .= "<{$itemtag} class='gallery-item'>";
                     $output .= "
                     <{$icontag} class='gallery-icon'>

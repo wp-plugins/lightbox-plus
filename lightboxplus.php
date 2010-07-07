@@ -10,11 +10,23 @@
     /*---- 6/23/2010 ----*/
     global $post, $content, $page;  // WordPress Globals
     global $g_lightbox_plus_url;
+    global $g_lightbox_plus_dir;
     global $g_lbp_messages;
     global $g_lbp_plugin_page;
+    global $g_lbp_local_style_path;
+    global $g_lbp_global_style_path;
+    global $g_lbp_local_style_url;
+    global $g_lbp_global_style_url;
+
     $g_lbp_plugin_page = '';
     $g_lbp_messages = '';
     $g_lightbox_plus_url = WP_PLUGIN_URL.'/lightbox-plus';
+    $g_lightbox_plus_dir = WP_PLUGIN_DIR.'/lightbox-plus';
+    $g_lbp_local_style_path = $g_lightbox_plus_dir.'/css';
+    $g_lbp_global_style_path = WP_CONTENT_DIR . '/lbp-css';
+    $g_lbp_local_style_url = $g_lightbox_plus_url.'/css';
+    $g_lbp_global_style_url = WP_CONTENT_URL . '/lbp-css';
+
     load_plugin_textdomain('lightboxplus', $path = $g_lightbox_plus_url);
 
     /**
@@ -26,7 +38,7 @@
     require_once('classes/filters.class.php');
     require_once('classes/actions.class.php');
     require_once('classes/init.class.php');
-    
+
     /**
     * Ensure class doesn't already exist
     */
@@ -44,8 +56,8 @@
             var $lightboxStylePathName = 'lightboxplus_style_path';
 
             /**
-            * The PHP 4 Compatible Constructor - calls the constructor function if using php4 
-            * 
+            * The PHP 4 Compatible Constructor - calls the constructor function if using php4
+            *
             * NOTE: Lightbox Plus may not work with PHP4 and no support is offered as PHP4 has reached its end of life
             */
             function wp_lightboxplus( ) {
@@ -74,14 +86,14 @@
                         * Check to see if user wants to have gallery images lightboxed
                         */
                         if ($lightboxPlusOptions['gallery_lightboxplus'] != 1) {
-                            add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ) );
+                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ) );
                         }
                         else {
                             remove_shortcode( 'gallery' );
                             add_shortcode( 'gallery', array( &$this, 'lightboxPlusGallery' ), 10);
-                            add_filter( 'the_content', array( &$this, 'lightboxPlusReplace' ), 12 );
+                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 12 );
                         }
-                    } 
+                    }
                 }
                 add_action( 'wp_footer', array( &$this, 'lightboxPlusColorbox' ) );
                 if (is_admin()) {
@@ -141,6 +153,7 @@
             */
             function lightboxPlusAdminPanel( ) {
                 global $g_lightbox_plus_url, $g_lbp_messages;
+                global $g_lbp_local_style_path, $g_lbp_global_style_path;
                 load_plugin_textdomain( 'lightboxplus', $path = $g_lightbox_plus_url );
                 $location = admin_url('/admin.php?page=lightboxplus');
                 /**
@@ -152,6 +165,7 @@
                             $detail_code = 0;
                             $lightboxPlusOptions = array(
                             "lightboxplus_style"    => $_POST['lightboxplus_style'],
+                            "use_custom_style"      => $_POST['use_custom_style'],
                             "disable_css"           => $_POST['disable_css'],
                             "lightboxplus_multi"    => $_POST['lightboxplus_multi'],
                             "use_inline"            => $_POST['use_inline'],
@@ -259,6 +273,24 @@
                             $this->saveAdminOptions($this->lightboxOptionsName, $lightboxPlusOptions);
 
                             /**
+                            * Load options info array if not yet loaded
+                            */
+                            if ( !empty( $this->lightboxOptions )) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
+
+                            /**
+                            * Initialize Custom lightbox Plus Path
+                            */
+                            if ( $_POST['use_custom_style'] && !is_dir($g_lbp_global_style_path) ) {
+                                $dir_create_result = $this->lightboxPlusGlobalStylesinit();
+                                if ($dir_create_result) {
+                                    $g_lbp_messages .= __('Lightbox custom styles initialized.','lightboxplus').'<br /><br />';
+                                }
+                                else {
+                                    $g_lbp_messages .= __('<strong style="color:#900;">Lightbox custom styles initialization failed.</strong><br />Please create a directory called <code>lbp-css</code> in your <code>wp-content</code> directory and copy the styles located in <code>wp-content/plugins/lightbox-plus/css/</code> to <code>wp-content/lbp-css</code>','lightboxplus').'<br /><br />';
+                                }
+                            }
+
+                            /**
                             * Initialize Secondary Lightbox if enabled
                             */
                             if ( $_POST['lightboxplus_multi'] && !$_POST['class_name_sec'] ) {
@@ -339,10 +371,16 @@
                 *
                 * @var mixed
                 */
-                $stylePath = get_option( 'lightboxplus_style_path' );
+
+                if ($lightboxPlusOptions['use_custom_style']) {
+                    $stylePath = $g_lbp_global_style_path;
+                }
+                else {
+                    $stylePath = $g_lbp_local_style_path;
+                }
                 if ( $handle = opendir( $stylePath )) {
                     while ( false !== ( $file = readdir( $handle ))) {
-                        if ( $file != "." && $file != ".." && $file != ".DS_Store" ) {
+                        if ( $file != "." && $file != ".." && $file != ".DS_Store"  && $file != ".svn" && $file != "index.html") {
                             $styles[$file] = $stylePath."/".$file."/";
                         }
                     }
