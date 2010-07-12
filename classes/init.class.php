@@ -3,7 +3,7 @@
         class lbp_init extends lbp_actions {
             /**
             * Add some default options if they don't exist or if reinitialized
-            * 
+            *
             */
             function lightboxPlusInit( ) {
                 global $g_lightbox_plus_url;
@@ -12,32 +12,30 @@
                 delete_option( $this->lightboxStylePathName );
 
                 /**
-                * If Lightbox Plus has been initialized - set to true
-                * 
-                * @var wp_lightboxplus
-                */
-                $this->saveAdminOptions( $this->lightboxInitName, true );
-
-                /**
                 * Call Initialize Primary Lightbox
-                * 
-                * @var wp_lightboxplus
-                */
-                $this->lightboxPlusPrimaryInit();
-                /**
                 * Call Initialize Secondary Lightbox if enabled
-                * 
-                * @var wp_lightboxplus
-                */
-                $this->lightboxPlusSecondaryInit();
-                /**
                 * Call Initialize Inline Lightboxes if enabled
-                * 
+                *
                 * @var wp_lightboxplus
                 */
-                $this->lightboxPlusInlineInit(1);
+                $lightboxPlusPrimaryOptions = $this->lightboxPlusPrimaryInit();
+                $lightboxPlusSecondaryOptions = $this->lightboxPlusSecondaryInit();
+                $lightboxPlusInlineOptions = $this->lightboxPlusInlineInit();
 
-                return $lightboxPlusOptions;
+                $lightboxPlusOptions = array_merge($lightboxPlusPrimaryOptions, $lightboxPlusSecondaryOptions, $lightboxPlusInlineOptions);
+
+                /**
+                * Saved options and then get them out of the db to see if they are actually there
+                */
+                update_option('lightboxplus_options', $lightboxPlusOptions);
+                $savedOptions = get_option('lightboxplus_options');
+
+                /**
+                * If Lightbox Plus has been initialized - set to true
+                */
+                if ($savedOptions) { update_option('lightboxplus_init', true); }
+
+                return $savedOptions;
             }
 
             /**
@@ -85,15 +83,17 @@
                 "no_display_title"      => '0'
                 );
 
-                $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusPrimaryOptions );
+                return $lightboxPlusPrimaryOptions;
                 unset($lightboxPlusPrimaryOptions);
             }
 
             /**
-            * Initialize Secondary Lightbox by buiding array of options and committing to database
+            * Initialize Secondary Lightbox by buiding array of options and returning
+            *
+            * @return array $lightboxPlusSecondaryOptions
             */
             function lightboxPlusSecondaryInit() {
-                if ( !empty( $this->lightboxOptions )) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
+                $lightboxPlusOptions = get_option('lightboxplus_options');
 
                 $lightboxPlusSecondaryOptions = array(
                 "transition_sec"        => 'elastic',
@@ -126,20 +126,26 @@
                 "no_display_title_sec"  => '0'
                 );
 
-                $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusSecondaryOptions);
-                $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusOptions );
+                if ( !empty($lightboxPlusOptions) ) {
+                    $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusSecondaryOptions);
+                    update_option('lightboxplus_options', $lightboxPlusOptions );
+                    unset($lightboxPlusOptions);
+                }
 
+                return $lightboxPlusSecondaryOptions;
                 unset($lightboxPlusSecondaryOptions);
-                unset($lightboxPlusOptions);
+
             }
 
             /**
             * Initialize Inline Lightbox by buiding array of options and committing to database
-            * 
+            *
             * @param mixed $inline_number
+            *
+            * @return array $lightboxPlusInlineOptions
             */
-            function lightboxPlusInlineInit( $inline_number ) {
-                if ( !empty( $this->lightboxOptions )) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
+            function lightboxPlusInlineInit( $inline_number = 2 ) {
+                $lightboxPlusOptions = get_option('lightboxplus_options');
 
                 if ($lightboxPlusOptions['use_inline'] && $inline_number != '') {
                     $inline_links = array();
@@ -161,15 +167,21 @@
                 "inline_heights"   => $inline_heights
                 );
 
-                $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusInlineOptions);
-                $this->saveAdminOptions( $this->lightboxOptionsName, $lightboxPlusOptions );
+
+                 if ( !empty($lightboxPlusOptions)) {
+                    $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusInlineOptions);
+                    update_option('lightboxplus_options', $lightboxPlusOptions );
+                    unset($lightboxPlusOptions);
+                }
+
+                return $lightboxPlusInlineOptions;
                 unset($lightboxPlusInlineOptions);
-                unset($lightboxPlusOptions);
+
             }
-            
+
             /**
             * Initialize the external style directory
-            * 
+            *
             * @return boolean
             */
             function lightboxPlusGlobalStylesinit() {

@@ -155,9 +155,11 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
-= 2.5 =
-* Now requires PHP 5+
- * PHP4 is no longer supported by 
+= 2.1 =
+* Now requires PHP 5+, no PHP 4 support.
+ * PHP4 reached it's end of life on 8/8/2008 nearly 2 years ago.
+* Fixed problems with initialization and re-initialization of the plugin not working under various circumsanstances.
+ * Add code for activation/deactivation of the plugin
 * Added true HTML parser instead of regular expressions
  * Using <a href="http://simplehtmldom.sourceforge.net/">PHP Simple HTML DOM Parser</a> for parsing HTML
  * Should mitigate issues of not consuming the HTML content and correctly modifying it
@@ -166,7 +168,8 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Lightbox Plus no longer stores stylesheet path in options, it is now pulled from global definitions
  * It should now be easier to use on multiple servers with different paths.
 * Added support for multiple galleries on a single page displaying separate slide shows
-* Added support for the following languages: ..., ..., ...
+* Updated ColorBox to version 1.3.9
+ * Fixed a bug in IE where iframed youtube videos were not opening correctly.
 
 = 2.0.5 =
 * Rewrote the way the plugin is instantiated.

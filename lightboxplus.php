@@ -8,7 +8,19 @@
     Version: 2.1
     */
     /*---- 6/23/2010 ----*/
-    global $post, $content, $page;  // WordPress Globals
+    /**
+    * WordPress Globals
+    *
+    * @var mixed
+    */
+    global $post;
+    global $content;
+    global $page;
+    /**
+    * Lightbox Plus Globals
+    *
+    * @var mixed
+    */
     global $g_lightbox_plus_url;
     global $g_lightbox_plus_dir;
     global $g_lbp_messages;
@@ -18,6 +30,12 @@
     global $g_lbp_local_style_url;
     global $g_lbp_global_style_url;
 
+    /**
+    * Instantiate Lightbox Plus Globals
+    * TODO: Verify all these are needed
+    *
+    * @var mixed
+    */
     $g_lbp_plugin_page = '';
     $g_lbp_messages = '';
     $g_lightbox_plus_url = WP_PLUGIN_URL.'/lightbox-plus';
@@ -27,17 +45,46 @@
     $g_lbp_local_style_url = $g_lightbox_plus_url.'/css';
     $g_lbp_global_style_url = WP_CONTENT_URL . '/lbp-css';
 
-    load_plugin_textdomain('lightboxplus', $path = $g_lightbox_plus_url);
-
     /**
-    * Require extented classes
+    * Require HTML Parser
     */
     require_once('classes/shd.class.php');
+    /**
+    * Require extended Lightbox Plus classes
+    */
     require_once('classes/utility.class.php');
     require_once('classes/shortcode.class.php');
     require_once('classes/filters.class.php');
     require_once('classes/actions.class.php');
     require_once('classes/init.class.php');
+
+    /**
+    * On Plugin Activation initialize settings
+    */
+    if (!function_exists('ActivateLBP')) {
+        function ActivateLBP() {
+            $lbp_activate = new lbp_init();
+            $lbp_activate->lightboxPlusInit();
+            unset($lbp_activate);
+        }
+    }
+
+    /**
+    * On plugin deactivation remove settings
+    */
+    if (!function_exists('DeactivateLBP')) {
+        function DeactivateLBP() {
+            delete_option('lightboxplus_options');
+            delete_option('lightboxplus_init');
+        }
+    }
+
+    /**
+    * Register activation/deactivation hooks and text domain
+    */
+    register_activation_hook( __FILE__, 'ActivateLBP' );
+    register_deactivation_hook( __FILE__, 'DeactivateLBP' );
+    load_plugin_textdomain('lightboxplus', $path = $g_lightbox_plus_url);
 
     /**
     * Ensure class doesn't already exist
@@ -69,7 +116,9 @@
             */
             function __construct( ) {
                 $this->lightboxOptions = $this->getAdminOptions( $this->lightboxOptionsName );
-                if ( !get_option( $this->lightboxInitName ) ) { $this->lightboxPlusInit( ); }
+                //if ( !get_option( $this->lightboxInitName ) ) {
+                //    $this->lightboxPlusInit( );
+                //}
                 add_filter( 'plugin_row_meta',array( &$this, 'RegisterLBPLinks'),10,2);
                 add_action( "init", array( &$this, "lightboxPlusInitScripts" ) );
                 add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
@@ -373,7 +422,6 @@
                 *
                 * @var mixed
                 */
-
                 if ($lightboxPlusOptions['use_custom_style']) {
                     $stylePath = $g_lbp_global_style_path;
                 }
@@ -414,12 +462,14 @@
             </script>
             <?php
         }
-
-
-    } /*---- END CLASS ----*/
-} /*---- END CLASS CHECK ----*/
-
-
+        /**
+        * END CLASS
+        */
+    }
+    /**
+    * END CLASS CHECK
+    */
+}
 /**
 * Instantiate the class
 */
