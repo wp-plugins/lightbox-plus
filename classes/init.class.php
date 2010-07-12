@@ -1,4 +1,7 @@
 <?php
+    /**
+    * Lightbox Plus 2.1 - 2010.07.12
+    */ 
     if (!class_exists('lbp_init')) {
         class lbp_init extends lbp_actions {
             /**

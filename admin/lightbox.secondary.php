@@ -1,4 +1,9 @@
 <!-- Begin Secondary Lightbox -->
+<?php
+    /**
+    * Lightbox Plus 2.1 - 2010.07.12
+    */ 
+?>
 <div id="poststuff" class="lbp">
     <div class="postbox">
         <h3>

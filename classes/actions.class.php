@@ -1,4 +1,7 @@
 <?php
+    /**
+    * Lightbox Plus 2.1 - 2010.07.12
+    */
     if (!class_exists('lbp_actions')) {
         class lbp_actions extends lbp_filters {
             /**
@@ -52,12 +55,12 @@
                         * }
                         */
                     }
-                }    
+                }
             }
 
             /**
             * Add JavaScript (jQuery based) to page footer to activate LBP
-            * 
+            *
             * @echo string
             */
             function lightboxPlusColorbox( ) {
@@ -232,7 +235,7 @@
                         * }
                         */
                     }
-                }                
+                }
             }
 
 

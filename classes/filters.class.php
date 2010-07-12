@@ -1,4 +1,7 @@
 <?php
+    /**
+    * Lightbox Plus 2.1 - 2010.07.12
+    */ 
     if (!class_exists('lbp_filters')) {
         class lbp_filters extends lbp_shortcode {
             /**
@@ -75,7 +78,7 @@
                                     /**
                                     * If use caption for title try to get the text from the caption - this could be wrong
                                     */
-                                    if ($lightboxPlusOptions['use_caption_title']) { 
+                                    if ($lightboxPlusOptions['use_caption_title']) {
                                         if ($e->next_sibling()->innertext) { $e->title = $e->next_sibling()->innertext; }
                                     }
                                     break;
@@ -122,7 +125,7 @@
                                         }
                                     }
                                     if ($lightboxPlusOptions['use_caption_title']) {
-                                        if ($e->parent()->next_sibling()->innertext) { $e->parent()->title = $e->parent()->next_sibling()->innertext; } 
+                                        if ($e->parent()->next_sibling()->innertext) { $e->parent()->title = $e->parent()->next_sibling()->innertext; }
                                     }
                                     break;
                             }

@@ -1,4 +1,9 @@
-<?php if ( !empty( $this->lightboxOptions )) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); } ?>
+<?php
+    /**
+    * Lightbox Plus 2.1 - 2010.07.12
+    */
+    if ( !empty( $this->lightboxOptions )) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
+?>
 <div id="poststuff" class="lbp">
     <div class="postbox">
         <h3>
@@ -94,7 +99,7 @@
                 </p>
             </div>
         </div>
-    </div>  
+    </div>
 
     <div id="poststuff" class="lbp">
         <div class="postbox">
@@ -102,7 +107,7 @@
                 <?php _e( 'Lightbox Plus - Primary Lightbox Settings','lightboxplus' ); ?>: </h3>
             <div class="inside">
                 <div id="poststuff" class="lbp">
-                    <div class="postbox close-me"> 
+                    <div class="postbox close-me">
                         <h3>
                             <?php _e( 'Primary Lightbox - Base Settings','lightboxplus' ); ?>: </h3>
                         <div class="inside toggle">
@@ -577,7 +582,7 @@
                             jQuery("p.primary_test_item").html(test_str);
                         });
                         //-->
-                    </script>    
+                    </script>
                     <!-- end testing -->
                 </div>
                 <p class="submit">
@@ -641,12 +646,12 @@
                 </p>
             </div>
         </div>
-    </div>  
+    </div>
     <?php
-        if ($lightboxPlusOptions['lightboxplus_multi']) { 
+        if ($lightboxPlusOptions['lightboxplus_multi']) {
             require('lightbox.secondary.php');
-        } 
-        if ($lightboxPlusOptions['use_inline']) { 
+        }
+        if ($lightboxPlusOptions['use_inline']) {
             require('lightbox.inline.php');
         }
     ?>

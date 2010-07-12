@@ -1,4 +1,9 @@
 <!-- Begin Inline Lightbox -->
+<?php
+    /**
+    * Lightbox Plus 2.1 - 2010.07.12
+    */ 
+?>
 <div id="poststuff" class="lbp">
 <div class="postbox">
     <h3>
@@ -42,7 +47,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
+                            <?php
                                 for ($i = 1; $i <= $lightboxPlusOptions['inline_num']; $i++) {
                                     $inline_links   = array();
                                     $inline_hrefs   = array();
@@ -70,7 +75,7 @@
                                 </tr>
                                 <?php
                                 }
-                            ?>                            
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -92,7 +97,7 @@
                                 </p>
                             </td>
                         </tr>
-                    </table>    
+                    </table>
                     <!-- end testing -->
                 </div>
             </div>
