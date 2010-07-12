@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
 Tested up to: 3.0
-Stable tag: 2.0.5
+Stable tag: 2.1
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -14,17 +14,18 @@ Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress
 
 Lightbox Plus uses WordPress's built in jQuery library.
 
-Read the FAQ first if you are having problems.
+Please read the FAQ first if you are having problems.
 
-= Lightbox Plus <em>NOW</em> works with WordPress' built in gallery feature. =
+= Requirements =
 
-I'm happy to say Lightbox Plus now works with WordPress' built in gallery.  This has been the most requested feature by far.  There are few simple requirements however.  You you must set <strong>Link thumbnails to: Image File</strong> or use <code>[gallery link="file"</code> for the gallery options.  You must check <em>Use For WP Gallery</em> box under <stong>Other Lightbox Plus Settings</strong>
+Server
 
-= IMPORTANT 1.5+ UPGRADE INFORMATION =
-See the change log for information regarding this upgrading to version 1.5 of Lightbox Plus.  There are significant differences from previous versions.
+* WordPress 2.8+
+* PHP 5+
 
-= IMPORTANT 1.6.6+ UPGRADE INFORMATION =
-Must have WordPress 2.8+ and the `wp_footer()` hook for Lightbox Plus to work correctly from 1.6.6 forward.  If using and older version of WordPress please continue using version 1.6.3 of Lightbox Plus.  Lightbox Plus will stop working if `wp_footer()` does not exist in the template.  See `/wp-content/themes/default/footer.php` for an example of how to place it.
+Client
+
+* IE 7+, FireFox 2+, Chrome, Safari 3+, Opera 8+
 
 = Usage =
 
@@ -46,18 +47,10 @@ Optional: Use the title attribute if you want to show a caption.
 
 1. Extract lightbox-plus.zip to your `wp-content/plugins` directory.
 2. In the admin panel under plugins activate Lightbox Plus.
-3. In the admin panel under Design/Appearance click on Lightbox Plus to configure to your taste.
+3. In the admin panel under Appearance click on Lightbox Plus to configure to your taste.
 4. It should now be completely set up and functional
 
-= Upgrade Issues =
-* 1.5.X upgrades are not always properly removing old styles, JavaScript  and image files
- * <em>Issue Fixed:</em> Well, mostly, as of version 1.5.2 the reset button will remove the old files <em>assuming</em> the permissions are set correctly.
-* 1.5.X upgrades are sometimes failing
- * <em>Workaround:</em>Remove the plugin and install a new copy.  Use the reset button afterwards to remove old setting and instantiate new ones.
-
 = Caveats =
-
-Requires PHP 5+.
 
 Flash (i.e. YouTube videos, etc.) will sit atop the Lightbox Plus display no matter what the z-index is.  This is an issue with Flash.
 
@@ -430,12 +423,6 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 = 1.0 =
 * Initial release
-
-== Road Map ==
-
-1. Move Lightbox Plus stylesheet directory out of the plugin path to `wp-content/lbp-styles/` Verision 2.1
-2. Add languages for which I have completed translations. Verision 2.1
-3. Solicit and implement additional language translations. Verision 2.1
 
 == Special Thanks ==
 

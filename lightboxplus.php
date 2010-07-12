@@ -7,7 +7,7 @@
     Author URI: http://www.23systems.net/
     Version: 2.1
     */
-    /*---- 6/23/2010 ----*/
+    /*---- 7/12/2010 ----*/
     /**
     * WordPress Globals
     *
@@ -438,7 +438,7 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options v2.5 (ColorBox v1.3.8)', 'lightboxplus' )?></h2>
+                <h2><?php _e( 'Lightbox Plus Options v2.1 (ColorBox v1.3.8)', 'lightboxplus' )?></h2>
                 <br style="clear: both;" />
                 <?php
                     if ($g_lbp_messages) {
