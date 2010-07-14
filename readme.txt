@@ -150,8 +150,10 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 = 2.1.1 =
 * Due to overhwhelming demand I added PHP 4 functionality back in but it is not supported.
+* Fix for images with upper case file extension not being auto-lightboxed.
 * PHP 4 functionality also temporarily mitigates the "object" error that some people are recieving.
  * You will have to manually select the option to use the <em>PHP 4 Auto Lightbox Method</em> if you are using PHP 5.X and are recieving this error.
+ 
 
 = 2.1 =
 * Now requires PHP 5+, no PHP 4 support.
