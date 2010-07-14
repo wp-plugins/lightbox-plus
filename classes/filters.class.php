@@ -45,7 +45,7 @@
                 */
                 switch ( $lightboxPlusOptions['text_links'] ) {
                     case 1:
-                        foreach($html->find('a[href$=jpg], a[href$=gif], a[href$=png], a[href$=jpeg], a[href$=bmp]') as $e) {
+                        foreach($html->find('a[href*=jpg$], a[href*=gif$], a[href*=png$], a[href*=jpeg$], a[href*=bmp$]') as $e) {
                             /**
                             * Use Class Method is selected - yes/no
                             */
@@ -98,7 +98,7 @@
                         /**
                         *  find all links with image only else if (do not autolightbox textlinks) then
                         */
-                        foreach($html->find('a[href$=jpg] img, a[href$=gif] img, a[href$=png] img, a[href$=jpeg] img, a[href$=bmp] img') as $e) {
+                        foreach($html->find('a[href*=jpg$] img, a[href*=gif$] img, a[href*=png$] img, a[href*=jpeg$] img, a[href*=bmp$] img') as $e) {
                             /**
                             * Use Class Method is selected - yes/no
                             */
