@@ -1,7 +1,7 @@
 <?php
     /**
     * Lightbox Plus 2.1 - 2010.07.12
-    */ 
+    */
     if (!class_exists('lbp_init')) {
         class lbp_init extends lbp_actions {
             /**
@@ -45,11 +45,19 @@
             * Initialize Primary Lightbox by buiding array of options and committing to database
             */
             function lightboxPlusPrimaryInit() {
+                if ($this->phpMinV('4.*')) {
+                    $versionInit = '0';
+                }
+                else {
+                    $versionInit = '1';
+                }
+
                 $lightboxPlusPrimaryOptions = array(
                 "lightboxplus_style"    => 'shadowed',
                 "use_custom_style"      => '0',
                 "lightboxplus_multi"    => '0',
                 "disable_css"           => '0',
+                "use_php_four"          => $versionInit,
                 "use_inline"            => '0',
                 "inline_num"            => '1',
                 "transition"            => 'elastic',
@@ -171,7 +179,7 @@
                 );
 
 
-                 if ( !empty($lightboxPlusOptions)) {
+                if ( !empty($lightboxPlusOptions)) {
                     $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusInlineOptions);
                     update_option('lightboxplus_options', $lightboxPlusOptions );
                     unset($lightboxPlusOptions);

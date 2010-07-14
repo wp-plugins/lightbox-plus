@@ -5,7 +5,7 @@
     Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 2.1
+    Version: 2.1.1
     */
     /*---- 7/12/2010 ----*/
     /**
@@ -216,6 +216,7 @@
                             "lightboxplus_style"    => $_POST['lightboxplus_style'],
                             "use_custom_style"      => $_POST['use_custom_style'],
                             "disable_css"           => $_POST['disable_css'],
+                            "use_php_four"           => $_POST['use_php_four'],
                             "lightboxplus_multi"    => $_POST['lightboxplus_multi'],
                             "use_inline"            => $_POST['use_inline'],
                             "inline_num"            => $_POST['inline_num'],
@@ -438,7 +439,8 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options v2.1 (ColorBox v1.3.9)', 'lightboxplus' )?></h2>
+                <h2><?php _e( 'Lightbox Plus Options v2.1.1 (ColorBox v1.3.9)', 'lightboxplus' )?></h2>
+
                 <br style="clear: both;" />
                 <?php
                     if ($g_lbp_messages) {

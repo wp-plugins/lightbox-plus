@@ -1,7 +1,7 @@
 <?php
     /**
     * Lightbox Plus 2.1 - 2010.07.12
-    */ 
+    */
     if (!class_exists('lbp_utilities')) {
 
         /**
@@ -133,6 +133,27 @@
                 closedir( $dir_handle );
                 sort( $results );
                 return $results;
+            }
+
+            /**
+            * Used to do a boolean check against PHP version
+            *
+            * @param mixed $v
+            */
+            function phpMinV($v) {
+                $phpV = PHP_VERSION;
+
+                if ($phpV[0] >= $v[0]) {
+                    if (empty($v[2]) || $v[2] == '*') {
+                        return true;
+                    }
+                    elseif ($phpV[2] >= $v[2]) {
+                        if (empty($v[4]) || $v[4] == '*' || $phpV[4] >= $v[4]) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
             }
 
             /**
