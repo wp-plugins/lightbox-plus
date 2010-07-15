@@ -154,6 +154,8 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Problem was due to circular memory leak in PHP 5.1 and 5.2 and HTML DOM object not being cleaned up. 
  * Altered way the content is returned to allow for closure and cleaning of object sooner eliminating memory leak.
 * Due to overhwhelming demand I added PHP 4 functionality back in but it is not officially supported.
+ * If you were seeing an error that looked something like `Parse error: syntax error, unexpected T_STRING, expecting T_OLD_FUNCTION or T_FUNCTION or T_VAR or '}' in /path/to/plugins/lightbox-plus/classes/shd.class.php on line 86` you have PHP 4.
+ * Option is automatically set to use legacy method if you have PHP 4
  * You will have to manually select the option to use the <em>PHP 4 Auto Lightbox Method</em> if you are using PHP 5.X and wish to use legacy method.
 * Fix for images with upper case file extension not being auto-lightboxed.
 * Probable fix for `XML Parsing Error: no element found` likely caused by memory leak
