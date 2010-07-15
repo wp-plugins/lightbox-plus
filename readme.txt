@@ -21,7 +21,8 @@ Please read the FAQ first if you are having problems.
 Server
 
 * WordPress 2.8+
-* PHP 5+
+* PHP 4 (Not supported) 
+* PHP 5+ (Recommended)
 
 Client
 
