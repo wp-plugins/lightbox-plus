@@ -5,7 +5,6 @@
     if (!class_exists('lbp_filters')) {
         class lbp_filters extends lbp_shortcode {
 
-
             /**
             * Filter to call page parsing
             *
@@ -38,6 +37,7 @@
 
                 $html = new simple_html_dom();
                 $html->load($html_content);
+
                 /**
                 * Find all image links (text and images)
                 *
@@ -142,8 +142,11 @@
                         break;
                 }
 
-                return $html.'<!-- PHP 5.x -->';
+                $content = $html->save();
                 $html->clear();
+                unset($html);
+                return $content.'<!-- PHP 5.x -->';
+
             }
 
             /**

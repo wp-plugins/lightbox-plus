@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
 Tested up to: 3.0
-Stable tag: 2.1
+Stable tag: 2.2
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -148,13 +148,16 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
-= 2.1.1 =
-* Due to overhwhelming demand I added PHP 4 functionality back in but it is not supported.
+= 2.2 =
+* Fixed "Object id #", "Object", "Object #" errors with PHP 5.1.x.
+ * Problem was due to circular memory leak in PHP 5.1 and 5.2 and HTML DOM object not being cleaned up. 
+ * Altered way the content is returned to allow for closure and cleaning of object sooner eliminating memory leak.
+* Due to overhwhelming demand I added PHP 4 functionality back in but it is not officially supported.
+ * You will have to manually select the option to use the <em>PHP 4 Auto Lightbox Method</em> if you are using PHP 5.X and wish to use legacy method.
 * Fix for images with upper case file extension not being auto-lightboxed.
-* PHP 4 functionality also temporarily mitigates the "object" error that some people are recieving.
- * You will have to manually select the option to use the <em>PHP 4 Auto Lightbox Method</em> if you are using PHP 5.X and are recieving this error.
+* Probable fix for `XML Parsing Error: no element found` likely caused by memory leak
+ * Unable to reproduce error but research indicates memory leak is a likely cause.
  
-
 = 2.1 =
 * Now requires PHP 5+, no PHP 4 support.
  * PHP4 reached it's end of life on 8/8/2008 nearly 2 years ago.
