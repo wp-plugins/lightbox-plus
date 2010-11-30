@@ -443,7 +443,7 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options v2.2 (ColorBox v1.3.9)', 'lightboxplus' )?></h2>
+                <h2><?php _e( 'Lightbox Plus Options v2.2.1 (ColorBox v1.3.15)', 'lightboxplus' )?></h2>
 
                 <br style="clear: both;" />
                 <?php
