@@ -7,7 +7,7 @@
     Author URI: http://www.23systems.net/
     Version: 2.2.1
     */
-    /*---- 7/15/2010 ----*/
+    /*---- 11/30/2010 ----*/
     /**
     * WordPress Globals
     *

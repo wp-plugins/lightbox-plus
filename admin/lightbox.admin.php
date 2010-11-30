@@ -26,7 +26,7 @@
                 </form>
                 <h4>&mdash; or try a 23Systems affiliate program &mdash;</h4>
                 <a href="https://www.e-junkie.com/ecom/gb.php?cl=88539&c=ib&aff=107849" target="ejejcsingle" name="Digging into WordPress"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-digwp.jpg'?>" alt="Digging into WordPress" border="0" /></a>
-                <a href="https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=107849" target="ejejcsingle" name=""><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-grvfrm.jpg'?>" alt="Gravity Forms - WordPress Form Management" border="0" /></a><br />
+                <a href="https://fundry.com/project/9-lightbox-plus"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-fundry.jpg'?>" alt="Fundry - Crowdfunding Software" border="0" /></a><br />
                 <a href="https://www.e-junkie.com/ecom/gb.php?ii=629122&c=ib&aff=107849&cl=94455" target="ejejcsingle" name="WordPress Defender - 30 Security Strategies"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-wpdfndr.jpg'?>" alt="WordPress Defender - 30 Security Strategies" border="0" /></a>
                 <a href="https://www.e-junkie.com/ecom/gb.php?ii=195647&c=ib&aff=107849&cl=12635" target="ejejcsingle" name="How to be a Rockstar WordPress Designer"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-rckstr.jpg'?>" alt="How to be a Rockstar WordPress Designer" border="0" /></a>
             </div>
