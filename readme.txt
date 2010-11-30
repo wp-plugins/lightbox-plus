@@ -4,13 +4,13 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
 Tested up to: 3.0.1
-Stable tag: 2.2.5
+Stable tag: 2.2.1
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
 == Description ==
 
-Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus permits users to view larger versions of images without having to leave the current page. Lightbox is able able to lightbox WordPress galery images, display simple slide shows, along with video and content in overlays. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image being viewed.  Lightbox Plus captures the image title for display in the overlay.
+Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus for WordPress implements ColorBox as a lightbox image overlay tool for WordPress. ColorBox was created by Jack Moore and is licensed under the MIT License. Lightbox Plus permits users to view larger versions of images without having to leave the current page. Lightbox is able to add a lightbox to WordPress gallery images, display simple slide shows, video, forms and external content in overlays. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image or video being viewed. Lightbox Plus captures the image title for display in the overlay.
 
 Lightbox Plus uses WordPress's built in jQuery library.
 
