@@ -3,8 +3,8 @@ Contributors: dzappone
 Donate link: http://www.23systems.net/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
-Tested up to: 3.0
-Stable tag: 2.2
+Tested up to: 3.0.1
+Stable tag: 2.2.5
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -148,6 +148,22 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 4. Lightbox Plus - Inline Content (Form)
 
 == Change Log ==
+
+= 2.2.1 =
+* Require HTML Parser only for PHP 5.X.  Was causing errors with PHP 4.X.
+* Updated ColorBox to verion 1.3.15
+ * In IE6, closing an iframe when using HTTPS no longer generates a security warning. 
+ * Changed the index.html example files to use YouTube's new embedded link format.
+ * By default, ColorBox returns focus to the element it was launched from once it closes.  This can now be disabled by setting the 'returnFocus' property to false.  Focus was causing problems for some users who had their anchor elements inside animated containers.
+ * Minor bug fix involved in using a combination of slideshow and non-slideshow content.
+ * Minor bug fix involved in preloading images when using a function as a value for the href property.
+ * The slideshow now respects the loop property.
+ * Fixed compatibility with jQuery 1.4.3
+ * The 'open' property now accepts a function as a value, like all of the other properties.
+ * Preloading now loads the correct href for images when using a dynamic (function) value for the href property.
+ * Fixed bug in Safari 3 for Win where ColorBox centered on the document, rather than the visitor's viewport.
+ * May have fixed an issue in Opera 10.6+ where ColorBox would rarely/randomly freeze up while switching between photos in a group.
+ * Some functionality better encapsulated & minor performance improvements.
 
 = 2.2 =
 * Fixed "Object id #", "Object", "Object #" errors with PHP 5.1.x.
@@ -440,7 +456,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 == Special Thanks ==
 
 * Dirk Schmitz (for pointing out an obvious bug that I kept overlooking)
-* <a href="http://www.hightechdad.com/">Michael Sheehan</a> and <a href="http://www.funnybunny.se/">Helena Hulten</a> for constinued support and testing.
+* <a href="http://www.hightechdad.com/">Michael Sheehan</a> and <a href="http://www.funnybunny.se/">Helena Hult&eacute;n</a> for constinued support and testing.
 * Ken Williams (for testing version 1.5)
 * navjotsingh (for bug fix in gellery shortcode with version 1.6.x)
 * <a href="http://www.dev4press.com/">Milan Petrovic</a> for some quick debugging of version 2.0 admin panel
