@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
 Tested up to: 3.0.1
-Stable tag: 2.2.5
+Stable tag: 2.2.1
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -14,14 +14,18 @@ Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress
 
 Lightbox Plus uses WordPress's built in jQuery library.
 
-Please read the FAQ first if you are having problems.
+=Troubleshooting=
+
+Please read the <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> first if you are having problems.  
+
+If you are unable to resolve your problem with the information provided in the FAQ please submit a <a href="http://www.23systems.net/support/">support request<a/>.
 
 = Requirements =
 
 Server
 
 * WordPress 2.8+
-* PHP 4 (Not supported) 
+* PHP 4 (Not recommended and not supported) 
 * PHP 5+ (Recommended)
 
 Client
@@ -44,6 +48,10 @@ Optional: Use the title attribute if you want to show a caption.
         <a href="images/image-2.jpg" rel="lightbox[roadtrip]">image #2</a>
         <a href="images/image-3.jpg" rel="lightbox[roadtrip]">image #3</a>
 
+=Suggestions=
+
+Submit <a href="https://fundry.com/project/9-lightbox-plus">suggestions</a> via <a href="https://fundry.com/about">Fundry</a>.        
+        
 == Installation ==
 
 1. Extract lightbox-plus.zip to your `wp-content/plugins` directory.
