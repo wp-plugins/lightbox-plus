@@ -1,6 +1,6 @@
 <?php
     /**
-    * Lightbox Plus 2.1 - 2010.07.12
+    * Lightbox Plus 2.2.2 - 2010.12.15
     */
     if ( !empty( $this->lightboxOptions )) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
 ?>
@@ -30,6 +30,7 @@
                 <a href="https://www.e-junkie.com/ecom/gb.php?ii=629122&c=ib&aff=107849&cl=94455" target="ejejcsingle" name="WordPress Defender - 30 Security Strategies"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-wpdfndr.jpg'?>" alt="WordPress Defender - 30 Security Strategies" border="0" /></a>
                 <a href="https://www.e-junkie.com/ecom/gb.php?ii=195647&c=ib&aff=107849&cl=12635" target="ejejcsingle" name="How to be a Rockstar WordPress Designer"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-rckstr.jpg'?>" alt="How to be a Rockstar WordPress Designer" border="0" /></a>
             </div>
+
             <h5>
                 <?php _e( 'Thank you for downloading and installing Lightbox Plus for WordPress<br /><br /><a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/bbpress/forum/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/pages/Austin-TX/23Systems-Web-Devsign/94195762502">Add Facebook Page</a>','lightboxplus' ); ?>
             </h5>
@@ -39,6 +40,7 @@
             <p style="text-align: justify">
                 <?php _e( 'Like many developers I spend a lot of my spare time working on WordPress plugins and themes and any donation to the cause is appreciated.  I know a lot of other developers do the same and I try to donate to them whenever I can.  As a developer I greatly appreciate any donation you can make to help support further development of quality plugins and themes for WordPress. <em>You have my sincere thanks and appreciation for using Lightbox Plus</em>.','lightboxplus' ); ?>
             </p>
+            <div class="clear"></div>
         </div>
     </div>
 </div>

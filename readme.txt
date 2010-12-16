@@ -1,10 +1,10 @@
 === Lightbox Plus ===
 Contributors: dzappone
-Donate link: http://www.23systems.net/donate/
+Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
-Tested up to: 3.0.1
-Stable tag: 2.2.1
+Tested up to: 3.1b2
+Stable tag: 2.2.2
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -16,7 +16,7 @@ Lightbox Plus uses WordPress's built in jQuery library.
 
 =Troubleshooting=
 
-Please read the <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> first if you are having problems.  
+Please read the <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> first if you are having problems.
 
 If you are unable to resolve your problem with the information provided in the FAQ please submit a <a href="http://www.23systems.net/support/">support request<a/>.
 
@@ -25,7 +25,7 @@ If you are unable to resolve your problem with the information provided in the F
 Server
 
 * WordPress 2.8+
-* PHP 4 (Not recommended and not supported) 
+* PHP 4 (Not recommended and not supported)
 * PHP 5+ (Recommended)
 
 Client
@@ -50,8 +50,8 @@ Optional: Use the title attribute if you want to show a caption.
 
 =Suggestions=
 
-Submit <a href="https://fundry.com/project/9-lightbox-plus">suggestions</a> via <a href="https://fundry.com/about">Fundry</a>.        
-        
+Submit <a href="https://fundry.com/project/9-lightbox-plus">suggestions</a> via <a href="https://fundry.com/about">Fundry</a>.
+
 == Installation ==
 
 1. Extract lightbox-plus.zip to your `wp-content/plugins` directory.
@@ -157,10 +157,14 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
+=2.2.2=
+* Corrected load_plugin_textdomain function calls, had incorrect number of arguments - Thanks Johannes!
+* Minor interface corrections
+
 = 2.2.1 =
 * Require HTML Parser only for PHP 5.X.  Was causing errors with PHP 4.X.
 * Updated ColorBox to verion 1.3.15
- * In IE6, closing an iframe when using HTTPS no longer generates a security warning. 
+ * In IE6, closing an iframe when using HTTPS no longer generates a security warning.
  * Changed the index.html example files to use YouTube's new embedded link format.
  * By default, ColorBox returns focus to the element it was launched from once it closes.  This can now be disabled by setting the 'returnFocus' property to false.  Focus was causing problems for some users who had their anchor elements inside animated containers.
  * Minor bug fix involved in using a combination of slideshow and non-slideshow content.
@@ -175,7 +179,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 = 2.2 =
 * Fixed "Object id #", "Object", "Object #" errors with PHP 5.1.x.
- * Problem was due to circular memory leak in PHP 5.1 and 5.2 and HTML DOM object not being cleaned up. 
+ * Problem was due to circular memory leak in PHP 5.1 and 5.2 and HTML DOM object not being cleaned up.
  * Altered way the content is returned to allow for closure and cleaning of object sooner eliminating memory leak.
 * Due to overhwhelming demand I added PHP 4 functionality back in but it is not officially supported.
  * If you were seeing an error that looked something like `Parse error: syntax error, unexpected T_STRING, expecting T_OLD_FUNCTION or T_FUNCTION or T_VAR or '}' in /path/to/plugins/lightbox-plus/classes/shd.class.php on line 86` you have PHP 4.
@@ -184,7 +188,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 * Fix for images with upper case file extension not being auto-lightboxed.
 * Probable fix for `XML Parsing Error: no element found` likely caused by memory leak
  * Unable to reproduce error but research indicates memory leak is a likely cause.
- 
+
 = 2.1 =
 * Now requires PHP 5+, no PHP 4 support.
  * PHP4 reached it's end of life on 8/8/2008 nearly 2 years ago.
