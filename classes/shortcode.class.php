@@ -1,6 +1,6 @@
 <?php
     /**
-    * Lightbox Plus 2.1 - 2010.07.12
+    * Lightbox Plus 2.3 - 2011.08.11 
     */ 
     if (!class_exists('lbp_shortcode')) {
         class lbp_shortcode extends lbp_utilities {

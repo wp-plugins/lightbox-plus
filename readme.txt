@@ -3,8 +3,8 @@ Contributors: dzappone
 Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
-Tested up to: 3.1b2
-Stable tag: 2.2.2
+Tested up to: 3.2.1
+Stable tag: 2.3
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -135,8 +135,9 @@ If you have read and tried the above and you are still having problems, then, pl
 
 = Known Problems =
 
+* A few minor bugs that were pointed out to me have yet to be addressed
 * No support for iPad (if someone wants to donate an iPad to me I will guarantee support)
-* In some instances performance may be slow in IE - this may be due to plugin conflicts or slow JavaScript performance in IE.
+* In some instances performance may be slow in older verions IE - this may be due to plugin conflicts or slow JavaScript performance in IE.
 * Lightboxed video does not seem to work in IE on locally installed sites, for example viewing in IE 7.0 while running XAMPP, this seems to be a Windows only issue.
 
 = Plugin Conflicts =
@@ -157,7 +158,24 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
-=2.2.2=
+= 2.3 =
+* Tested with WordPress 3.2.x
+* Minor bug fixes
+* Some minor text fixes
+* Added option to allow up to 100 inline lightboxes
+* Updated ColorBox to verion 1.3.17
+ * Added properties "top", "bottom", "left" and "right" to specify a position relative to the viewport, rather than using the default centering.
+ * Added property "data" to specify GET or POST data when using Ajax.  ColorBox's ajax functionality is handled by jQuery's .load() method, so the data property works the same way as it does with .load().
+ * Added property "fixed" which can provide fixed positioning for ColorBox, rather than absolute positioning.  This will allow ColorBox to remain in a fixed position within the visitors viewport, despite scrolling.  IE6 support for this was not added, it will continue to use the default absolute positioning.
+ * Fixed ClearType problem with IE7.
+ * Minor fixes.
+* Updated ColorBox to verion 1.3.16  
+ * Better IE related transparency workarounds.  IE7 and up now uses the same background image sprite as other browsers.
+ * Added error handling for broken image links. A message will be displayed telling the user that the image could not be loaded.
+ * Added new property: 'fastIframe' and set it to true by default.  Setting to fastIframe:false will delay the loading graphic removal and onComplete event until iframe has completely loaded.
+ * Ability to redefine $.colorbox.close (or prev, or next) at any time.
+
+= 2.2.2 =
 * Corrected load_plugin_textdomain function calls, had incorrect number of arguments - Thanks Johannes!
 * Minor interface corrections
 

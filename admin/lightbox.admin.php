@@ -25,7 +25,7 @@
                     <img src="https://www.paypal.com/en_US/i/scr/pixel.gif" border="0" alt="" width="1" height="1" />
                 </form>
                 <h4>&mdash; or try a 23Systems affiliate program &mdash;</h4>
-                <a href="https://www.e-junkie.com/ecom/gb.php?cl=88539&c=ib&aff=107849" target="ejejcsingle" name="Digging into WordPress"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-digwp.jpg'?>" alt="Digging into WordPress" border="0" /></a>
+                <a href="https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=107849" target="ejejcsingle" name=""><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-grvfrm.jpg'?>" alt="Gravity Forms - WordPress Form Management" border="0" /></a><br />
                 <a href="https://fundry.com/project/9-lightbox-plus"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-fundry.jpg'?>" alt="Fundry - Crowdfunding Software" border="0" /></a><br />
                 <a href="https://www.e-junkie.com/ecom/gb.php?ii=629122&c=ib&aff=107849&cl=94455" target="ejejcsingle" name="WordPress Defender - 30 Security Strategies"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-wpdfndr.jpg'?>" alt="WordPress Defender - 30 Security Strategies" border="0" /></a>
                 <a href="https://www.e-junkie.com/ecom/gb.php?ii=195647&c=ib&aff=107849&cl=12635" target="ejejcsingle" name="How to be a Rockstar WordPress Designer"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-rckstr.jpg'?>" alt="How to be a Rockstar WordPress Designer" border="0" /></a>
@@ -635,26 +635,12 @@
                             <input type="checkbox" name="use_inline" id="inline" value="1"<?php if ( $lightboxPlusOptions['use_inline'] ) echo ' checked="checked"';?> />
                             Number of Inline Lightboxes:
                             <select name="inline_num" id="inline_num">
-                                <option value="1"<?php if ( $lightboxPlusOptions['inline_num']=='1' ) echo ' selected="selected"'?>>1</option>
-                                <option value="2"<?php if ( $lightboxPlusOptions['inline_num']=='2' ) echo ' selected="selected"'?>>2</option>
-                                <option value="3"<?php if ( $lightboxPlusOptions['inline_num']=='3' ) echo ' selected="selected"'?>>3</option>
-                                <option value="4"<?php if ( $lightboxPlusOptions['inline_num']=='4' ) echo ' selected="selected"'?>>4</option>
-                                <option value="5"<?php if ( $lightboxPlusOptions['inline_num']=='5' ) echo ' selected="selected"'?>>5</option>
-                                <option value="6"<?php if ( $lightboxPlusOptions['inline_num']=='6' ) echo ' selected="selected"'?>>6</option>
-                                <option value="7"<?php if ( $lightboxPlusOptions['inline_num']=='7' ) echo ' selected="selected"'?>>7</option>
-                                <option value="8"<?php if ( $lightboxPlusOptions['inline_num']=='8' ) echo ' selected="selected"'?>>8</option>
-                                <option value="9"<?php if ( $lightboxPlusOptions['inline_num']=='9' ) echo ' selected="selected"'?>>9</option>
-                                <option value="10"<?php if ( $lightboxPlusOptions['inline_num']=='10' ) echo ' selected="selected"'?>>10</option>
-                                <option value="11"<?php if ( $lightboxPlusOptions['inline_num']=='11' ) echo ' selected="selected"'?>>11</option>
-                                <option value="12"<?php if ( $lightboxPlusOptions['inline_num']=='12' ) echo ' selected="selected"'?>>12</option>
-                                <option value="13"<?php if ( $lightboxPlusOptions['inline_num']=='13' ) echo ' selected="selected"'?>>12</option>
-                                <option value="14"<?php if ( $lightboxPlusOptions['inline_num']=='14' ) echo ' selected="selected"'?>>14</option>
-                                <option value="15"<?php if ( $lightboxPlusOptions['inline_num']=='15' ) echo ' selected="selected"'?>>15</option>
-                                <option value="16"<?php if ( $lightboxPlusOptions['inline_num']=='16' ) echo ' selected="selected"'?>>16</option>
-                                <option value="17"<?php if ( $lightboxPlusOptions['inline_num']=='17' ) echo ' selected="selected"'?>>17</option>
-                                <option value="18"<?php if ( $lightboxPlusOptions['inline_num']=='18' ) echo ' selected="selected"'?>>18</option>
-                                <option value="19"<?php if ( $lightboxPlusOptions['inline_num']=='19' ) echo ' selected="selected"'?>>19</option>
-                                <option value="20"<?php if ( $lightboxPlusOptions['inline_num']=='20' ) echo ' selected="selected"'?>>20</option>
+                                <?php for ($i = 1; $i <= 100; $i++) {
+                                    ?>
+                                    <option value="<?php echo $i; ?>"<?php if ( $lightboxPlusOptions['inline_num']==$i ) echo ' selected="selected"'?>><?php echo $i; ?></option>
+                                    <?php  
+                                    }
+                                    ?>
                             </select>
                             <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"> <img src="<?php echo $g_lightbox_plus_url.'/admin/images/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                             <div class="lbp-bigtip" id="lbp_use_class_method_tip">

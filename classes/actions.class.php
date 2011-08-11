@@ -1,6 +1,6 @@
 <?php
     /**
-    * Lightbox Plus 2.1 - 2010.07.12
+    * Lightbox Plus 2.3 - 2011.08.11 
     */
     if (!class_exists('lbp_actions')) {
         class lbp_actions extends lbp_filters {
@@ -68,7 +68,7 @@
                 if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
                     $lightboxPlusJavaScript  = "";
-                    $lightboxPlusJavaScript .= '<!-- Lightbox Plus v2.0.5 - 2010.07.02 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.$this->EOL( );
+                    $lightboxPlusJavaScript .= '<!-- Lightbox Plus v2.3 - 2011.08.11 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.$this->EOL( );
                     $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
                     $lightboxPlusJavaScript .= 'jQuery(document).ready(function($){'.$this->EOL( );
                     $lbpArrayPrimary = array();

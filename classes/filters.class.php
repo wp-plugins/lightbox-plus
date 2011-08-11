@@ -1,6 +1,6 @@
 <?php
     /**
-    * Lightbox Plus 2.1 - 2010.07.12
+    * Lightbox Plus 2.3 - 2011.08.11 
     */
     if (!class_exists('lbp_filters')) {
         class lbp_filters extends lbp_shortcode {
@@ -145,7 +145,8 @@
                 $content = $html->save();
                 $html->clear();
                 unset($html);
-                return $content.'<!-- PHP 5.x -->';
+                $content = $content.'<!-- PHP 5.x -->';
+                return $content;
 
             }
 
@@ -257,7 +258,8 @@
                 $replacement_b[1] = 'href="$1$2"';
                 $replacement_b[2] = 'rel=$1lightbox$2$3';
                 $content = preg_replace( $pattern_b, $replacement_b, $content );
-                return $content.'<!-- PHP 4.x -->';;
+                $content = $content.'<!-- PHP 4.x -->';
+                return $content;
             }
         }
     }
