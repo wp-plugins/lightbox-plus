@@ -1,6 +1,6 @@
 <?php
     /**
-    * Lightbox Plus 2.3 - 2011.08.11 
+    * Lightbox Plus 2.3.1 - 2011.09.30 
     */
     if (!class_exists('lbp_actions')) {
         class lbp_actions extends lbp_filters {
@@ -11,7 +11,7 @@
                 global $g_lightbox_plus_url;
                 if (!is_admin()) {
                     wp_enqueue_script('jquery','','','1.4.2',true);
-                    wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.8', true);
+                    wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.17.2', true);
                 }
             }
 
@@ -188,7 +188,7 @@
                 wp_enqueue_script('jquery','','','1.4.2',true);
                 wp_enqueue_script('jquery-ui-core','','','1.7.3',true);
                 wp_enqueue_script('jquery-ui-dialog','','','1.7.3',true);
-                wp_enqueue_script( 'lightbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.8', true);
+                wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.17.2', true);
             }
 
             /**

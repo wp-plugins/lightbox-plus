@@ -10,35 +10,26 @@
             <?php _e( 'About Lightbox Plus for WordPress','lightboxplus' ); ?>: </h3>
         <div class="inside">
             <div style="float:right;margin-left:10px;text-align: center;">
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="float: none;">
-                    <input name="cmd" type="hidden" value="_donations" />
-                    <input name="business" type="hidden" value="dzappone@gmail.com" />
-                    <input name="item_name" type="hidden" value="Dan Zappone" />
-                    <input name="item_number" type="hidden" value="23SDONWP" />
-                    <input name="no_shipping" type="hidden" value="0" />
-                    <input name="no_note" type="hidden" value="1" />
-                    <input name="currency_code" type="hidden" value="EUR" />
-                    <input name="tax" type="hidden" value="0" />
-                    <input name="lc" type="hidden" value="US" />
-                    <input name="bn" type="hidden" value="PP-DonationsBF" />
-                    <input alt="PayPal - The safer, easier way to pay online!" name="submit" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" type="image" />
-                    <img src="https://www.paypal.com/en_US/i/scr/pixel.gif" border="0" alt="" width="1" height="1" />
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="BKVLWU2KWRNAG">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                 </form>
                 <h4>&mdash; or try a 23Systems affiliate program &mdash;</h4>
+                <a href="http://6e772-ccdd75pi48yf3kdqfke0.hop.clickbank.net/?tid=DIGWP" target="_top"  name="Digging into WordPress - Really Learn It"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-digwp.jpg'?>" alt="Digging into WordPress - Really Learn It" border="0" /></a>
                 <a href="https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=107849" target="ejejcsingle" name=""><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-grvfrm.jpg'?>" alt="Gravity Forms - WordPress Form Management" border="0" /></a><br />
-                <a href="https://fundry.com/project/9-lightbox-plus"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-fundry.jpg'?>" alt="Fundry - Crowdfunding Software" border="0" /></a><br />
-                <a href="https://www.e-junkie.com/ecom/gb.php?ii=629122&c=ib&aff=107849&cl=94455" target="ejejcsingle" name="WordPress Defender - 30 Security Strategies"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-wpdfndr.jpg'?>" alt="WordPress Defender - 30 Security Strategies" border="0" /></a>
+                <a href="https://fundry.com/project/9-lightbox-plus"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-fundry.jpg'?>" alt="Fundry - Crowdfunding Software" border="0" /></a>
                 <a href="https://www.e-junkie.com/ecom/gb.php?ii=195647&c=ib&aff=107849&cl=12635" target="ejejcsingle" name="How to be a Rockstar WordPress Designer"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/aflt-100x26-rckstr.jpg'?>" alt="How to be a Rockstar WordPress Designer" border="0" /></a>
             </div>
 
             <h5>
-                <?php _e( 'Thank you for downloading and installing Lightbox Plus for WordPress<br /><br /><a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/bbpress/forum/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/pages/Austin-TX/23Systems-Web-Devsign/94195762502">Add Facebook Page</a>','lightboxplus' ); ?>
+                <?php _e( 'Thank you for downloading and installing Lightbox Plus for WordPress<br /><br /><a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/services/support/">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/23Systems">Add Facebook Page</a>','lightboxplus' ); ?>
             </h5>
             <p style="text-align: justify">
                 <?php _e( 'Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  ColorBox was created by Jack Moore of <a href="http://colorpowered.com/colorbox/">Color Powered</a> and is licensed under the MIT License. Lightbox Plus allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.','lightboxplus' ); ?>
             </p>
             <p style="text-align: justify">
-                <?php _e( 'Like many developers I spend a lot of my spare time working on WordPress plugins and themes and any donation to the cause is appreciated.  I know a lot of other developers do the same and I try to donate to them whenever I can.  As a developer I greatly appreciate any donation you can make to help support further development of quality plugins and themes for WordPress. <em>You have my sincere thanks and appreciation for using Lightbox Plus</em>.','lightboxplus' ); ?>
+                <?php _e( 'I spend a much of my spare time as possible working on <strong>Lightbox Plus</strong> and any donation is appreciated. Donations play a crucial role in supporting Free and Open Source Software projects. So why are donations important? As a developer the more donations I receive the more time I can invest in working on <strong>Lightbox Plus</strong>. Donations help cover the cost of hardware for development and to pay hosting bills. This is critical to the development of free software. I know a lot of other developers do the same and I try to donate to them whenever I can. As a developer I greatly appreciate any donation you can make to help support further development of quality plugins and themes for WordPress. <em>You have my sincere thanks and appreciation for using <strong>Lightbox Plus</strong></em>.','lightboxplus' ); ?>
             </p>
             <div class="clear"></div>
         </div>
@@ -640,7 +631,7 @@
                                     <option value="<?php echo $i; ?>"<?php if ( $lightboxPlusOptions['inline_num']==$i ) echo ' selected="selected"'?>><?php echo $i; ?></option>
                                     <?php  
                                     }
-                                    ?>
+                                ?>
                             </select>
                             <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"> <img src="<?php echo $g_lightbox_plus_url.'/admin/images/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                             <div class="lbp-bigtip" id="lbp_use_class_method_tip">
@@ -694,19 +685,10 @@
 <div style="display:none">
     <div id="<?php echo $inline_hrefs[0]; ?>" style="padding: 10px;background: #fff">
         <h3><?php _e( 'About Lightbox Plus for WordPress','lightboxplus' ); ?>: </h3>
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="float:right;">
-            <input name="cmd" type="hidden" value="_donations" />
-            <input name="business" type="hidden" value="dzappone@gmail.com" />
-            <input name="item_name" type="hidden" value="Dan Zappone" />
-            <input name="item_number" type="hidden" value="23SDONWP" />
-            <input name="no_shipping" type="hidden" value="0" />
-            <input name="no_note" type="hidden" value="1" />
-            <input name="currency_code" type="hidden" value="EUR" />
-            <input name="tax" type="hidden" value="0" />
-            <input name="lc" type="hidden" value="US" />
-            <input name="bn" type="hidden" value="PP-DonationsBF" />
-            <input alt="PayPal - The safer, easier way to pay online!" name="submit" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" type="image" />
-            <img src="https://www.paypal.com/en_US/i/scr/pixel.gif" border="0" alt="" width="1" height="1" />
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="BKVLWU2KWRNAG">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
         </form>
         <h5>
             <?php _e( 'Thank you for downloading and installing Lightbox Plus for WordPress<br /><br /><a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/bbpress/forum/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/pages/Austin-TX/23Systems-Web-Devsign/94195762502">Add Facebook Page</a>','lightboxplus' ); ?>
@@ -715,7 +697,7 @@
             <?php _e( 'Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  ColorBox was created by Jack Moore of <a href="http://colorpowered.com/colorbox/">Color Powered</a> and is licensed under the MIT License. Lightbox Plus allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.','lightboxplus' ); ?>
         </p>
         <p>
-            <?php _e( 'Like many developers I spend a lot of my spare time working on WordPress plugins and themes and any donation to the cause is appreciated.  I know a lot of other developers do the same and I try to donate to them whenever I can.  As a developer I greatly appreciate any donation you can make to help support further development of quality plugins and themes for WordPress. <em>You have my sincere thanks and appreciation for using Lightbox Plus</em>.','lightboxplus' ); ?>
+            <?php _e( 'I spend a much of my spare time as possible working on <strong>Lightbox Plus</strong> and any donation is appreciated. Donations play a crucial role in supporting Free and Open Source Software projects. So why are donations important? As a developer the more donations I receive the more time I can invest in working on <strong>Lightbox Plus</strong>. Donations help cover the cost of hardware for development and to pay hosting bills. This is critical to the development of free software. I know a lot of other developers do the same and I try to donate to them whenever I can. As a developer I greatly appreciate any donation you can make to help support further development of quality plugins and themes for WordPress. <em>You have my sincere thanks and appreciation for using <strong>Lightbox Plus</strong></em>.','lightboxplus' ); ?>
         </p>
     </div>
 </div>

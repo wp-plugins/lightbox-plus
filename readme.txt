@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 2.3
+Stable tag: 2.3.1
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -14,11 +14,11 @@ Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress
 
 Lightbox Plus uses WordPress's built in jQuery library.
 
-=Troubleshooting=
+= Troubleshooting =
 
 Please read the <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> first if you are having problems.
 
-If you are unable to resolve your problem with the information provided in the FAQ please submit a <a href="http://www.23systems.net/support/">support request<a/>.
+If you are unable to resolve your problem with the information provided in the FAQ please submit a <a href="http://www.23systems.net/services/support/">support request</a>.
 
 = Requirements =
 
@@ -157,6 +157,27 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 4. Lightbox Plus - Inline Content (Form)
 
 == Change Log ==
+
+= 2.3.1 =
+* Changed wp_enqueue_script of jquery.colorbox-min.js to reduce chance of conflict with other implementations of ColorBox (should update for this reason)
+* Updated PHP Simple HTML DOM Parser from version 1.1 to 1.5
+ * Memory leak fixed!
+ * Added support for detecting the source html character set.  This is used to convert characters when plaintext is requested.
+ * Other little fixes and features, too numerous to categorize.
+ * Error of "file_get_contents()" will be thrown as an exception.
+ * Add flag: LOCK_EX while calling "file_put_contents()". 
+ * Fix the typo of "token_blank_t".
+ * Supports xpath generated from Firebug.
+ * New method "dump" of "simple_html_dom_node".
+ * New attribute "xmltext" of "simple_html_dom_node".
+ * remove preg_quote on selector match function: [attribute*=value];
+ * Element "Comment" will treat as children.
+ * Fixed the problem with <pre>.
+ * Fixed bug #2207477 (does not load some pages properly).
+ * Fixed bug #2315853 (Error with character after < sign).
+* Cleaned up some general code and updated some help in the admin panel
+* Updated demos as some were no longer pointing to working links
+* Fixed typos in this file
 
 = 2.3 =
 * Tested with WordPress 3.2.x
