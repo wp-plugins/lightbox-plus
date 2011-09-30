@@ -48,7 +48,7 @@ Optional: Use the title attribute if you want to show a caption.
         <a href="images/image-2.jpg" rel="lightbox[roadtrip]">image #2</a>
         <a href="images/image-3.jpg" rel="lightbox[roadtrip]">image #3</a>
 
-=Suggestions=
+= Suggestions =
 
 Submit <a href="https://fundry.com/project/9-lightbox-plus">suggestions</a> via <a href="https://fundry.com/about">Fundry</a>.
 
@@ -508,8 +508,9 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 == Special Thanks ==
 
 * Dirk Schmitz (for pointing out an obvious bug that I kept overlooking)
-* <a href="http://www.hightechdad.com/">Michael Sheehan</a> and <a href="http://www.funnybunny.se/">Helena Hult&eacute;n</a> for constinued support and testing.
+* <a href="http://www.hightechdad.com/">Michael Sheehan</a> and <a href="http://www.funnybunny.se/">Helena Hult&eacute;n</a> for continued support and testing.
 * Ken Williams (for testing version 1.5)
+* Bart Lauwers of <a href="http://www.genthree.com/">GenThree</a>
 * navjotsingh (for bug fix in gellery shortcode with version 1.6.x)
 * <a href="http://www.dev4press.com/">Milan Petrovic</a> for some quick debugging of version 2.0 admin panel
 * <a href="http://www.melaniesallis.com">Melanie Sallis</a> for needing a lightbox for her site which prompted me to create this plugin
