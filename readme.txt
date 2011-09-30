@@ -178,6 +178,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 * Cleaned up some general code and updated some help in the admin panel
 * Updated demos as some were no longer pointing to working links
 * Fixed typos in this file
+* Updated the following styles: Dark, Elegant, Framed, Lightweight, and Shadowed
 
 = 2.3 =
 * Tested with WordPress 3.2.x
