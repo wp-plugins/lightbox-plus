@@ -172,7 +172,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * New attribute "xmltext" of "simple_html_dom_node".
  * remove preg_quote on selector match function: [attribute*=value];
  * Element "Comment" will treat as children.
- * Fixed the problem with <pre>.
+ * Fixed the problem with &lt;pre&gt;.
  * Fixed bug #2207477 (does not load some pages properly).
  * Fixed bug #2315853 (Error with character after < sign).
 * Cleaned up some general code and updated some help in the admin panel
