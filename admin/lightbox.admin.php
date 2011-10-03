@@ -75,27 +75,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">
-                            <?php _e( 'PHP 4 Auto Lightbox Method', 'lightboxplus' )?>: </th>
-                        <td>
-                            <input type="checkbox" name="use_php_four" id="use_php_four" value="1"<?php if ( $lightboxPlusOptions['use_php_four'] || (!$this->phpMinV('4.*'))) echo ' checked="checked"';?> />
-                            <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/information.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                            <?php
-                                if (!$lightboxPlusOptions['use_php_four']) {
-                                    _e('Current HTML Parser: DOM (recommended method)');
-                                }
-                                else {
-                                    _e('Current HTML Parser: RegEx (for PHP 4.x and "object" errors)');
-                                }
-                            ?>
-                            <div class="lbp-bigtip" id="lbp_use_php_four_tip">
-                                <?php _e( 'If checked, will use the old and not always accurate regular expression method for parsing the HTML. If you are using PHP 4 this will remain checked as the new HTML parsing method only supports PHP 5.  If you are recieving and "object" error in your content you may also wish to check this item. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' );
-                                ?>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
+                                        <tr>
                         <th scope="row">
                             <?php _e( 'Disable Lightbox CSS', 'lightboxplus' )?>: </th>
                         <td>

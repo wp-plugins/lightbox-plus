@@ -107,16 +107,7 @@
             var $lightboxInitName      = 'lightboxplus_init';
             var $lightboxStylePathName = 'lightboxplus_style_path';
 
-            /**
-            * The PHP 4 Compatible Constructor - calls the constructor function if using php4
-            *
-            * NOTE: Lightbox Plus may not work with PHP4 and no support is offered as PHP4 has reached its end of life
-            */
-            function wp_lightboxplus( ) {
-                $this->__construct( );
-            }
-
-            /**
+           /**
             * The PHP 5 Constructor - initializes the plugin and sets up panels
             */
             function __construct( ) {
