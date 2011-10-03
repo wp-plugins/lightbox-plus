@@ -1,6 +1,6 @@
 <?php
     /**
-    * Lightbox Plus 2.3.1 - 2011.09.30 
+    * Lightbox Plus 2.4 - 2011.10.03 
     */
     if (!class_exists('lbp_actions')) {
         class lbp_actions extends lbp_filters {

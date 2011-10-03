@@ -1,7 +1,7 @@
 <!-- Begin Secondary Lightbox -->
 <?php
     /**
-    * Lightbox Plus 2.3.1 - 2011.09.30 
+    * Lightbox Plus 2.4 - 2011.10.03 
     */ 
 ?>
 <div id="poststuff" class="lbp">

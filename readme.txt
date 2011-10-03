@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 2.3.1
+Stable tag: 2.4
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -25,8 +25,9 @@ If you are unable to resolve your problem with the information provided in the F
 Server
 
 * WordPress 2.8+
-* PHP 4 (Not recommended and not supported)
 * PHP 5+ (Recommended)
+
+Support for PHP 4 has been completely removed - DO NOT UPDATE if you want Lightbox Plus to work with PHP 4.
 
 Client
 
@@ -67,7 +68,6 @@ See <a href="http://go.adobe.com/kb/ts_tn_15523_en-us">Flash content displays on
 
 To work around this issue you will need to add something like the following to your <code>&lt;param /&gt;</code> and <code>&lt;embed&gt;&lt;/embed&gt;</code> tags:
 <code>
-
         &lt;object&gt;&lt;param name="wmode" value="opaque" /&gt;&lt;embed wmode="opaque" [all other embed settings, file src etc.]&gt;&lt;/embed&gt;&lt;/object&gt;
 </code>
 
@@ -83,7 +83,17 @@ Finally, it seems that recent version of WordPress (or perhaps the plugin is cau
 
 = Lightbox Plus doesn't work properly in browser X, Y, or Z (Chrome, Safari, Firefox, Opera, Explorer 6, 7, etc)? =
 
-Yes it does, the problems are the same as above.  It has been tested in Firefox 2, 3, Safari 3, 4, Opera 9, 10, Chrome 1, 2, Internet Explorer 6, 7, 8 on Windows and Firefox 2, 3, Safari 3, 4 and Opera 9 on OS X and Firefox 2, 3, Opera 9, and Konqueror on Linux.
+Yes it probably does, the problems may be the same as above or there may be a conflict with another plugin or a style conflict.  It has been tested in ChromeIE 7+, FireFox 2+, Chrome, Safari 3+, Opera 8+ since development began.
+
+= Does Lightbox Plus work with PHP 4? If not, why not? =
+
+No it doesn't.  PHP 4 reached end of life on August 8th 2008 (over 3 years ago.)  WordPress no longer supports PHP 4 and all plugin developers are encourage to follow.  The best solution at this time is to ask your host provider to upgrade to PHP 5.
+
+You will know that Lightbox Plus is not working because of PHP if you recieve the following error:
+
+<b>Plugin couldn't be activated because of fatal error</b>
+
+<code>Parse error: syntax error, unexpected T_OBJECT_OPERATOR in /path/to/plugin/classes/filters.class.php on line 81</code>
 
 = Can I use this plugin and Lightview Plus, Lightbox 2 (either one), WP lightbox JS Plugin at the same time? =
 
@@ -135,6 +145,7 @@ If you have read and tried the above and you are still having problems, then, pl
 
 = Known Problems =
 
+* Does not work correctly with W3 Total Cache if you are using automatic minify settings.  You can manually set up minify to work correctly bypassing Lightbox Plus (jquery-colorbox.min.js)
 * A few minor bugs that were pointed out to me have yet to be addressed
 * No support for iPad (if someone wants to donate an iPad to me I will guarantee support)
 * In some instances performance may be slow in older verions IE - this may be due to plugin conflicts or slow JavaScript performance in IE.
@@ -157,6 +168,18 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 4. Lightbox Plus - Inline Content (Form)
 
 == Change Log ==
+
+= 2.4 =
+* Removed all support for PHP 4.
+ * If you still need a version that works with PHP 4 <b>DO NOT UPGRADE</b>
+ * If you get this error: <code>Parse error: syntax error, unexpected T_OBJECT_OPERATOR in /path/to/plugin/classes/filters.class.php on line 81</code> you have PHP 4.
+ * Contact your host provider to see if they can upgrade to PHP 5. 
+* Fixed issue where PHP Simple HTML DOM Parser was stripping returns causing issue with HTML output in several plugins (including SyntaxHighlighter Evolved)
+ * This issue should be fairly rare.
+* Patched PHP Simple HTML DOM Parser (<code>shd.class.php</code>) to verify <code>mb_detect_encoding()</code> function exist before calling
+ * This issue was reported by several users that did not have mbstring functions compiled into PHP.
+ * Assumes UTF-8 if function doesn't exist
+ * The correct solution is to add the <b>mbstring</b> library to PHP (contact you host/support to resolve)
 
 = 2.3.1 =
 * Changed wp_enqueue_script of jquery.colorbox-min.js to reduce chance of conflict with other implementations of ColorBox (should update for this reason)

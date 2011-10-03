@@ -5,7 +5,7 @@
     Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 2.3.1
+    Version: 2.4
     */
     /*---- 2011.09.30  ----*/
     /**
@@ -107,7 +107,7 @@
             var $lightboxInitName      = 'lightboxplus_init';
             var $lightboxStylePathName = 'lightboxplus_style_path';
 
-           /**
+            /**
             * The PHP 5 Constructor - initializes the plugin and sets up panels
             */
             function __construct( ) {
@@ -131,12 +131,12 @@
                         * Check to see if user wants to have gallery images lightboxed
                         */
                         if ($lightboxPlusOptions['gallery_lightboxplus'] != 1) {
-                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ) );
+                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 6 );
                         }
                         else {
                             remove_shortcode( 'gallery' );
-                            add_shortcode( 'gallery', array( &$this, 'lightboxPlusGallery' ), 10);
-                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 12 );
+                            add_shortcode( 'gallery', array( &$this, 'lightboxPlusGallery' ), 6);
+                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 6 );
                         }
                     }
                 }
@@ -434,7 +434,8 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options v2.3.1 (ColorBox v1.3.17.2)', 'lightboxplus' )?></h2>
+                <h2><?php _e( 'Lightbox Plus Options v2.4 ', 'lightboxplus' )?></h2>
+                <h2><?php _e( '(ColorBox v1.3.17.2, PHP Simple HTML DOM Parser v1.5)', 'lightboxplus' )?></h2>
 
                 <br style="clear: both;" />
                 <?php
