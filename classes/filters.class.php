@@ -139,9 +139,7 @@
                 $content = $html->save();
                 $html->clear();
                 unset($html);
-                $content = $content.'<!-- PHP 5.x -->';
                 return $content;
-
             }
         }
     }

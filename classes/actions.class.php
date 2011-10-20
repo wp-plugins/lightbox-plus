@@ -188,6 +188,7 @@
                 wp_enqueue_script('jquery','','','1.4.2',true);
                 wp_enqueue_script('jquery-ui-core','','','1.7.3',true);
                 wp_enqueue_script('jquery-ui-dialog','','','1.7.3',true);
+                wp_enqueue_script('jquery-ui-tabs','','','1.7.3',true);
                 wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.17.2', true);
             }
 

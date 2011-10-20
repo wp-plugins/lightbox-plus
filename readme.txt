@@ -169,6 +169,27 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
+= 2.5 =
+* Added positioning options
+ * Absolute top, right. bottom, left positioning.  Now able to specify horizontal and vertical position in viewport as opposed to center only.
+ * Fixed positioning that allows lightbox stays on page when scrolled.
+* Rebuild interface
+ * Change interface to make more concise
+ * Use jQuery-UI Tabs
+* Write more instructions
+* Page/Post Options
+ * Auto launch on page
+ * Per page loading
+* Scrolling If 'false' ColorBox will hide scrollbars for overflowing content. This could be used on conjunction with the resize method (see below) for a smoother transition if you are appending content to an already open instance of ColorBox.
+* Disable grouping by rel attribute - Set ColorBox's value for rel to 'nofollow'. Example: $('a[rel="examples"]').colorbox({rel:'nofollow'});
+* Fixed image X of X problem, can disable Image X of X
+* Updated ColorBox to verion 1.3.17
+ * Fixed a regression where Flash content displayed in ColorBox would be reloaded if the browser window was resized.
+ * Added safety check to make sure that ColorBox's markup is only added to the DOM a single time, even if $.colorbox.init() is called multiple times.  This will allow site owners to manually initialize ColorBox if they need it before the DOM has finished loading.
+ * Updated the example index.html files to be HTML5 compliant.
+ * Changed the slideshow behavior so that it immediately moves to the next slide when the slideshow is started.
+ * Minor regex bugfix to allow automatic detection of image URLs that include fragments.
+
 = 2.4 =
 * Removed all support for PHP 4.
  * If you still need a version that works with PHP 4 <b>DO NOT UPGRADE</b>
