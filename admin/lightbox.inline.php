@@ -1,23 +1,26 @@
-<!-- Begin Inline Lightbox -->
 <?php
-	/**
-	* Lightbox Plus 2.4 - 2011.10.03 
-	*/ 
+    /**
+    * @package Lightbox Plus
+    * @subpackage lightbox.inline.php
+    * @internal 2011.10.03
+    * @author Dan Zappone / 23Systems
+    * @version 2.4
+    */
 ?>
+<!-- Inline Lightbox Settings -->
 <div id="poststuff" class="lbp">
 	<div class="postbox close-me">
 		<h3 class="handle"><?php _e( 'Lightbox Plus - Inline Lightbox Settings','lightboxplus' ); ?></h3>
 		<div class="inside toggle">
-			<!-- Inline Settings -->
 			<div id="ilbp-tabs">
 				<ul>
-					<li><a href="#ilbp-tabs-1"><?php _e( 'Inline Options','lightboxplus' ); ?></a></li>
+					<li><a href="#ilbp-tabs-1"><?php _e( 'General','lightboxplus' ); ?></a></li>
 					<li><a href="#ilbp-tabs-2"><?php _e( 'Usage','lightboxplus' ); ?></a></li>
 					<li><a href="#ilbp-tabs-3"><?php _e( 'Demo/Test','lightboxplus' ); ?></a></li>
 				</ul>
-				<!-- Inline Options -->
-				<div id="ilbp-tabs-1" title="Inline Options">
-					<table class="wp-list-table widefat" title="Inline Options">
+				<!-- General -->
+				<div id="ilbp-tabs-1" title="General">
+					<table class="wp-list-table widefat" title="General">
 						<thead>
 							<tr>
 								<th>&nbsp;</th>

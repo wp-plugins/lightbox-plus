@@ -1,6 +1,10 @@
 <?php
     /**
-    * Lightbox Plus 2.4 - 2011.10.03 
+    * @package Lightbox Plus
+    * @subpackage actions.class.php
+    * @internal 2011.10.03
+    * @author Dan Zappone / 23Systems
+    * @version 2.4
     */
     if (!class_exists('lbp_actions')) {
         class lbp_actions extends lbp_filters {
@@ -10,8 +14,8 @@
             function lightboxPlusInitScripts( ) {
                 global $g_lightbox_plus_url;
                 if (!is_admin()) {
-                    wp_enqueue_script('jquery','','','1.4.2',true);
-                    wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.17.2', true);
+                    wp_enqueue_script('jquery','','','1.6.4',true);
+                    wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.18', true);
                 }
             }
 
@@ -40,7 +44,7 @@
                         /**
                         * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles
                         * Experimental should not be used currently Check for and add conditional IE specific CSS fixes
-                        * These seem t not actually work correctly anymore so bypassing for now
+                        * These seem to not actually work correctly anymore so bypassing for now
                         *
                         * @var mixed
                         */

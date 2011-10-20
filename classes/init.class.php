@@ -1,7 +1,11 @@
 <?php
-	/**
-	* Lightbox Plus 2.4 - 2011.10.03 
-	*/
+    /**
+    * @package Lightbox Plus
+    * @subpackage init.class.php
+    * @internal 2011.10.03
+    * @author Dan Zappone / 23Systems
+    * @version 2.4
+    */
 	if (!class_exists('lbp_init')) {
 		class lbp_init extends lbp_actions {
 			/**
@@ -86,22 +90,17 @@
 				"no_auto_lightbox"      => '0',
 				"text_links"            => '0',
 				"no_display_title"      => '0',
-				"scalePhotos"           => '1',
-				"scrolling"             => '0',
-				"photo"                 => '0',
-				"title"                 => '0',
-				"rel"                   => '0',
-				"open"                  => '0',
-				"returnFocus"           => '1',
-				"loop"                  => '1',
-				"overlayClose"          => '1',        
-				"escKey"                => '1',
-				"arrowKey"              => '1',
-				"top"                   => '0',
-				"bottom"                => '0',
-				"left"                  => '0',
-				"right"                 => '0',
-				"fixed"                 => '0'
+                "scrolling"             => '1',
+                "photo"                 => '0',
+                "rel"                   => 'false', //Disable grouping
+                "loop"                  => '1',
+                "esc_key"               => '1',
+                "arrow_key"             => '1',
+                "top"                   => '0',
+                "right"                 => '0',
+                "bottom"                => '0',
+                "left"                  => '0',
+                "fixed"                 => '0'
 				);
 
 
@@ -147,23 +146,18 @@
 				"use_class_method_sec"  => '0',
 				"class_name_sec"        => 'lbpModal',
 				"no_display_title_sec"  => '0',
-				"scale_photos_sec"      => '1',
-				"scrolling_sec"         => '0',
-				"photo_sec"             => '0',
-				"title_sec"             => '0',
-				"rel_sec"               => '0',
-				"open_sec"              => '0',
-				"returnFocus_sec"       => '1',
-				"loop_sec"              => '1',
-				"overlayClose_sec"      => '1',        
-				"escKey_sec"            => '1',
-				"arrowKey_sec"          => '1',
-				"top_sec"               => '0',
-				"bottom_sec"            => '0',
-				"left_sec"              => '0',
-				"right_sec"             => '0',
-				"fixed_sec"             => '0',
-				"fastIframe_sec"        => '1'
+                "scale_photos_sec"          => '1',
+                "scrolling_sec"             => '1',
+                "photo_sec"                 => '0',
+                "rel_sec"                   => '0', //Disable grouping
+                "loop_sec"                  => '1',
+                "esc_key_sec"               => '1',
+                "arrow_key_sec"             => '1',
+                "top_sec"                   => '0',
+                "right_sec"                 => '0',
+                "bottom_sec"                => '0',
+                "left_sec"                  => '0',
+                "fixed_sec"                 => '0'
 				);
 
 				if ( !empty($lightboxPlusOptions) ) {
@@ -200,6 +194,7 @@
 					$inline_position_bottoms = array();
 					$inline_position_lefts   = array();
 					$inline_position_fixeds  = array();
+                    $inline_position_opens   = array();
 					$inline_opacitys         = array();
 					for ($i = 1; $i <= $inline_number; $i++) {
 						$inline_links[]            = 'lbp-inline-link-'.$i;
@@ -215,7 +210,8 @@
 						$inline_position_bottoms[] = '';
 						$inline_position_lefts[]   = '';
 						$inline_position_fixeds[]  = '0';
-						$inline_opacitys[]         = '80%';
+                        $inline_position_opens[]   = '0';
+						$inline_opacitys[]         = '0.8';
 					}
 				}
 
@@ -223,9 +219,20 @@
 				"inline_links"     => $inline_links,
 				"inline_hrefs"     => $inline_hrefs,
 				"inline_widths"    => $inline_widths,
-				"inline_heights"   => $inline_heights
+				"inline_heights"   => $inline_heights,
+                "inline_inner_widths"     => $inline_inner_widths,
+                "inline_inner_heights"    => $inline_inner_heights,
+                "inline_max_widths"       => $inline_max_widths,
+                "inline_max_heights"      => $inline_max_heights,
+                "inline_position_tops"    => $inline_position_tops,
+                "inline_position_rights"  => $inline_position_rights,
+                "inline_position_bottoms" => $inline_position_bottoms,
+                "inline_position_lefts"   => $inline_position_lefts,
+                "inline_position_fixeds"  => $inline_position_fixeds,
+                "inline_position_opens"   => $inline_position_opens,
+                "inline_opacitys"         => $inline_opacitys
 				/**
-				* TODO: Add inititialization for inline lightbox base on array above
+				* @todo Add inititialization for inline lightbox base on array above
 				*/
 				);
 

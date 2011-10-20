@@ -1,3 +1,10 @@
+/**
+* @package Lightbox Plus
+* @subpackage jquery.colorbox-min.js
+* @internal 2011.10.03
+* @author Dan Zappone / 23Systems
+* @version 2.4
+*/
 // ColorBox v1.3.18 - a full featured, light-weight, customizable lightbox based on jQuery 1.3+
 // Copyright (c) 2011 Jack Moore - jack@colorpowered.com
 // Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php

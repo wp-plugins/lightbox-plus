@@ -1,6 +1,10 @@
 <?php
     /**
-    * Lightbox Plus 2.4 - 2011.10.03 
+    * @package Lightbox Plus
+    * @subpackage shortcode.class.php
+    * @internal 2011.10.03
+    * @author Dan Zappone / 23Systems
+    * @version 2.4
     */ 
     if (!class_exists('lbp_shortcode')) {
         class lbp_shortcode extends lbp_utilities {
