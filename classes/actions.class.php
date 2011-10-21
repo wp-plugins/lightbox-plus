@@ -41,23 +41,6 @@
                     } else {
                         wp_register_style('lightboxStyle', $style_path.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.0.2','screen');
                         wp_enqueue_style('lightboxStyle');
-                        /**
-                        * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles
-                        * Experimental should not be used currently Check for and add conditional IE specific CSS fixes
-                        * These seem to not actually work correctly anymore so bypassing for now
-                        *
-                        * @var mixed
-                        */
-                        /**
-                        * $currentStylePath       = get_option( 'lightboxplus_style_path' );
-                        * $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
-                        * if ( file_exists( $filename ) ) {
-                        *     $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
-                        *     $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
-                        *     $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
-                        *     echo $lightboxPlusStyleSheet;
-                        * }
-                        */
                     }
                 }
             }
@@ -182,6 +165,13 @@
                 add_action('admin_print_scripts-'.$plugin_page, array( &$this, 'lightboxPlusAdminScripts'));
                 add_action('admin_head-'.$plugin_page, array( &$this, 'lightboxPlusColorbox'));
                 add_action('admin_print_styles-'.$plugin_page, array( &$this, 'lightboxPlusAdminStyles'));
+                /**
+                * @todo uncomment the following to add per post/page options
+                */
+                /*
+                add_meta_box( 'lbp-meta-box', 'Lightbox Plus', array(&$this,'drawLightboxMeta'), 'post', 'side', 'high' );
+                add_meta_box( 'lbp-meta-box', 'Lightbox Plus', array(&$this,'drawLightboxMeta'), 'page', 'side', 'high' );
+                */
             }
 
             /**
@@ -222,32 +212,26 @@
                     } else {
                         wp_register_style('lightboxStyle', $style_path.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.0.2','screen');
                         wp_enqueue_style('lightboxStyle');
-                        /**
-                        * TODO 4 -o Dan Zappone -c filesystem, IE: IE Styles
-                        * Experimental should not be used currently Check for and add conditional IE specific CSS fixes
-                        * These seem t not actually work correctly anymore so bypassing for now
-                        *
-                        * @var mixed
-                        */
-                        /**
-                        * $currentStylePath       = get_option( 'lightboxplus_style_path' );
-                        * $filename               = $currentStylePath.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php';
-                        * if ( file_exists( $filename ) ) {
-                        *     $lightboxPlusStyleSheet .= '<!--[if IE]>'.$this->EOL( );
-                        *     $lightboxPlusStyleSheet .= '     <link type="text/css" media="screen" rel="stylesheet" href="'.$g_lightbox_plus_url.'/css/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox-ie.php" title="IE fixes" />'.$this->EOL( );
-                        *     $lightboxPlusStyleSheet .= '<![endif]-->'.$this->EOL( );
-                        *     echo $lightboxPlusStyleSheet;
-                        * }
-                        */
                     }
                 }
             }
 
-
-
-
-
-
+            /**
+            * @todo finish per post/page metabox 
+            * Add metabox to edit post/page for per page application of lightbox plus
+            * 
+            */
+            function drawLightboxMeta() { 
+            ?>
+            <p>Use Lightbox Plus with this page/post:</p>
+            <input name="lbp-use" type="radio" value="1" /><label>Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;<input name="lbp-use" type="radio" value="0" checked="checked" /><label>No</label>
+            <p>Auto launch Lightbox Plus on this page/post:</p>
+            <input name="lbp-autoload" type="radio" value="1" /><label>Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;<input name="lbp-autoload" type="radio" value="0" checked="checked" /><label>No</label>
+            <p>Lightbox Plus unique ID for this page/post:</p>
+            <input type="text" id="lbp-uid" name="lbp-uid" size="35" autocomplete="off" /><br />
+            <small>(if empty defaults to page/post id)</small>
+            <?php
+            }
 
         }
     }

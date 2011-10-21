@@ -19,8 +19,8 @@
 					<li><a href="#ilbp-tabs-3"><?php _e( 'Demo/Test','lightboxplus' ); ?></a></li>
 				</ul>
 				<!-- General -->
-				<div id="ilbp-tabs-1" title="General">
-					<table class="wp-list-table widefat" title="General">
+				<div id="ilbp-tabs-1">
+					<table class="wp-list-table widefat">
 						<thead>
 							<tr>
 								<th>&nbsp;</th>
@@ -106,8 +106,8 @@
 					</table>
 				</div>
 				<!-- Usage -->
-				<div id="ilbp-tabs-2" title="Usage"> 
-					<table class="form-table" title="Usage"><!-- Instructions -->
+				<div id="ilbp-tabs-2"> 
+					<table class="form-table">
 						<tr>
 							<td>
 								<?php _e('Using Inline Lightboxes', 'lightboxplus')?>
@@ -127,7 +127,7 @@
 					</table>
 				</div>
 				<!-- Demo/Test -->
-				<div id="ilbp-tabs-3" title="Demo/Test">
+				<div id="ilbp-tabs-3">
 					<table class="form-table">
 						<tr valign="top">
 							<td>

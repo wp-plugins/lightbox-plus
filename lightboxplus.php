@@ -214,13 +214,14 @@
                     switch ( $_POST['sub'] ) {
                         case 'settings':
                             $lightboxPlusOptions = array(
-                            "use_perpage"           => $_POST['use_perpage'],
-                            "lightboxplus_style"    => $_POST['lightboxplus_style'],
-                            "use_custom_style"      => $_POST['use_custom_style'],
-                            "disable_css"           => $_POST['disable_css'],
                             "lightboxplus_multi"    => $_POST['lightboxplus_multi'],
                             "use_inline"            => $_POST['use_inline'],
                             "inline_num"            => $_POST['inline_num'],
+                            "lightboxplus_style"    => $_POST['lightboxplus_style'],
+                            "use_custom_style"      => $_POST['use_custom_style'],
+                            "disable_css"           => $_POST['disable_css'],
+                            "hide_about"            => $_POST['hide_about'],
+                            "use_perpage"           => $_POST['use_perpage'],
                             "transition"            => $_POST['transition'],
                             "speed"                 => $_POST['speed'],
                             "width"                 => $_POST['width'],
@@ -266,6 +267,7 @@
                             "fixed"                 => $_POST['fixed']
                             );
 
+                            $g_lbp_messages .= __('Lightbox Plus base settings updated.','lightboxplus').'<br /><br />';
                             $g_lbp_messages .= __('Primary lightbox settings updated.','lightboxplus').'<br /><br />';
 
                             if ( $_POST['lightboxplus_multi'] ) {
@@ -497,6 +499,7 @@
             <div class="wrap" id="lightbox">
                 <h2><?php _e( 'Lightbox Plus Options (v2.4) ', 'lightboxplus' )?></h2>
                 <h3><?php _e( 'With ColorBox (v1.3.18) and PHP Simple HTML DOM Parser (v1.5)', 'lightboxplus' )?></h3>
+                <h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/services/support/">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/23Systems">Add Facebook Page</a>','lightboxplus' ); ?></h4>
 
                 <br style="clear: both;" />
                 <?php
@@ -513,6 +516,12 @@
             <script type="text/javascript">
                 <!--
                 jQuery(document).ready(function($){
+                    if (!$('#use_inline').prop('checked')) { $('.base_gen').hide(); }
+                    if ($('#rel').prop('checked')) { $('.grouping_prim').hide(); }
+                    if (!$('#slideshow').prop('checked')) { $('.slideshow_prim').hide(); }
+                    if ($('#rel_sec').prop('checked')) { $('.grouping_sec').hide(); }
+                    if (!$('#slideshow_sec').prop('checked')) { $('.slideshow_sec').hide(); }
+                    
                     $('.close-me').each(function() {$(this).addClass("closed");});
                     $('#lbp_message').each(function() {$(this).fadeOut(5000);});
                     $('.postbox h3').click( function() {$(this).next('.toggle').slideToggle('fast');});
@@ -521,6 +530,12 @@
                     $("#plbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
                     $("#slbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });  
                     $("#ilbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } }); 
+                    
+                    $("#use_inline").click(function(){  if ($("#use_inline").prop("checked")) { $(".base_gen").show("fast"); } else { $(".base_gen").hide("fast"); } });
+                    $("#rel").click(function(){  if ($("#rel").prop("checked")) { $(".grouping_prim").hide("fast"); } else { $(".grouping_prim").show("fast"); } });
+                    $("#slideshow").click(function(){  if ($("#slideshow").prop("checked")) { $(".slideshow_prim").show("fast"); } else { $(".slideshow_prim").hide("fast"); } });
+                    $("#rel_sec").click(function(){  if ($("#rel_sec").prop("checked")) { $(".grouping_sec").hide("fast"); } else { $(".grouping_sec").show("fast"); } });
+                    $("#slideshow_sec").click(function(){  if ($("#slideshow_sec").prop("checked")) { $(".slideshow_sec").show("fast"); } else { $(".slideshow_sec").hide("fast"); } });
                 });
                 //-->
             </script>

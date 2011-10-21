@@ -38,8 +38,8 @@
                     <li><a href="#slbp-tabs-8"><?php _e( 'Demo/Test','lightboxplus' ); ?></a></li>
                 </ul>
                 <!-- General -->
-                <div id="slbp-tabs-1" title="General">
-                    <table class="form-table" title="General">
+                <div id="slbp-tabs-1">
+                    <table class="form-table">
                         <tr>
                             <th scope="row">
                                 <?php _e( 'Transition Type', 'lightboxplus' )?>: </th>
@@ -108,8 +108,8 @@
                     </table>
                 </div>
                 <!-- Size -->
-                <div id="slbp-tabs-2" title="Size">
-                    <table class="form-table" title="Size">
+                <div id="slbp-tabs-2">
+                    <table class="form-table">
                         <tr>
                             <th scope="row">
                                 <?php _e( 'Width', 'lightboxplus' )?>: </th>
@@ -212,8 +212,8 @@
                     </table>
                 </div>
                 <!-- Position -->
-                <div id="slbp-tabs-3" title="Position">
-                    <table class="form-table" title="Position">
+                <div id="slbp-tabs-3">
+                    <table class="form-table">
                         <tr>
                             <th scope="row"><?php _e( 'Top', 'lightboxplus' )?>: </th>
                             <td><input name="top_sec" type="text" id="top_sec" size="8" maxlength="8" value="<?php if ( !empty( $lightboxPlusOptions['top'] )) { echo $lightboxPlusOptions['top'];} else { echo ''; } ?>" /><a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
@@ -260,55 +260,12 @@
                     </table>
                 </div>
                 <!-- Interface -->
-                <div id="slbp-tabs-4" title="Interface">
-                    <table class="form-table" title="Interface">
+                <div id="slbp-tabs-4">
+                    <table class="form-table">
                         <tr>
-                            <th scope="row">
-                                <?php _e( 'Disable grouping', 'lightboxplus' )?>: </th>
-                            <td>
-                                <input type="checkbox" name="rel_sec" value="nofollow"<?php if ( $lightboxPlusOptions['rel_sec'] == 'nofollow' ) echo ' checked="checked"';?> />
-                                <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                <div class="lbp-bigtip" id="lbp_nogrouping_sec_tip">
-                                    <?php _e( 'If checked will disbale the useage of grouping labels. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
-                                </div>
-                            </td>
+                            <th scope="row" colspan="2"><strong><?php _e( 'General Interface Options', 'lightboxplus' )?></strong></th>
                         </tr>
-                        <tr>
-                            <th scope="row">
-                                <?php _e( 'Grouping Labels', 'lightboxplus' )?>: </th>
-                            <td>
-                                <input type="text" size="15" name="label_image_sec" id="label_imag_sece" value="<?php if (empty( $lightboxPlusOptions['label_image_sec'])) { echo ''; } else {echo $lightboxPlusOptions['label_image_sec'];}?>" />
-                                #
-                                <input type="text" size="15" name="label_of_sec" id="label_of_sec" value="<?php if (empty( $lightboxPlusOptions['label_of_sec'] )) { echo ''; } else {echo $lightboxPlusOptions['label_of_sec'];}?>" />
-                                # <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                <div class="lbp-bigtip" id="lbp_label_image_sec_tip">
-                                    <?php _e( 'Text format for the content group / gallery count. {current} and {total} are detected and replaced with actual numbers while ColorBox runs.<strong><em>Default: Image {current} of {total}</em></strong>', 'lightboxplus' )?>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <?php _e( 'Previous image text', 'lightboxplus' )?>: </th>
-                            <td>
-                                <input type="text" size="15" name="previous_sec" id="previous_sec" value="<?php if (empty( $lightboxPlusOptions['previous_sec'])) { echo ''; } else { echo $lightboxPlusOptions['previous_sec'];} ?>" />
-                                <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                <div class="lbp-bigtip" id="lbp_previous_sec_tip">
-                                    <?php _e( 'Text for the previous button in a shared relation group (same values for "rel" attribute). <strong><em>Default: previous</em></strong>', 'lightboxplus' )?>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <?php _e( 'Next image text', 'lightboxplus' )?>: </th>
-                            <td>
-                                <input type="text" size="15" name="next_sec" id="next_sec" value="<?php if (empty( $lightboxPlusOptions['next_sec'])) { echo ''; } else { echo $lightboxPlusOptions['next_sec'];} ?>" />
-                                <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                <div class="lbp-bigtip" id="lbp_next_sec_tip">
-                                    <?php _e( 'Text for the next button in a shared relation group (same values for "rel" attribute).  <strong><em>Default: next</em></strong>', 'lightboxplus' )?>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
+                        <tr class="grouping_sec">
                             <th scope="row">
                                 <?php _e( 'Close image text', 'lightboxplus' )?>: </th>
                             <td>
@@ -343,6 +300,66 @@
                         </tr>
                         <tr>
                             <th scope="row">
+                                <?php _e( 'Scroll Bars', 'lightboxplus' )?>: </th>
+                            <td>
+                                <input type="checkbox" name="scrolling_sec" id="scrolling_sec" value="1"<?php if ( $lightboxPlusOptions['scrolling_sec'] ) echo ' checked="checked"';?> />
+                                <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                <div class="lbp-bigtip" id="lbp_scrolling_sec_tip">
+                                    <?php _e( 'If unchecked, Lightbox Plus will hide scrollbars for overflowing content. <strong><em>Default: Checked</em></strong>', 'lightboxplus' )?>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" colspan="2"><strong><?php _e( 'Image Grouping', 'lightboxplus' )?></strong></th>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <?php _e( 'Disable grouping', 'lightboxplus' )?>: </th>
+                            <td>
+                                <input type="checkbox" id="rel_sec" name="rel_sec" value="nofollow"<?php if ( $lightboxPlusOptions['rel_sec'] == 'nofollow' ) echo ' checked="checked"';?> />
+                                <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                <div class="lbp-bigtip" id="lbp_nogrouping_sec_tip">
+                                    <?php _e( 'If checked will disbale the useage of grouping labels. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="grouping_sec">
+                            <th scope="row">
+                                <?php _e( 'Grouping Labels', 'lightboxplus' )?>: </th>
+                            <td>
+                                <input type="text" size="15" name="label_image_sec" id="label_imag_sece" value="<?php if (empty( $lightboxPlusOptions['label_image_sec'])) { echo ''; } else {echo $lightboxPlusOptions['label_image_sec'];}?>" />
+                                #
+                                <input type="text" size="15" name="label_of_sec" id="label_of_sec" value="<?php if (empty( $lightboxPlusOptions['label_of_sec'] )) { echo ''; } else {echo $lightboxPlusOptions['label_of_sec'];}?>" />
+                                # <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                <div class="lbp-bigtip" id="lbp_label_image_sec_tip">
+                                    <?php _e( 'Text format for the content group / gallery count. {current} and {total} are detected and replaced with actual numbers while ColorBox runs.<strong><em>Default: Image {current} of {total}</em></strong>', 'lightboxplus' )?>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="grouping_sec">
+                            <th scope="row">
+                                <?php _e( 'Previous image text', 'lightboxplus' )?>: </th>
+                            <td>
+                                <input type="text" size="15" name="previous_sec" id="previous_sec" value="<?php if (empty( $lightboxPlusOptions['previous_sec'])) { echo ''; } else { echo $lightboxPlusOptions['previous_sec'];} ?>" />
+                                <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                <div class="lbp-bigtip" id="lbp_previous_sec_tip">
+                                    <?php _e( 'Text for the previous button in a shared relation group (same values for "rel" attribute). <strong><em>Default: previous</em></strong>', 'lightboxplus' )?>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="grouping_sec">
+                            <th scope="row">
+                                <?php _e( 'Next image text', 'lightboxplus' )?>: </th>
+                            <td>
+                                <input type="text" size="15" name="next_sec" id="next_sec" value="<?php if (empty( $lightboxPlusOptions['next_sec'])) { echo ''; } else { echo $lightboxPlusOptions['next_sec'];} ?>" />
+                                <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                <div class="lbp-bigtip" id="lbp_next_sec_tip">
+                                    <?php _e( 'Text for the next button in a shared relation group (same values for "rel" attribute).  <strong><em>Default: next</em></strong>', 'lightboxplus' )?>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="grouping_sec">
+                            <th scope="row">
                                 <?php _e( 'Arrow key navigation', 'lightboxplus' )?>: </th>
                             <td>
                                 <input type="checkbox" name="arrow_key_sec" id="arrow_key_sec" value="1"<?php if ( $lightboxPlusOptions['arrow_key_sec'] ) echo ' checked="checked"';?> />
@@ -352,7 +369,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="grouping_sec">
                             <th scope="row">
                                 <?php _e( 'Loop image group', 'lightboxplus' )?>: </th>
                             <td>
@@ -363,22 +380,11 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">
-                                <?php _e( 'Scroll Bars', 'lightboxplus' )?>: </th>
-                            <td>
-                                <input type="checkbox" name="scrolling_sec" id="scrolling_sec" value="1"<?php if ( $lightboxPlusOptions['scrolling_sec'] ) echo ' checked="checked"';?> />
-                                <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                <div class="lbp-bigtip" id="lbp_scrolling_sec_tip">
-                                    <?php _e( 'If unchecked, Lightbox Plus will hide scrollbars for overflowing content. <strong><em>Default: Checked</em></strong>', 'lightboxplus' )?>
-                                </div>
-                            </td>
-                        </tr>
                     </table>
                 </div>
                 <!-- Slideshow -->
-                <div id="slbp-tabs-5" title="Slideshow">
-                    <table class="form-table" title="Slideshow">
+                <div id="slbp-tabs-5">
+                    <table class="form-table">
                         <tr>
                             <th scope="row">
                                 <?php _e( 'Slideshow', 'lightboxplus' )?>: </th>
@@ -390,7 +396,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="slideshow_sec">
                             <th scope="row">
                                 <?php _e( 'Auto-Start Slideshow', 'lightboxplus' )?>: </th>
                             <td>
@@ -401,37 +407,20 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="slideshow_sec">
                             <th scope="row">
                                 <?php _e( 'Slideshow Speed', 'lightboxplus' )?>: </th>
                             <td>
                                 <select name="slideshow_speed_sec" id="slideshow_speed_sec">
-                                    <option value="500"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='500' ) echo ' selected="selected"'?>>500</option>
-                                    <option value="1000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='1000' ) echo ' selected="selected"'?>>1000</option>
-                                    <option value="1500"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='1500' ) echo ' selected="selected"'?>>1500</option>
-                                    <option value="2000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='2000' ) echo ' selected="selected"'?>>2000</option>
-                                    <option value="2500"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='2500' ) echo ' selected="selected"'?>>2500</option>
-                                    <option value="3000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='3000' ) echo ' selected="selected"'?>>3000</option>
-                                    <option value="3500"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='3500' ) echo ' selected="selected"'?>>3500</option>
-                                    <option value="4000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='4000' ) echo ' selected="selected"'?>>4000</option>
-                                    <option value="4500"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='4500' ) echo ' selected="selected"'?>>4500</option>
-                                    <option value="5000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='5000' ) echo ' selected="selected"'?>>5000</option>
-                                    <option value="5500"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='5500' ) echo ' selected="selected"'?>>5500</option>
-                                    <option value="6000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='6000' ) echo ' selected="selected"'?>>6000</option>
-                                    <option value="6500"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='6500' ) echo ' selected="selected"'?>>6500</option>
-                                    <option value="7000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='7000' ) echo ' selected="selected"'?>>7000</option>
-                                    <option value="7500"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='7500' ) echo ' selected="selected"'?>>7500</option>
-                                    <option value="8000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='8000' ) echo ' selected="selected"'?>>8000</option>
-                                    <option value="8500"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='8500' ) echo ' selected="selected"'?>>8500</option>
-                                    <option value="9000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='9000' ) echo ' selected="selected"'?>>9000</option>
-                                    <option value="9500"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='9500' ) echo ' selected="selected"'?>>9500</option>
-                                    <option value="10000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='10000' ) echo ' selected="selected"'?>>10000</option>
-                                    <option value="11000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='11000' ) echo ' selected="selected"'?>>11000</option>
-                                    <option value="12000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='12000' ) echo ' selected="selected"'?>>12000</option>
-                                    <option value="13000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='13000' ) echo ' selected="selected"'?>>13000</option>
-                                    <option value="14000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='14000' ) echo ' selected="selected"'?>>14000</option>
-                                    <option value="15000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='15000' ) echo ' selected="selected"'?>>15000</option>
-                                    <option value="20000"<?php if ( $lightboxPlusOptions['slideshow_speed_sec']=='20000' ) echo ' selected="selected"'?>>20000</option>
+                                    <?php 
+                                        for($i = 500;$i <= 20001;){ ?>
+                                        <option value="<?php echo $i; ?>"<?php if ( $lightboxPlusOptions['slideshow_speed_sec'] == strval($i) ) echo ' selected="selected"'?>><?php echo $i; ?></option>
+                                        <?php  
+                                            if ($i >= 15000) { $i = $i + 5000; }
+                                            elseif ($i >= 10000) { $i = $i + 1000; }
+                                            else { $i = $i + 500; }
+                                        } 
+                                    ?>
                                 </select>
                                 <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                 <div class="lbp-bigtip" id="lbp_slideshow_speed_sec_tip">
@@ -439,7 +428,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="slideshow_sec">
                             <th scope="row">
                                 <?php _e( 'Slideshow start text', 'lightboxplus' )?>: </th>
                             <td>
@@ -450,7 +439,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="slideshow_sec">
                             <th scope="row">
                                 <?php _e( 'Slideshow stop text', 'lightboxplus' )?>: </th>
                             <td>
@@ -464,8 +453,8 @@
                     </table>
                 </div>
                 <!-- Other -->
-                <div id="slbp-tabs-6" title="Other">
-                    <table class="form-table" title="Other">
+                <div id="slbp-tabs-6">
+                    <table class="form-table">
                         <tr>
                             <th scope="row">
                                 <?php _e( 'Use iFrame', 'lightboxplus' )?>: </th>
@@ -506,8 +495,8 @@
                     </table>
                 </div>
                 <!-- Usage -->
-                <div id="slbp-tabs-7" title="Usage">
-                    <table class="form-table" title="Usage">
+                <div id="slbp-tabs-7">
+                    <table class="form-table">
                         <tr>
                             <td>
                             <h4><?php _e( 'Using Secondary Lightbox for Video Content'); ?></h4>
@@ -538,8 +527,8 @@
                     </table>
                 </div>
                 <!-- Demo/Test -->
-                <div id="slbp-tabs-8" title="Demo/Test">
-                    <table class="form-table" title="Demo/Test">
+                <div id="slbp-tabs-8">
+                    <table class="form-table">
                         <tr valign="top">
                             <td>
                                 <?php _e('Here you can test you settings with various different implementations of Lightbox Plus for Video, External Pages and Interactive Flash.  If they do not work please check that you have the following items set: Inner Width, Inner Height, and Use Iframe must be checked.  You will not be able to display any of these without the minimum options set.',"lightboxplus"); ?>

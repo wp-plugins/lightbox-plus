@@ -51,13 +51,14 @@
 			function lightboxPlusPrimaryInit() {
 
 				$lightboxPlusPrimaryOptions = array(
-				"use_perpage"           => '0',
-				"lightboxplus_style"    => 'shadowed',
-				"use_custom_style"      => '0',
 				"lightboxplus_multi"    => '0',
-				"disable_css"           => '0',
 				"use_inline"            => '0',
 				"inline_num"            => '1',
+                "lightboxplus_style"    => 'shadowed',
+                "use_custom_style"      => '0',
+                "disable_css"           => '0',
+                "hide_about"            => '1',
+                "use_perpage"           => '0',
 				"transition"            => 'elastic',
 				"speed"                 => '300',
 				"width"                 => '90%',
@@ -146,18 +147,17 @@
 				"use_class_method_sec"  => '0',
 				"class_name_sec"        => 'lbpModal',
 				"no_display_title_sec"  => '0',
-                "scale_photos_sec"          => '1',
-                "scrolling_sec"             => '1',
-                "photo_sec"                 => '0',
-                "rel_sec"                   => '0', //Disable grouping
-                "loop_sec"                  => '1',
-                "esc_key_sec"               => '1',
-                "arrow_key_sec"             => '1',
-                "top_sec"                   => '0',
-                "right_sec"                 => '0',
-                "bottom_sec"                => '0',
-                "left_sec"                  => '0',
-                "fixed_sec"                 => '0'
+                "scrolling_sec"         => '1',
+                "photo_sec"             => '0',
+                "rel_sec"               => '0', //Disable grouping
+                "loop_sec"              => '1',
+                "esc_key_sec"           => '1',
+                "arrow_key_sec"         => '1',
+                "top_sec"               => '0',
+                "right_sec"             => '0',
+                "bottom_sec"            => '0',
+                "left_sec"              => '0',
+                "fixed_sec"             => '0'
 				);
 
 				if ( !empty($lightboxPlusOptions) ) {
