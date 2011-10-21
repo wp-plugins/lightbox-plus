@@ -30,6 +30,7 @@
     global $g_lightbox_plus_url;
     global $g_lightbox_plus_dir;
     global $g_lbp_messages;
+    global $g_lbp_message_title;
     global $g_lbp_plugin_page;
     global $g_lbp_local_style_path;
     global $g_lbp_global_style_path;
@@ -44,6 +45,7 @@
     */
     $g_lbp_plugin_page = '';
     $g_lbp_messages = '';
+    $g_lbp_message_title = '';
     $g_lightbox_plus_url = WP_PLUGIN_URL.'/lightbox-plus';
     $g_lightbox_plus_dir = WP_PLUGIN_DIR.'/lightbox-plus';
     $g_lbp_local_style_path = $g_lightbox_plus_dir.'/css';
@@ -203,7 +205,7 @@
             * handles creating admin panel and processing of form submission
             */
             function lightboxPlusAdminPanel( ) {
-                global $g_lightbox_plus_url, $g_lbp_messages;
+                global $g_lightbox_plus_url, $g_lbp_messages, $g_lbp_message_title;
                 global $g_lbp_local_style_path, $g_lbp_global_style_path;
                 load_plugin_textdomain( 'lightboxplus',false, $path = $g_lightbox_plus_url );
                 $location = admin_url('/admin.php?page=lightboxplus');
@@ -267,6 +269,7 @@
                             "fixed"                 => $_POST['fixed']
                             );
 
+                            $g_lbp_message_title .= __('Lightbox Plus Setting Saved','lightboxplus');
                             $g_lbp_messages .= __('Lightbox Plus base settings updated.','lightboxplus').'<br /><br />';
                             $g_lbp_messages .= __('Primary lightbox settings updated.','lightboxplus').'<br /><br />';
 
@@ -423,7 +426,8 @@
                                 delete_option( $this->lightboxOptionsName );
                                 delete_option( $this->lightboxInitName );
                                 delete_option( $this->lightboxStylePathName );
-                                $g_lbp_messages .= '<strong>'.__('Lightbox Plus has been reset to default settings.','lightboxplus').'</strong><br /><br />';
+                                $g_lbp_message_title .= __('Lightbox Plus Reset','lightboxplus');
+                                $g_lbp_messages .= '<strong>'.__('Lightbox Plus has been completely reset to default settings.','lightboxplus').'</strong><br /><br />';
 
                                 /**
                                 * Used to remove old setting from previous versions of LBP
@@ -435,13 +439,13 @@
                                     $g_lbp_messages .= __('Deleting: ').$pluginPath.'/images . . . '.__('Removed old Lightbox Plus style images.','lightboxplus').'<br /><br />';
                                     $this->delete_directory( $pluginPath."/images/" );
                                 } else {
-                                    $g_lbp_messages .= __('No images deleted . . . ','lightboxplus').$pluginPath.'/images '.__('already removed','lightboxplus').'<br /><br />';
+                                    $g_lbp_messages .= '';
                                 }
                                 if ( file_exists( $pluginPath."/js/"."lightbox.js" )) {
                                     $g_lbp_messages .= __('Deleting: ','lightboxplus').$pluginPath.'/js/lightbox.js . . . '.__('Removed old Lightbox Plus JavaScript.','lightboxplus').'<br /><br />';
                                     $this->delete_file( $pluginPath."/js", "lightbox.js" );
                                 } else {
-                                    $g_lbp_messages .= __('No JavaScript deleted . . . ','lightboxplus').$pluginPath.'/js/lightbox.js '.__('already removed','lightboxplus').'<br /><br />';
+                                    $g_lbp_messages .= '';
                                 }
                                 $oldStyles = $this->dirList( $pluginPath."/css/" );
                                 if ( !empty( $oldStyles )) {
@@ -454,7 +458,7 @@
                                     $g_lbp_messages .= __('Removed old Lightbox Plus styles.','lightboxplus').'<br /><br />';
                                 }
                                 else {
-                                    $g_lbp_messages .= __('No styles deleted . . . Old styles already removed','lightboxplus').'<br /><br />';
+                                    $g_lbp_messages .= '';
                                 }
                             }
 
@@ -464,7 +468,7 @@
                             * @var wp_lightboxplus
                             */
                             $this->lightboxPlusInit();
-                            $g_lbp_messages .= '<strong>'.__('Please check and update your settings before continuing!','lightboxplus').'</strong>';
+                            $g_lbp_messages .= '<strong>'.__('Please check and update your Lightbox Plus settings before continuing!','lightboxplus').'</strong>';
                             break;
                         default:
                             break;
@@ -504,7 +508,7 @@
                 <br style="clear: both;" />
                 <?php
                     if ($g_lbp_messages) {
-                        echo '<div id="lbp_message" title="'.__('Settings Saved', 'lightboxplus').'" style="display:none">'.$g_lbp_messages.'</div>';
+                        echo '<div id="lbp_message" title="'.$g_lbp_message_title.'" style="display:none">'.$g_lbp_messages.'</div>';
                         echo '<script type="text/javascript">';
                         echo 'jQuery(document).ready(function($){';
                         echo '  $("#lbp_message").dialog({ buttons: { "Ok": function() { $(this).dialog("close"); } },open: function() { $(".ui-dialog").fadeOut(9000); },resizable:false,width: 480 });';
