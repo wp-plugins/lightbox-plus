@@ -23,7 +23,7 @@
 ?>
 <!-- Secondary Lightbox Settings -->
 <div id="poststuff" class="lbp">
-    <div class="postbox close-me">
+    <div class="postbox"> <!-- add  close-me  to class to set auto closed -->
         <h3 class="handle"><?php _e( 'Lightbox Plus - Secondary Lightbox Settings','lightboxplus' ); ?></h3>
         <div class="inside toggle">
             <div id="slbp-tabs">

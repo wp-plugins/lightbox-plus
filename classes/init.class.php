@@ -89,7 +89,7 @@
 				"use_class_method"      => '0',
 				"class_name"            => 'cboxModal',
 				"no_auto_lightbox"      => '0',
-				"text_links"            => '0',
+				"text_links"            => '1',
 				"no_display_title"      => '0',
                 "scrolling"             => '1',
                 "photo"                 => '0',
@@ -97,10 +97,10 @@
                 "loop"                  => '1',
                 "esc_key"               => '1',
                 "arrow_key"             => '1',
-                "top"                   => '0',
-                "right"                 => '0',
-                "bottom"                => '0',
-                "left"                  => '0',
+                "top"                   => 'false',
+                "right"                 => 'false',
+                "bottom"                => 'false',
+                "left"                  => 'false',
                 "fixed"                 => '0'
 				);
 

@@ -188,6 +188,17 @@
                     copy( $source, $destination );
                 }
             }
+
+            function post_thumbnail_caption() {
+                extract(shortcode_atts(array(
+                'id'    => '',
+                'align'    => 'alignnone',
+                'width'    => '',
+                'caption' => ''
+                ), $attr));
+
+                return $caption;
+            }
         }
     }
 ?>

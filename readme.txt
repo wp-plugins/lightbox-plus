@@ -174,12 +174,14 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Absolute top, right. bottom, left positioning.  Now able to specify horizontal and vertical position in viewport as opposed to center only.
  * Fixed positioning that allows lightbox stays on page when scrolled.
 * Rebuild interface
- * Change interface to make more concise
- * Use jQuery-UI Tabs
-* Write more instructions
+ * Change interface to tabbed make more concise and usable
+ * Include more detailed instructions on usage
+* Numerous bug fixes
+ * Fixed use WP Caption option.  Works with singles images and WordPress built in galleries now.
+ * Fixed text links getting lightboxed even of option is not set.
 * Page/Post Options
- * Auto launch on page
- * Per page loading
+ * Auto launch on page.  If auto-launch is set Lightbox Plus will automatically open the first lightboxed item on the page.
+ * Per page loading. if per page options are set Lightbox JavaScript will only load for specified pages.
 * Scrolling If 'false' ColorBox will hide scrollbars for overflowing content. This could be used on conjunction with the resize method (see below) for a smoother transition if you are appending content to an already open instance of ColorBox.
 * Disable grouping by rel attribute - Set ColorBox's value for rel to 'nofollow'. Example: $('a[rel="examples"]').colorbox({rel:'nofollow'});
 * Fixed image X of X problem, can disable Image X of X

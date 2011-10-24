@@ -86,7 +86,8 @@
                                     * If use caption for title try to get the text from the caption - this could be wrong
                                     */
                                     if ($lightboxPlusOptions['use_caption_title']) {
-                                        if ($e->next_sibling()->innertext) { $e->title = $e->next_sibling()->innertext; }
+                                        if ($e->find('img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]') && $e->next_sibling()->innertext) { $e->title = $e->next_sibling()->innertext; }
+                                        elseif ($e->find('img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]') && $e->parent()->next_sibling()->class = 'gallery-caption') { $e->title = $e->parent()->next_sibling()->innertext; }
                                     }
                                     break;
                             }
@@ -132,7 +133,11 @@
                                         }
                                     }
                                     if ($lightboxPlusOptions['use_caption_title']) {
-                                        if ($e->parent()->next_sibling()->innertext) { $e->parent()->title = $e->parent()->next_sibling()->innertext; }
+                                        //if ($e->parent()->next_sibling()->innertext) { $e->parent()->title = $e->parent()->next_sibling()->innertext; }
+                                        //if ($e->parent()->next_sibling()->innertext) { $e->title = $e->parent()->next_sibling()->innertext; }
+
+                                        if ($e->find('img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]') && $e->next_sibling()->innertext) { $e->title = $e->next_sibling()->innertext; }
+                                        elseif ($e->find('img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]') && $e->parent()->next_sibling()->class = 'gallery-caption') { $e->title = $e->parent()->next_sibling()->innertext; }
                                     }
                                     break;
                             }

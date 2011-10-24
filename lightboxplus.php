@@ -139,12 +139,12 @@
                         * Check to see if user wants to have gallery images lightboxed
                         */
                         if ($lightboxPlusOptions['gallery_lightboxplus'] != 1) {
-                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 6 );
+                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 11 );
                         }
                         else {
                             remove_shortcode( 'gallery' );
                             add_shortcode( 'gallery', array( &$this, 'lightboxPlusGallery' ), 6);
-                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 6 );
+                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 11 );
                         }
                     }
                 }
