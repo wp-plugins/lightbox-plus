@@ -66,10 +66,12 @@
                         <li><a href="#blbp-tabs-1"><?php _e( 'General','lightboxplus' ); ?></a></li>
                         <li><a href="#blbp-tabs-2"><?php _e( 'Styles','lightboxplus' ); ?></a></li>
                         <li><a href="#blbp-tabs-3"><?php _e( 'Advanced','lightboxplus' ); ?></a></li>
+                        <li><a href="#blbp-tabs-4"><?php _e( 'Support','lightboxplus' ); ?></a></li>
+                        <li><a href="#blbp-tabs-5"><?php _e( 'Usage','lightboxplus' ); ?></a></li>
                     </ul>
                     <!-- General -->
-                    <div id="blbp-tabs-1" title="General">
-                        <table class="form-table" title="General">
+                    <div id="blbp-tabs-1">
+                        <table class="form-table">
                             <tr>
                                 <th scope="row">
                                     <?php _e( 'Use Secondary Lightbox', 'lightboxplus' )?>: </th>
@@ -186,6 +188,16 @@
                                 </td>
                             </tr>
                         </table>
+                    </div>
+                    <!-- Support -->
+                    <div id="blbp-tabs-4">
+                        <h4><?php _e( 'Support for 23Systems Free WordPress Plugins','lightboxplus' ); ?></h4>
+                        <p><?php _e( '23Systems has created a number of free WordPress plugins and we offer limited support for our free WordPress plugins via our <a href="http://www.23systems.net/forums/forum/lightbox-plus/" title="Lightbox Plus for WordPress Forums">forums</a>.  It would also be a good idea to read the <a title="Lightbox Plus Frequently Asked Questions" href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">Lightbox Plus FAQ</a> to see if you question is answered there.For more in-depth support or if you need extra help with one of our plugins you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support</a> page.','lightboxplus' ); ?></p>
+                        <p><?php _e( '23Systems does not offer phone support for any of our plugs unless you are an existing client.  If you would like phone support please fill out the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support</a> page and request phone support.  Once we receive the support request we can contact you with rates and information.','lightboxplus' ); ?></p>
+                        <p><?php _e( 'If you would like to show your support for our free WordPress plugins please consider a <a title="Help support Free and Open Source software by donating to our free plugin development" href="http://www.23systems.net/plugins/donate/">donation</a>.','lightboxplus' ); ?></p>
+                    </div>
+                    <!-- Usage -->
+                    <div id="blbp-tabs-5">
                     </div>
                 </div>
                 <p class="submit">
@@ -718,9 +730,23 @@
                             <tr>
                                 <td>
                                 <h4><?php _e( 'Basic Usage of Lightbox Plus'); ?></h4>
-                                <div id="lbp_for_video_tip">
-                                    <?php _e( 'ENTER CONTENT HERE', 'lightboxplus' )?>
-                                </div>
+                                <p><?php _e( 'All of the settings described here also apply to the secondary lightbox', 'lightboxplus' )?></p>
+                                <h5 class="subhelp"><?php _e( 'General Tab', 'lightboxplus' )?></h5>
+                                <p><?php _e( 'General Tab help description', 'lightboxplus' )?></p>
+                                <h5 class="subhelp"><?php _e( 'Size Tab', 'lightboxplus' )?></h5>
+                                <p><?php _e( 'Size Tab help description', 'lightboxplus' )?></p>
+                                <h5 class="subhelp"><?php _e( 'Position Tab', 'lightboxplus' )?></h5>
+                                <p><?php _e( 'Position Tab help description', 'lightboxplus' )?></p>
+                                <h5 class="subhelp"><?php _e( 'Interface Tab', 'lightboxplus' )?></h5>
+                                <p><?php _e( 'Interface Tab help description', 'lightboxplus' )?></p>
+                                <h5 class="subhelp"><?php _e( 'Slideshow Tab', 'lightboxplus' )?></h5>
+                                <p><?php _e( 'Slideshow Tab help description', 'lightboxplus' )?></p>
+                                <h5 class="subhelp"><?php _e( 'Other Tab', 'lightboxplus' )?></h5>
+                                <p><?php _e( 'Other Tab help description', 'lightboxplus' )?></p>
+                                <h5 class="subhelp"><?php _e( 'Usage Tab', 'lightboxplus' )?></h5>
+                                <p><?php _e( 'This tab, general help.', 'lightboxplus' )?></p>
+                                <h5 class="subhelp"><?php _e( 'Demo/Test Tab', 'lightboxplus' )?></h5>
+                                <p><?php _e( 'Demo/Test Tab help description', 'lightboxplus' )?></p>
                             </tr>
                         </table>
                     </div>
@@ -772,10 +798,10 @@
         <div class="inside toggle">
             <!-- Secondary Settings -->
             <div class="ui-widget">
-                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
+                <div class="ui-state-error ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
                     <p>
-                        <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-                        <?php _e( 'This will immediately remove all existing settings and any files for versions of Lightbox Plus prior to version 1.5 (if needed) and will also re-initialize the plugin with the new default options. Be absolutely certain you want to do this. <br /><br /><strong><em>If you are upgrading from a version prior to 1.4 it is <strong><em>highly</em></strong> recommended that you reinitialize Lightbox Plus</em></strong>','lightboxplus' ); ?>
+                        <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+                        <?php _e( 'This will immediately remove all existing settings and any files for versions of Lightbox Plus prior to version 1.5 (if needed) and will also re-initialize the plugin with the new default options. Be absolutely certain you want to do this. <br /><br /><strong><em>If you are upgrading from a version prior to 2.0 it is <strong><em>highly</em></strong> recommended that you reinitialize Lightbox Plus</em></strong>','lightboxplus' ); ?>
                     </p>
                     <form action="<?php echo $location?>&amp;updated=reset" method="post" id="lightboxplus_reset" name="lightboxplus_reset">
                         <input type="hidden" name="action" value="action" />

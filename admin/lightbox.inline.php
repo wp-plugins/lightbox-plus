@@ -24,15 +24,15 @@
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
-                                <th><b>Link Class</b></th>
-                                <th><b>Content ID</b></th>
-                                <th style="text-align:center;"><b>Width<br />Height</b></th>
-                                <th style="text-align:center;"><b>Inner Width<br />Inner Height</b></th>
-                                <th style="text-align:center;"><b>Max Width<br />Max Height</b></th>
-                                <th style="text-align:center;"><b>Position</b><br /><div style="font-size:8px;line-height:9px;">Top<br />Right, Bottom<br />Left</div></th>
-                                <th><b>Fixed</b></th>
-                                <th><b>Auto Open</b></th>
-                                <th><b>Overlay Opacity</b></th>
+                                <th style="text-align:center;"><b><?php _e( 'Link Class','lightboxplus' ); ?></b><br /><b><?php _e( 'Content ID','lightboxplus' ); ?></b></th>
+                                <th style="text-align:center;"><b><?php _e( 'Transition','lightboxplus' ); ?></b><br /><b><?php _e( 'Speed','lightboxplus' ); ?></b></th>
+                                <th style="text-align:center;"><b><?php _e( 'Width','lightboxplus' ); ?><br /><?php _e( 'Height','lightboxplus' ); ?></b></th>
+                                <th style="text-align:center;"><b><?php _e( 'Inner Width','lightboxplus' ); ?><br /><?php _e( 'Inner Height','lightboxplus' ); ?></b></th>
+                                <th style="text-align:center;"><b><?php _e( 'Max Width','lightboxplus' ); ?><br /><?php _e( 'Max Height','lightboxplus' ); ?></b></th>
+                                <th style="text-align:center;"><b><?php _e( 'Position','lightboxplus' ); ?></b><br /><div style="font-size:8px;line-height:9px;"><?php _e( 'Top','lightboxplus' ); ?><br /><?php _e( 'Right, Bottom','lightboxplus' ); ?><br /><?php _e( 'Left','lightboxplus' ); ?></div></th>
+                                <th style="text-align:center;"><b><?php _e( 'Fixed</b>','lightboxplus' ); ?></th>
+                                <th style="text-align:center;"><b><?php _e( 'Auto Open','lightboxplus' ); ?></b></th>
+                                <th style="text-align:center;"><b><?php _e( 'Overlay Opacity','lightboxplus' ); ?></b></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,6 +40,8 @@
                                 for ($i = 1; $i <= $lightboxPlusOptions['inline_num']; $i++) {
                                     $inline_links            = array();
                                     $inline_hrefs            = array();
+                                    $inline_transitions      = array();
+                                    $inline_speeds           = array();
                                     $inline_widths           = array();
                                     $inline_heights          = array();
                                     $inline_inner_widths     = array();
@@ -50,12 +52,14 @@
                                     $inline_position_rights  = array();
                                     $inline_position_bottoms = array();
                                     $inline_position_lefts   = array();
-                                    $inline_position_fixeds  = array();
+                                    $inline_fixeds           = array();
                                     $inline_opens            = array();
                                     $inline_opacitys         = array();
 
                                     $inline_links            = $lightboxPlusOptions['inline_links'];
                                     $inline_hrefs            = $lightboxPlusOptions['inline_hrefs'];
+                                    $inline_transitions      = $lightboxPlusOptions['inline_transitions'];
+                                    $inline_speeds           = $lightboxPlusOptions['inline_speeds'];
                                     $inline_widths           = $lightboxPlusOptions['inline_widths'];
                                     $inline_heights          = $lightboxPlusOptions['inline_heights'];
                                     $inline_inner_widths     = $lightboxPlusOptions['inline_inner_widths'];
@@ -72,11 +76,26 @@
                                 ?>
                                 <tr <?php if ($i % 2 == 0) {echo 'class="alternate"';} ?>>
                                     <td><?php _e( 'Inline Lightbox #'.$i, 'lightboxplus' )?>:</td>
-                                    <td>
-                                        <input type="text" size="15" name="inline_link_<?php echo $i; ?>" id="inline_link_<?php echo $i; ?>" value="<?php if (empty( $inline_links[$i - 1] )) { echo 'lbp-inline-link-'.$i; } else {echo $inline_links[$i - 1];}?>" />
+                                    <td align="center">
+                                        <input type="text" size="15" name="inline_link_<?php echo $i; ?>" id="inline_link_<?php echo $i; ?>" value="<?php if (empty( $inline_links[$i - 1] )) { echo 'lbp-inline-link-'.$i; } else {echo $inline_links[$i - 1];}?>" /><br /><input type="text" size="15" name="inline_href_<?php echo $i; ?>" id="inline_href_<?php echo $i; ?>" value="<?php if (empty( $inline_hrefs[$i - 1] )) { echo 'lbp-inline-href-'.$i; } else {echo $inline_hrefs[$i - 1];}?>" />
                                     </td>
-                                    <td>
-                                        <input type="text" size="15" name="inline_href_<?php echo $i; ?>" id="inline_href_<?php echo $i; ?>" value="<?php if (empty( $inline_hrefs[$i - 1] )) { echo 'lbp-inline-href-'.$i; } else {echo $inline_hrefs[$i - 1];}?>" />
+                                    <td align="center">
+                                        <select name="inline_transition_<?php echo $i; ?>" id="inline_transition_<?php echo $i; ?>">
+                                            <option value="elastic"<?php if ( $inline_transitions[$i - 1] == 'elastic' ) echo ' selected="selected"'?>>Elastic</option>
+                                            <option value="fade"<?php if ( $inline_transitions[$i - 1] == 'fade' ) echo ' selected="selected"'?>>Fade</option>
+                                            <option value="none"<?php if ( $inline_transitions[$i - 1] == 'none' ) echo ' selected="selected"'?>>None</option>
+                                        </select><br />
+                                        <select name="inline_speed_<?php echo $i; ?>" id="inline_speed_<?php echo $i; ?>">
+                                            <?php 
+                                                for($j = 0;$j <= 5001;){ ?>
+                                                <option value="<?php echo $j; ?>"<?php if ( $inline_speeds[$i - 1] == strval($j) ) echo ' selected="selected"'?>><?php echo $j; ?></option>
+                                                <?php  
+                                                    if ($j >= 2000) { $j = $j + 500; }
+                                                    elseif ($j >= 1250) { $j = $j + 250; }
+                                                    else { $j = $j + 50; }
+                                                } 
+                                            ?>
+                                        </select>
                                     </td>
                                     <td align="center">
                                         <input type="text" size="5" name="inline_width_<?php echo $i; ?>" id="inline_width_<?php echo $i; ?>" value="<?php if (empty( $inline_widths[$i - 1] )) { echo '80%'; } else {echo $inline_widths[$i - 1];}?>" /><br />
@@ -129,17 +148,24 @@
                     <table class="form-table">
                         <tr>
                             <td>
-                                <?php _e('Using Inline Lightboxes', 'lightboxplus')?>
+                                <h4><?php _e('Using Inline Lightboxes', 'lightboxplus')?></h4>
                                 <div id="lbp_for_inline_tip">
-                                    <?php _e( 'In order to display inline content using Lightbox Plus and Colorbox you must at a minimum has the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
+                                <p><?php _e( 'Inline lightboxes are used to display content that exists on the current page.  It can be used to display a form, video or any other content that is contained on the page.  In order to display inline content using Lightbox Plus and Colorbox you must at a minimum has the following items set: Link Class, Content ID, Width, Height, and Opacity.', 'lightboxplus')?></p>
+                                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
+                                    <h5><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span><?php _e('Example', 'lightboxplus')?></h5>
+                                    <p><?php _e( 'The following example shows how to setup content for display in a lightbox.  You will need to create a link to the content that contains a class that has the same value as the Link Class for the inline lightbox you are using.', 'lightboxplus')?></p>
+                                    <p class="codebox">
+                                        <code>&lt;a class="lbp-inline-link-1" href="#"><?php _e( 'Inline HTML Content', 'lightboxplus') ?>&lt;/a></code>
+                                    </p>
+                                    <p><?php _e( 'You will also need to set up a div element to contain you content.  The div element that contains the content must contains have and id with a value of the Content ID for the inline light box you are using.  Finally if you want the content to be hidden until the visitor clicks the link, wrap the content div with another div and set the value for style to display:none or assign a class that has display:none for a property', 'lightboxplus')?></p>
+                                    <p class="codebox">
                                         <code>
-                                        &lt;a class="lbp-inline-link-1" href="#">Inline HTML Content&lt;/a><br />
-                                        &lt;div style="display:none"><br />
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="lbp-inline-link-1" style="padding: 10px;background: #fff"><br />
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inline Content Goes Here<br />
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div><br />
-                                        &lt;/div></code>', 'lightboxplus' )?>
-                                    <br />
+                                            &lt;div style="display:none"><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="lbp-inline-href-1" style="padding: 10px;background: #fff"><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php _e( 'Inline Content Goes Here', 'lightboxplus') ?><br />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div><br />
+                                            &lt;/div></code>
+                                    </p>
                                 </div>
                             </td>
                         </tr>
@@ -150,14 +176,26 @@
                     <table class="form-table">
                         <tr valign="top">
                             <td>
-                                <?php _e('Here you can test you settings with various different implementation of Lightbox Plus using inline content.  If they do not work please check that you have the following items set: Inner Width, Inner Height, and Use Iframe must be checked.  You will not be able to display any of these without the minimum options set.',"lightboxplus"); ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+                                <?php _e('Here you can test you settings with various different implementation of Lightbox Plus using inline content.  This demo makes use of the first inline lightbox you have set up.  If they do not work try reloading the page and please check that you have the following items set: Link Class, Content ID, Width, Height, and Opacity.  You will not be able to display this example without the minimum options set.',"lightboxplus"); ?>
                                 <p class="inline_link_test_item">
-                                    <a class="<?php echo $inline_links[0]; ?>" href="#">Inline Content Test including form</a>
+                                    <a class="<?php echo $inline_links[0]; ?>" href="#"><?php _e('Inline Content Test including form',"lightboxplus"); ?></a>
                                 </p>
+                                <p class="codebox">
+                                <strong style="font-size:0.8em;">Skeleton code</strong><br /><br />
+                                    <code>
+                                        &lt;div style="display:none"><br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="<?php echo $inline_hrefs[0]; ?>" style="padding: 10px;background: #fff"><br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3><?php _e( 'TITLE HERE','lightboxplus' ); ?>&lt;/h3><br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div><br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php _e( 'FORM HERE','lightboxplus' ); ?><br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div><br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;p style="text-align: justify;"><br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php _e( 'TEXT HERE','lightboxplus' ); ?><br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/p><br />
+                                        &lt;/div><br />
+                                    </code>
+                                </p>
+
                             </td>
                         </tr>
                     </table>

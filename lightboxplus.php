@@ -328,6 +328,8 @@
                                 if ($lightboxPlusInlineOptions['use_inline'] && $lightboxPlusInlineOptions['inline_num'] != '') {
                                     $inline_links            = array();
                                     $inline_hrefs            = array();
+                                    $inline_transitions      = array();
+                                    $inline_speeds           = array();
                                     $inline_widths           = array();
                                     $inline_heights          = array();
                                     $inline_inner_widths     = array();
@@ -338,12 +340,14 @@
                                     $inline_position_rights  = array();
                                     $inline_position_bottoms = array();
                                     $inline_position_lefts   = array();
-                                    $inline_position_fixeds  = array();
-                                    $inline_position_opens   = array();
+                                    $inline_fixeds           = array();
+                                    $inline_opens            = array();
                                     $inline_opacitys         = array();
                                     for ($i = 1; $i <= $lightboxPlusInlineOptions['inline_num']; $i++) {
                                         $inline_links[]            = $_POST["inline_link_$i"];
                                         $inline_hrefs[]            = $_POST["inline_href_$i"];
+                                        $inline_transitions[]      = $_POST["inline_transition_$i"];
+                                        $inline_speeds[]           = $_POST["inline_speed_$i"];
                                         $inline_widths[]           = $_POST["inline_width_$i"];
                                         $inline_heights[]          = $_POST["inline_height_$i"];
                                         $inline_inner_widths[]     = $_POST["inline_inner_width_$i"];
@@ -354,8 +358,8 @@
                                         $inline_position_rights[]  = $_POST["inline_position_right_$i"];
                                         $inline_position_bottoms[] = $_POST["inline_position_bottom_$i"];
                                         $inline_position_lefts[]   = $_POST["inline_position_left_$i"];
-                                        $inline_position_fixeds[]  = $_POST["inline_position_fixed_$i"];
-                                        $inline_position_opens[]   = $_POST["inline_position_open_$i"];
+                                        $inline_fixeds[]           = $_POST["inline_fixed_$i"];
+                                        $inline_opens[]            = $_POST["inline_open_$i"];
                                         $inline_opacitys[]         = $_POST["inline_opacity_$i"];
                                     }
                                 }
@@ -363,6 +367,8 @@
                                 $lightboxPlusInlineOptions = array(
                                 "inline_links"            => $inline_links,
                                 "inline_hrefs"            => $inline_hrefs,
+                                "inline_transitions"      => $inline_transitions,
+                                "inline_speeds"           => $inline_speeds,
                                 "inline_widths"           => $inline_widths,
                                 "inline_heights"          => $inline_heights,
                                 "inline_inner_widths"     => $inline_inner_widths,
@@ -373,10 +379,12 @@
                                 "inline_position_rights"  => $inline_position_rights,
                                 "inline_position_bottoms" => $inline_position_bottoms,
                                 "inline_position_lefts"   => $inline_position_lefts,
-                                "inline_position_fixeds"  => $inline_position_fixeds,
-                                "inline_position_opens"   => $inline_position_opens,
+                                "inline_fixeds"           => $inline_fixeds,
+                                "inline_opens"            => $inline_opens,
                                 "inline_opacitys"         => $inline_opacitys
                                 );
+                                
+                                
 
                                 $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusInlineOptions);
                                 unset($lightboxPlusInlineOptions);
@@ -525,7 +533,7 @@
                     if (!$('#slideshow').prop('checked')) { $('.slideshow_prim').hide(); }
                     if ($('#rel_sec').prop('checked')) { $('.grouping_sec').hide(); }
                     if (!$('#slideshow_sec').prop('checked')) { $('.slideshow_sec').hide(); }
-                    
+
                     $('.close-me').each(function() {$(this).addClass("closed");});
                     $('#lbp_message').each(function() {$(this).fadeOut(5000);});
                     $('.postbox h3').click( function() {$(this).next('.toggle').slideToggle('fast');});
@@ -534,7 +542,7 @@
                     $("#plbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
                     $("#slbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });  
                     $("#ilbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } }); 
-                    
+
                     $("#use_inline").click(function(){  if ($("#use_inline").prop("checked")) { $(".base_gen").show("fast"); } else { $(".base_gen").hide("fast"); } });
                     $("#rel").click(function(){  if ($("#rel").prop("checked")) { $(".grouping_prim").hide("fast"); } else { $(".grouping_prim").show("fast"); } });
                     $("#slideshow").click(function(){  if ($("#slideshow").prop("checked")) { $(".slideshow_prim").show("fast"); } else { $(".slideshow_prim").hide("fast"); } });

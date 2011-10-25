@@ -169,22 +169,25 @@
                         $inline_widths = array();
                         $inline_heights = array();
                         for ($i = 1; $i <= $lightboxPlusOptions['inline_num']; $i++) {
-                            $inline_links              = $lightboxPlusOptions['inline_links'];
-                            $inline_hrefs              = $lightboxPlusOptions['inline_hrefs'];
-                            $inline_widths             = $lightboxPlusOptions['inline_widths'];
-                            $inline_heights            = $lightboxPlusOptions['inline_heights'];
-                            $inline_inner_widths       = $lightboxPlusOptions["inline_inner_width"];
-                            $inline_inner_heights      = $lightboxPlusOptions["inline_inner_height"];
-                            $inline_max_widths         = $lightboxPlusOptions["inline_max_width"];
-                            $inline_max_heights        = $lightboxPlusOptions["inline_max_height"];
-                            $inline_position_tops      = $lightboxPlusOptions["inline_position_top"];
-                            $inline_position_rights    = $lightboxPlusOptions["inline_position_right"];
-                            $inline_position_bottoms   = $lightboxPlusOptions["inline_position_bottom"];
-                            $inline_position_lefts     = $lightboxPlusOptions["inline_position_left"];
-                            $inline_position_fixeds    = $lightboxPlusOptions["inline_position_fixed"];
-                            $inline_position_opens     = $lightboxPlusOptions["inline_position_open"];
-                            $inline_opacitys           = $lightboxPlusOptions["inline_opacity"];
-                            $lightboxPlusJavaScript .= '  $(".'.$inline_links[$i - 1].'").colorbox({width:"'.$inline_widths[$i - 1].'", height:'.$this->setValue( $inline_heights[$i - 1] ).', innerWidth:'.$this->setValue( $inline_inner_widths[$i - 1] ).', innerHeight:'.$this->setValue( $inline_inner_heights[$i - 1] ).', maxWidth:'.$this->setValue( $inline_max_widths[$i - 1] ).', maxHeight:'.$this->setValue( $inline_max_heights[$i - 1] ).', top:'.$this->setValue( $inline_position_tops[$i - 1] ).', right:'.$this->setValue( $inline_position_rights[$i - 1] ).', bottom:'.$this->setValue( $inline_position_bottoms[$i - 1] ).', left:'.$this->setValue( $inline_position_lefts[$i - 1] ).', fixed:'.$this->setValue( $inline_position_fixeds[$i - 1] ).', open:'.$this->setValue( $inline_position_opens[$i - 1] ).', opacity:'.$this->setValue( $inline_opacitys[$i - 1] ).', inline:true, href:"#'.$inline_hrefs[$i - 1].'"});'.$this->EOL( );
+                            $inline_links            = $lightboxPlusOptions['inline_links'];
+                            $inline_hrefs            = $lightboxPlusOptions['inline_hrefs'];
+                            $inline_transitions      = $lightboxPlusOptions['inline_transitions'];
+                            $inline_speeds           = $lightboxPlusOptions['inline_speeds'];
+                            $inline_widths           = $lightboxPlusOptions['inline_widths'];
+                            $inline_heights          = $lightboxPlusOptions['inline_heights'];
+                            $inline_inner_widths     = $lightboxPlusOptions['inline_inner_widths'];
+                            $inline_inner_heights    = $lightboxPlusOptions['inline_inner_heights'];
+                            $inline_max_widths       = $lightboxPlusOptions['inline_max_widths'];
+                            $inline_max_heights      = $lightboxPlusOptions['inline_max_heights'];
+                            $inline_position_tops    = $lightboxPlusOptions['inline_position_tops'];
+                            $inline_position_rights  = $lightboxPlusOptions['inline_position_rights'];
+                            $inline_position_bottoms = $lightboxPlusOptions['inline_position_bottoms'];
+                            $inline_position_lefts   = $lightboxPlusOptions['inline_position_lefts'];
+                            $inline_fixeds           = $lightboxPlusOptions['inline_fixeds'];
+                            $inline_opens            = $lightboxPlusOptions['inline_opens'];
+                            $inline_opacitys         = $lightboxPlusOptions['inline_opacitys'];
+                            //echo "Opacity: ".$inline_opacitys[$i - 1];
+                            $lightboxPlusJavaScript .= '  $(".'.$inline_links[$i - 1].'").colorbox({transition:'.$this->setValue( $inline_transitions[$i - 1] ).', speed:'.$this->setValue( $inline_speeds[$i - 1] ).', width:'.$this->setValue( $inline_widths[$i - 1] ).', height:'.$this->setValue( $inline_heights[$i - 1] ).', innerWidth:'.$this->setValue( $inline_inner_widths[$i - 1] ).', innerHeight:'.$this->setValue( $inline_inner_heights[$i - 1] ).', maxWidth:'.$this->setValue( $inline_max_widths[$i - 1] ).', maxHeight:'.$this->setValue( $inline_max_heights[$i - 1] ).', top:'.$this->setValue( $inline_position_tops[$i - 1] ).', right:'.$this->setValue( $inline_position_rights[$i - 1] ).', bottom:'.$this->setValue( $inline_position_bottoms[$i - 1] ).', left:'.$this->setValue( $inline_position_lefts[$i - 1] ).', fixed:'.$this->setBoolean( $inline_fixeds[$i - 1] ).', open:'. $this->setBoolean( $inline_opens[$i - 1] ).', opacity:'.$this->setValue( $inline_opacitys[$i - 1] ).', inline:true, href:"#'.$inline_hrefs[$i - 1].'"});'.$this->EOL( );
                         }
                     }
 

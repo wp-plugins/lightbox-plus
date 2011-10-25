@@ -499,28 +499,39 @@
                     <table class="form-table">
                         <tr>
                             <td>
-                            <h4><?php _e( 'Using Secondary Lightbox for Video Content'); ?></h4>
-                            <div id="lbp_for_video_tip">
-                                <?php _e( 'In order to display video using Lightbox Plus and Colorbox you must at a minimum have the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
-                                    <code>&lt;a title="Projection Animation Test" class="lbpModal" href="http://www.youtube.com/v/pUPrCCP73Ws">YouTube Flash / Video (Iframe/Direct Link To YouTube)&lt;/a></code><br />
-                                    <code>&lt;a title="Projection Animation Test" class="lbpModal" href="http://vimeo.com/moogaloop.swf?clip_id=9730308&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1">Vimeo Flash / Video (Iframe/Direct Link To Vimeo)&lt;/a></code>', 'lightboxplus' )?>
-                            </div>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4><?php _e( 'Using Secondary Lightbox for External Content'); ?></h4>
-                                <div id="lbp_for_external_tip">
-                                    <?php _e( 'In order to display external content using Lightbox Plus and Colorbox you must at a minimum has the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
-                                        <code>&lt;a class="lbpModal" href="http://wordpress.org/extend/plugins/lightbox-plus/">External Content (Iframe/Direct Link To WordPress plugins)&lt;/a></code>', 'lightboxplus' )?>
+                                <h4><?php _e( 'Secondary Lightbox General Usage','lightboxplus' ); ?></h4>
+                                <p><?php _e( 'A secondary lightbox can be used to display internal and external web pages, video or interactive flash. Secondary lightboxes must be set up manually and can use either a rel="lightbox[id]" attribute or a class="lbpModal" attribute to associate the link/content with the a lightbox.  The following examples show different methods to use secondary lightboxes.','lightboxplus' ); ?></p>
+                                <h4><?php _e( 'Using Secondary Lightbox for Video Content','lightboxplus' ); ?></h4>
+                                <p><?php _e( 'A secondary lightbox can be used to display video from either an internal or external source.  In order to display video using Lightbox Plus and Colorbox you must at a minimum have the following items set: Inner Width, Inner Height, and Use Iframe must be checked.', 'lightboxplus' )?></p>
+                                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+                                    <h5><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span><?php _e( 'YouTube Example', 'lightboxplus' )?></h5>
+                                    <p><?php _e( 'For YouTube videos to load you cannot use the share link which looks like this: <code>http://youtu.be/17jymDn0W6U</code>.  However you can get the required link from the embed option that you get from YouTube. The embed links look like this: <code>&lt;iframe width="420" height="315" src="http://www.youtube.com/embed/17jymDn0W6U" frameborder="0" allowfullscreen>&lt;/iframe></code>. You will need to copy the URL (in this case: <code>http://www.youtube.com/embed/17jymDn0W6U</code>) and create your link as follows:', 'lightboxplus' )?></p>
+                                    <p class="codebox">
+                                        <code>&lt;a title="The Known Universe" class="lbpModal" href="http://www.youtube.com/embed/17jymDn0W6U"><?php _e( 'YouTube Flash / Video (Iframe/Direct Link To YouTube Video)', 'lightboxplus' )?>&lt;/a></code></p>
+                                    <h5><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span><?php _e( 'Vimeo Example', 'lightboxplus' )?></h5>
+                                    <p><?php _e( 'In the case of Vimeo you can again use the link provided from the embed option (in this case: <code>http://player.vimeo.com/video/9730308?title=0&amp;byline=0&amp;portrait=0</code>) to create your link as follows:', 'lightboxplus' )?></p>
+                                    <p class="codebox">
+                                        <code>&lt;a title="Projection Animation Test" class="lbpModal" href="http://player.vimeo.com/video/9730308?title=0&amp;byline=0&amp;portrait=0"><?php _e( 'Vimeo Flash / Video (Iframe/Direct Link To Vimeo)', 'lightboxplus' )?>&lt;/a></code></p>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4><?php _e( 'Using Secondary Lightbox for Other Content'); ?></h4>
-                                <div id="lbp_for_other_tip">
-                                    <?php _e( 'In order to display other content, such as interactive flash, using Lightbox Plus and Colorbox you must at a minimum has the following items set: Inner Width, Inner Height, and Use Iframe must be checked.<br /><br />
-                                        <code>&lt;a href="'.$g_lightbox_plus_url.'/trivia.swf" class="lbpModal" title="Interactive Flash Demo">Interactive Flash (Iframe/Local Flash File)&lt;/a></code>', 'lightboxplus' )?>
+                                <p><?php _e( 'For locally hosted video you must use the Inline Lightbox option unless you have a similar setup to YouTube or Vimeo for video display.  See inline lightbox usage for how to display locally hosted video.  Additional video options may be possible but you will have to experiment to see what works.', 'lightboxplus' )?></p>
+
+                                <h4><?php _e( 'Using Secondary Lightbox for External Content', 'lightboxplus' )?></h4>
+                                <p><?php _e( 'A secondary lightbox can be used to show a web page, text, or other content hosted either locally or on another server.  In order to display external content using Lightbox Plus and Colorbox you must at a minimum has the following items set: Inner Width, Inner Height, and Use Iframe must be checked.', 'lightboxplus' )?></p>
+                                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+                                    <h5><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span><?php _e( 'External Site Example', 'lightboxplus' )?></h5>
+                                    <p><?php _e( 'In the case of an external webpage you merely need to specify the URL to display.  In this case we are using the class method for instantiating the lightbox.  When the user clicks the link instead of redirecting the browser to another page it opens the page within the lightbox.', 'lightboxplus' )?></p>
+                                    <p class="codebox"><code>&lt;a class="lbpModal" href="http://wordpress.org/extend/plugins/lightbox-plus/">External Content (Iframe/Direct Link To WordPress plugins)&lt;/a></code></p>
+                                    <h5><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span><?php _e( 'Local Text File Example', 'lightboxplus' )?></h5>
+                                    <p><?php _e( 'In the case of an local content webpage you merely need to specify the local URL to display.  In this case we are using the class method for instantiating the lightbox.  When the user clicks the link instead of opening the text file the file is opened within the lightbox.', 'lightboxplus' )?></p>
+                                    <p class="codebox"><code>&lt;a class="lbpModal" href="<?php echo $g_lightbox_plus_url;?>/readme.txt">Locally Hosted Content (Iframe/Direct Link To Text File)&lt;/a></code></p>
+                                </div>
+
+                                <h4><?php _e( 'Using Secondary Lightbox for Other Content', 'lightboxplus' )?> ?></h4>
+                                <?php _e( 'Finally, a secondary lightbox can be used to load interactive flash files such as games, quizzes or other content.  In order to display interactive flash, you must at a minimum have the following items set: Inner Width, Inner Height, and Use Iframe must be checked.', 'lightboxplus' )?>
+                                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+                                    <h5><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span><?php _e( 'Interactive Flash Example', 'lightboxplus' )?></h5>
+                                    <p><?php _e( 'In the case of an local content webpage you merely need to specify the local URL of the SWF file.  In this case we are using the class method for instantiating the lightbox.  When the user clicks the link instead of opening the SWF file in a browser window the file is opened within the lightbox.', 'lightboxplus' )?></p>
+                                    <p class="codebox"><code>&lt;a href="<?php echo $g_lightbox_plus_url;?>/trivia.swf" class="lbpModal" title="Interactive Flash Demo">Interactive Flash (Iframe/Local Flash File)&lt;/a></code></p>
                                 </div>
                             </td>
                         </tr>
@@ -536,11 +547,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <p class="secondary_test_item">
-                                    <a href="<?php echo $g_lightbox_plus_url ?>/screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link</a><br /><code>&lt;a href="<?php echo $g_lightbox_plus_url ?>/screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link&lt;/a></code><br /><br />
-                                    <a title="The Known Universe" href="http://www.youtube.com/v/17jymDn0W6U" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - Video Test</a><br /><code>&lt;a title="The Known Universe" href="http://www.youtube.com/v/17jymDn0W6U" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - Video Test&lt;/a></code><br /><br />
-                                    <a title="23Systems Lightbox Plus Forums" href="http://www.23systems.net/forums/forum/lightbox-plus/" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - External Page Test</a><br /><code>&lt;a title="23Systems Lightbox Plus Forums" href="http://www.23systems.net/forums/forum/lightbox-plus/" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - External Page Test&lt;/a></code><br /><br />
-                                    <a href="<?php echo $g_lightbox_plus_url ?>/trivia.swf" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash</a><br /><code>&lt;a href="<?php echo $g_lightbox_plus_url ?>/trivia.swf" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash&lt;/a></code></p>
+                                <p><a href="<?php echo $g_lightbox_plus_url ?>/screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link</a></p>
+                                <p class="codebox"><code>&lt;a href="<?php echo $g_lightbox_plus_url ?>/screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link&lt;/a></code></p>
+                                </p><a title="The Known Universe" href="http://www.youtube.com/embed/17jymDn0W6U" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - Video Test</a>
+                                <p class="codebox"><code>&lt;a title="The Known Universe" href="http://www.youtube.com/embed/17jymDn0W6U" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - Video Test&lt;/a></code></p>
+                                <p><a title="23Systems Lightbox Plus Forums" href="http://www.23systems.net/forums/forum/lightbox-plus/" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - External Page Test</a></p>
+                                <p class="codebox"><code>&lt;a title="23Systems Lightbox Plus Forums" href="http://www.23systems.net/forums/forum/lightbox-plus/" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - External Page Test&lt;/a></code></p>
+                                <p><a href="<?php echo $g_lightbox_plus_url ?>/trivia.swf" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash</a></p>
+                                <p class="codebox"><code>&lt;a href="<?php echo $g_lightbox_plus_url ?>/trivia.swf" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash&lt;/a></code>
+                                </p>
                             </td>
                         </tr>
                     </table>
