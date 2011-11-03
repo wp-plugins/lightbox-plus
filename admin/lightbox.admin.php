@@ -76,7 +76,8 @@
                                 <th scope="row">
                                     <?php _e( 'Use Secondary Lightbox', 'lightboxplus' )?>: </th>
                                 <td>
-                                    <input type="checkbox" name="lightboxplus_multi" id="lightboxplus_multi" value="1"<?php if ( $lightboxPlusOptions['lightboxplus_multi'] ) echo ' checked="checked"';?> />
+                                    <input type="checkbox" name="lightboxplus_multi" id="lightboxplus_multi" value="1"<?php checked('1', $lightboxPlusOptions['lightboxplus_multi']);?> />
+                                    <!-- input type="checkbox" name="lightboxplus_multi" id="lightboxplus_multi" value="1"<?php// if ( $lightboxPlusOptions['lightboxplus_multi'] ) echo ' checked="checked"';?> / -->
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_lightboxplus_multi_tip">
                                         <?php _e( 'If checked, Lightbox Plus will create a secondary lightbox with an additional set of controls.  This secondary lightbox can be used to create inline or iFramed content using a class to specify the content. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
