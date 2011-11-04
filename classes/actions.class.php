@@ -259,7 +259,7 @@
 				add_meta_box( 'lbp-meta-box', __('Lightbox Plus Per Page', 'lightboxplus'), array(&$this,'drawLightboxPlusMeta'), 'page', 'side', 'high' );
 			}
 
-			function drawLightboxPlusMeta($post) { 
+			function drawLightboxPlusMeta($post) {
 				wp_nonce_field('lbp_meta_nonce','nonce_lbp');
 				$lbp_uid = get_post_meta( $post->ID, '_lbp_uid', true);
 			?>
