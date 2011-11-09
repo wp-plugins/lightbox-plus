@@ -176,9 +176,20 @@
 					<!-- Advanced -->
 					<div id="blbp-tabs-3">
 						<table class="form-table">
-							<tr valign="top">
+							<tr>
 								<th scope="row">
 									<?php _e( 'Use per page/post', 'lightboxplus' )?>: </th>
+								<td>
+									<input type="checkbox" name="use_perpage" id="use_perpage" value="1"<?php if ( $lightboxPlusOptions['use_perpage'] ) echo ' checked="checked"';?> />
+									<a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+									<div class="lbp-bigtip" id="lbp_lightboxplus_perpage_tip">
+										<?php _e('If checked allows you specify which posts or pages to load Lightbox Plus on while writing the post or page. <strong><em>Default: Unchecked</em></strong>',"lightboxplus"); ?>
+									</div>
+								</td>
+							</tr>
+<tr id="base_blog">
+								<th scope="row">
+									<?php _e( 'Use for blog', 'lightboxplus' )?>: </th>
 								<td>
 									<input type="checkbox" name="use_perpage" id="use_perpage" value="1"<?php if ( $lightboxPlusOptions['use_perpage'] ) echo ' checked="checked"';?> />
 									<a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
