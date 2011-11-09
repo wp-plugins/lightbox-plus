@@ -99,22 +99,6 @@
 	register_deactivation_hook( __FILE__, 'DeactivateLBP' );
 	load_plugin_textdomain('lightboxplus', false, $path = $g_lightbox_plus_url.'/languages');
 
-//	add_action( 'init', lbp_actions::saveLightboxPlusMeta($post_id),10,1 );        
-/*
-	if (!function_exists('saveLightboxPlusMeta')) {
-		add_action( 'save_post', 'saveLightboxPlusMeta',10,1);
-		function saveLightboxPlusMeta($postid) {
-			echo '<h1>Anyone home</h1>';
-			$lbp_use = $_POST['lbp_use'];
-			$lbp_autoload = $_POST['lbp_autoload'];
-			$lbp_uid = $_POST['lbp_uid'];
-
-			update_post_meta( $postid, '_lbp_use', $lbp_use );
-			update_post_meta( $postid, '_lbp_autoload', $lbp_autoload );
-			update_post_meta( $postid, '_lbp_uid', $lbp_uid );
-		}
-	}
-*/
 	/**
 	* Ensure class doesn't already exist
 	*/
@@ -140,7 +124,7 @@
 				//if ( !get_option( $this->lightboxInitName ) ) {
 				//    $this->lightboxPlusInit( );
 				//}
-							
+
 				add_filter( 'plugin_row_meta',array( &$this, 'RegisterLBPLinks' ),10, 2 );
 				add_action( 'init', array( &$this, 'lightboxPlusInitScripts' ) );
 				add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
@@ -570,6 +554,7 @@
 					$("#ilbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } }); 
 
 					$("#use_inline").click(function(){  if ($("#use_inline").prop("checked")) { $(".base_gen").show("fast"); } else { $(".base_gen").hide("fast"); } });
+					$("#use_perpage").click(function(){  if ($("#use_inline").prop("checked")) { $(".base_gen").show("fast"); } else { $(".base_gen").hide("fast"); } });
 					$("#rel").click(function(){  if ($("#rel").prop("checked")) { $(".grouping_prim").hide("fast"); } else { $(".grouping_prim").show("fast"); } });
 					$("#slideshow").click(function(){  if ($("#slideshow").prop("checked")) { $(".slideshow_prim").show("fast"); } else { $(".slideshow_prim").hide("fast"); } });
 					$("#rel_sec").click(function(){  if ($("#rel_sec").prop("checked")) { $(".grouping_sec").hide("fast"); } else { $(".grouping_sec").show("fast"); } });
