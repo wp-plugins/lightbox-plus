@@ -173,25 +173,32 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 * Added positioning options
  * Absolute top, right. bottom, left positioning.  Now able to specify horizontal and vertical position in viewport as opposed to center only.
  * Fixed positioning that allows lightbox stays on page when scrolled.
-* Rebuild interface
- * Change interface to tabbed make more concise and usable
- * Include more detailed instructions on usage
-* Numerous bug fixes
- * Fixed use WP Caption option.  Works with singles images and WordPress built in galleries now.
- * Fixed text links getting lightboxed even of option is not set.
+* Rebuilt interface
+ * Changed interface to a combination of collapsible and tabbed to make it more concise and usable
+ * Separate settings into logical groups within tabs
+ * Added enhanced instructions and details of usage.*
+ * Improved and updated demos and tests.*
 * Page/Post Options
- * Auto launch on page.  If auto-launch is set Lightbox Plus will automatically open the first lightboxed item on the page.
- * Per page loading. if per page options are set Lightbox JavaScript will only load for specified pages.
+ * Auto launch on page.  If auto-launch is set Lightbox Plus will automatically open the first lightboxed item on the page.*
+ * Per page loading. Ff per page options are set Lightbox JavaScript will only load for specified pages.
+ * Blog/posts only loading. if per page options are set Lightbox JavaScript will only load for specified pages. 
+* Image grouping
+ * Added more control over image grouping
+ * Fixed image X of X problem, can disable Image X of X
 * Scrolling If 'false' ColorBox will hide scrollbars for overflowing content. This could be used on conjunction with the resize method (see below) for a smoother transition if you are appending content to an already open instance of ColorBox.
-* Disable grouping by rel attribute - Set ColorBox's value for rel to 'nofollow'. Example: $('a[rel="examples"]').colorbox({rel:'nofollow'});
-* Fixed image X of X problem, can disable Image X of X
-* Updated ColorBox to verion 1.3.17
+* Updated ColorBox to verion 1.3.18
  * Fixed a regression where Flash content displayed in ColorBox would be reloaded if the browser window was resized.
  * Added safety check to make sure that ColorBox's markup is only added to the DOM a single time, even if $.colorbox.init() is called multiple times.  This will allow site owners to manually initialize ColorBox if they need it before the DOM has finished loading.
  * Updated the example index.html files to be HTML5 compliant.
  * Changed the slideshow behavior so that it immediately moves to the next slide when the slideshow is started.
  * Minor regex bugfix to allow automatic detection of image URLs that include fragments.
+* Numerous bug fixes
+ * Fixed use WP Caption option.  Works with singles images and WordPress built in galleries now.
+ * Fixed text links getting lightboxed even of option is not set.
+ * Fixed many small issues and text errors.*
 
+* Still in progress
+ 
 = 2.4 =
 * Removed all support for PHP 4.
  * If you still need a version that works with PHP 4 <b>DO NOT UPGRADE</b>
