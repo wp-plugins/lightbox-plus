@@ -59,6 +59,8 @@
                 "disable_css"           => '0',
                 "hide_about"            => '0',
                 "use_perpage"           => '0',
+                "use_forpage"           => '0',
+                "use_forpost"           => '0',
                 "transition"            => 'elastic',
                 "speed"                 => '300',
                 "width"                 => 'false',

@@ -22,6 +22,8 @@
     global $post;
     global $content;
     global $page;
+    global $wp_query;
+    global $the_post_id;
     /**
     * Lightbox Plus Globals
     *
@@ -61,6 +63,7 @@
     require_once('classes/filters.class.php');
     require_once('classes/actions.class.php');
     require_once('classes/init.class.php');
+    require_once('classes/shd.class.php');
 
     /**
     * Require HTML Parser
@@ -116,39 +119,29 @@
             var $lightboxStylePathName = 'lightboxplus_style_path';
 
             /**
-            * The PHP 5 Constructor - initializes the plugin and sets up panels
+            * PHP 5 constructor
             */
             function __construct() {
+                add_action( 'init', array( $this, 'init' ) );
+            }
 
+            /**
+            * The PHP 5 Constructor - initializes the plugin and sets up panels
+            */
+            function init() {
                 $this->lightboxOptions = $this->getAdminOptions( $this->lightboxOptionsName );
+                /**
+                * @todo check this code and modify if needed.
+                */
                 //if ( !get_option( $this->lightboxInitName ) ) {
                 //    $this->lightboxPlusInit( );
                 //}
-
-                add_filter( 'plugin_row_meta',array( &$this, 'RegisterLBPLinks' ),10, 2 );
-                if ($lightboxPlusOptions['use_perpage']) {
-                    if ($lightboxPlusOptions['use_forpage'] || $lightboxPlusOptions['use_forpost']) {
-                        if (get_post_meta( $post->ID, '_lbp_use', true ) || $wp_query->is_posts_page) {
-                            $this->runContruct();
-                        }
-                    }
-                } else {
-                    $this->runContruct();
-                }
-
-                if (is_admin()) {
-                    add_action( 'admin_menu', array( &$this, 'lightboxPlusAddPanel' ) );
-                }
-            }
-
-            function runContruct() {
-                add_action( 'init', array( &$this, 'lightboxPlusInitScripts' ) );
-                add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
+                
                 /**
-                * Get lightbox options to check for auto-lightbox and gallery
+                * If user is in the admin panel
                 */
-                if ( !empty( $this->lightboxOptions ) ) {
-                    $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
+                if (is_admin() && current_user_can('administrator')) {
+                    add_action( 'admin_menu', array( &$this, 'lightboxPlusAddPanel' ) );
                     /**
                     * Check to see if the user wants to use per page/post options
                     */
@@ -156,6 +149,43 @@
                         add_action( 'save_post', array( &$this, 'lightboxPlusSaveMeta'),10,1 );    
                         add_action( 'add_meta_boxes', array( &$this, "lightboxPlusMetaBox" ),10,1 );
                     }
+                    $this->lbpFinal();
+                }
+                add_action( 'template_redirect', array( &$this, 'lbpInitial' ) );
+                add_filter( 'plugin_row_meta',array( &$this, 'RegisterLBPLinks' ),10,2);
+            }
+
+            function lbpInitial() {
+                global $the_post_id;
+                global $wp_query;
+
+                $the_post_id = $wp_query->post->ID;
+
+                if ( !empty( $this->lightboxOptions ) ) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
+
+                if (!is_admin()) {
+                    if ($lightboxPlusOptions['use_perpage']) {
+                        add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
+
+                        if ($lightboxPlusOptions['use_forpage']) {
+                            if (get_post_meta( $the_post_id, '_lbp_use', true )) { $this->lbpFinal(); }
+                        }
+                        if ($lightboxPlusOptions['use_forpost']) {
+                            if (($wp_query->is_posts_page)|| is_single()) { $this->lbpFinal(); }
+                        }
+                    } else {
+                        $this->lbpFinal();
+                    }
+                }
+            }
+
+            function lbpFinal() {
+                add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
+                /**
+                * Get lightbox options to check for auto-lightbox and gallery
+                */
+                if ( !empty( $this->lightboxOptions ) ) {
+                    $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
 
                     /**
                     * Check to see if users wants images auto-lightboxed
@@ -215,10 +245,11 @@
                 if ($file == $base) {
                     $links[] = '<a href="themes.php?page=lightboxplus">' . __('Settings','lightboxplus') . '</a>';
                     $links[] = '<a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">' . __('FAQ','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://www.23systems.net/bbpress/forum/lightbox-plus">' . __('Support','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.23systems.net/forums/forum/lightbox-plus/">' . __('Support','lightboxplus') . '</a>';
                     $links[] = '<a href="http://www.23systems.net/donate/">' . __('Donate','lightboxplus') . '</a>';
                     $links[] = '<a href="http://twitter.com/23systems">' . __('Follow on Twitter','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://www.facebook.com/pages/Austin-TX/23Systems-Web-Devsign/94195762502">' . __('Facebook Page','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.facebook.com/23Systems">' . __('Facebook Page','lightboxplus') . '</a>';
+                    $links[] = '<a href="https://plus.google.com/111641141856782935011/posts">' . __('Google+ Page','lightboxplus') . '</a>';
                 }
                 return $links;
             }
@@ -230,7 +261,6 @@
             function lightboxPlusAdminPanel( ) {
                 global $g_lightbox_plus_url, $g_lbp_messages, $g_lbp_message_title;
                 global $g_lbp_local_style_path, $g_lbp_global_style_path;
-                load_plugin_textdomain( 'lightboxplus',false, $path = $g_lightbox_plus_url );
                 $location = admin_url('/admin.php?page=lightboxplus');
                 /**
                 * Check form submission and update setting
@@ -247,6 +277,8 @@
                             "disable_css"           => $_POST['disable_css'],
                             "hide_about"            => $_POST['hide_about'],
                             "use_perpage"           => $_POST['use_perpage'],
+                            "use_forpage"           => $_POST['use_forpage'],
+                            "use_forpost"           => $_POST['use_forpost'],
                             "transition"            => $_POST['transition'],
                             "speed"                 => $_POST['speed'],
                             "width"                 => $_POST['width'],

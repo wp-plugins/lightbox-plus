@@ -182,7 +182,7 @@
                                 <td>
                                     <input type="checkbox" name="use_perpage" id="use_perpage" value="1"<?php checked('1', $lightboxPlusOptions['use_perpage']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                    <div class="lbp-bigtip" id="lbp_lightboxplus_perpage_tip">
+                                    <div class="lbp-bigtip" id="lbp_lightboxplus_use_perpage_tip">
                                         <?php _e('If checked allows you specify which posts or pages to load Lightbox Plus on while writing the post or page. <strong><em>Default: Unchecked</em></strong>',"lightboxplus"); ?>
                                     </div>
                                 </td>
@@ -193,7 +193,7 @@
                                 <td>
                                     <input type="checkbox" name="use_forpage" id="use_forpage" value="1"<?php checked('1', $lightboxPlusOptions['use_forpage']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                    <div class="lbp-bigtip" id="lbp_lightboxplus_perpage_tip">
+                                    <div class="lbp-bigtip" id="lbp_lightboxplus_use_forpage_tip">
                                         <?php _e('If checked allows you specify which pages to load Lightbox Plus on while writing the page. <strong><em>Default: Unchecked</em></strong>',"lightboxplus"); ?>
                                     </div>
                                 </td>
@@ -201,12 +201,12 @@
                             </tr>
                             <tr class="base_blog">
                                 <th scope="row">
-                                    <?php _e( 'Use for post/blog', 'lightboxplus' )?>: </th>
+                                    <?php _e( 'Use for posts/blog', 'lightboxplus' )?>: </th>
                                 <td>
                                     <input type="checkbox" name="use_forpost" id="use_forpost" value="1"<?php checked('1', $lightboxPlusOptions['use_forpost']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                    <div class="lbp-bigtip" id="lbp_lightboxplus_perpage_tip">
-                                        <?php _e('If checked will use for blog and all posts but not for pages unless the above is checked. <strong><em>Default: Unchecked</em></strong>',"lightboxplus"); ?>
+                                    <div class="lbp-bigtip" id="lbp_lightboxplus_use_forpost_tip">
+                                        <?php _e('If checked will use for blog/posts page and all single posts but not for pages unless the above is checked. <strong><em>Default: Unchecked</em></strong>',"lightboxplus"); ?>
                                     </div>
                                 </td>
                             </tr>
