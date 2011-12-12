@@ -2,7 +2,7 @@
     /**
     * @package Lightbox Plus
     * @subpackage lightbox.admin.php
-    * @internal 2011.10.03
+    * @internal 2011.12.12
     * @author Dan Zappone / 23Systems
     * @version 2.4
     */
@@ -755,21 +755,21 @@
                                 <h4><?php _e( 'Basic Usage of Lightbox Plus'); ?></h4>
                                 <p><?php _e( 'All of the settings described here also apply to the secondary lightbox', 'lightboxplus' )?></p>
                                 <h5 class="subhelp"><?php _e( 'General Tab', 'lightboxplus' )?></h5>
-                                <p><?php _e( 'General Tab help description', 'lightboxplus' )?></p>
+                                <p><?php _e( 'Lets you specify basic functions of how Lightbox Plus works.', 'lightboxplus' )?></p>
                                 <h5 class="subhelp"><?php _e( 'Size Tab', 'lightboxplus' )?></h5>
-                                <p><?php _e( 'Size Tab help description', 'lightboxplus' )?></p>
+                                <p><?php _e( 'Allows you to set all the different size options and whether to automatically resize images.', 'lightboxplus' )?></p>
                                 <h5 class="subhelp"><?php _e( 'Position Tab', 'lightboxplus' )?></h5>
-                                <p><?php _e( 'Position Tab help description', 'lightboxplus' )?></p>
+                                <p><?php _e( 'Lets you set the specific position of where the lightbox appears in the browser viewport and whether to keep it in the viewport while scrolling', 'lightboxplus' )?></p>
                                 <h5 class="subhelp"><?php _e( 'Interface Tab', 'lightboxplus' )?></h5>
-                                <p><?php _e( 'Interface Tab help description', 'lightboxplus' )?></p>
+                                <p><?php _e( 'Set the options for how the user interacts with the lightbox and whether to group images or not.', 'lightboxplus' )?></p>
                                 <h5 class="subhelp"><?php _e( 'Slideshow Tab', 'lightboxplus' )?></h5>
-                                <p><?php _e( 'Slideshow Tab help description', 'lightboxplus' )?></p>
+                                <p><?php _e( 'Lightbox Plus supports simple slideshows, here you can the the timings and if it should startr automatically.', 'lightboxplus' )?></p>
                                 <h5 class="subhelp"><?php _e( 'Other Tab', 'lightboxplus' )?></h5>
-                                <p><?php _e( 'Other Tab help description', 'lightboxplus' )?></p>
+                                <p><?php _e( 'All additional options for lightboxes such as using for galleries, alternate methods for triggering, etc.', 'lightboxplus' )?></p>
                                 <h5 class="subhelp"><?php _e( 'Usage Tab', 'lightboxplus' )?></h5>
                                 <p><?php _e( 'This tab, general help.', 'lightboxplus' )?></p>
                                 <h5 class="subhelp"><?php _e( 'Demo/Test Tab', 'lightboxplus' )?></h5>
-                                <p><?php _e( 'Demo/Test Tab help description', 'lightboxplus' )?></p>
+                                <p><?php _e( 'Tests of your current settings for Lightbox Plus.', 'lightboxplus' )?></p>
                             </tr>
                         </table>
                     </div>

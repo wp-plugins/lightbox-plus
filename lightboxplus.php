@@ -10,7 +10,7 @@
     /**
     * @package Lightbox Plus
     * @subpackage lightboxplus.php
-    * @internal 2011.10.03
+    * @internal 2011.12.12
     * @author Dan Zappone / 23Systems
     * @version 2.4
     */
@@ -565,7 +565,7 @@
             ?>
             <div class="wrap" id="lightbox">
                 <h2><?php _e( 'Lightbox Plus Options (v2.4) ', 'lightboxplus' )?></h2>
-                <h3><?php _e( 'With ColorBox (v1.3.18) and PHP Simple HTML DOM Parser (v1.5)', 'lightboxplus' )?></h3>
+                <h3><?php _e( 'With ColorBox (v1.3.19) and PHP Simple HTML DOM Parser (v1.5)', 'lightboxplus' )?></h3>
                 <h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/services/support/">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/23Systems">Add Facebook Page</a>','lightboxplus' ); ?></h4>
 
                 <br style="clear: both;" />

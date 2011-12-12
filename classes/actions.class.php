@@ -2,7 +2,7 @@
     /**
     * @package Lightbox Plus
     * @subpackage actions.class.php
-    * @internal 2011.10.03
+    * @internal 2011.12.12
     * @author Dan Zappone / 23Systems
     * @version 2.4
     */

@@ -186,7 +186,11 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Added more control over image grouping
  * Fixed image X of X problem, can disable Image X of X
 * Scrolling If 'false' ColorBox will hide scrollbars for overflowing content. This could be used on conjunction with the resize method (see below) for a smoother transition if you are appending content to an already open instance of ColorBox.
-* Updated ColorBox to verion 1.3.18
+ * Updated ColorBox to verion 1.3.19
+ * Fixed bug related to using the 'fixed' property.
+ * Optimized the setup procedure to be more efficient.
+ * Removed $.colorbox.init() as it will no longer be needed (will self-init when called).
+ * Removed use of $.browser.
  * Fixed a regression where Flash content displayed in ColorBox would be reloaded if the browser window was resized.
  * Added safety check to make sure that ColorBox's markup is only added to the DOM a single time, even if $.colorbox.init() is called multiple times.  This will allow site owners to manually initialize ColorBox if they need it before the DOM has finished loading.
  * Updated the example index.html files to be HTML5 compliant.
