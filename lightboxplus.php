@@ -38,6 +38,46 @@
 	global $g_lbp_global_style_path;
 	global $g_lbp_local_style_url;
 	global $g_lbp_global_style_url;
+	/*
+	Plugin Name: Lightbox Plus
+	Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
+	Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
+	Author: Dan Zappone
+	Author URI: http://www.23systems.net/
+	Version: 2.4.5
+	*/
+	/**
+	* @package Lightbox Plus
+	* @subpackage lightboxplus.php
+	* @internal 2011.12.12
+	* @author Dan Zappone / 23Systems
+	* @version 2.4.5
+	*/
+	/**
+	* WordPress Globals
+	*
+	* @var mixed
+	*/
+	global $post;
+	global $content;
+	global $page;
+	global $wp_query;
+	global $the_post_id;
+	/**
+	* Lightbox Plus Globals
+	*
+	* @var mixed
+	*/
+	global $g_lightbox_plus_url;
+	global $g_lightbox_plus_dir;
+	global $g_lbp_messages;
+	global $g_lbp_message_title;
+	global $g_lbp_plugin_page;
+	global $g_lbp_local_style_path;
+	global $g_lbp_global_style_path;
+	global $g_lbp_local_style_url;
+	global $g_lbp_global_style_url;
+>>>>>>> .r474638
 
 	/**
 	* Instantiate Lightbox Plus Globals
