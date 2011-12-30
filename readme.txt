@@ -3,8 +3,8 @@ Contributors: dzappone
 Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 3.0
-Tested up to: 3.2.1
-Stable tag: 2.4.5
+Tested up to: 3.3
+Stable tag: 2.4.6
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -39,15 +39,15 @@ Note that getting the caption to appear in the overlay image by using the captio
 
 1. Add a rel="lightbox[uniqueID|filename]" attribute to any link tag to activate the lightbox, include a name between square brackets in the rel attibute. For example:
 
-        <a href="images/image-1.jpg" rel="lightbox[uniqueID|filename]" title="my caption">image #1</a>
+		<a href="images/image-1.jpg" rel="lightbox[uniqueID|filename]" title="my caption">image #1</a>
 
 Optional: Use the title attribute if you want to show a caption.
 
 2. If you have a set of related images that you would like to group, follow step one but additionally include a group name between square brackets in the rel attribute. For example:
 
-        <a href="images/image-1.jpg" rel="lightbox[roadtrip]">image #1</a>
-        <a href="images/image-2.jpg" rel="lightbox[roadtrip]">image #2</a>
-        <a href="images/image-3.jpg" rel="lightbox[roadtrip]">image #3</a>
+		<a href="images/image-1.jpg" rel="lightbox[roadtrip]">image #1</a>
+		<a href="images/image-2.jpg" rel="lightbox[roadtrip]">image #2</a>
+		<a href="images/image-3.jpg" rel="lightbox[roadtrip]">image #3</a>
 
 = Suggestions =
 
@@ -68,7 +68,7 @@ See <a href="http://go.adobe.com/kb/ts_tn_15523_en-us">Flash content displays on
 
 To work around this issue you will need to add something like the following to your <code>&lt;param /&gt;</code> and <code>&lt;embed&gt;&lt;/embed&gt;</code> tags:
 <code>
-        &lt;object&gt;&lt;param name="wmode" value="opaque" /&gt;&lt;embed wmode="opaque" [all other embed settings, file src etc.]&gt;&lt;/embed&gt;&lt;/object&gt;
+		&lt;object&gt;&lt;param name="wmode" value="opaque" /&gt;&lt;embed wmode="opaque" [all other embed settings, file src etc.]&gt;&lt;/embed&gt;&lt;/object&gt;
 </code>
 
 == Frequently Asked Questions ==
@@ -191,6 +191,9 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Fixed text links getting lightboxed even of option is not set.
  * Fixed many small issues and text errors.*
 * Still in progress
+
+= 2.4.6 =
+* Fixed PHP 5 comment bug that got reintroduced into plugin
 
 = 2.4.5 =
 * Updated compatibility with WordPress 3.3
