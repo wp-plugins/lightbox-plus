@@ -168,30 +168,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 4. Lightbox Plus - Inline Content (Form)
 
 == Change Log ==
-<!--
-= 2.5 =
-* Added positioning options
- * Absolute top, right. bottom, left positioning.  Now able to specify horizontal and vertical position in viewport as opposed to center only.
- * Fixed positioning that allows lightbox stays on page when scrolled.
-* Rebuilt interface
- * Changed interface to a combination of collapsible and tabbed to make it more concise and usable
- * Separate settings into logical groups within tabs
- * Added enhanced instructions and details of usage.*
- * Improved and updated demos and tests.*
-* Page/Post Options
- * Auto launch on page.  If auto-launch is set Lightbox Plus will automatically open the first lightboxed item on the page.*
- * Per page loading. Ff per page options are set Lightbox JavaScript will only load for specified pages.
- * Blog/posts only loading. if per page options are set Lightbox JavaScript will only load for specified pages. 
-* Image grouping
- * Added more control over image grouping
- * Fixed image X of X problem, can disable Image X of X
-* Scrolling If 'false' ColorBox will hide scrollbars for overflowing content. This could be used on conjunction with the resize method (see below) for a smoother transition if you are appending content to an already open instance of ColorBox.
-* Numerous bug fixes
- * Fixed use WP Caption option.  Works with singles images and WordPress built in galleries now.
- * Fixed text links getting lightboxed even of option is not set.
- * Fixed many small issues and text errors.*
-* Still in progress
--->
+
 = 2.4.6 =
 * Fixed PHP 5 comment bug that got reintroduced into plugin
 
@@ -566,6 +543,11 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 = 1.0 =
 * Initial release
+
+== Upgrade Notice ==
+
+= 2.4.6 =
+* Upgrade recommended because inserted comment could cause visual issues with you pages
 
 == Special Thanks ==
 
