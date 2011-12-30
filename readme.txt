@@ -168,7 +168,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 4. Lightbox Plus - Inline Content (Form)
 
 == Change Log ==
-
+<!--
 = 2.5 =
 * Added positioning options
  * Absolute top, right. bottom, left positioning.  Now able to specify horizontal and vertical position in viewport as opposed to center only.
@@ -191,7 +191,7 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
  * Fixed text links getting lightboxed even of option is not set.
  * Fixed many small issues and text errors.*
 * Still in progress
-
+-->
 = 2.4.6 =
 * Fixed PHP 5 comment bug that got reintroduced into plugin
 
