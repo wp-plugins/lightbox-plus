@@ -544,6 +544,11 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 = 1.0 =
 * Initial release
 
+== Upgrade Notice ==
+
+= 2.4.6 =
+* Upgrade recommended because inserted comment could cause visual issues with you pages
+
 == Special Thanks ==
 
 * Dirk Schmitz (for pointing out an obvious bug that I kept overlooking)
