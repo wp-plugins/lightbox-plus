@@ -4,7 +4,7 @@
     * @subpackage utility.class.php
     * @internal 2011.12.12
     * @author Dan Zappone / 23Systems
-    * @version 2.4.5
+    * @version 2.4.6
     */
     if (!class_exists('lbp_utilities')) {
 
@@ -191,9 +191,9 @@
 
             function post_thumbnail_caption() {
                 extract(shortcode_atts(array(
-                'id'    => '',
-                'align'    => 'alignnone',
-                'width'    => '',
+                'id'      => '',
+                'align'   => 'alignnone',
+                'width'   => '',
                 'caption' => ''
                 ), $attr));
 

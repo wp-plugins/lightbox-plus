@@ -4,7 +4,7 @@
     * @subpackage lightbox.inline.php
     * @internal 2011.12.12
     * @author Dan Zappone / 23Systems
-    * @version 2.4.5
+    * @version 2.4.6
     */
 ?>
 <!-- Inline Lightbox Settings -->
@@ -55,7 +55,6 @@
                                     $inline_fixeds           = array();
                                     $inline_opens            = array();
                                     $inline_opacitys         = array();
-
                                     $inline_links            = $lightboxPlusOptions['inline_links'];
                                     $inline_hrefs            = $lightboxPlusOptions['inline_hrefs'];
                                     $inline_transitions      = $lightboxPlusOptions['inline_transitions'];
@@ -86,14 +85,14 @@
                                             <option value="none"<?php if ( $inline_transitions[$i - 1] == 'none' ) echo ' selected="selected"'?>>None</option>
                                         </select><br />
                                         <select name="inline_speed_<?php echo $i; ?>" id="inline_speed_<?php echo $i; ?>">
-                                            <?php 
+                                            <?php
                                                 for($j = 0;$j <= 5001;){ ?>
                                                 <option value="<?php echo $j; ?>"<?php if ( $inline_speeds[$i - 1] == strval($j) ) echo ' selected="selected"'?>><?php echo $j; ?></option>
-                                                <?php  
+                                                <?php
                                                     if ($j >= 2000) { $j = $j + 500; }
                                                     elseif ($j >= 1250) { $j = $j + 250; }
                                                     else { $j = $j + 50; }
-                                                } 
+                                                }
                                             ?>
                                         </select>
                                     </td>
@@ -128,11 +127,11 @@
                                     <td align="center">
 
                                         <select name="inline_opacity_<?php echo $i; ?>" id="inline_opacity_<?php echo $i; ?>">
-                                            <?php 
+                                            <?php
                                                 for($j = 0; $j <= 1.01; $j = $j + .05){ ?>
                                                 <option value="<?php echo $j; ?>"<?php if ( $inline_opacitys[$i - 1] == strval($j) ) { echo ' selected="selected"'; }?>><?php echo ($j*100); ?>%</option>
-                                                <?php 
-                                                } 
+                                                <?php
+                                                }
                                             ?>
                                         </select>
                                     </td>
@@ -144,14 +143,14 @@
                     </table>
                 </div>
                 <!-- Usage -->
-                <div id="ilbp-tabs-2"> 
+                <div id="ilbp-tabs-2">
                     <table class="form-table">
                         <tr>
                             <td>
                                 <h4><?php _e('Using Inline Lightboxes', 'lightboxplus')?></h4>
                                 <div id="lbp_for_inline_tip">
                                 <p><?php _e( 'Inline lightboxes are used to display content that exists on the current page.  It can be used to display a form, video or any other content that is contained on the page.  In order to display inline content using Lightbox Plus and Colorbox you must at a minimum has the following items set: Link Class, Content ID, Width, Height, and Opacity.', 'lightboxplus')?></p>
-                                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
+                                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
                                     <h5><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span><?php _e('Example', 'lightboxplus')?></h5>
                                     <p><?php _e( 'The following example shows how to setup content for display in a lightbox.  You will need to create a link to the content that contains a class that has the same value as the Link Class for the inline lightbox you are using.', 'lightboxplus')?></p>
                                     <p class="codebox">

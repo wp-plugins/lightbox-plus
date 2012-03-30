@@ -4,8 +4,8 @@
 	* @subpackage lightbox.secondary.php
 	* @internal 2011.12.12
 	* @author Dan Zappone / 23Systems
-	* @version 2.4.5
-	*/ 
+	* @version 2.4.6
+	*/
 	/**
 	* @todo Add scrolling_sec (Interface)
 	* @todo Add photo_sec (General)
@@ -60,14 +60,14 @@
 								<?php _e( 'Resize Speed', 'lightboxplus' )?>: </th>
 							<td>
 								<select name="speed_sec" id="speed_sec">
-									<?php 
+									<?php
 										for($i = 0; $i <= 5001;){ ?>
 										<option value="<?php echo $i; ?>"<?php if ( $lightboxPlusOptions['speed_sec'] == strval($i) ) echo ' selected="selected"'?>><?php echo $i; ?></option>
-										<?php  
+										<?php
 											if ($i >= 2000) { $i = $i + 500; }
 											elseif ($i >= 1250) { $i = $i + 250; }
 											else { $i = $i + 50; }
-										} 
+										}
 									?>
 								</select>
 								<a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
@@ -81,11 +81,11 @@
 								<?php _e( 'Overlay Opacity', 'lightboxplus' )?>: </th>
 							<td>
 								<select name="opacity_sec">
-									<?php 
+									<?php
 										for($i = 0; $i <= 1.01; $i = $i + .05){ ?>
 										<option value="<?php echo $i; ?>"<?php if ( $lightboxPlusOptions['opacity_sec'] == strval($i) ) { echo ' selected="selected"'; }?>><?php echo ($i*100); ?>%</option>
-										<?php 
-										} 
+										<?php
+										}
 									?>
 								</select>
 								<a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
@@ -412,14 +412,14 @@
 								<?php _e( 'Slideshow Speed', 'lightboxplus' )?>: </th>
 							<td>
 								<select name="slideshow_speed_sec" id="slideshow_speed_sec">
-									<?php 
+									<?php
 										for($i = 500;$i <= 20001;){ ?>
 										<option value="<?php echo $i; ?>"<?php if ( $lightboxPlusOptions['slideshow_speed_sec'] == strval($i) ) echo ' selected="selected"'?>><?php echo $i; ?></option>
-										<?php  
+										<?php
 											if ($i >= 15000) { $i = $i + 5000; }
 											elseif ($i >= 10000) { $i = $i + 1000; }
 											else { $i = $i + 500; }
-										} 
+										}
 									?>
 								</select>
 								<a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>

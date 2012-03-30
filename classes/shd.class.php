@@ -4,7 +4,7 @@
     * @subpackage pagename
     * @internal 2011.12.12
     * @author Dan Zappone / 23Systems
-    * @version 2.4.5
+    * @version 2.4.6
     */
     /**
     * Website: http://sourceforge.net/projects/simplehtmldom/
@@ -142,9 +142,9 @@
         // clean up memory due to php5 circular references memory leak...
         function clear()
         {
-            $this->dom = null;
-            $this->nodes = null;
-            $this->parent = null;
+            $this->dom      = null;
+            $this->nodes    = null;
+            $this->parent   = null;
             $this->children = null;
         }
 

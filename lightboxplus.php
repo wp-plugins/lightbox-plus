@@ -51,7 +51,7 @@
 	* @subpackage lightboxplus.php
 	* @internal 2011.12.12
 	* @author Dan Zappone / 23Systems
-	* @version 2.4.5
+	* @version 2.4.6
 	*/
 	/**
 	* WordPress Globals
@@ -87,12 +87,12 @@
 	$g_lbp_plugin_page = '';
 	$g_lbp_messages = '';
 	$g_lbp_message_title = '';
-	$g_lightbox_plus_url = WP_PLUGIN_URL.'/lightbox-plus';
-	$g_lightbox_plus_dir = WP_PLUGIN_DIR.'/lightbox-plus';
+	$g_lightbox_plus_url = plugin_dir_url(__FILE__);
+	$g_lightbox_plus_dir = plugin_dir_path(__FILE__);
 	$g_lbp_local_style_path = $g_lightbox_plus_dir.'/css';
 	$g_lbp_global_style_path = WP_CONTENT_DIR . '/lbp-css';
 	$g_lbp_local_style_url = $g_lightbox_plus_url.'/css';
-	$g_lbp_global_style_url = WP_CONTENT_URL . '/lbp-css';
+	$g_lbp_global_style_url = content_url() . '/lbp-css';
 
 	/**
 	* Require extended Lightbox Plus classes
@@ -175,7 +175,7 @@
 				//if ( !get_option( $this->lightboxInitName ) ) {
 				//    $this->lightboxPlusInit( );
 				//}
-				
+
 				/**
 				* If user is in the admin panel
 				*/
@@ -185,7 +185,7 @@
 					* Check to see if the user wants to use per page/post options
 					*/
 					if ($lightboxPlusOptions['use_forpage']) {
-						add_action( 'save_post', array( &$this, 'lightboxPlusSaveMeta'),10,1 );    
+						add_action( 'save_post', array( &$this, 'lightboxPlusSaveMeta'),10,1 );
 						add_action( 'add_meta_boxes', array( &$this, "lightboxPlusMetaBox" ),10,1 );
 					}
 					$this->lbpFinal();
@@ -308,59 +308,59 @@
 					switch ( $_POST['sub'] ) {
 						case 'settings':
 							$lightboxPlusOptions = array(
-							"lightboxplus_multi"    => $_POST['lightboxplus_multi'],
-							"use_inline"            => $_POST['use_inline'],
-							"inline_num"            => $_POST['inline_num'],
-							"lightboxplus_style"    => $_POST['lightboxplus_style'],
-							"use_custom_style"      => $_POST['use_custom_style'],
-							"disable_css"           => $_POST['disable_css'],
-							"hide_about"            => $_POST['hide_about'],
-							"use_perpage"           => $_POST['use_perpage'],
-							"use_forpage"           => $_POST['use_forpage'],
-							"use_forpost"           => $_POST['use_forpost'],
-							"transition"            => $_POST['transition'],
-							"speed"                 => $_POST['speed'],
-							"width"                 => $_POST['width'],
-							"height"                => $_POST['height'],
-							"inner_width"           => $_POST['inner_width'],
-							"inner_height"          => $_POST['inner_height'],
-							"initial_width"         => $_POST['initial_width'],
-							"initial_height"        => $_POST['initial_height'],
-							"max_width"             => $_POST['max_width'],
-							"max_height"            => $_POST['max_height'],
-							"resize"                => $_POST['resize'],
-							"opacity"               => $_POST['opacity'],
-							"preloading"            => $_POST['preloading'],
-							"label_image"           => $_POST['label_image'],
-							"label_of"              => $_POST['label_of'],
-							"previous"              => $_POST['previous'],
-							"next"                  => $_POST['next'],
-							"close"                 => $_POST['close'],
-							"overlay_close"         => $_POST['overlay_close'],
-							"slideshow"             => $_POST['slideshow'],
-							"slideshow_auto"        => $_POST['slideshow_auto'],
-							"slideshow_speed"       => $_POST['slideshow_speed'],
-							"slideshow_start"       => $_POST['slideshow_start'],
-							"slideshow_stop"        => $_POST['slideshow_stop'],
-							"use_caption_title"     => $_POST['use_caption_title'],
-							"gallery_lightboxplus"  => $_POST['gallery_lightboxplus'],
-							"multiple_galleries"    => $_POST['multiple_galleries'],
-							"use_class_method"      => $_POST['use_class_method'],
-							"class_name"            => $_POST['class_name'],
-							"no_auto_lightbox"      => $_POST['no_auto_lightbox'],
-							"text_links"            => $_POST['text_links'],
-							"no_display_title"      => $_POST['no_display_title'],
-							"scrolling"             => $_POST['scrolling'],
-							"photo"                 => $_POST['photo'],
-							"rel"                   => $_POST['rel'], //Disable grouping
-							"loop"                  => $_POST['loop'],
-							"esc_key"               => $_POST['esc_key'],
-							"arrow_key"             => $_POST['arrow_key'],
-							"top"                   => $_POST['top'],
-							"bottom"                => $_POST['bottom'],
-							"left"                  => $_POST['left'],
-							"right"                 => $_POST['right'],
-							"fixed"                 => $_POST['fixed']
+							"lightboxplus_multi"   => $_POST['lightboxplus_multi'],
+							"use_inline"           => $_POST['use_inline'],
+							"inline_num"           => $_POST['inline_num'],
+							"lightboxplus_style"   => $_POST['lightboxplus_style'],
+							"use_custom_style"     => $_POST['use_custom_style'],
+							"disable_css"          => $_POST['disable_css'],
+							"hide_about"           => $_POST['hide_about'],
+							"use_perpage"          => $_POST['use_perpage'],
+							"use_forpage"          => $_POST['use_forpage'],
+							"use_forpost"          => $_POST['use_forpost'],
+							"transition"           => $_POST['transition'],
+							"speed"                => $_POST['speed'],
+							"width"                => $_POST['width'],
+							"height"               => $_POST['height'],
+							"inner_width"          => $_POST['inner_width'],
+							"inner_height"         => $_POST['inner_height'],
+							"initial_width"        => $_POST['initial_width'],
+							"initial_height"       => $_POST['initial_height'],
+							"max_width"            => $_POST['max_width'],
+							"max_height"           => $_POST['max_height'],
+							"resize"               => $_POST['resize'],
+							"opacity"              => $_POST['opacity'],
+							"preloading"           => $_POST['preloading'],
+							"label_image"          => $_POST['label_image'],
+							"label_of"             => $_POST['label_of'],
+							"previous"             => $_POST['previous'],
+							"next"                 => $_POST['next'],
+							"close"                => $_POST['close'],
+							"overlay_close"        => $_POST['overlay_close'],
+							"slideshow"            => $_POST['slideshow'],
+							"slideshow_auto"       => $_POST['slideshow_auto'],
+							"slideshow_speed"      => $_POST['slideshow_speed'],
+							"slideshow_start"      => $_POST['slideshow_start'],
+							"slideshow_stop"       => $_POST['slideshow_stop'],
+							"use_caption_title"    => $_POST['use_caption_title'],
+							"gallery_lightboxplus" => $_POST['gallery_lightboxplus'],
+							"multiple_galleries"   => $_POST['multiple_galleries'],
+							"use_class_method"     => $_POST['use_class_method'],
+							"class_name"           => $_POST['class_name'],
+							"no_auto_lightbox"     => $_POST['no_auto_lightbox'],
+							"text_links"           => $_POST['text_links'],
+							"no_display_title"     => $_POST['no_display_title'],
+							"scrolling"            => $_POST['scrolling'],
+							"photo"                => $_POST['photo'],
+							"rel"                  => $_POST['rel'], //Disable grouping
+							"loop"                 => $_POST['loop'],
+							"esc_key"              => $_POST['esc_key'],
+							"arrow_key"            => $_POST['arrow_key'],
+							"top"                  => $_POST['top'],
+							"bottom"               => $_POST['bottom'],
+							"left"                 => $_POST['left'],
+							"right"                => $_POST['right'],
+							"fixed"                => $_POST['fixed']
 							);
 
 							$g_lbp_message_title .= __('Lightbox Plus Setting Saved','lightboxplus');
@@ -369,45 +369,45 @@
 
 							if ( $_POST['lightboxplus_multi'] ) {
 								$lightboxPlusSecondaryOptions = array(
-								"transition_sec"        => $_POST['transition_sec'],
-								"speed_sec"             => $_POST['speed_sec'],
-								"width_sec"             => $_POST['width_sec'],
-								"height_sec"            => $_POST['height_sec'],
-								"inner_width_sec"       => $_POST['inner_width_sec'],
-								"inner_height_sec"      => $_POST['inner_height_sec'],
-								"initial_width_sec"     => $_POST['initial_width_sec'],
-								"initial_height_sec"    => $_POST['initial_height_sec'],
-								"max_width_sec"         => $_POST['max_width_sec'],
-								"max_height_sec"        => $_POST['max_height_sec'],
-								"resize_sec"            => $_POST['resize_sec'],
-								"opacity_sec"           => $_POST['opacity_sec'],
-								"preloading_sec"        => $_POST['preloading_sec'],
-								"label_image_sec"       => $_POST['label_image_sec'],
-								"label_of_sec"          => $_POST['label_of_sec'],
-								"previous_sec"          => $_POST['previous_sec'],
-								"next_sec"              => $_POST['next_sec'],
-								"close_sec"             => $_POST['close_sec'],
-								"overlay_close_sec"     => $_POST['overlay_close_sec'],
-								"slideshow_sec"         => $_POST['slideshow_sec'],
-								"slideshow_auto_sec"    => $_POST['slideshow_auto_sec'],
-								"slideshow_speed_sec"   => $_POST['slideshow_speed_sec'],
-								"slideshow_start_sec"   => $_POST['slideshow_start_sec'],
-								"slideshow_stop_sec"    => $_POST['slideshow_stop_sec'],
-								"iframe_sec"            => $_POST['iframe_sec'],
-								"use_class_method_sec"  => $_POST['use_class_method_sec'],
-								"class_name_sec"        => $_POST['class_name_sec'],
-								"no_display_title_sec"  => $_POST['no_display_title_sec'],
-								"scrolling_sec"         => $_POST['scrolling_sec'],
-								"photo_sec"             => $_POST['photo_sec'],
-								"rel_sec"               => $_POST['rel_sec'], //Disable grouping
-								"loop_sec"              => $_POST['loop_sec'],
-								"esc_key_sec"           => $_POST['esc_key_sec'],
-								"arrow_key_sec"         => $_POST['arrow_key_sec'],
-								"top_sec"               => $_POST['top_sec'],
-								"bottom_sec"            => $_POST['bottom_sec'],
-								"left_sec"              => $_POST['left_sec'],
-								"right_sec"             => $_POST['right_sec'],
-								"fixed_sec"             => $_POST['fixed_sec']
+								"transition_sec"       => $_POST['transition_sec'],
+								"speed_sec"            => $_POST['speed_sec'],
+								"width_sec"            => $_POST['width_sec'],
+								"height_sec"           => $_POST['height_sec'],
+								"inner_width_sec"      => $_POST['inner_width_sec'],
+								"inner_height_sec"     => $_POST['inner_height_sec'],
+								"initial_width_sec"    => $_POST['initial_width_sec'],
+								"initial_height_sec"   => $_POST['initial_height_sec'],
+								"max_width_sec"        => $_POST['max_width_sec'],
+								"max_height_sec"       => $_POST['max_height_sec'],
+								"resize_sec"           => $_POST['resize_sec'],
+								"opacity_sec"          => $_POST['opacity_sec'],
+								"preloading_sec"       => $_POST['preloading_sec'],
+								"label_image_sec"      => $_POST['label_image_sec'],
+								"label_of_sec"         => $_POST['label_of_sec'],
+								"previous_sec"         => $_POST['previous_sec'],
+								"next_sec"             => $_POST['next_sec'],
+								"close_sec"            => $_POST['close_sec'],
+								"overlay_close_sec"    => $_POST['overlay_close_sec'],
+								"slideshow_sec"        => $_POST['slideshow_sec'],
+								"slideshow_auto_sec"   => $_POST['slideshow_auto_sec'],
+								"slideshow_speed_sec"  => $_POST['slideshow_speed_sec'],
+								"slideshow_start_sec"  => $_POST['slideshow_start_sec'],
+								"slideshow_stop_sec"   => $_POST['slideshow_stop_sec'],
+								"iframe_sec"           => $_POST['iframe_sec'],
+								"use_class_method_sec" => $_POST['use_class_method_sec'],
+								"class_name_sec"       => $_POST['class_name_sec'],
+								"no_display_title_sec" => $_POST['no_display_title_sec'],
+								"scrolling_sec"        => $_POST['scrolling_sec'],
+								"photo_sec"            => $_POST['photo_sec'],
+								"rel_sec"              => $_POST['rel_sec'], //Disable grouping
+								"loop_sec"             => $_POST['loop_sec'],
+								"esc_key_sec"          => $_POST['esc_key_sec'],
+								"arrow_key_sec"        => $_POST['arrow_key_sec'],
+								"top_sec"              => $_POST['top_sec'],
+								"bottom_sec"           => $_POST['bottom_sec'],
+								"left_sec"             => $_POST['left_sec'],
+								"right_sec"            => $_POST['right_sec'],
+								"fixed_sec"            => $_POST['fixed_sec']
 								);
 								$lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusSecondaryOptions);
 								unset($lightboxPlusSecondaryOptions);
@@ -635,8 +635,8 @@
 					$('.lbp-info').click( function() {$(this).next('.lbp-bigtip').slideToggle(100);});
 					$("#blbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
 					$("#plbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
-					$("#slbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });  
-					$("#ilbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } }); 
+					$("#slbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
+					$("#ilbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
 
 					$("#use_inline").click(function(){ if ($("#use_inline").prop("checked")) { $(".base_gen").show("fast"); } else { $(".base_gen").hide("fast"); } });
 					$("#use_perpage").click(function(){ if ($("#use_perpage").prop("checked")) { $(".base_blog").show("fast"); } else { $(".base_blog").hide("fast"); } });

@@ -4,7 +4,7 @@
 	* @subpackage lightbox.admin.php
 	* @internal 2011.12.12
 	* @author Dan Zappone / 23Systems
-	* @version 2.4.5
+	* @version 2.4.6
 	*/
 	if ( !empty( $this->lightboxOptions )) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
 	/**
@@ -102,7 +102,7 @@
 										<?php for ($i = 1; $i <= 100; $i++) {
 											?>
 											<option value="<?php echo $i; ?>"<?php selected($i, $lightboxPlusOptions['inline_num']);?>><?php echo $i; ?></option>
-											<?php  
+											<?php
 											}
 										?>
 									</select>
@@ -270,14 +270,14 @@
 									<?php _e( 'Resize Speed', 'lightboxplus' )?>: </th>
 								<td>
 									<select name="speed" id="speed">
-										<?php 
+										<?php
 											for($i = 0;$i <= 5001;){ ?>
 											<option value="<?php echo $i; ?>"<?php if ( $lightboxPlusOptions['speed'] == strval($i) ) echo ' selected="selected"'?>><?php echo $i; ?></option>
-											<?php  
+											<?php
 												if ($i >= 2000) { $i = $i + 500; }
 												elseif ($i >= 1250) { $i = $i + 250; }
 												else { $i = $i + 50; }
-											} 
+											}
 										?>
 									</select>
 									<a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
@@ -291,11 +291,11 @@
 									<?php _e( 'Overlay Opacity', 'lightboxplus' )?>: </th>
 								<td>
 									<select name="opacity">
-										<?php 
+										<?php
 											for($i = 0; $i <= 1.01; $i = $i + .05){ ?>
 											<option value="<?php echo $i; ?>"<?php if ( $lightboxPlusOptions['opacity'] == strval($i) ) { echo ' selected="selected"'; }?>><?php echo ($i*100); ?>%</option>
-											<?php 
-											} 
+											<?php
+											}
 										?>
 									</select>
 									<a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
@@ -622,14 +622,14 @@
 									<?php _e( 'Slideshow Speed', 'lightboxplus' )?>: </th>
 								<td>
 									<select name="slideshow_speed" id="slideshow_speed">
-										<?php 
+										<?php
 											for($i = 500;$i <= 20001;){ ?>
 											<option value="<?php echo $i; ?>"<?php if ( $lightboxPlusOptions['slideshow_speed'] == strval($i) ) echo ' selected="selected"'?>><?php echo $i; ?></option>
-											<?php  
+											<?php
 												if ($i >= 15000) { $i = $i + 5000; }
 												elseif ($i >= 10000) { $i = $i + 1000; }
 												else { $i = $i + 500; }
-											} 
+											}
 										?>
 									</select>
 									<a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'/admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
@@ -774,7 +774,7 @@
 						</table>
 					</div>
 					<!-- Demo/Test -->
-					<div id="plbp-tabs-8">  
+					<div id="plbp-tabs-8">
 						<table class="form-table">
 							<tr valign="top">
 								<td>
@@ -821,7 +821,7 @@
 		<div class="inside toggle">
 			<!-- Secondary Settings -->
 			<div class="ui-widget">
-				<div class="ui-state-error ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
+				<div class="ui-state-error ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
 					<p>
 						<span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
 						<?php _e( 'This will immediately remove all existing settings and any files for versions of Lightbox Plus prior to version 1.5 (if needed) and will also re-initialize the plugin with the new default options. Be absolutely certain you want to do this. <br /><br /><strong><em>If you are upgrading from a version prior to 2.0 it is <strong><em>highly</em></strong> recommended that you reinitialize Lightbox Plus</em></strong>','lightboxplus' ); ?>

@@ -4,7 +4,7 @@
     * @subpackage filters.class.php
     * @internal 2011.12.12
     * @author Dan Zappone / 23Systems
-    * @version 2.4.5
+    * @version 2.4.6
     */
     if (!class_exists('lbp_filters')) {
         class lbp_filters extends lbp_shortcode {

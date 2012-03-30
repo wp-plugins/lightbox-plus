@@ -4,7 +4,7 @@
     * @subpackage actions.class.php
     * @internal 2011.12.12
     * @author Dan Zappone / 23Systems
-    * @version 2.4.5
+    * @version 2.4.6
     */
     if (!class_exists('lbp_actions')) {
         class lbp_actions extends lbp_filters {
@@ -254,9 +254,9 @@
             }
 
             /**
-            * @todo finish per post/page metabox 
+            * @todo finish per post/page metabox
             * Add metabox to edit post/page for per page application of lightbox plus
-            * 
+            *
             */
             function saveLightboxPlusMeta() {
                 add_action( 'save_post', array( $this, 'lightboxPlusSaveMeta'),10,1 );
