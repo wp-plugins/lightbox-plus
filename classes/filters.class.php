@@ -2,9 +2,9 @@
     /**
     * @package Lightbox Plus
     * @subpackage filters.class.php
-    * @internal 2011.12.12
+    * @internal 2012.03.30
     * @author Dan Zappone / 23Systems
-    * @version 2.4.6
+    * @version 2.5-beta-1
     */
     if (!class_exists('lbp_filters')) {
         class lbp_filters extends lbp_shortcode {
