@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 2.5
+Stable tag: 2.5.1
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -142,13 +142,14 @@ If you have read and tried the above and you are still having problems, then, pl
 = Known Problems =
 
 * Does not work correctly with W3 Total Cache if you are using automatic minify settings.  You can manually set up minify to work correctly bypassing Lightbox Plus (jquery-colorbox.min.js)
-* A few minor bugs that were pointed out to me have yet to be addressed
 * No support for iPad (if someone wants to donate an iPad to me I will guarantee support)
+ * It should work though I just don't support it.
 * In some instances performance may be slow in older versions IE - this may be due to plugin conflicts or slow JavaScript performance in IE.
 * Lightboxed video does not seem to work in IE on locally installed sites, for example viewing in IE 7.0 while running XAMPP, this seems to be a Windows only issue.
 
 = Plugin Conflicts =
 
+* Jetpack Carousel - When carousel is activate it take precedence over Lightbox Plus for image use.
 * Flickr Mini Gallery - Verified.  Download hot fix for <a href="http://23systems.net/downloads/file/flickr-mini-gallery-jquery-hotfix.zip">Flickr Mini Gallery</a> (includes instructions)
 * Tabbed Widgets - Verified
 * DMSGuestbook - Un-verified
@@ -164,6 +165,9 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 4. Lightbox Plus - Inline Content (Form)
 
 == Change Log ==
+
+= 2.5.1 =
+* Fixed php html dom functions that were throwing errors when using other plugins using PHP HTML DOM.
 
 = 2.5 =
 * Added positioning options

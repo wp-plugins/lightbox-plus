@@ -5,7 +5,7 @@
     Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 2.5
+    Version: 2.5.1
     */
     
     /**
@@ -13,7 +13,7 @@
     * @subpackage lightboxplus.php
     * @internal 2013.01.10
     * @author Dan Zappone / 23Systems
-    * @version 2.5
+    * @version 2.5.1
     * @$Id$
     * @$URL$ 
     */
@@ -442,8 +442,6 @@
                                     "inline_opacitys"         => $inline_opacitys
                                 );
 
-
-
                                 $lightboxPlusOptions = array_merge($lightboxPlusOptions, $lightboxPlusInlineOptions);
                                 unset($lightboxPlusInlineOptions);
                                 $g_lbp_messages .= __('Inline lightbox settings updated.','lightboxplus').'<br /><br />';
@@ -567,7 +565,7 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options (v2.5) ', 'lightboxplus' )?></h2>
+                <h2><?php _e( 'Lightbox Plus Options (v2.5.1) ', 'lightboxplus' )?></h2>
                 <h3><?php _e( 'With ColorBox (v1.3.20) and PHP Simple HTML DOM Parser (v1.5)', 'lightboxplus' )?></h3>
                 <h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/services/support/">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/23Systems">Add Facebook Page</a>','lightboxplus' ); ?></h4>
 
