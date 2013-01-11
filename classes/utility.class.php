@@ -2,9 +2,11 @@
     /**
     * @package Lightbox Plus
     * @subpackage utility.class.php
-    * @internal 2012.03.30
+    * @internal 2013.01.10
     * @author Dan Zappone / 23Systems
-    * @version 2.5-beta-1
+    * @version 2.5
+    * @$Id$
+    * @$URL$
     */
     if (!class_exists('lbp_utilities')) {
 

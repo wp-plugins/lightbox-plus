@@ -3,14 +3,14 @@ Contributors: dzappone
 Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 3.0
-Tested up to: 3.3
-Stable tag: 2.4.6
+Tested up to: 3.5
+Stable tag: 2.5
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
 == Description ==
 
-Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://colorpowered.com/colorbox/">ColorBox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus for WordPress implements ColorBox as a lightbox image overlay tool for WordPress. ColorBox was created by Jack Moore and is licensed under the MIT License. Lightbox Plus permits users to view larger versions of images without having to leave the current page. Lightbox is able to add a lightbox to WordPress gallery images, display simple slide shows, video, forms and external content in overlays. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image or video being viewed. Lightbox Plus captures the image title for display in the overlay.
+Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus for WordPress implements ColorBox as a lightbox image overlay tool for WordPress. ColorBox was created by Jack Moore and is licensed under the MIT License. Lightbox Plus permits users to view larger versions of images without having to leave the current page. Lightbox is able to add a lightbox to WordPress gallery images, display simple slide shows, video, forms and external content in overlays. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image or video being viewed. Lightbox Plus captures the image title for display in the overlay.
 
 Lightbox Plus uses WordPress's built in jQuery library.
 
@@ -25,7 +25,7 @@ If you are unable to resolve your problem with the information provided in the F
 Server
 
 * WordPress 2.8+
-* PHP 5+ (Recommended)
+* PHP 5+ (Required)
 
 Support for PHP 4 has been completely removed - DO NOT UPDATE if you want Lightbox Plus to work with PHP 4.
 
@@ -39,15 +39,15 @@ Note that getting the caption to appear in the overlay image by using the captio
 
 1. Add a rel="lightbox[uniqueID|filename]" attribute to any link tag to activate the lightbox, include a name between square brackets in the rel attibute. For example:
 
-		<a href="images/image-1.jpg" rel="lightbox[uniqueID|filename]" title="my caption">image #1</a>
+        <a href="images/image-1.jpg" rel="lightbox[uniqueID|filename]" title="my caption">image #1</a>
 
 Optional: Use the title attribute if you want to show a caption.
 
 2. If you have a set of related images that you would like to group, follow step one but additionally include a group name between square brackets in the rel attribute. For example:
 
-		<a href="images/image-1.jpg" rel="lightbox[roadtrip]">image #1</a>
-		<a href="images/image-2.jpg" rel="lightbox[roadtrip]">image #2</a>
-		<a href="images/image-3.jpg" rel="lightbox[roadtrip]">image #3</a>
+        <a href="images/image-1.jpg" rel="lightbox[roadtrip]">image #1</a>
+        <a href="images/image-2.jpg" rel="lightbox[roadtrip]">image #2</a>
+        <a href="images/image-3.jpg" rel="lightbox[roadtrip]">image #3</a>
 
 = Suggestions =
 
@@ -68,7 +68,7 @@ See <a href="http://go.adobe.com/kb/ts_tn_15523_en-us">Flash content displays on
 
 To work around this issue you will need to add something like the following to your <code>&lt;param /&gt;</code> and <code>&lt;embed&gt;&lt;/embed&gt;</code> tags:
 <code>
-		&lt;object&gt;&lt;param name="wmode" value="opaque" /&gt;&lt;embed wmode="opaque" [all other embed settings, file src etc.]&gt;&lt;/embed&gt;&lt;/object&gt;
+        &lt;object&gt;&lt;param name="wmode" value="opaque" /&gt;&lt;embed wmode="opaque" [all other embed settings, file src etc.]&gt;&lt;/embed&gt;&lt;/object&gt;
 </code>
 
 == Frequently Asked Questions ==
@@ -168,6 +168,28 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 4. Lightbox Plus - Inline Content (Form)
 
 == Change Log ==
+
+= 2.5 =
+* Added positioning options
+ * Absolute top, right. bottom, left positioning.  Now able to specify horizontal and vertical position in viewport as opposed to center only.
+ * Fixed positioning that allows lightbox stays on page when scrolled.
+* Rebuilt interface
+ * Changed interface to a combination of collapsible and tabbed to make it more concise and usable
+ * Separate settings into logical groups within tabs
+ * Added enhanced instructions and details of usage.
+ * Improved and updated demos and tests.
+* Page/Post Options
+ * Auto launch on page.  If auto-launch is set Lightbox Plus will automatically open the first lightboxed item on the page.*
+ * Per page loading. If per page options are set Lightbox JavaScript will only load for specified pages.
+ * Blog/posts only loading. if per page options are set Lightbox JavaScript will only load for specified pages. 
+* Image grouping
+ * Added more control over image grouping
+ * Fixed image X of X problem, can disable Image X of X
+* Scrolling - If 'false' ColorBox will hide scrollbars for overflowing content. This could be used on conjunction with the resize method (see below) for a smoother transition if you are appending content to an already open instance of ColorBox.
+* Numerous bug fixes
+ * Fixed use WP Caption option.  Works with singles images and WordPress built in galleries now.
+ * Fixed text links getting lightboxed even of option is not set.
+ * Fixed many small issues and text errors.
 
 = 2.4.6 =
 * Fixed PHP 5 comment bug that got reintroduced into plugin
@@ -558,8 +580,8 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 * navjotsingh (for bug fix in gellery shortcode with version 1.6.x)
 * <a href="http://www.dev4press.com/">Milan Petrovic</a> for some quick debugging of version 2.0 admin panel
 * <a href="http://www.melaniesallis.com">Melanie Sallis</a> for needing a lightbox for her site which prompted me to create this plugin
-* <a href="http://www.colorpowered.com">Jack Moore</a> for creating the awesome jQuery plugin, ColorBox, and everyone who has contributed to the support in developing this plugin.
+* <a href="http://www.jacklmoore.com/colorbox">Jack Moore</a> for creating the awesome jQuery plugin, ColorBox, and everyone who has contributed to the support in developing this plugin.
 
 == More Information ==
 
-<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/bbpress/forum/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/pages/Austin-TX/23Systems-Web-Devsign/94195762502">Add Facebook Page</a>
+<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/bbpress/forum/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/23Systems">Add Facebook Page</a>

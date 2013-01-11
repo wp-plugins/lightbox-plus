@@ -1,6 +1,9 @@
 /*
-	ColorBox Core Style
-	The following rules are the styles that are consistant between all ColorBox themes
+* ColorBox Core Style
+* The following rules are the styles that are consistant between all ColorBox themes
+* @version 2.5-beta-1
+* @$Id$
+* @$URL$
 */
 #colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
 #cboxOverlay{position:fixed; width:100%; height:100%;}

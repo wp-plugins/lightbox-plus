@@ -2,9 +2,11 @@
     /**
     * @package Lightbox Plus
     * @subpackage lightbox.inline.php
-    * @internal 2012.03.30
+    * @internal 2013.01.10
     * @author Dan Zappone / 23Systems
-    * @version 2.5-beta-1
+    * @version 2.5
+    * @$Id$
+    * @$URL$
     */
 ?>
 <!-- Inline Lightbox Settings -->
@@ -180,7 +182,7 @@
                                     <a class="<?php echo $inline_links[0]; ?>" href="#"><?php _e('Inline Content Test including form',"lightboxplus"); ?></a>
                                 </p>
                                 <p class="codebox">
-                                <strong style="font-size:0.8em;">Skeleton code</strong><br /><br />
+                                    <strong style="font-size:0.8em;">Skeleton code</strong><br /><br />
                                     <code>
                                         &lt;div style="display:none"><br />
                                         &nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="<?php echo $inline_hrefs[0]; ?>" style="padding: 10px;background: #fff"><br />

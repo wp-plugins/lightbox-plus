@@ -2,9 +2,11 @@
     /**
     * @package Lightbox Plus
     * @subpackage actions.class.php
-    * @internal 2012.03.30
+    * @internal 2013.01.10
     * @author Dan Zappone / 23Systems
-    * @version 2.5-beta-1
+    * @version 2.5
+    * @$Id$
+    * @$URL$
     */
     if (!class_exists('lbp_actions')) {
         class lbp_actions extends lbp_filters {
@@ -32,8 +34,8 @@
                 global $g_lbp_local_style_url;
                 global $g_lbp_global_style_url;
                 if (!is_admin()) {
-                    wp_enqueue_script('jquery','','','1.7',true);
-                    wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'/js/jquery.colorbox.js', array( 'jquery' ), '1.3.18', true);
+                    wp_enqueue_script('jquery','','','1.8.3',true);
+                    wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox.js', array( 'jquery' ), '1.3.20', true);
                 }
 
                 if ( !empty( $this->lightboxOptions ) ) {
@@ -65,7 +67,7 @@
                 if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
                     $lightboxPlusJavaScript  = "";
-                    $lightboxPlusJavaScript .= '<!-- Lightbox Plus v2.3 - 2011.08.11 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.$this->EOL( );
+                    $lightboxPlusJavaScript .= '<!-- Lightbox Plus v2.5 - 2013.01.11 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.$this->EOL( );
                     $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
                     $lightboxPlusJavaScript .= 'jQuery(document).ready(function($){'.$this->EOL( );
                     $lbpArrayPrimary = array();
@@ -216,11 +218,11 @@
             */
             function lightboxPlusAdminScripts( ) {
                 global $g_lightbox_plus_url;
-                wp_enqueue_script('jquery','','','1.7',true);
-                wp_enqueue_script('jquery-ui-core','','','1.8.16',true);
-                wp_enqueue_script('jquery-ui-dialog','','','1.8.16',true);
-                wp_enqueue_script('jquery-ui-tabs','','','1.8.16',true);
-                wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'/js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.18', true);
+                wp_enqueue_script('jquery','','','1.8.3',true);
+                wp_enqueue_script('jquery-ui-core','','','1.9.2',true);
+                wp_enqueue_script('jquery-ui-dialog','','','1.9.2',true);
+                wp_enqueue_script('jquery-ui-tabs','','','1.9.2',true);
+                wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.20', true);
             }
 
             /**
@@ -231,7 +233,7 @@
                 global $g_lbp_local_style_url;
                 global $g_lbp_global_style_url;
 
-                wp_register_style('lightboxplusStyles', $g_lightbox_plus_url.'/admin/lightbox.admin.css','','2.4','screen');
+                wp_register_style('lightboxplusStyles', $g_lightbox_plus_url.'admin/lightbox.admin.css','','2.4','screen');
                 wp_enqueue_style('lightboxplusStyles');
 
                 if ( !empty( $this->lightboxOptions ) ) {
