@@ -3,7 +3,7 @@ Contributors: dzappone
 Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 3.0
-Tested up to: 3.5
+Tested up to: 3.6-alpha
 Stable tag: 2.5.1
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
