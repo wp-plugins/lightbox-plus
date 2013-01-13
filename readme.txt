@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 3.0
 Tested up to: 3.6-alpha
-Stable tag: 2.5.2
+Stable tag: 2.5.3
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -12,13 +12,15 @@ Lightbox Plus permits users to view larger versions of images, simple slide show
 
 Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus for WordPress implements ColorBox as a lightbox image overlay tool for WordPress. ColorBox was created by Jack Moore and is licensed under the MIT License. Lightbox Plus permits users to view larger versions of images without having to leave the current page. Lightbox is able to add a lightbox to WordPress gallery images, display simple slide shows, video, forms and external content in overlays. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image or video being viewed. Lightbox Plus captures the image title for display in the overlay.
 
-Lightbox Plus uses WordPress' built in jQuery library.
+Lightbox Plus uses WordPress' built in jQuery library. Lightbox Plus also uses the <a href="http://simplehtmldom.sourceforge.net/" title="PHP Simple HTML DOM Parser">PHP Simple HTML DOM Parser</a> helper class to navigate page content for inserting the Lightbox attibutes into elements.
 
 = Troubleshooting =
 
 Please read the <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> first if you are having problems.
 
-If you are unable to resolve your problem with the information provided in the FAQ please submit a <a href="http://www.23systems.net/services/support/">support request</a>.
+We offer limited support for Lightbox Plus via the <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Direct Support">support forums</a>. 
+
+For more in-depth support or if you need extra help you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.
 
 = Requirements =
 
@@ -26,6 +28,7 @@ Server
 
 * WordPress 2.8+
 * PHP 5+ (Required)
+* PHP mbstring extension (preferred but no longer required)
 
 Support for PHP 4 has been completely removed - DO NOT UPDATE if you want Lightbox Plus to work with PHP 4.
 
@@ -50,6 +53,16 @@ Optional: Use the title attribute if you want to show a caption.
         <a href="images/image-3.jpg" rel="lightbox[roadtrip]">image #3</a>
 
 == Installation ==
+
+=== Automatic ===
+
+1. In the admin panel plugins page click Add New
+2. Search for Lightbox Plus
+3. Find Lightbox Plus in the list an click Install Now
+4. Click OK when prompted
+5. Enjoy!
+
+=== Manual ===
 
 1. Extract lightbox-plus.zip to your `wp-content/plugins` directory.
 2. In the admin panel under plugins activate Lightbox Plus.
@@ -166,11 +179,17 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
+= 2.5.3 =
+* Changed support portal to use WordPress.org only as I am unable to handle multiple vectors for support
+* Updated various links throughout plugin to reflect current URLs
+* Updated instructions
+* Miscellaneous minor bug fixes
+
 = 2.5.2 =
 * Updated PHP Simple HTML DOM Parser to very latest rev (v 1.5 rev 202)
 * Fixed PHP Simple HTML DOM Parser to create exception for servers that don't have mbstring extension enabled
  * This regressed with an update to recent versions of PHP Simple HTML DOM Parser
-* Added support for up to 1000 inline lightboxe
+* Added support for up to 1000 inline lightboxes
  * Inline lightboxes are allocated in increments of 5
  * There is a performance hit in the Lightbox Plus admin when going over 100 however.
 

@@ -5,15 +5,15 @@
     Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 2.5.2
+    Version: 2.5.3
     */
-    
+
     /**
     * @package Lightbox Plus
     * @subpackage lightboxplus.php
     * @internal 2013.01.10
     * @author Dan Zappone / 23Systems
-    * @version 2.5.2
+    * @version 2.5.3
     * @$Id$
     * @$URL$ 
     */
@@ -246,13 +246,14 @@
             function RegisterLBPLinks($links, $file) {
                 $base = plugin_basename(__FILE__);
                 if ($file == $base) {
-                    $links[] = '<a href="themes.php?page=lightboxplus">' . __('Settings','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">' . __('FAQ','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://www.23systems.net/forums/forum/lightbox-plus/">' . __('Support','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://www.23systems.net/donate/">' . __('Donate','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://twitter.com/23systems">' . __('Follow on Twitter','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://www.facebook.com/23Systems">' . __('Facebook Page','lightboxplus') . '</a>';
-                    $links[] = '<a href="https://plus.google.com/111641141856782935011/posts">' . __('Google+ Page','lightboxplus') . '</a>';
+                    $links[] = '<a href="themes.php?page=lightboxplus" title="Lightbox Plus Settings">' . __('Settings','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus FAQ">' . __('FAQ','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus Direct Support">' . __('Request Support','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Support Forum">' . __('Support Forum','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.23systems.net/donate/" title="Donate to Lightbox Plus">' . __('Donate','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://twitter.com/23systems" title="@23System on Twitter">' . __('Follow on Twitter','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">' . __('Facebook Page','lightboxplus') . '</a>';
+                    $links[] = '<a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">' . __('Google+ Page','lightboxplus') . '</a>';
                 }
                 return $links;
             }
@@ -565,9 +566,15 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options (v2.5.2) ', 'lightboxplus' )?></h2>
-                <h3><?php _e( 'With ColorBox (v1.3.20) and PHP Simple HTML DOM Parser (v1.5)', 'lightboxplus' )?></h3>
-                <h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/services/support/">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/23Systems">Add Facebook Page</a>','lightboxplus' ); ?></h4>
+                <h2><?php _e( 'Lightbox Plus Options (v2.5.3) ', 'lightboxplus' )?></h2>
+                <h3><?php _e( 'With ColorBox (v1.3.20.2) and PHP Simple HTML DOM Parser (v1.5 rev 202)', 'lightboxplus' )?></h3>
+                <h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | 
+                        <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus FAQ">FAQ</a> | 
+                        <a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus Direct Support">Request Support</a> | 
+                        <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Support Forum">Support Forum</a> | 
+                        <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Follow on Twitter</a> | 
+                        <a href="http://www.facebook.com/23Systems" title="23Systems of Facebook">Add Facebook Page</a> | 
+                    <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+ Page</a>' ); ?></h4>
 
                 <br style="clear: both;" />
                 <?php

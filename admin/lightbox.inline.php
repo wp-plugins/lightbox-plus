@@ -4,7 +4,7 @@
     * @subpackage lightbox.inline.php
     * @internal 2013.01.10
     * @author Dan Zappone / 23Systems
-    * @version 2.5.2
+    * @version 2.5.3
     * @$Id$
     * @$URL$
     */
@@ -156,7 +156,7 @@
                                     <h5><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span><?php _e('Example', 'lightboxplus')?></h5>
                                     <p><?php _e( 'The following example shows how to setup content for display in a lightbox.  You will need to create a link to the content that contains a class that has the same value as the Link Class for the inline lightbox you are using.', 'lightboxplus')?></p>
                                     <p class="codebox">
-                                        <code>&lt;a class="lbp-inline-link-1" href="#"><?php _e( 'Inline HTML Content', 'lightboxplus') ?>&lt;/a></code>
+                                        <code>&lt;a class="lbp-inline-link-1" href="#"><?php _e( 'Inline HTML Link Name', 'lightboxplus') ?>&lt;/a></code>
                                     </p>
                                     <p><?php _e( 'You will also need to set up a div element to contain you content.  The div element that contains the content must contains have and id with a value of the Content ID for the inline light box you are using.  Finally if you want the content to be hidden until the visitor clicks the link, wrap the content div with another div and set the value for style to display:none or assign a class that has display:none for a property', 'lightboxplus')?></p>
                                     <p class="codebox">
