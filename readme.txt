@@ -5,6 +5,8 @@ Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, li
 Requires at least: 3.0
 Tested up to: 3.6-alpha
 Stable tag: 2.5.3
+License: GPLv2 and (components under MIT License)
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -54,7 +56,7 @@ Optional: Use the title attribute if you want to show a caption.
 
 == Installation ==
 
-=== Automatic ===
+= Automatic =
 
 1. In the admin panel plugins page click Add New
 2. Search for Lightbox Plus
@@ -62,12 +64,13 @@ Optional: Use the title attribute if you want to show a caption.
 4. Click OK when prompted
 5. Enjoy!
 
-=== Manual ===
+= Manual =
 
 1. Extract lightbox-plus.zip to your `wp-content/plugins` directory.
 2. In the admin panel under plugins activate Lightbox Plus.
 3. In the admin panel under Appearance click on Lightbox Plus to configure to your taste.
 4. It should now be completely set up and functional
+5. Enjoy!
 
 = Caveats =
 
