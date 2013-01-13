@@ -4,7 +4,7 @@
     * @subpackage lightbox.inline.php
     * @internal 2013.01.10
     * @author Dan Zappone / 23Systems
-    * @version 2.5.1
+    * @version 2.5.2
     * @$Id$
     * @$URL$
     */

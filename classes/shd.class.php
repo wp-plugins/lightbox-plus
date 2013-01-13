@@ -1,15 +1,17 @@
 <?php
     /**
     * @package Lightbox Plus
-    * @subpackage pagename
+    * @subpackage shd.class.php
+    * @see PHP Simple HTML DOM Parser
     * @internal 2013.01.10
     * @author Dan Zappone / 23Systems
-    * @version 2.5.1
+    * @version 2.5.2
     * @$Id$
     * @$URL$
     */
     /**
     * Website: http://sourceforge.net/projects/simplehtmldom/
+    * Additional projects that may be used: http://sourceforge.net/projects/debugobject/
     * Acknowledge: Jose Solorzano (https://sourceforge.net/projects/php-html/)
     * Contributions by:
     *     Yousuke Kumakura (Attribute filters)
@@ -42,7 +44,7 @@
     * @author S.C. Chen <me578022@gmail.com>
     * @author John Schlick
     * @author Rus Carroll
-    * @version 1.5 ($Rev: 196 $)
+    * @version 1.5 ($Rev: 202 $)
     * @package PlaceLocalInclude
     * @subpackage simple_html_dom
     */
@@ -109,7 +111,6 @@
             return $dom;
         }
     }
-
     // dump html dom tree
     if (!function_exists('dump_html_tree')) {
         function dump_html_tree($node, $show_attr=true, $deep=0)
@@ -117,7 +118,6 @@
             $node->dump($node);
         }
     }
-
 
     /**
     * simple html dom node
@@ -344,15 +344,15 @@
             // function to locate a specific ancestor tag in the path to the root.
             function find_ancestor_tag($tag)
             {
-                global $debugObject;
-                if (is_object($debugObject)) { $debugObject->debugLogEntry(1); }
+                global $debug_object;
+                if (is_object($debug_object)) { $debug_object->debugLogEntry(1); }
 
                 // Start by including ourselves in the comparison.
                 $returnDom = $this;
 
                 while (!is_null($returnDom))
                 {
-                    if (is_object($debugObject)) { $debugObject->debugLog(2, "Current tag is: " . $returnDom->tag); }
+                    if (is_object($debug_object)) { $debug_object->debugLog(2, "Current tag is: " . $returnDom->tag); }
 
                     if ($returnDom->tag == $tag)
                     {
@@ -378,8 +378,8 @@
             // get dom node's outer text (with tag)
             function outertext()
             {
-                global $debugObject;
-                if (is_object($debugObject))
+                global $debug_object;
+                if (is_object($debug_object))
                 {
                     $text = '';
                     if ($this->tag == 'text')
@@ -389,7 +389,7 @@
                             $text = " with text: " . $this->text;
                         }
                     }
-                    $debugObject->debugLog(1, 'Innertext of tag: ' . $this->tag . $text);
+                    $debug_object->debugLog(1, 'Innertext of tag: ' . $this->tag . $text);
                 }
 
                 if ($this->tag==='root') return $this->innertext();
@@ -568,8 +568,8 @@
             // PaperG - added parameter to allow for case insensitive testing of the value of a selector.
             protected function seek($selector, &$ret, $lowercase=false)
             {
-                global $debugObject;
-                if (is_object($debugObject)) { $debugObject->debugLogEntry(1); }
+                global $debug_object;
+                if (is_object($debug_object)) { $debug_object->debugLogEntry(1); }
 
                 list($tag, $key, $val, $exp, $no_key) = $selector;
 
@@ -630,7 +630,7 @@
                             // this is a normal search, we want the value of that attribute of the tag.
                             $nodeKeyValue = $node->attr[$key];
                         }
-                        if (is_object($debugObject)) {$debugObject->debugLog(2, "testing node: " . $node->tag . " for attribute: " . $key . $exp . $val . " where nodes value is: " . $nodeKeyValue);}
+                        if (is_object($debug_object)) {$debug_object->debugLog(2, "testing node: " . $node->tag . " for attribute: " . $key . $exp . $val . " where nodes value is: " . $nodeKeyValue);}
 
                         //PaperG - If lowercase is set, do a case insensitive test of the value of the selector.
                         if ($lowercase) {
@@ -638,7 +638,7 @@
                         } else {
                             $check = $this->match($exp, $val, $nodeKeyValue);
                         }
-                        if (is_object($debugObject)) {$debugObject->debugLog(2, "after match: " . ($check ? "true" : "false"));}
+                        if (is_object($debug_object)) {$debug_object->debugLog(2, "after match: " . ($check ? "true" : "false"));}
 
                         // handle multiple class
                         if (!$check && strcasecmp($key, 'class')===0) {
@@ -660,12 +660,12 @@
                     unset($node);
                 }
                 // It's passed by reference so this is actually what this function returns.
-                if (is_object($debugObject)) {$debugObject->debugLog(1, "EXIT - ret: ", $ret);}
+                if (is_object($debug_object)) {$debug_object->debugLog(1, "EXIT - ret: ", $ret);}
             }
 
             protected function match($exp, $pattern, $value) {
-                global $debugObject;
-                if (is_object($debugObject)) {$debugObject->debugLogEntry(1);}
+                global $debug_object;
+                if (is_object($debug_object)) {$debug_object->debugLogEntry(1);}
 
                 switch ($exp) {
                     case '=':
@@ -686,8 +686,8 @@
             }
 
             protected function parse_selector($selector_string) {
-                global $debugObject;
-                if (is_object($debugObject)) {$debugObject->debugLogEntry(1);}
+                global $debug_object;
+                if (is_object($debug_object)) {$debug_object->debugLogEntry(1);}
 
                 // pattern of CSS selectors, modified from mootools
                 // Paperg: Add the colon to the attrbute, so that it properly finds <tag attr:ibute="something" > like google does.
@@ -698,7 +698,7 @@
                 //        $pattern = "/([\w-:\*]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-]+)(?:([!*^$]?=)[\"']?(.*?)[\"']?)?\])?([\/, ]+)/is";
                 $pattern = "/([\w-:\*]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)[\"']?(.*?)[\"']?)?\])?([\/, ]+)/is";
                 preg_match_all($pattern, trim($selector_string).' ', $matches, PREG_SET_ORDER);
-                if (is_object($debugObject)) {$debugObject->debugLog(2, "Matches Array: ", $matches);}
+                if (is_object($debug_object)) {$debug_object->debugLog(2, "Matches Array: ", $matches);}
 
                 $selectors = array();
                 $result = array();
@@ -779,8 +779,8 @@
             // PaperG - Function to convert the text from one character set to another if the two sets are not the same.
             function convert_text($text)
             {
-                global $debugObject;
-                if (is_object($debugObject)) {$debugObject->debugLogEntry(1);}
+                global $debug_object;
+                if (is_object($debug_object)) {$debug_object->debugLogEntry(1);}
 
                 $converted_text = $text;
 
@@ -792,7 +792,7 @@
                     $sourceCharset = strtoupper($this->dom->_charset);
                     $targetCharset = strtoupper($this->dom->_target_charset);
                 }
-                if (is_object($debugObject)) {$debugObject->debugLog(3, "source charset: " . $sourceCharset . " target charaset: " . $targetCharset);}
+                if (is_object($debug_object)) {$debug_object->debugLog(3, "source charset: " . $sourceCharset . " target charaset: " . $targetCharset);}
 
                 if (!empty($sourceCharset) && !empty($targetCharset) && (strcasecmp($sourceCharset, $targetCharset) != 0))
                 {
@@ -876,7 +876,7 @@
             */
             function get_display_size()
             {
-                global $debugObject;
+                global $debug_object;
 
                 $width = -1;
                 $height = -1;
@@ -976,6 +976,7 @@
 
         }
     }
+
     /**
     * simple html dom parser
     * Paperg - in the find routine: allow us to specify that we want case insensitive testing of the value of the selector.
@@ -1057,7 +1058,7 @@
             // load html from string
             function load($str, $lowercase=true, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
             {
-                global $debugObject;
+                global $debug_object;
 
                 // prepare
                 $this->prepare($str, $lowercase, $stripRN, $defaultBRText, $defaultSpanText);
@@ -1203,7 +1204,7 @@
             // (or the content_type header from the last transfer), we will parse THAT, and if a charset is specified, we will use it over any other mechanism.
             protected function parse_charset()
             {
-                global $debugObject;
+                global $debug_object;
 
                 $charset = null;
 
@@ -1214,7 +1215,7 @@
                     if ($success)
                     {
                         $charset = $matches[1];
-                        if (is_object($debugObject)) {$debugObject->debugLog(2, 'header content-type found charset of: ' . $charset);}
+                        if (is_object($debug_object)) {$debug_object->debugLog(2, 'header content-type found charset of: ' . $charset);}
                     }
 
                 }
@@ -1225,7 +1226,7 @@
                     if (!empty($el))
                     {
                         $fullvalue = $el->content;
-                        if (is_object($debugObject)) {$debugObject->debugLog(2, 'meta content-type tag found' . $fullvalue);}
+                        if (is_object($debug_object)) {$debug_object->debugLog(2, 'meta content-type tag found' . $fullvalue);}
 
                         if (!empty($fullvalue))
                         {
@@ -1237,7 +1238,7 @@
                             else
                             {
                                 // If there is a meta tag, and they don't specify the character set, research says that it's typically ISO-8859-1
-                                if (is_object($debugObject)) {$debugObject->debugLog(2, 'meta content-type tag couldn\'t be parsed. using iso-8859 default.');}
+                                if (is_object($debug_object)) {$debug_object->debugLog(2, 'meta content-type tag couldn\'t be parsed. using iso-8859 default.');}
                                 $charset = 'ISO-8859-1';
                             }
                         }
@@ -1248,13 +1249,15 @@
                 if (empty($charset))
                 {
                     // Have php try to detect the encoding from the text given to us.
-                    $charset = mb_detect_encoding($this->root->plaintext . "ascii", $encoding_list = array( "UTF-8", "CP1252" ) );
-                    if (is_object($debugObject)) {$debugObject->debugLog(2, 'mb_detect found: ' . $charset);}
+                    if (function_exists('mb_detect_encoding')) {
+                        $charset = mb_detect_encoding($this->root->plaintext . "ascii", $encoding_list = array( "UTF-8", "CP1252" ) );
+                        if (is_object($debug_object)) {$debug_object->debugLog(2, 'mb_detect found: ' . $charset);}
+                    }
 
                     // and if this doesn't work...  then we need to just wrongheadedly assume it's UTF-8 so that we can move on - cause this will usually give us most of what we need...
                     if ($charset === false)
                     {
-                        if (is_object($debugObject)) {$debugObject->debugLog(2, 'since mb_detect failed - using default of utf-8');}
+                        if (is_object($debug_object)) {$debug_object->debugLog(2, 'since mb_detect failed - using default of utf-8');}
                         $charset = 'UTF-8';
                     }
                 }
@@ -1262,11 +1265,11 @@
                 // Since CP1252 is a superset, if we get one of it's subsets, we want it instead.
                 if ((strtolower($charset) == strtolower('ISO-8859-1')) || (strtolower($charset) == strtolower('Latin1')) || (strtolower($charset) == strtolower('Latin-1')))
                 {
-                    if (is_object($debugObject)) {$debugObject->debugLog(2, 'replacing ' . $charset . ' with CP1252 as its a superset');}
+                    if (is_object($debug_object)) {$debug_object->debugLog(2, 'replacing ' . $charset . ' with CP1252 as its a superset');}
                     $charset = 'CP1252';
                 }
 
-                if (is_object($debugObject)) {$debugObject->debugLog(1, 'EXIT - ' . $charset);}
+                if (is_object($debug_object)) {$debug_object->debugLog(1, 'EXIT - ' . $charset);}
 
                 return $this->_charset = $charset;
             }
@@ -1631,15 +1634,15 @@
             // save the noise in the $this->noise array.
             protected function remove_noise($pattern, $remove_tag=false)
             {
-                global $debugObject;
-                if (is_object($debugObject)) { $debugObject->debugLogEntry(1); }
+                global $debug_object;
+                if (is_object($debug_object)) { $debug_object->debugLogEntry(1); }
 
                 $count = preg_match_all($pattern, $this->doc, $matches, PREG_SET_ORDER|PREG_OFFSET_CAPTURE);
 
                 for ($i=$count-1; $i>-1; --$i)
                 {
                     $key = '___noise___'.sprintf('% 5d', count($this->noise)+1000);
-                    if (is_object($debugObject)) { $debugObject->debugLog(2, 'key is: ' . $key); }
+                    if (is_object($debug_object)) { $debug_object->debugLog(2, 'key is: ' . $key); }
                     $idx = ($remove_tag) ? 0 : 1;
                     $this->noise[$key] = $matches[$i][$idx][0];
                     $this->doc = substr_replace($this->doc, $key, $matches[$i][$idx][1], strlen($matches[$i][$idx][0]));
@@ -1656,8 +1659,8 @@
             // restore noise to html content
             function restore_noise($text)
             {
-                global $debugObject;
-                if (is_object($debugObject)) { $debugObject->debugLogEntry(1); }
+                global $debug_object;
+                if (is_object($debug_object)) { $debug_object->debugLogEntry(1); }
 
                 while (($pos=strpos($text, '___noise___'))!==false)
                 {
@@ -1665,7 +1668,7 @@
                     if (strlen($text) > $pos+15)
                     {
                         $key = '___noise___'.$text[$pos+11].$text[$pos+12].$text[$pos+13].$text[$pos+14].$text[$pos+15];
-                        if (is_object($debugObject)) { $debugObject->debugLog(2, 'located key of: ' . $key); }
+                        if (is_object($debug_object)) { $debug_object->debugLog(2, 'located key of: ' . $key); }
 
                         if (isset($this->noise[$key]))
                         {
@@ -1689,8 +1692,8 @@
             // Sometimes we NEED one of the noise elements.
             function search_noise($text)
             {
-                global $debugObject;
-                if (is_object($debugObject)) { $debugObject->debugLogEntry(1); }
+                global $debug_object;
+                if (is_object($debug_object)) { $debug_object->debugLogEntry(1); }
 
                 foreach($this->noise as $noiseElement)
                 {

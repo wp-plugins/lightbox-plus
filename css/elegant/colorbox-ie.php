@@ -1,6 +1,6 @@
 <?php
     /**
-    * @version 2.5.1
+    * @version 2.5.2
     * @$Id$
     * @$URL$
     */

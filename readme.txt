@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 3.0
 Tested up to: 3.6-alpha
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 
 Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
@@ -166,8 +166,16 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
+= 2.5.2 =
+* Updated PHP Simple HTML DOM Parser to very latest rev (v 1.5 rev 202)
+* Fixed PHP Simple HTML DOM Parser to create exception for servers that don't have mbstring extension enabled
+ * This regressed with an update to recent versions of PHP Simple HTML DOM Parser
+* Added support for up to 1000 inline lightboxe
+ * Inline lightboxes are allocated in increments of 5
+ * There is a performance hit in the Lightbox Plus admin when going over 100 however.
+
 = 2.5.1 =
-* Fixed php html dom functions that were throwing errors when using other plugins using PHP HTML DOM.
+* Fixed PHP Simple HTML DOM Parser functions that were throwing errors when using other plugins using PHP Simple HTML DOM Parser.
 
 = 2.5 =
 * Added positioning options

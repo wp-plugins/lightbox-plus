@@ -4,7 +4,7 @@
 	* @subpackage lightbox.admin.php
 	* @internal 2013.01.10
 	* @author Dan Zappone / 23Systems
-	* @version 2.5.1
+	* @version 2.5.2
     * @$Id$
     * @$URL$
 	*/
@@ -101,7 +101,7 @@
 									<?php _e( 'Number of Inline Lightboxes:', 'lightboxplus' )?>: </th>
 								<td>
 									<select name="inline_num" id="inline_num">
-										<?php for ($i = 1; $i <= 100; $i++) {
+										<?php for ($i = 5; $i <= 1000; $i += 5) {
 											?>
 											<option value="<?php echo $i; ?>"<?php selected($i, $lightboxPlusOptions['inline_num']);?>><?php echo $i; ?></option>
 											<?php
@@ -110,7 +110,7 @@
 									</select>
 									<a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"> <img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
 									<div class="lbp-bigtip" id="lbp_inline_num_tip">
-										<?php _e( 'Select the number of inline lightboxes (up to 100). <strong><em>Default: 1</em></strong>', 'lightboxplus' )?>
+										<?php _e( 'Select the number of inline lightboxes (up to 1000). <em>There is a performance hit after about 100.</em> <strong><em>Default: 5</em></strong>', 'lightboxplus' )?>
 									</div>
 								</td>
 							</tr>
