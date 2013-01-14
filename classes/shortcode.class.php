@@ -18,9 +18,17 @@
             */
             function lightboxPlusGallery($attr) {
                 global $post;
+                $post = get_post();
 
                 static $instance = 0;
                 $instance++;
+
+                if ( ! empty( $attr['ids'] ) ) {
+                    // 'ids' is explicitly ordered, unless you specify otherwise.
+                    if ( empty( $attr['orderby'] ) )
+                        $attr['orderby'] = 'post__in';
+                    $attr['include'] = $attr['ids'];
+                }
 
                 // Allow plugins/themes to override the default gallery template.
                 $output = apply_filters('post_gallery', '', $attr);
@@ -35,38 +43,32 @@
                 }
 
                 extract(shortcode_atts(array(
-                'order'      => 'ASC',
-                'orderby'    => 'menu_order ID',
-                'id'         => $post->ID,
-                'itemtag'    => 'dl',
-                'icontag'    => 'dt',
-                'captiontag' => 'dd',
-                'columns'    => 3,
-                'size'       => 'thumbnail',
-                'include'    => '',
-                'exclude'    => ''
-                ), $attr));
+                    'order'      => 'ASC',
+                    'orderby'    => 'menu_order ID',
+                    'id'         => $post->ID,
+                    'itemtag'    => 'dl',
+                    'icontag'    => 'dt',
+                    'captiontag' => 'dd',
+                    'columns'    => 3,
+                    'size'       => 'thumbnail',
+                    'include'    => '',
+                    'exclude'    => ''
+                    ), $attr));
 
                 $id = intval($id);
-
                 if ( 'RAND' == $order )
                     $orderby = 'none';
 
                 if ( !empty($include) ) {
-                    $include = preg_replace( '/[^0-9,]+/', '', $include );
                     $_attachments = get_posts( array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
 
                     $attachments = array();
                     foreach ( $_attachments as $key => $val ) {
                         $attachments[$val->ID] = $_attachments[$key];
                     }
-                }
-                elseif ( !empty($exclude) ) {
-                    $exclude = preg_replace( '/[^0-9,]+/', '', $exclude );
+                } elseif ( !empty($exclude) ) {
                     $attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
-                }
-                else
-                {
+                } else {
                     $attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
                 }
 
@@ -84,28 +86,34 @@
                 $captiontag = tag_escape($captiontag);
                 $columns = intval($columns);
                 $itemwidth = $columns > 0 ? floor(100/$columns) : 100;
+                $float = is_rtl() ? 'right' : 'left';
 
                 $selector = "gallery-{$instance}";
 
-                $output = apply_filters('gallery_style', "
-                <style type='text/css'>
-                #{$selector} {
-                margin: auto;
-                }
-                #{$selector} .gallery-item {
-                float: left;
-                margin-top: 10px;
-                text-align: center;
-                width: {$itemwidth}%;            }
-                #{$selector} img {
-                border: 2px solid #cfcfcf;
-                }
-                #{$selector} .gallery-caption {
-                margin-left: 0;
-                }
-                </style>
-                <!-- see gallery_shortcode() in wp-includes/media.php -->
-                <div id='$selector' class='gallery galleryid-{$id}'>");
+                $gallery_style = $gallery_div = '';
+                if ( apply_filters( 'use_default_gallery_style', true ) )
+                    $gallery_style = "
+                    <style type='text/css'>
+                    #{$selector} {
+                    margin: auto;
+                    }
+                    #{$selector} .gallery-item {
+                    float: {$float};
+                    margin-top: 10px;
+                    text-align: center;
+                    width: {$itemwidth}%;
+                    }
+                    #{$selector} img {
+                    border: 2px solid #cfcfcf;
+                    }
+                    #{$selector} .gallery-caption {
+                    margin-left: 0;
+                    }
+                    </style>
+                    <!-- see gallery_shortcode() in wp-includes/media.php -->";
+                $size_class = sanitize_html_class( $size );
+                $gallery_div = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class}'>";
+                $output = apply_filters( 'gallery_style', $gallery_style . "\n\t\t" . $gallery_div );
 
                 $i = 0;
                 foreach ( $attachments as $id => $attachment ) {
@@ -130,7 +138,7 @@
                     </{$icontag}>";
                     if ( $captiontag && trim($attachment->post_excerpt) ) {
                         $output .= "
-                        <{$captiontag} class='gallery-caption'>
+                        <{$captiontag} class='wp-caption-text gallery-caption'>
                         " . wptexturize($attachment->post_excerpt) . "
                         </{$captiontag}>";
                     }

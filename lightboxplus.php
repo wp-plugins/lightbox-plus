@@ -10,7 +10,7 @@
 
     /**
     * @package Lightbox Plus
-    * @subpackage lightboxplus.php
+    * @subpackage lightboxplus.php DEV VERSION 
     * @internal 2013.01.10
     * @author Dan Zappone / 23Systems
     * @version 2.5.3

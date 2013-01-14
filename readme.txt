@@ -8,7 +8,7 @@ Stable tag: 2.5.3
 License: GPLv2 and (components under MIT License)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
+DEV VERSION Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
 == Description ==
 
