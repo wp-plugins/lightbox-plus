@@ -33,6 +33,9 @@ a.togbox:hover{border:1px solid #cccccc;background:#ffffff;color:#999999;}
 .lbp input{max-width:500px;}
 .lbp .primary_test,.lbp .secondary_test,.lbp .inline_html_test,.lbp .inline_link_test{width:100%;min-width:500px;max-width:100%;font-family:consolas,monaco,monospace;}
 .lbp-elements{max-width:500px;text-align:left;}
+#lbp-style-screenshot {border:1px solid #999;width:150px;height:150px;float:left;}
+.lbp-sample{display:none;}
+.lbp-sample-current{display:block;}
 .donate{float:right;margin:30px;text-align:center;}
 .codebox {border:1px solid #999999;background-color:#eaeaea;display:block;padding: 15px; margin: 15px;font-size:1.1em;}
 .subhelp {font-size:0.9em;}

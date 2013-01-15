@@ -18,19 +18,19 @@
 * The styles are ordered & tabbed in a way that represents
 * the nesting of the generated HTML.
 */
-#cboxOverlay{background:#000000;opacity:0.4 !important;}
-#colorbox{background:url(images/bg_tab.png) #ffffff center bottom repeat-x;box-shadow:3px 3px 16px #333333;-moz-box-shadow:3px 3px 16px #333333;-webkit-box-shadow:3px 3px 16px #333333;border-bottom-left-radius:9px;border-bottom-right-radius:9px;-moz-border-radius-bottomleft:9px;-moz-border-radius-bottomright:9px;-webkit-border-bottom-left-radius:9px;-webkit-border-bottom-right-radius:9px;}
+#cboxOverlay{background:#000000;}
+#colorbox{background:#f9f9f9 center bottom repeat-x;-webkit-box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.5);-moz-box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.5);box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.5);}
     #colorbox,#colorbox div{overflow:visible;/* Required by the close button. */}
-    #cboxWrapper{border-bottom-left-radius:9px;border-bottom-right-radius:9px;-moz-border-radius-bottomleft:9px;-moz-border-radius-bottomright:9px;-webkit-border-bottom-left-radius:9px;-webkit-border-bottom-right-radius:9px;}
-        #cboxTopLeft{width:0;height:0;}
-        #cboxTopCenter{height:0;}
-        #cboxTopRight{width:0;height:0;}
-        #cboxBottomLeft{width:15px;height:10px;}
+    #cboxWrapper{}
+        #cboxTopLeft{width:10px;height:0;}
+        #cboxTopCenter{height:10px;}
+        #cboxTopRight{width:10px;height:0;}
+        #cboxBottomLeft{width:10px;height:10px;}
         #cboxBottomCenter{height:10px;}
-        #cboxBottomRight{width:15px;height:10px;}
-        #cboxMiddleLeft{width:0;}
-        #cboxMiddleRight{width:0;}
-        #cboxContent{background:#ffffff;overflow:hidden;font:11px Arial,sans-serif;margin-bottom:28px;}
+        #cboxBottomRight{width:10px;height:10px;}
+        #cboxMiddleLeft{width:10px;}
+        #cboxMiddleRight{width:10px;}
+        #cboxContent{background:#ffffff;overflow:hidden;font:13px "Helvetica Neue",Helvetica,Arial,sans-serif;margin-bottom:28px;}
         #cboxError{padding:50px;border:1px solid #cccccc;}
         #cboxLoadedContent{}
         #cboxTitle{left:0;height:38px;color:#313131;padding:12px 140px 0 15px;display:table-cell;vertical-align:middle;}
@@ -46,7 +46,7 @@
         #cboxNext.hover{background-position:0 -92px;}
         #cboxLoadingOverlay{background:#e6e6e6;}
         #cboxLoadingGraphic{background:url(images/loading_animation.gif) center center no-repeat;}
-        #cboxClose{position:absolute;top:-10px;right:-10px;background:url(images/controls.png) 0px 0px no-repeat;width:25px;height:25px;text-indent:-9999px;opacity:0;}
+        #cboxClose{position:absolute;top:-25px;right:-25px;background:url(images/controls.png) 0px 0px no-repeat;width:25px;height:25px;text-indent:-9999px;opacity:0;}
         #cboxClose.hover{background-position:0 -63px;}
 
 /* The following are fixes for IE. */

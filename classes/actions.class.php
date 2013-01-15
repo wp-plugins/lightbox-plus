@@ -13,10 +13,10 @@
             /**
             * Tell WordPress to load jquery and jquery-colorbox-min.js in the front end and the admin panel
             */
-//            function lightboxPlusInitScripts() {
-//                global $g_lightbox_plus_url;
-//
-//            }
+            //            function lightboxPlusInitScripts() {
+            //                global $g_lightbox_plus_url;
+            //
+            //            }
 
             function getPostID() {
                 global $the_post_id;
@@ -33,6 +33,9 @@
                 global $g_lightbox_plus_url;
                 global $g_lbp_local_style_url;
                 global $g_lbp_global_style_url;
+                global $g_lbp_local_style_path;
+                global $g_lbp_global_style_path;
+                
                 if (!is_admin()) {
                     wp_enqueue_script('jquery','','','1.8.3',true);
                     wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox.js', array( 'jquery' ), '1.3.20', true);
@@ -42,16 +45,21 @@
                     $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
 
                     if ($lightboxPlusOptions['use_custom_style']) {
-                        $style_path = $g_lbp_global_style_url;
+                        $style_path_url = $g_lbp_global_style_url;
+                        $style_path_dir = $g_lbp_global_style_path;
                     } else {
-                        $style_path = $g_lbp_local_style_url;
+                        $style_path_url = $g_lbp_local_style_url;
+                        $style_path_dir = $g_lbp_local_style_path;
                     }
 
                     if ( $lightboxPlusOptions['disable_css'] ) {
                         echo "<!-- User set lightbox styles -->".$this->EOL( );
                     } else {
-                        wp_register_style('lightboxStyle', $style_path.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.0.2','screen');
+                        wp_register_style('lightboxStyle', $style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.5','screen');
                         wp_enqueue_style('lightboxStyle');
+                        if (file_exists($style_path_dir.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js')) {
+                            wp_enqueue_script('lbp-helper',$style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js','','2.5',true);
+                        }
                     }
                 }
                 return $post->ID;
@@ -112,59 +120,59 @@
                             $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").colorbox('.$lightboxPlusFnPrimary.');'.$this->EOL( );
                             break;
                         default:
-                            $lightboxPlusJavaScript .= '  $("a[rel*=lightbox]").colorbox('.$lightboxPlusFnPrimary.');'.$this->EOL( );
-                            break;
+                        $lightboxPlusJavaScript .= '  $("a[rel*=lightbox]").colorbox('.$lightboxPlusFnPrimary.');'.$this->EOL( );
+                        break;
                     }
 
                     switch ( $lightboxPlusOptions['lightboxplus_multi'] ) {
                         case 1:
-                        $lbpArraySecondary = array();
-                        if ( $lightboxPlusOptions['transition_sec'] != 'elastic' ) { $lbpArraySecondary[] = 'transition:"'.$lightboxPlusOptions['transition_sec'].'"'; }
-                        if ( $lightboxPlusOptions['speed_sec'] != '350' ) { $lbpArraySecondary[] = 'speed:'.$lightboxPlusOptions['speed_sec']; }
-                        if ( $lightboxPlusOptions['width_sec'] && $lightboxPlusOptions['width_sec'] != 'false' ) { $lbpArraySecondary[] = 'width:'.$this->setValue( $lightboxPlusOptions['width_sec'] ); }
-                        if ( $lightboxPlusOptions['height_sec'] && $lightboxPlusOptions['height_sec'] != 'false' ) { $lbpArraySecondary[] = 'height:'.$this->setValue( $lightboxPlusOptions['height_sec'] ); }
-                        if ( $lightboxPlusOptions['inner_width_sec'] && $lightboxPlusOptions['inner_width_sec'] != 'false' ) { $lbpArraySecondary[] = 'innerWidth:'.$this->setValue( $lightboxPlusOptions['inner_width_sec'] ); }
-                        if ( $lightboxPlusOptions['inner_height_sec'] && $lightboxPlusOptions['inner_height_sec'] != 'false' ) { $lbpArraySecondary[] = 'innerHeight:'.$this->setValue( $lightboxPlusOptions['inner_height_sec'] ); }
-                        if ( $lightboxPlusOptions['initial_width_sec'] && $lightboxPlusOptions['initial_width_sec'] != '600' ) { $lbpArraySecondary[] =  'initialWidth:'.$this->setValue( $lightboxPlusOptions['initial_width_sec'] ); }
-                        if ( $lightboxPlusOptions['initial_height_sec'] && $lightboxPlusOptions['initial_height_sec'] != '450' ) { $lbpArraySecondary[] = 'initialHeight:'.$this->setValue( $lightboxPlusOptions['initial_height_sec'] ); }
-                        if ( $lightboxPlusOptions['max_width_sec'] && $lightboxPlusOptions['max_width_sec'] != 'false' ) { $lbpArraySecondary[] = 'maxWidth:'.$this->setValue( $lightboxPlusOptions['max_width_sec'] ); }
-                        if ( $lightboxPlusOptions['max_height_sec'] && $lightboxPlusOptions['max_height_sec'] != 'false' ) { $lbpArraySecondary[] = 'maxHeight:'.$this->setValue( $lightboxPlusOptions['max_height_sec'] ); }
-                        if ( $lightboxPlusOptions['resize_sec'] != '1' ) { $lbpArraySecondary[] = 'scalePhotos:'.$this->setBoolean( $lightboxPlusOptions['resize_sec'] ); }
-                        if ( $lightboxPlusOptions['rel_sec'] == 'nofollow'  )  { $lbpArrayPrimary[] = 'rel:'.$this->setValue( $lightboxPlusOptions['rel'] ); }
-                        if ( $lightboxPlusOptions['opacity_sec'] != '0.9' ) { $lbpArraySecondary[] = 'opacity:'.$lightboxPlusOptions['opacity_sec']; }
-                        if ( $lightboxPlusOptions['preloading_sec'] != '1' ) { $lbpArraySecondary[] = 'preloading:'.$this->setBoolean( $lightboxPlusOptions['preloading_sec'] ); }
-                        if ( $lightboxPlusOptions['label_image_sec'] != 'Image' && $lightboxPlusOptions['label_of_sec'] != 'of' ) { $lbpArraySecondary[] = 'current:"'.$lightboxPlusOptions['label_image_sec'].' {current} '.$lightboxPlusOptions['label_of_sec'].' {total}"'; }
-                        if ( $lightboxPlusOptions['previous_sec'] != 'previous' ) { $lbpArraySecondary[] = 'previous:"'.$lightboxPlusOptions['previous_sec'].'"'; }
-                        if ( $lightboxPlusOptions['next_sec'] != 'next' ) { $lbpArraySecondary[] = 'next:"'.$lightboxPlusOptions['next_sec'].'"'; }
-                        if ( $lightboxPlusOptions['close_sec'] != 'close' ) { $lbpArraySecondary[] = 'close:"'.$lightboxPlusOptions['close_sec'].'"'; }
-                        if ( $lightboxPlusOptions['overlay_close_sec'] != '1' ) { $lbpArraySecondary[] = 'overlayClose:'.$this->setBoolean( $lightboxPlusOptions['overlay_close_sec'] ); }
-                        if ( $lightboxPlusOptions['loop_sec'] != '1' ) { $lbpArrayPrimary[] = 'loop:'.$this->setBoolean( $lightboxPlusOptions['loop_sec'] ); }
-                        if ( $lightboxPlusOptions['slideshow_sec'] == '1' ) { $lbpArraySecondary[] = 'slideshow:'.$this->setBoolean( $lightboxPlusOptions['slideshow_sec'] ); }
-                        if ( $lightboxPlusOptions['slideshow_sec']== '1' ) {
-                            if ( $lightboxPlusOptions['slideshow_auto_sec']  != '1' ) { $lbpArraySecondary[] = 'slideshowAuto:'.$this->setBoolean( $lightboxPlusOptions['slideshow_auto_sec'] ); }
-                            if ( $lightboxPlusOptions['slideshow_speed_sec'] ) { $lbpArraySecondary[] = 'slideshowSpeed:'.$lightboxPlusOptions['slideshow_speed_sec']; }
-                            if ( $lightboxPlusOptions['slideshow_start_sec'] ) { $lbpArraySecondary[] = 'slideshowStart:"'.$lightboxPlusOptions['slideshow_start_sec'].'"'; }
-                            if ( $lightboxPlusOptions['slideshow_stop_sec'] ) { $lbpArraySecondary[] =  'slideshowStop:"'.$lightboxPlusOptions['slideshow_stop_sec'].'"'; }
-                        }
-                        if ( $lightboxPlusOptions['iframe_sec'] != '0' ) { $lbpArraySecondary[] = 'iframe:'.$this->setBoolean( $lightboxPlusOptions['iframe_sec'] ); }
-                        if ( $lightboxPlusOptions['scrolling_sec'] != '1' ) { $lbpArrayPrimary[] = 'scrolling:'.$this->setBoolean( $lightboxPlusOptions['scrolling_sec'] ); }
-                        if ( $lightboxPlusOptions['esc_key_sec'] != '1' ) { $lbpArrayPrimary[] = 'escKey:'.$this->setBoolean( $lightboxPlusOptions['esc_key_sec'] ); }
-                        if ( $lightboxPlusOptions['arrow_key_sec'] != '1' ) { $lbpArrayPrimary[] = 'arrowKey:'.$this->setBoolean( $lightboxPlusOptions['arrow_key_sec'] ); }
-                        if ( $lightboxPlusOptions['top_sec'] != 'false' ) { $lbpArrayPrimary[] = 'top:'.$this->setValue( $lightboxPlusOptions['top_sec'] ); }
-                        if ( $lightboxPlusOptions['right_sec'] != 'false'  ) { $lbpArrayPrimary[] = 'right:'.$this->setValue( $lightboxPlusOptions['right_sec'] ); }
-                        if ( $lightboxPlusOptions['bottom_sec'] != 'false' ) { $lbpArrayPrimary[] = 'bottom:'.$this->setValue( $lightboxPlusOptions['bottom_sec'] ); }
-                        if ( $lightboxPlusOptions['left_sec'] != 'false'  ) { $lbpArrayPrimary[] = 'left:'.$this->setValue( $lightboxPlusOptions['left_sec'] ); }
-                        if ( $lightboxPlusOptions['fixed_sec'] == '1' ) { $lbpArrayPrimary[] = 'fixed:'.$this->setBoolean( $lightboxPlusOptions['fixed_sec'] ); }
-                        $lightboxPlusFnSecondary = '{'.implode(",", $lbpArraySecondary).'}';
-                        switch ( $lightboxPlusOptions['use_class_method_sec'] ) {
-                            case 1:
-                                $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name_sec'].'").colorbox('.$lightboxPlusFnSecondary.');'.$this->EOL( );
-                                break;
-                            default:
-                                $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name_sec'].'").colorbox('.$lightboxPlusFnSecondary.');'.$this->EOL( );
-                                break;
-                        }
-                        break;
+                            $lbpArraySecondary = array();
+                            if ( $lightboxPlusOptions['transition_sec'] != 'elastic' ) { $lbpArraySecondary[] = 'transition:"'.$lightboxPlusOptions['transition_sec'].'"'; }
+                            if ( $lightboxPlusOptions['speed_sec'] != '350' ) { $lbpArraySecondary[] = 'speed:'.$lightboxPlusOptions['speed_sec']; }
+                            if ( $lightboxPlusOptions['width_sec'] && $lightboxPlusOptions['width_sec'] != 'false' ) { $lbpArraySecondary[] = 'width:'.$this->setValue( $lightboxPlusOptions['width_sec'] ); }
+                            if ( $lightboxPlusOptions['height_sec'] && $lightboxPlusOptions['height_sec'] != 'false' ) { $lbpArraySecondary[] = 'height:'.$this->setValue( $lightboxPlusOptions['height_sec'] ); }
+                            if ( $lightboxPlusOptions['inner_width_sec'] && $lightboxPlusOptions['inner_width_sec'] != 'false' ) { $lbpArraySecondary[] = 'innerWidth:'.$this->setValue( $lightboxPlusOptions['inner_width_sec'] ); }
+                            if ( $lightboxPlusOptions['inner_height_sec'] && $lightboxPlusOptions['inner_height_sec'] != 'false' ) { $lbpArraySecondary[] = 'innerHeight:'.$this->setValue( $lightboxPlusOptions['inner_height_sec'] ); }
+                            if ( $lightboxPlusOptions['initial_width_sec'] && $lightboxPlusOptions['initial_width_sec'] != '600' ) { $lbpArraySecondary[] =  'initialWidth:'.$this->setValue( $lightboxPlusOptions['initial_width_sec'] ); }
+                            if ( $lightboxPlusOptions['initial_height_sec'] && $lightboxPlusOptions['initial_height_sec'] != '450' ) { $lbpArraySecondary[] = 'initialHeight:'.$this->setValue( $lightboxPlusOptions['initial_height_sec'] ); }
+                            if ( $lightboxPlusOptions['max_width_sec'] && $lightboxPlusOptions['max_width_sec'] != 'false' ) { $lbpArraySecondary[] = 'maxWidth:'.$this->setValue( $lightboxPlusOptions['max_width_sec'] ); }
+                            if ( $lightboxPlusOptions['max_height_sec'] && $lightboxPlusOptions['max_height_sec'] != 'false' ) { $lbpArraySecondary[] = 'maxHeight:'.$this->setValue( $lightboxPlusOptions['max_height_sec'] ); }
+                            if ( $lightboxPlusOptions['resize_sec'] != '1' ) { $lbpArraySecondary[] = 'scalePhotos:'.$this->setBoolean( $lightboxPlusOptions['resize_sec'] ); }
+                            if ( $lightboxPlusOptions['rel_sec'] == 'nofollow'  )  { $lbpArrayPrimary[] = 'rel:'.$this->setValue( $lightboxPlusOptions['rel'] ); }
+                            if ( $lightboxPlusOptions['opacity_sec'] != '0.9' ) { $lbpArraySecondary[] = 'opacity:'.$lightboxPlusOptions['opacity_sec']; }
+                            if ( $lightboxPlusOptions['preloading_sec'] != '1' ) { $lbpArraySecondary[] = 'preloading:'.$this->setBoolean( $lightboxPlusOptions['preloading_sec'] ); }
+                            if ( $lightboxPlusOptions['label_image_sec'] != 'Image' && $lightboxPlusOptions['label_of_sec'] != 'of' ) { $lbpArraySecondary[] = 'current:"'.$lightboxPlusOptions['label_image_sec'].' {current} '.$lightboxPlusOptions['label_of_sec'].' {total}"'; }
+                            if ( $lightboxPlusOptions['previous_sec'] != 'previous' ) { $lbpArraySecondary[] = 'previous:"'.$lightboxPlusOptions['previous_sec'].'"'; }
+                            if ( $lightboxPlusOptions['next_sec'] != 'next' ) { $lbpArraySecondary[] = 'next:"'.$lightboxPlusOptions['next_sec'].'"'; }
+                            if ( $lightboxPlusOptions['close_sec'] != 'close' ) { $lbpArraySecondary[] = 'close:"'.$lightboxPlusOptions['close_sec'].'"'; }
+                            if ( $lightboxPlusOptions['overlay_close_sec'] != '1' ) { $lbpArraySecondary[] = 'overlayClose:'.$this->setBoolean( $lightboxPlusOptions['overlay_close_sec'] ); }
+                            if ( $lightboxPlusOptions['loop_sec'] != '1' ) { $lbpArrayPrimary[] = 'loop:'.$this->setBoolean( $lightboxPlusOptions['loop_sec'] ); }
+                            if ( $lightboxPlusOptions['slideshow_sec'] == '1' ) { $lbpArraySecondary[] = 'slideshow:'.$this->setBoolean( $lightboxPlusOptions['slideshow_sec'] ); }
+                            if ( $lightboxPlusOptions['slideshow_sec']== '1' ) {
+                                if ( $lightboxPlusOptions['slideshow_auto_sec']  != '1' ) { $lbpArraySecondary[] = 'slideshowAuto:'.$this->setBoolean( $lightboxPlusOptions['slideshow_auto_sec'] ); }
+                                if ( $lightboxPlusOptions['slideshow_speed_sec'] ) { $lbpArraySecondary[] = 'slideshowSpeed:'.$lightboxPlusOptions['slideshow_speed_sec']; }
+                                if ( $lightboxPlusOptions['slideshow_start_sec'] ) { $lbpArraySecondary[] = 'slideshowStart:"'.$lightboxPlusOptions['slideshow_start_sec'].'"'; }
+                                if ( $lightboxPlusOptions['slideshow_stop_sec'] ) { $lbpArraySecondary[] =  'slideshowStop:"'.$lightboxPlusOptions['slideshow_stop_sec'].'"'; }
+                            }
+                            if ( $lightboxPlusOptions['iframe_sec'] != '0' ) { $lbpArraySecondary[] = 'iframe:'.$this->setBoolean( $lightboxPlusOptions['iframe_sec'] ); }
+                            if ( $lightboxPlusOptions['scrolling_sec'] != '1' ) { $lbpArrayPrimary[] = 'scrolling:'.$this->setBoolean( $lightboxPlusOptions['scrolling_sec'] ); }
+                            if ( $lightboxPlusOptions['esc_key_sec'] != '1' ) { $lbpArrayPrimary[] = 'escKey:'.$this->setBoolean( $lightboxPlusOptions['esc_key_sec'] ); }
+                            if ( $lightboxPlusOptions['arrow_key_sec'] != '1' ) { $lbpArrayPrimary[] = 'arrowKey:'.$this->setBoolean( $lightboxPlusOptions['arrow_key_sec'] ); }
+                            if ( $lightboxPlusOptions['top_sec'] != 'false' ) { $lbpArrayPrimary[] = 'top:'.$this->setValue( $lightboxPlusOptions['top_sec'] ); }
+                            if ( $lightboxPlusOptions['right_sec'] != 'false'  ) { $lbpArrayPrimary[] = 'right:'.$this->setValue( $lightboxPlusOptions['right_sec'] ); }
+                            if ( $lightboxPlusOptions['bottom_sec'] != 'false' ) { $lbpArrayPrimary[] = 'bottom:'.$this->setValue( $lightboxPlusOptions['bottom_sec'] ); }
+                            if ( $lightboxPlusOptions['left_sec'] != 'false'  ) { $lbpArrayPrimary[] = 'left:'.$this->setValue( $lightboxPlusOptions['left_sec'] ); }
+                            if ( $lightboxPlusOptions['fixed_sec'] == '1' ) { $lbpArrayPrimary[] = 'fixed:'.$this->setBoolean( $lightboxPlusOptions['fixed_sec'] ); }
+                            $lightboxPlusFnSecondary = '{'.implode(",", $lbpArraySecondary).'}';
+                            switch ( $lightboxPlusOptions['use_class_method_sec'] ) {
+                                case 1:
+                                    $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name_sec'].'").colorbox('.$lightboxPlusFnSecondary.');'.$this->EOL( );
+                                    break;
+                                default:
+                                    $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name_sec'].'").colorbox('.$lightboxPlusFnSecondary.');'.$this->EOL( );
+                                    break;
+                            }
+                            break;
                         default:
                             break;
                     }
@@ -232,7 +240,9 @@
                 global $g_lightbox_plus_url;
                 global $g_lbp_local_style_url;
                 global $g_lbp_global_style_url;
-
+                global $g_lbp_local_style_path;
+                global $g_lbp_global_style_path;
+                
                 wp_register_style('lightboxplusStyles', $g_lightbox_plus_url.'admin/lightbox.admin.css','','2.4','screen');
                 wp_enqueue_style('lightboxplusStyles');
 
@@ -240,25 +250,28 @@
                     $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
 
                     if ($lightboxPlusOptions['use_custom_style']) {
-                        $style_path = $g_lbp_global_style_url;
+                        $style_path_url = $g_lbp_global_style_url;
+                        $style_path_dir = $g_lbp_global_style_path;
                     }
                     else {
-                        $style_path = $g_lbp_local_style_url;
+                        $style_path_url = $g_lbp_local_style_url;
+                        $style_path_dir = $g_lbp_local_style_path;
                     }
 
                     if ( $lightboxPlusOptions['disable_css'] ) {
                         echo "<!-- User set lightbox styles -->".$this->EOL( );
                     } else {
-                        wp_register_style('lightboxStyle', $style_path.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.4','screen');
+                        wp_register_style('lightboxStyle', $style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.5','screen');
                         wp_enqueue_style('lightboxStyle');
+                        if (file_exists($style_path_dir.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js')) {
+                            wp_enqueue_script('lbp-helper',$style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js','','2.5',true);
+                        }
                     }
                 }
             }
 
             /**
-            * @todo finish per post/page metabox
             * Add metabox to edit post/page for per page application of lightbox plus
-            *
             */
             function saveLightboxPlusMeta() {
                 add_action( 'save_post', array( $this, 'lightboxPlusSaveMeta'),10,1 );

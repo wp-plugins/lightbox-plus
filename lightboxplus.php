@@ -5,7 +5,7 @@
     Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 2.5.3
+    Version: 2.5.4
     */
 
     /**
@@ -13,7 +13,7 @@
     * @subpackage lightboxplus.php DEV VERSION 
     * @internal 2013.01.10
     * @author Dan Zappone / 23Systems
-    * @version 2.5.3
+    * @version 2.5.4
     * @$Id$
     * @$URL$ 
     */
@@ -44,7 +44,6 @@
 
     /**
     * Instantiate Lightbox Plus Globals
-    * TODO 2: Verify all these are needed
     *
     * @var mixed
     */
@@ -134,7 +133,7 @@
             function init() {
                 $this->lightboxOptions = $this->getAdminOptions( $this->lightboxOptionsName );
                 /**
-                * @todo check this code and modify if needed.
+                * TODO 15: check this code and modify if needed.
                 */
                 //if ( !get_option( $this->lightboxInitName ) ) {
                 //    $this->lightboxPlusInit( );
@@ -148,7 +147,7 @@
                     /**
                     * Check to see if the user wants to use per page/post options
                     */
-                    if ($lightboxPlusOptions['use_forpage']) {
+                    if (isset($lightboxPlusOptions['use_forpage']) && $lightboxPlusOptions['use_forpage']) {
                         add_action( 'save_post', array( &$this, 'lightboxPlusSaveMeta'),10,1 );
                         add_action( 'add_meta_boxes', array( &$this, "lightboxPlusMetaBox" ),10,1 );
                     }
@@ -198,7 +197,7 @@
                         * Check to see if user wants to have gallery images lightboxed
                         */
                         if ($lightboxPlusOptions['gallery_lightboxplus'] != 1) {
-                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 11 );
+                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 10 );
                         }
                         else {
                             remove_shortcode( 'gallery' );
@@ -566,7 +565,7 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options (v2.5.3) ', 'lightboxplus' )?></h2>
+                <h2><?php _e( 'Lightbox Plus Options (v2.5.4) ', 'lightboxplus' )?></h2>
                 <h3><?php _e( 'With ColorBox (v1.3.20.2) and PHP Simple HTML DOM Parser (v1.5 rev 202)', 'lightboxplus' )?></h3>
                 <h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | 
                         <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus FAQ">FAQ</a> | 
@@ -613,6 +612,13 @@
                     $("#slideshow").click(function(){ if ($("#slideshow").prop("checked")) { $(".slideshow_prim").show("fast"); } else { $(".slideshow_prim").hide("fast"); } });
                     $("#rel_sec").click(function(){ if ($("#rel_sec").prop("checked")) { $(".grouping_sec").hide("fast"); } else { $(".grouping_sec").show("fast"); } });
                     $("#slideshow_sec").click(function(){ if ($("#slideshow_sec").prop("checked")) { $(".slideshow_sec").show("fast"); } else { $(".slideshow_sec").hide("fast"); } });
+
+                    $("#lightboxplus_style").change(function () {
+                        var style = $(this).attr('value')
+                        $('#lbp-style-screenshot').find(".lbp-sample-current").hide(0).removeClass('lbp-sample-current').addClass('lbp-sample');
+                        $('#lbp-style-screenshot').find("#lbp-sample-"+style).show(0).addClass('lbp-sample-current').removeClass('lbp-sample');
+                    });
+
                 });
                 //-->
             </script>

@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 3.0
 Tested up to: 3.6-alpha
-Stable tag: 2.5.3
+Stable tag: 2.5.4
 License: GPLv2 and (components under MIT License)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,13 +85,33 @@ To work around this issue you will need to add something like the following to y
 
 == Frequently Asked Questions ==
 
-= I can't get Lightbox Plus to work, why not? =
+= Lightbox Plus doesn't work =
 
-The problem may be with your WordPress theme, mangling image display properties. Try using another theme, that doesn't interfere with posted images.  You may be lacking <code>wp_footer()</code> function in your <code>footer.php</code> of your WordPress theme.  Look at the default theme to see how it is implemented.
+Well, yes, it does.  It's used by thousands of websites and if it doesn't work for you that because there is some problem with how it interacts with your site.
 
-Alternately you may have other plugins that conflict with Lightbox Plus. Try disabling your other plugins and see if that helps. If it does, re-enable each plugin, one at a time to see which one is causing the conflict.  Please let me know which plugin is causing the problem.
+The most common cause for it not working is a jQuery conflict cause by a theme or a plugin that either does not properly instantiate jQuery or instantiate s avery old version of jQuery.
 
-Finally, it seems that recent version of WordPress (or perhaps the plugin is causing this in some way I am not aware of) do not automatically add the link to the full size image.  You must also make sure that when you are adding an image from the WordPress media dialog control you must make sure there is a link to the image in the Link URL field.  The easiest way to get the correct link is to click on the link to image button beneath the field.  <a href="http://www.23systems.net/wp-content/uploads/2008/07/file.png">Visual depiction</a> of what is required when adding images in order for lightbox to function correctly.
+Here are things to try in order to see what the problem is.
+
+1. Check jQuery version and make sure you are using the lastest included in WordPress
+ * If it's an older version or not enqueued correctly it will cause problems
+ * It may be in your theme or another plugin
+2. You may be lacking <code>wp_footer()</code> function in your <code>footer.php</code> of your WordPress theme.
+ * Look at the default theme to see how it is implemented and add it into your theme.
+3. Try deactivating all plugins one at a time besides lightbox plus and see if if it starts working
+ * If it does work after deactivating on then there's a plugin conflict
+4. If deactivating plugins doesn't work then there might be a conflict with your theme
+ * To isolate you can try an different theme and see if it works
+5. Try changing to a different lightbox style/theme and see if that makes a difference
+ * There may be a style conflict of some sort
+6. Try deleting the plugin and reinstalling - it may have not completely updated correctly.
+ * You'll have to reset your settings so you might want to write them down.
+ 
+= It works for some images and not others, why not? =
+
+The problem may be with your WordPress theme, mangling image display properties. Try using another theme, that doesn't interfere with posted images.
+
+It also seems that some more recent version of WordPress (or perhaps the plugin is causing this in some way I am not aware of) do not automatically add the link to the full size image.  You must also make sure that when you are adding an image from the WordPress media dialog control you must make sure there is a link to the image in the Link URL field.  The easiest way to get the correct link is to click on the link to image button beneath the field.  <a href="http://www.23systems.net/wp-content/uploads/2008/07/file.png">Visual depiction</a> of what is required when adding images in order for lightbox to function correctly.
 
 = Lightbox Plus doesn't work properly in browser X, Y, or Z (Chrome, Safari, Firefox, Opera, Explorer 6, 7, etc.)? =
 
@@ -99,7 +119,7 @@ Yes it probably does, the problems may be the same as above or there may be a co
 
 = Does Lightbox Plus work with PHP 4? If not, why not? =
 
-No it doesn't.  PHP 4 reached end of life on August 8th 2008 (over 3 years ago.)  WordPress no longer supports PHP 4 and all plugin developers are encourage to follow.  The best solution at this time is to ask your host provider to upgrade to PHP 5.
+No it doesn't.  PHP 4 reached end of life on August 8th 2008 (almost years ago.)  WordPress no longer supports PHP 4 and all plugin developers are encourage to follow.  The best solution at this time is to ask your host provider to upgrade to PHP 5.
 
 You will know that Lightbox Plus is not working because of PHP if you receive the following error:
 
@@ -107,13 +127,13 @@ You will know that Lightbox Plus is not working because of PHP if you receive th
 
 <code>Parse error: syntax error, unexpected T_OBJECT_OPERATOR in /path/to/plugin/classes/filters.class.php on line 81</code>
 
-= Can I use this plugin and Lightview Plus, Lightbox 2 (either one), WP lightbox JS Plugin at the same time? =
+= Can I use this plugin and Lightview Plus, Lightbox 2 (either one), jQuery Colorbox, WP lightbox JS Plugin, Fancybox etc at the same time? =
 
-No other lightbox plugins can be used, they will most likely interfere with each other as they all modify the image URLs.  Other image overlay plugins may possibly be compatible.
+Maybe, but probably not as they will most likely interfere with each other as they usually modify the image URLs.  Other image overlay plugins may possibly be compatible.
 
 = Can I add my own styles and images for the overlay? =
 
-Yes, you can easily create additional styles by adding a new folder to the CSS directory under <code>wp-content/plugins/lightbox-plus/css/</code> by duplicating and modifying any of the existing theme folders or using them as examples to create your own.
+Yes, you can easily create additional styles by checking the use custom styles checkbox.  It will copy the existing styles to <code>wp-content/lbp-css</code> and you can modify any of the existing styles.  You can all adding a new folder to that directory and using the existing styles as examples create your completely custom styles.
 
 = How does Lightbox Plus differ from other Lightbox plugins for WordPress? =
 
@@ -129,49 +149,33 @@ This problem is only apparent in Chrome and Opera.  It seems to works fine in In
 
 = Additional FAQs from Colorbox =
 
-= ColorBox is positioned incorrectly or behaving strangely in Internet Explorer =
-
-This is likely a doctype issue. ColorBox requires a valid doctype and rendering in quirks mode is not supported. Make sure you are using the full doctype declaration to insure rendering in standards mode.
-
-This abbreviated doctype renders the document in quirks mode for Internet Explorer: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-The doctype with URI renders in standards mode for all browsers: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-For more information, see A List Apart's <a href="http://www.alistapart.com/articles/doctype/">primer on doctypes</a>.
-
-= ColorBox's borders do not display in Internet Explorer =
-
-Some of the example styles provided make use of transparent .PNG files. Alpha transparencies aren't supported by default in IE6, and can cause an undesirable 'black halo' effect in IE7 and IE8 when changing their opacity. ColorBox resolves this by using one of IE's CSS filters. You can see these at the bottom of colorbox.css. The filter src paths are relative to the HTML document (just like an IMG element), while CSS background image paths are relative to the CSS document. In the examples I provide the relative path is the same, but users often change the directory structure once they move the files over to their own host. The filter src path needs to reflect this change with the appropriate relative path or an absolute path. Here is an example that assumes the 'images' folder is in the root directory:
-
-Original CSS with incorrect relative path: .AlphaImageLoader(src=images/internet_explorer/borderTopLeft.png
-
-Corrected relative path: .AlphaImageLoader(src=/images/internet_explorer/borderTopLeft.png
-
-Corrected absolute path: .AlphaImageLoader(src=http://your_domain.com/images/internet_explorer/borderTopLeft.png
+For addtional information please see <a href="http://www.jacklmoore.com/colorbox/faq" title="ColorBox FAQ">ColorBox FAQ</a> for information about the jQuery plugin used by Lightbox Plus.
 
 = Other Problems =
 
-If you have read and tried the above and you are still having problems, then, please post your issues, in detail (links, error messages) to my site.
+If your problem isn't covered in this FAQ, your best bet would be to post your question to the WordPress <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Direct Support">support forums</a>.
 
-<a href="http://www.23systems.net/plugins/lightbox-plus/">http://www.23systems.net/plugins/lightbox-plus/</a>
+<strong>Please do not contact Jack Moore the author of ColorBox for issues with Lightbox Plus.</strong>
+
+If you have read and tried the above and you are still having problems, and require more in-depth support or if you need extra help you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.  Due to the volume of questions, I cannot offer individual support though in an effort to resolve the issue I may contact you. The issue may be resolved by a new release of Lightbox Plus but it does help me get a better understanding of the issue.
 
 = Known Problems =
 
 * Does not work correctly with W3 Total Cache if you are using automatic minify settings.  You can manually set up minify to work correctly bypassing Lightbox Plus (jquery-colorbox.min.js)
 * No support for iPad (if someone wants to donate an iPad to me I will guarantee support)
- * It should work though I just don't support it.
+ * It generally seems to work though I just don't support it as I don't have an iPad.
 * In some instances performance may be slow in older versions IE - this may be due to plugin conflicts or slow JavaScript performance in IE.
 * Lightboxed video does not seem to work in IE on locally installed sites, for example viewing in IE 7.0 while running XAMPP, this seems to be a Windows only issue.
 
 = Plugin Conflicts =
 
-* Jetpack Carousel - When carousel is activate it take precedence over Lightbox Plus for image use.
-* Flickr Mini Gallery - Verified.  Download hot fix for <a href="http://23systems.net/downloads/file/flickr-mini-gallery-jquery-hotfix.zip">Flickr Mini Gallery</a> (includes instructions)
-* Tabbed Widgets - Verified
-* DMSGuestbook - Un-verified
-* Gengo - Un-verified
+* Jetpack Carousel - When carousel is activate it take precedence over Lightbox Plus for image use as of LBP 2.x
+* Flickr Mini Gallery - Verified.  Download hot fix for <a href="http://23systems.net/downloads/file/flickr-mini-gallery-jquery-hotfix.zip">Flickr Mini Gallery</a> (includes instructions) as of LBP 1.6.3
+* Tabbed Widgets - Verified as of LBP 1.6.3
+* DMSGuestbook - Un-verified as of LBP 1.6.3
+* Gengo - Un-verified as of LBP 1.6.3
 
-Note: These conflicts may now be mitigated as of version 1.6.3.
+Note: Some of these conflicts were with very old versions of Lightbox Plus and may be mitigated
 
 == Screenshots ==
 
@@ -185,17 +189,12 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 = 2.5.4 =
 * Updated gallery shortcode replacement to match current implementation in WordPress
  * This was breaking galleries for some but not all people
-* Updated styles to deal with the <em>new</em> CSS box model.
- * Thank to hexagongirl for pointing this out to me
+* Updated styles to deal with the <em>"new"</em> CSS box model.
+ * Thanks to hexagongirl for pointing this out to me
 * Fixed problem where galleries where getting lighboxing treatment even if the Use for WP Galleries checkbox was unchecked.
-* Added a few new styles
-
-= Road Map =
-* Looking at adding image map options to the plugin
- * Capability to launch from an imagemap
- * Capability to have an imagemap in the lightbox
- * These are both possible manually
-* 
+ * You should now have to check the box for it to work
+* Added a dozen new styles for a total of 26 different styles
+ * Added style preview to admin panel to show a small sceeenshot of the style
 
 = 2.5.3 =
 * Changed support portal to use WordPress.org only as I am unable to handle multiple vectors for support
