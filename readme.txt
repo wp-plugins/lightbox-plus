@@ -182,6 +182,21 @@ Note: These conflicts may now be mitigated as of version 1.6.3.
 
 == Change Log ==
 
+= 2.5.4 =
+* Updated gallery shortcode replacement to match current implementation in WordPress
+ * This was breaking galleries for some but not all people
+* Updated styles to deal with the <em>new</em> CSS box model.
+ * Thank to hexagongirl for pointing this out to me
+* Fixed problem where galleries where getting lighboxing treatment even if the Use for WP Galleries checkbox was unchecked.
+* Added a few new styles
+
+= Road Map =
+* Looking at adding image map options to the plugin
+ * Capability to launch from an imagemap
+ * Capability to have an imagemap in the lightbox
+ * These are both possible manually
+* 
+
 = 2.5.3 =
 * Changed support portal to use WordPress.org only as I am unable to handle multiple vectors for support
 * Updated various links throughout plugin to reflect current URLs
