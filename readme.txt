@@ -8,7 +8,7 @@ Stable tag: 2.5.4
 License: GPLv2 and (components under MIT License)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-DEV VERSION Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
+Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
 == Description ==
 
@@ -22,7 +22,7 @@ Please read the <a href="http://www.23systems.net/plugins/lightbox-plus/frequent
 
 We offer limited support for Lightbox Plus via the <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Direct Support">support forums</a>. 
 
-For more in-depth support or if you need extra help you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.
+For more in-depth support or if you need extra help you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.  Due to the volume of questions, I cannot may not be able to offer individual support though in an effort to resolve the issue I may contact you. The issue may be resolved by a new release of Lightbox Plus but it does help me get a better understanding of the issue.
 
 = Requirements =
 
@@ -153,11 +153,11 @@ For addtional information please see <a href="http://www.jacklmoore.com/colorbox
 
 = Other Problems =
 
-If your problem isn't covered in this FAQ, your best bet would be to post your question to the WordPress <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Direct Support">support forums</a>.
+If your problem isn't covered in this FAQ, your best bet would be to post your question to the WordPress <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Forum Support">support forums</a>.
 
 <strong>Please do not contact Jack Moore the author of ColorBox for issues with Lightbox Plus.</strong>
 
-If you have read and tried the above and you are still having problems, and require more in-depth support or if you need extra help you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.  Due to the volume of questions, I cannot offer individual support though in an effort to resolve the issue I may contact you. The issue may be resolved by a new release of Lightbox Plus but it does help me get a better understanding of the issue.
+If you have read and tried the above and you are still having problems, and require more in-depth support or if you need extra help you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.  Due to the volume of questions, I cannot may not be able to offer individual support though in an effort to resolve the issue I may contact you. The issue may be resolved by a new release of Lightbox Plus but it does help me get a better understanding of the issue.
 
 = Known Problems =
 
@@ -195,6 +195,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus and m
  * You should now have to check the box for it to work
 * Added a dozen new styles for a total of 26 different styles
  * Added style preview to admin panel to show a small sceeenshot of the style
+* Updated FAQ in readme.txt
 
 = 2.5.3 =
 * Changed support portal to use WordPress.org only as I am unable to handle multiple vectors for support
@@ -632,4 +633,4 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus and m
 
 == More Information ==
 
-<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">FAQ</a> | <a href="http://www.23systems.net/bbpress/forum/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/23Systems">Add Facebook Page</a>
+<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">FAQ</a> | <a href="http://wordpress.org/support/plugin/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/23Systems">Add Facebook Page</a>
