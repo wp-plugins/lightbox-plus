@@ -4,7 +4,7 @@
     * @subpackage filters.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.5.5
+    * @version 2.5.6
     * @$Id$
     * @$URL$
     */

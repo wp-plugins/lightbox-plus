@@ -4,7 +4,7 @@
     * @subpackage lightbox.admin.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.5.5
+    * @version 2.5.6
     * @$Id$
     * @$URL$
     */
@@ -12,6 +12,10 @@
     global $g_lbp_global_style_url;
     global $g_lbp_local_style_url;
     global $wp_version;
+    global $g_lbp_version;
+    global $g_lbp_shortcode_version;
+    global $g_lbp_colorbox_version;
+    global $g_lbp_simple_html_dom_version;
 ?>
 <!-- About Lightbox Plus for WordPress -->
 
@@ -228,14 +232,40 @@
                     <div id="blbp-tabs-4">
                         <h4><?php _e( 'Support for 23Systems Free WordPress Plugins','lightboxplus' ); ?></h4>
                         <p><?php _e( '23Systems has created a number of free WordPress plugins and we offer limited support for Lightbox Plus via the <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Direct Support">support forums</a>.  Please include the following information when requesting support:','lightboxplus' ); ?></p>
-                        <p>
-                            <strong>WordPress Version:</strong> <?php echo  $wp_version; ?><br />
-                            <strong>jQuery Version:</strong> <script type="text/javascript">document.write(jQuery.fn.jquery);</script><br />
-                            <strong>ColorBox Version:</strong> 1.3.21.1<br />
-                            <strong>Simple PHP HTML DOM Parser Version:</strong> 1.5 Rev: 202<br />
-                            <strong>PHP Version:</strong> <?php echo  phpversion(); ?><br />
-                            <strong>Server Software:</strong> <?php echo  $_SERVER['SERVER_SOFTWARE']; ?>
-                        </p>
+                        <table width="100%" border="0" class="lbp-support-info">
+                            <tbody>
+                                <tr>
+                                    <td width="50%" valign="top">
+                                        <h4>WordPress Information</h4>
+                                        <strong>WordPress Version:</strong> <?php echo $wp_version; ?><br />
+                                        <strong>jQuery Version:</strong> <script type="text/javascript">document.write(jQuery.fn.jquery);</script><br />
+                                        <strong>jQuery UI Version:</strong> <script type="text/javascript">document.write(jQuery.ui.version);</script>
+                                    </td>
+                                    <td width="50%" valign="top">
+                                        <h4>Server Information</h4>
+                                        <strong>Site URL:</strong> <?php echo get_site_url(); ?><br />
+                                        <strong>PHP Version:</strong> <?php echo phpversion(); ?><br />
+                                        <strong>Server Software:</strong> <?php echo  $_SERVER['SERVER_SOFTWARE']; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" valign="top">
+                                        <h4>Plugin Information</h4>
+                                        <strong>Lightbox Plus Version:</strong> <?php echo $g_lbp_version; ?><br />
+                                        <strong>LBP Shortcode Version:</strong> <?php echo $g_lbp_shortcode_version; ?><br />
+                                        <strong>ColorBox Version:</strong> <?php echo $g_lbp_colorbox_version; ?><br />
+                                        <strong>Simple PHP HTML DOM Parser Version:</strong> <?php echo $g_lbp_simple_html_dom_version; ?>
+                                    </td>
+                                    <td width="50%" valign="top">
+                                        <h4>Client Information</h4>
+                                        <strong>Browser:</strong> <?php echo $_SERVER['HTTP_USER_AGENT']; ?><br />
+                                        <strong>Viewport:</strong> <script type="text/javascript">document.write(jQuery(window).width() + 'x' + jQuery(window).height());</script><br />
+                                        <strong>Platform:</strong> <script type="text/javascript">document.write(navigator.platform);</script><br />
+                                        <strong>Javascript:</strong> <noscript>No</noscript><script type="text/javascript">document.write('Yes');</script>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <p><?php _e( 'It would also be a good idea to read the <a title="Lightbox Plus Frequently Asked Questions" href="httphttp://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">Lightbox Plus FAQ</a> to see if you question is answered there. For more in-depth support or if you need extra help with one of our plugins you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.','lightboxplus' ); ?></p>
                         <p><?php _e( '23Systems does not offer phone support for any of our plugs unless you are an existing client.  If you would like phone support please fill out the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support</a> page and request phone support.  Once we receive the support request we can contact you with rates and information.','lightboxplus' ); ?></p>
                         <p><?php _e( 'If you would like to show your support for our free WordPress plugins please consider a <a title="Help support Free and Open Source software by donating to our free plugin development" href="http://www.23systems.net/wordpress-plugins/donate/">donation</a>.','lightboxplus' ); ?></p>

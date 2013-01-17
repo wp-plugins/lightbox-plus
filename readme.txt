@@ -187,6 +187,14 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus and m
 
 == Change Log ==
 
+= 2.5.6 =
+* Fixed gallery short code issues with WordPress 3.0.x and version 3.1.x to 3.4.x.
+ * Now creates correct gallery output for specific versions of WordPress
+* Fixed ColorBox version loading newer/older depending on WordPress version
+ * It seems older verions of WordPress were having jQuery conflict with the latest version of ColorBox
+* Added information to submit for support under the support tab
+* Minor internal fixes and changes
+
 = 2.5.5 =
 * Fixed some issues when default jQuery of versions less than 1.4.3 (minimum required) were causing images to not load
 * Fixed some jQuery methods in admin panel to work with versions of jQuery older than 1.6

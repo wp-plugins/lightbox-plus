@@ -1,13 +1,12 @@
 <?php
-
     /**
     * @package Lightbox Plus
     * @subpackage shortcode.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
     * @version 2.5.6
-    * @$Id$
-    * @$URL$
+    * @$Id: shortcode.class.php 654094 2013-01-17 05:54:08Z dzappone $
+    * @$URL: http://plugins.svn.wordpress.org/lightbox-plus/trunk/classes/shortcode.class.php $
     */
     if (!class_exists('lbp_shortcode')) {
         class lbp_shortcode extends lbp_utilities {
@@ -19,17 +18,9 @@
             */
             function lightboxPlusGallery($attr) {
                 global $post;
-                $post = get_post();
 
                 static $instance = 0;
                 $instance++;
-
-                if ( ! empty( $attr['ids'] ) ) {
-                    // 'ids' is explicitly ordered, unless you specify otherwise.
-                    if ( empty( $attr['orderby'] ) )
-                        $attr['orderby'] = 'post__in';
-                    $attr['include'] = $attr['ids'];
-                }
 
                 // Allow plugins/themes to override the default gallery template.
                 $output = apply_filters('post_gallery', '', $attr);
@@ -61,6 +52,7 @@
                     $orderby = 'none';
 
                 if ( !empty($include) ) {
+                    $include = preg_replace( '/[^0-9,]+/', '', $include );
                     $_attachments = get_posts( array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
 
                     $attachments = array();
@@ -68,6 +60,7 @@
                         $attachments[$val->ID] = $_attachments[$key];
                     }
                 } elseif ( !empty($exclude) ) {
+                    $exclude = preg_replace( '/[^0-9,]+/', '', $exclude );
                     $attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
                 } else {
                     $attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );

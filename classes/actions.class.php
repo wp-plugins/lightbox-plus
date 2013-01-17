@@ -4,7 +4,7 @@
     * @subpackage actions.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.5.5
+    * @version 2.5.6
     * @$Id$
     * @$URL$
     */
@@ -31,6 +31,7 @@
             function lightboxPlusAddHeader( ) {
                 global $post;
                 global $wp_version;
+                global $g_lbp_colorbox_version;
                 global $g_lightbox_plus_url;
                 global $g_lbp_local_style_url;
                 global $g_lbp_global_style_url;
@@ -45,7 +46,7 @@
                     } else {
                         wp_enqueue_script('jquery','','','',true);
                     }
-                    wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox.js', array( 'jquery' ), '1.3.20', true);
+                    wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox.'.$g_lbp_colorbox_version.'-min.js', array( 'jquery' ), $g_lbp_colorbox_version, true);
                 }
 
                 if ( !empty( $this->lightboxOptions ) ) {
@@ -233,11 +234,12 @@
             */
             function lightboxPlusAdminScripts( ) {
                 global $g_lightbox_plus_url;
+                global $g_lbp_colorbox_version;
                 wp_enqueue_script('jquery','','','',true);
                 wp_enqueue_script('jquery-ui-core','','','',true);
                 wp_enqueue_script('jquery-ui-dialog','','','',true);
                 wp_enqueue_script('jquery-ui-tabs','','','',true);
-                wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.20', true);
+                wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox.'.$g_lbp_colorbox_version.'-min.js', array( 'jquery' ), $g_lbp_colorbox_version, true);
             }
 
             /**
@@ -250,7 +252,7 @@
                 global $g_lbp_local_style_path;
                 global $g_lbp_global_style_path;
 
-                wp_register_style('lightboxplusStyles', $g_lightbox_plus_url.'admin/lightbox.admin.css','','2.4','screen');
+                wp_register_style('lightboxplusStyles', $g_lightbox_plus_url.'admin/lightbox.admin.css','','2.5','screen');
                 wp_enqueue_style('lightboxplusStyles');
 
                 if ( !empty( $this->lightboxOptions ) ) {

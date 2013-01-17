@@ -3,7 +3,7 @@
 * @subpackage lightbox.admin.css
 * @internal 2012.03.30
 * @author Dan Zappone / 23Systems
-* @version 2.5.5
+* @version 2.5.6
 * @$Id$
 * @$URL$
 */
@@ -28,6 +28,8 @@ h3.handle {cursor: pointer;}
 .postbox.closed a.togbox{padding:2px 4px;text-decoration:none;background:#000097;color:#ffffff;border-top:1px solid #0000db;border-left:1px solid #0000db;border-bottom:1px solid #000075;border-right:1px solid #000075;cursor:pointer;}
 a.togbox:hover{border:1px solid #cccccc;background:#ffffff;color:#999999;}
 .lbp-info{cursor:pointer;top:0;}
+.lbp-support-info{border:1px solid #ccc;}
+.lbp-support-info td {font-size:0.8em;}
 .lbp-tip{max-width:500px;text-align:left;display:none;}
 .lbp-bigtip{max-width:100%;text-align:left;display:none;}
 .lbp input{max-width:500px;}

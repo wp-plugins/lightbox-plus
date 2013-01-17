@@ -13,7 +13,7 @@
     * @subpackage lightboxplus.php DEV VERSION 
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.5.5
+    * @version 2.5.6-Beta
     * @$Id$
     * @$URL$ 
     */
@@ -26,12 +26,17 @@
     global $content;
     global $page;
     global $wp_query;
+    global $wp_version;
     global $the_post_id;
     /**
     * Lightbox Plus Globals
     *
     * @var mixed
     */
+    global $g_lbp_version;
+    global $g_lbp_shortcode_version;
+    global $g_lbp_colorbox_version;
+    global $g_lbp_simple_html_dom_version;
     global $g_lightbox_plus_url;
     global $g_lightbox_plus_dir;
     global $g_lbp_messages;
@@ -42,6 +47,8 @@
     global $g_lbp_local_style_url;
     global $g_lbp_global_style_url;
 
+    $g_lbp_version = '2.5.6';
+    $g_lbp_simple_html_dom_version = '1.5 Rev: 202';
     /**
     * Instantiate Lightbox Plus Globals
     *
@@ -57,11 +64,38 @@
     $g_lbp_local_style_url = $g_lightbox_plus_url.'css';
     $g_lbp_global_style_url = content_url() . '/lbp-css';
 
+    switch (floatval($wp_version)) {
+        case 3.0:
+        case 3.1:
+        case 3.2:
+        case 3.3:
+            $g_lbp_colorbox_version = '1.3.19';
+            break;
+        default:
+            $g_lbp_colorbox_version = '1.3.21';
+            break;
+    }
     /**
     * Require extended Lightbox Plus classes
     */
     require_once('classes/utility.class.php');
-    require_once('classes/shortcode.class.php');
+    switch (floatval($wp_version)) {
+        case 3.0:
+            require_once('classes/shortcode30.class.php');
+            $g_lbp_shortcode_version = '3.0';
+            break;
+        case 3.1:
+        case 3.2:
+        case 3.3:
+        case 3.4:
+            require_once('classes/shortcode34.class.php');
+            $g_lbp_shortcode_version = '3.4';
+            break;
+        default:
+            require_once('classes/shortcode.class.php');
+            $g_lbp_shortcode_version = '3.5';
+            break;
+    }
     require_once('classes/filters.class.php');
     require_once('classes/actions.class.php');
     require_once('classes/init.class.php');
@@ -262,8 +296,15 @@
             * handles creating admin panel and processing of form submission
             */
             function lightboxPlusAdminPanel( ) {
-                global $g_lightbox_plus_url, $g_lbp_messages, $g_lbp_message_title;
-                global $g_lbp_local_style_path, $g_lbp_global_style_path;
+                global $g_lightbox_plus_url;
+                global $g_lbp_messages;
+                global $g_lbp_message_title;
+                global $g_lbp_local_style_path;
+                global $g_lbp_global_style_path;
+                global $g_lbp_version;
+                global $g_lbp_shortcode_version;
+                global $g_lbp_colorbox_version;
+                global $g_lbp_simple_html_dom_version;
                 $location = admin_url('/admin.php?page=lightboxplus');
                 /**
                 * Check form submission and update setting
@@ -565,8 +606,8 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus Options (v2.5.5) ', 'lightboxplus' )?></h2>
-                <h3><?php _e( 'With ColorBox (v1.3.21.1) and PHP Simple HTML DOM Parser (v1.5 rev 202)', 'lightboxplus' )?></h3>
+                <h2><?php _e( 'Lightbox Plus (v'.$g_lbp_version.') Options', 'lightboxplus' )?></h2>
+                <h3><?php _e( 'With ColorBox (v'.$g_lbp_colorbox_version.') and PHP Simple HTML DOM Parser (v'.$g_lbp_simple_html_dom_version.')', 'lightboxplus' )?></h3>
                 <h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | 
                         <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus FAQ">FAQ</a> | 
                         <a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus Direct Support">Request Support</a> | 
