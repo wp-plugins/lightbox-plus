@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 3.0
 Tested up to: 3.6-alpha
-Stable tag: 2.5.4
+Stable tag: 2.5.5
 License: GPLv2 and (components under MIT License)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,9 +28,10 @@ For more in-depth support or if you need extra help you may place a service requ
 
 Server
 
-* WordPress 2.8+
+* WordPress 3.0+
 * PHP 5+ (Required)
-* PHP mbstring extension (preferred but no longer required)
+ * PHP mbstring extension (preferred but no longer required)
+* jQuery 1.4.3+
 
 Support for PHP 4 has been completely removed - DO NOT UPDATE if you want Lightbox Plus to work with PHP 4.
 
@@ -185,6 +186,12 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus and m
 4. Lightbox Plus - Inline Content (Form)
 
 == Change Log ==
+
+= 2.5.5 =
+* Fixed some issues when default jQuery of versions less than 1.4.3 (minimum required) were causing images to not load
+* Fixed some jQuery methods in admin panel to work with versions of jQuery older than 1.6
+* Updated ColorBox to version 1.3.21.1
+ * Fixed global event issue for jQuery 1.9
 
 = 2.5.4 =
 * Updated gallery shortcode replacement to match current implementation in WordPress

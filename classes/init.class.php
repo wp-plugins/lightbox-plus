@@ -2,9 +2,9 @@
     /**
     * @package Lightbox Plus
     * @subpackage init.class.php
-    * @internal 2013.01.10
+    * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.5.3
+    * @version 2.5.5
     * @$Id$
     * @$URL$
     */
@@ -252,7 +252,6 @@
 
                 return $lightboxPlusInlineOptions;
                 unset($lightboxPlusInlineOptions);
-
             }
 
             /**
@@ -270,10 +269,7 @@
                 else {
                     return false;
                 }
-
             }
-
-
         }
     }
 ?>

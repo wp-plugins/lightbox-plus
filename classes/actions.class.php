@@ -2,9 +2,9 @@
     /**
     * @package Lightbox Plus
     * @subpackage actions.class.php
-    * @internal 2013.01.10
+    * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.5.3
+    * @version 2.5.5
     * @$Id$
     * @$URL$
     */
@@ -30,14 +30,21 @@
             */
             function lightboxPlusAddHeader( ) {
                 global $post;
+                global $wp_version;
                 global $g_lightbox_plus_url;
                 global $g_lbp_local_style_url;
                 global $g_lbp_global_style_url;
                 global $g_lbp_local_style_path;
                 global $g_lbp_global_style_path;
-                
+
                 if (!is_admin()) {
-                    wp_enqueue_script('jquery','','','1.8.3',true);
+                    if (floatval($wp_version) < 3.1) {
+                        wp_deregister_script('jquery'); 
+                        wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"), false, '1.4.4'); 
+                        wp_enqueue_script('jquery');
+                    } else {
+                        wp_enqueue_script('jquery','','','',true);
+                    }
                     wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox.js', array( 'jquery' ), '1.3.20', true);
                 }
 
@@ -226,10 +233,10 @@
             */
             function lightboxPlusAdminScripts( ) {
                 global $g_lightbox_plus_url;
-                wp_enqueue_script('jquery','','','1.8.3',true);
-                wp_enqueue_script('jquery-ui-core','','','1.9.2',true);
-                wp_enqueue_script('jquery-ui-dialog','','','1.9.2',true);
-                wp_enqueue_script('jquery-ui-tabs','','','1.9.2',true);
+                wp_enqueue_script('jquery','','','',true);
+                wp_enqueue_script('jquery-ui-core','','','',true);
+                wp_enqueue_script('jquery-ui-dialog','','','',true);
+                wp_enqueue_script('jquery-ui-tabs','','','',true);
                 wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox-min.js', array( 'jquery' ), '1.3.20', true);
             }
 
@@ -242,7 +249,7 @@
                 global $g_lbp_global_style_url;
                 global $g_lbp_local_style_path;
                 global $g_lbp_global_style_path;
-                
+
                 wp_register_style('lightboxplusStyles', $g_lightbox_plus_url.'admin/lightbox.admin.css','','2.4','screen');
                 wp_enqueue_style('lightboxplusStyles');
 
