@@ -1,6 +1,6 @@
 <?php
     /**
-    * @package Lightbox Plus
+    * @package Lightbox Plus ColorBox
     * @subpackage actions.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
@@ -61,7 +61,7 @@
                     }
 
                     if ( $lightboxPlusOptions['disable_css'] ) {
-                        echo "<!-- User set lightbox styles -->".$this->EOL( );
+                        echo "<!-- User set lightbox styles -->".PHP_EOL;
                     } else {
                         wp_register_style('lightboxStyle', $style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.5','screen');
                         wp_enqueue_style('lightboxStyle');
@@ -83,9 +83,9 @@
                 if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
                     $lightboxPlusJavaScript  = "";
-                    $lightboxPlusJavaScript .= '<!-- Lightbox Plus v2.5 - 2013.01.11 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.$this->EOL( );
-                    $lightboxPlusJavaScript .= '<script type="text/javascript">'.$this->EOL( );
-                    $lightboxPlusJavaScript .= 'jQuery(document).ready(function($){'.$this->EOL( );
+                    $lightboxPlusJavaScript .= '<!-- Lightbox Plus ColorBox v2.5 - 2013.01.11 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.PHP_EOL;
+                    $lightboxPlusJavaScript .= '<script type="text/javascript">'.PHP_EOL;
+                    $lightboxPlusJavaScript .= 'jQuery(document).ready(function($){'.PHP_EOL;
                     $lbpArrayPrimary = array();
                     if ( $lightboxPlusOptions['transition'] != 'elastic' ) { $lbpArrayPrimary[] = 'transition:"'.$lightboxPlusOptions['transition'].'"'; }
                     if ( $lightboxPlusOptions['speed'] != '300' ) { $lbpArrayPrimary[] = 'speed:'.$lightboxPlusOptions['speed']; }
@@ -122,16 +122,35 @@
                     if ( $lightboxPlusOptions['bottom'] != 'false' ) { $lbpArrayPrimary[] = 'bottom:'.$this->setValue( $lightboxPlusOptions['bottom'] ); }
                     if ( $lightboxPlusOptions['left'] != 'false'  ) { $lbpArrayPrimary[] = 'left:'.$this->setValue( $lightboxPlusOptions['left'] ); }
                     if ( $lightboxPlusOptions['fixed'] == '1' ) { $lbpArrayPrimary[] = 'fixed:'.$this->setBoolean( $lightboxPlusOptions['fixed'] ); }
-                    $lightboxPlusFnPrimary = '{'.implode(",", $lbpArrayPrimary).'}';
-                    switch ( $lightboxPlusOptions['use_class_method'] ) {
+                    switch ($lightboxPlusOptions['output_htmlv']) {
                         case 1:
-                            $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").colorbox('.$lightboxPlusFnPrimary.');'.$this->EOL( );
-                            break;
-                        default:
-                        $lightboxPlusJavaScript .= '  $("a[rel*=lightbox]").colorbox('.$lightboxPlusFnPrimary.');'.$this->EOL( );
+                        $htmlv_prop = 'data-'.$lightboxPlusOptions['data_name'];
+                        $lightboxPlusFnPrimary = '{rel:$(this).attr("'.$htmlv_prop.'"),'.implode(",", $lbpArrayPrimary).'}';
+                        switch ( $lightboxPlusOptions['use_class_method'] ) {
+                            case 1:
+                                $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").each(function(){'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '  });'.PHP_EOL;
+                                break;
+                            default:
+                                $lightboxPlusJavaScript .= '  $("a['.$htmlv_prop.'*=lightbox]").each(function(){'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '  });'.PHP_EOL;
+                                break;
+                        }                     
                         break;
+                        default:
+                        $lightboxPlusFnPrimary = '{'.implode(",", $lbpArrayPrimary).'}';
+                        switch ( $lightboxPlusOptions['use_class_method'] ) {
+                            case 1:
+                                $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+                                break;
+                            default:
+                            $lightboxPlusJavaScript .= '  $("a[rel*=lightbox]").colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+                            break;
+                        }            
+                        break;   
                     }
-
                     switch ( $lightboxPlusOptions['lightboxplus_multi'] ) {
                         case 1:
                             $lbpArraySecondary = array();
@@ -171,14 +190,20 @@
                             if ( $lightboxPlusOptions['bottom_sec'] != 'false' ) { $lbpArrayPrimary[] = 'bottom:'.$this->setValue( $lightboxPlusOptions['bottom_sec'] ); }
                             if ( $lightboxPlusOptions['left_sec'] != 'false'  ) { $lbpArrayPrimary[] = 'left:'.$this->setValue( $lightboxPlusOptions['left_sec'] ); }
                             if ( $lightboxPlusOptions['fixed_sec'] == '1' ) { $lbpArrayPrimary[] = 'fixed:'.$this->setBoolean( $lightboxPlusOptions['fixed_sec'] ); }
-                            $lightboxPlusFnSecondary = '{'.implode(",", $lbpArraySecondary).'}';
-                            switch ( $lightboxPlusOptions['use_class_method_sec'] ) {
+                            //$lightboxPlusFnSecondary = '{'.implode(",", $lbpArraySecondary).'}';
+                            switch ($lightboxPlusOptions['output_htmlv']) {
                                 case 1:
-                                    $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name_sec'].'").colorbox('.$lightboxPlusFnSecondary.');'.$this->EOL( );
+                                    $htmlv_prop = 'data-'.$lightboxPlusOptions['data_name'];
+                                    $lightboxPlusFnSecondary = '{'.implode(",", $lbpArraySecondary).'}';
+                                    $lightboxPlusFnPrimary = '{rel:$(this).attr("'.$htmlv_prop.'"),'.implode(",", $lbpArrayPrimary).'}';
+                                    $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name_sec'].'").each(function(){'.PHP_EOL;
+                                    $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+                                    $lightboxPlusJavaScript .= '  });'.PHP_EOL;
                                     break;
                                 default:
-                                    $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name_sec'].'").colorbox('.$lightboxPlusFnSecondary.');'.$this->EOL( );
-                                    break;
+                                    $lightboxPlusFnSecondary = '{'.implode(",", $lbpArraySecondary).'}';
+                                    $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name_sec'].'").colorbox('.$lightboxPlusFnSecondary.');'.PHP_EOL;
+                                    break;   
                             }
                             break;
                         default:
@@ -186,9 +211,9 @@
                     }
 
                     if ($lightboxPlusOptions['use_inline'] && $lightboxPlusOptions['inline_num'] != '') {
-                        $inline_links = array();
-                        $inline_hrefs = array();
-                        $inline_widths = array();
+                        $inline_links   = array();
+                        $inline_hrefs   = array();
+                        $inline_widths  = array();
                         $inline_heights = array();
                         for ($i = 1; $i <= $lightboxPlusOptions['inline_num']; $i++) {
                             $inline_links            = $lightboxPlusOptions['inline_links'];
@@ -209,12 +234,12 @@
                             $inline_opens            = $lightboxPlusOptions['inline_opens'];
                             $inline_opacitys         = $lightboxPlusOptions['inline_opacitys'];
                             //echo "Opacity: ".$inline_opacitys[$i - 1];
-                            $lightboxPlusJavaScript .= '  $(".'.$inline_links[$i - 1].'").colorbox({transition:'.$this->setValue( $inline_transitions[$i - 1] ).', speed:'.$this->setValue( $inline_speeds[$i - 1] ).', width:'.$this->setValue( $inline_widths[$i - 1] ).', height:'.$this->setValue( $inline_heights[$i - 1] ).', innerWidth:'.$this->setValue( $inline_inner_widths[$i - 1] ).', innerHeight:'.$this->setValue( $inline_inner_heights[$i - 1] ).', maxWidth:'.$this->setValue( $inline_max_widths[$i - 1] ).', maxHeight:'.$this->setValue( $inline_max_heights[$i - 1] ).', top:'.$this->setValue( $inline_position_tops[$i - 1] ).', right:'.$this->setValue( $inline_position_rights[$i - 1] ).', bottom:'.$this->setValue( $inline_position_bottoms[$i - 1] ).', left:'.$this->setValue( $inline_position_lefts[$i - 1] ).', fixed:'.$this->setBoolean( $inline_fixeds[$i - 1] ).', open:'. $this->setBoolean( $inline_opens[$i - 1] ).', opacity:'.$this->setValue( $inline_opacitys[$i - 1] ).', inline:true, href:"#'.$inline_hrefs[$i - 1].'"});'.$this->EOL( );
+                            $lightboxPlusJavaScript .= '  $(".'.$inline_links[$i - 1].'").colorbox({transition:'.$this->setValue( $inline_transitions[$i - 1] ).', speed:'.$this->setValue( $inline_speeds[$i - 1] ).', width:'.$this->setValue( $inline_widths[$i - 1] ).', height:'.$this->setValue( $inline_heights[$i - 1] ).', innerWidth:'.$this->setValue( $inline_inner_widths[$i - 1] ).', innerHeight:'.$this->setValue( $inline_inner_heights[$i - 1] ).', maxWidth:'.$this->setValue( $inline_max_widths[$i - 1] ).', maxHeight:'.$this->setValue( $inline_max_heights[$i - 1] ).', top:'.$this->setValue( $inline_position_tops[$i - 1] ).', right:'.$this->setValue( $inline_position_rights[$i - 1] ).', bottom:'.$this->setValue( $inline_position_bottoms[$i - 1] ).', left:'.$this->setValue( $inline_position_lefts[$i - 1] ).', fixed:'.$this->setBoolean( $inline_fixeds[$i - 1] ).', open:'. $this->setBoolean( $inline_opens[$i - 1] ).', opacity:'.$this->setValue( $inline_opacitys[$i - 1] ).', inline:true, href:"#'.$inline_hrefs[$i - 1].'"});'.PHP_EOL;
                         }
                     }
 
-                    $lightboxPlusJavaScript .= '});'.$this->EOL( );
-                    $lightboxPlusJavaScript .= '</script>'.$this->EOL( );
+                    $lightboxPlusJavaScript .= '});'.PHP_EOL;
+                    $lightboxPlusJavaScript .= '</script>'.PHP_EOL;
                     echo $lightboxPlusJavaScript;
                 }
             }
@@ -223,7 +248,7 @@
             * Add new admin panel to WordPress under the Appearance category
             */
             function lightboxPlusAddPanel() {
-                $plugin_page = add_theme_page( 'Lightbox Plus', __('Lightbox Plus', 'lightboxplus'), 'manage_options', 'lightboxplus', array( &$this, 'lightboxPlusAdminPanel' ) );
+                $plugin_page = add_theme_page( 'Lightbox Plus ColorBox', __('Lightbox Plus ColorBox', 'lightboxplus'), 'manage_options', 'lightboxplus', array( &$this, 'lightboxPlusAdminPanel' ) );
                 add_action('admin_print_scripts-'.$plugin_page, array( &$this, 'lightboxPlusAdminScripts'));
                 add_action('admin_head-'.$plugin_page, array( &$this, 'lightboxPlusColorbox'));
                 add_action('admin_print_styles-'.$plugin_page, array( &$this, 'lightboxPlusAdminStyles'));
@@ -268,7 +293,7 @@
                     }
 
                     if ( $lightboxPlusOptions['disable_css'] ) {
-                        echo "<!-- User set lightbox styles -->".$this->EOL( );
+                        echo "<!-- User set lightbox styles -->".PHP_EOL;
                     } else {
                         wp_register_style('lightboxStyle', $style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.5','screen');
                         wp_enqueue_style('lightboxStyle');
@@ -287,7 +312,7 @@
             }
 
             function lightboxPlusMetaBox() {
-                add_meta_box( 'lbp-meta-box', __('Lightbox Plus Per Page', 'lightboxplus'), array(&$this,'drawLightboxPlusMeta'), 'page', 'side', 'high' );
+                add_meta_box( 'lbp-meta-box', __('Lightbox Plus ColorBox Per Page', 'lightboxplus'), array(&$this,'drawLightboxPlusMeta'), 'page', 'side', 'high' );
             }
 
             function drawLightboxPlusMeta($post) {
@@ -308,11 +333,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row" colspan="2"><?php _e('Lightbox Plus unique ID for this page/post:','lightboxplus'); ?>: </th>
+                    <th scope="row" colspan="2"><?php _e('Lightbox Plus ColorBox unique ID for this page/post:','lightboxplus'); ?>: </th>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="text" id="lbp_uid" name="lbp_uid" size="40" autocomplete="off" value="<?php if (!empty($lbp_uid)) { echo $lbp_uid; } else {echo $post->post_name; }?>" />
+                        <input type="text" id="lbp_uid" name="lbp_uid" size="40" value="<?php if (!empty($lbp_uid)) { echo $lbp_uid; } else {echo $post->post_name; }?>" />
                         <br />
                         <small><?php _e('(defaults to page/post name/slug)','lightboxplus'); ?></small>
                     </td>

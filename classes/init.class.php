@@ -1,6 +1,6 @@
 <?php
     /**
-    * @package Lightbox Plus
+    * @package Lightbox Plus ColorBox
     * @subpackage init.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
@@ -40,7 +40,7 @@
                 $savedOptions = get_option('lightboxplus_options');
 
                 /**
-                * If Lightbox Plus has been initialized - set to true
+                * If Lightbox Plus ColorBox has been initialized - set to true
                 */
                 if ($savedOptions) { update_option('lightboxplus_init', true); }
 
@@ -60,6 +60,8 @@
                 "use_custom_style"     => '0',
                 "disable_css"          => '0',
                 "hide_about"           => '0',
+                "output_htmlv"         => '0',
+                "data_name"            => 'lightboxplus',
                 "use_perpage"          => '0',
                 "use_forpage"          => '0',
                 "use_forpost"          => '0',
@@ -91,7 +93,7 @@
                 "gallery_lightboxplus" => '0',
                 "multiple_galleries"   => '0',
                 "use_class_method"     => '0',
-                "class_name"           => 'cboxModal',
+                "class_name"           => 'lbp_primary',
                 "no_auto_lightbox"     => '0',
                 "text_links"           => '1',
                 "no_display_title"     => '0',
@@ -148,8 +150,8 @@
                 "slideshow_start_sec"  => 'start',
                 "slideshow_stop_sec"   => 'stop',
                 "iframe_sec"           => '1',
-                "use_class_method_sec" => '0',
-                "class_name_sec"       => 'lbpModal',
+                //"use_class_method_sec" => '0',
+                "class_name_sec"       => 'lbp_secondary',
                 "no_display_title_sec" => '0',
                 "scrolling_sec"        => '1',
                 "photo_sec"            => '0',

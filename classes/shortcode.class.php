@@ -1,7 +1,6 @@
 <?php
-
     /**
-    * @package Lightbox Plus
+    * @package Lightbox Plus ColorBox
     * @subpackage shortcode.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
@@ -83,11 +82,11 @@
                     return $output;
                 }
 
-                $itemtag = tag_escape($itemtag);
+                $itemtag    = tag_escape($itemtag);
                 $captiontag = tag_escape($captiontag);
-                $columns = intval($columns);
-                $itemwidth = $columns > 0 ? floor(100/$columns) : 100;
-                $float = is_rtl() ? 'right' : 'left';
+                $columns    = intval($columns);
+                $itemwidth  = $columns > 0 ? floor(100/$columns) : 100;
+                $float      = is_rtl() ? 'right' : 'left';
 
                 $selector = "gallery-{$instance}";
 

@@ -1,5 +1,5 @@
 /**
-* @package Lightbox Plus
+* @package Lightbox Plus ColorBox
 * @subpackage jquery.colorbox-min.js
 * @internal 2012.03.30
 * @author Jack Moore / jacklmoore.com

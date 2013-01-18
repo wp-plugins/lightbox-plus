@@ -1,15 +1,15 @@
 <?php
     /*
-    Plugin Name: Lightbox Plus
+    Plugin Name: Lightbox Plus ColorBox
     Plugin URI: http://www.23systems.net/plugins/lightbox-plus/
-    Description: Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
+    Description: Lightbox Plus ColorBox implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
     Version: 2.5.5
     */
 
     /**
-    * @package Lightbox Plus
+    * @package Lightbox Plus ColorBox
     * @subpackage lightboxplus.php DEV VERSION 
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
@@ -29,7 +29,7 @@
     global $wp_version;
     global $the_post_id;
     /**
-    * Lightbox Plus Globals
+    * Lightbox Plus ColorBox Globals
     *
     * @var mixed
     */
@@ -47,10 +47,10 @@
     global $g_lbp_local_style_url;
     global $g_lbp_global_style_url;
 
-    $g_lbp_version = '2.5.6';
+    $g_lbp_version = '2.6';
     $g_lbp_simple_html_dom_version = '1.5 Rev: 202';
     /**
-    * Instantiate Lightbox Plus Globals
+    * Instantiate Lightbox Plus ColorBox Globals
     *
     * @var mixed
     */
@@ -76,7 +76,7 @@
             break;
     }
     /**
-    * Require extended Lightbox Plus classes
+    * Require extended Lightbox Plus ColorBox classes
     */
     require_once('classes/utility.class.php');
     switch (floatval($wp_version)) {
@@ -142,9 +142,7 @@
     * Ensure class doesn't already exist
     */
     if (!class_exists('wp_lightboxplus')) {
-
         class wp_lightboxplus extends lbp_init {
-
             /**
             * The name the options are saved under in the database
             *
@@ -279,11 +277,11 @@
             function RegisterLBPLinks($links, $file) {
                 $base = plugin_basename(__FILE__);
                 if ($file == $base) {
-                    $links[] = '<a href="themes.php?page=lightboxplus" title="Lightbox Plus Settings">' . __('Settings','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus FAQ">' . __('FAQ','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus Direct Support">' . __('Request Support','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Support Forum">' . __('Support Forum','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://www.23systems.net/donate/" title="Donate to Lightbox Plus">' . __('Donate','lightboxplus') . '</a>';
+                    $links[] = '<a href="themes.php?page=lightboxplus" title="Lightbox Plus ColorBox Settings">' . __('Settings','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus ColorBox FAQ">' . __('FAQ','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus ColorBox Direct Support">' . __('Request Support','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus ColorBox Support Forum">' . __('Support Forum','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.23systems.net/donate/" title="Donate to Lightbox Plus ColorBox">' . __('Donate','lightboxplus') . '</a>';
                     $links[] = '<a href="http://twitter.com/23systems" title="@23System on Twitter">' . __('Follow on Twitter','lightboxplus') . '</a>';
                     $links[] = '<a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">' . __('Facebook Page','lightboxplus') . '</a>';
                     $links[] = '<a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">' . __('Google+ Page','lightboxplus') . '</a>';
@@ -320,6 +318,8 @@
                                 "use_custom_style"     => $_POST['use_custom_style'],
                                 "disable_css"          => $_POST['disable_css'],
                                 "hide_about"           => $_POST['hide_about'],
+                                "output_htmlv"         => $_POST['output_htmlv'],
+                                "data_name"            => $_POST['data_name'],
                                 "use_perpage"          => $_POST['use_perpage'],
                                 "use_forpage"          => $_POST['use_forpage'],
                                 "use_forpost"          => $_POST['use_forpost'],
@@ -368,9 +368,9 @@
                                 "fixed"                => $_POST['fixed']
                             );
 
-                            $g_lbp_message_title .= __('Lightbox Plus Setting Saved','lightboxplus');
-                            $g_lbp_messages .= __('Lightbox Plus base settings updated.','lightboxplus').'<br /><br />';
-                            $g_lbp_messages .= __('Primary lightbox settings updated.','lightboxplus').'<br /><br />';
+                            $g_lbp_message_title .= __('Lightbox Plus ColorBox Setting Saved','lightboxplus');
+                            $g_lbp_messages      .= __('Lightbox Plus ColorBox base settings updated.','lightboxplus').'<br /><br />';
+                            $g_lbp_messages      .= __('Primary lightbox settings updated.','lightboxplus').'<br /><br />';
 
                             if ( $_POST['lightboxplus_multi'] ) {
                                 $lightboxPlusSecondaryOptions = array(
@@ -399,7 +399,7 @@
                                     "slideshow_start_sec"  => $_POST['slideshow_start_sec'],
                                     "slideshow_stop_sec"   => $_POST['slideshow_stop_sec'],
                                     "iframe_sec"           => $_POST['iframe_sec'],
-                                    "use_class_method_sec" => $_POST['use_class_method_sec'],
+                                    //"use_class_method_sec" => $_POST['use_class_method_sec'],
                                     "class_name_sec"       => $_POST['class_name_sec'],
                                     "no_display_title_sec" => $_POST['no_display_title_sec'],
                                     "scrolling_sec"        => $_POST['scrolling_sec'],
@@ -531,8 +531,8 @@
                                 delete_option( $this->lightboxOptionsName );
                                 delete_option( $this->lightboxInitName );
                                 delete_option( $this->lightboxStylePathName );
-                                $g_lbp_message_title .= __('Lightbox Plus Reset','lightboxplus');
-                                $g_lbp_messages .= '<strong>'.__('Lightbox Plus has been completely reset to default settings.','lightboxplus').'</strong><br /><br />';
+                                $g_lbp_message_title .= __('Lightbox Plus ColorBox Reset','lightboxplus');
+                                $g_lbp_messages .= '<strong>'.__('Lightbox Plus ColorBox has been completely reset to default settings.','lightboxplus').'</strong><br /><br />';
 
                                 /**
                                 * Used to remove old setting from previous versions of LBP
@@ -541,13 +541,13 @@
                                 */
                                 $pluginPath = ( dirname( __FILE__ ));
                                 if ( file_exists( $pluginPath."/images" )) {
-                                    $g_lbp_messages .= __('Deleting: ').$pluginPath.'/images . . . '.__('Removed old Lightbox Plus style images.','lightboxplus').'<br /><br />';
+                                    $g_lbp_messages .= __('Deleting: ').$pluginPath.'/images . . . '.__('Removed old Lightbox Plus ColorBox style images.','lightboxplus').'<br /><br />';
                                     $this->delete_directory( $pluginPath."/images/" );
                                 } else {
                                     $g_lbp_messages .= '';
                                 }
                                 if ( file_exists( $pluginPath."/js/"."lightbox.js" )) {
-                                    $g_lbp_messages .= __('Deleting: ','lightboxplus').$pluginPath.'/js/lightbox.js . . . '.__('Removed old Lightbox Plus JavaScript.','lightboxplus').'<br /><br />';
+                                    $g_lbp_messages .= __('Deleting: ','lightboxplus').$pluginPath.'/js/lightbox.js . . . '.__('Removed old Lightbox Plus ColorBox JavaScript.','lightboxplus').'<br /><br />';
                                     $this->delete_file( $pluginPath."/js", "lightbox.js" );
                                 } else {
                                     $g_lbp_messages .= '';
@@ -560,7 +560,7 @@
                                             $this->delete_file( $pluginPath."/css", $value );
                                         }
                                     }
-                                    $g_lbp_messages .= __('Removed old Lightbox Plus styles.','lightboxplus').'<br /><br />';
+                                    $g_lbp_messages .= __('Removed old Lightbox Plus ColorBox styles.','lightboxplus').'<br /><br />';
                                 }
                                 else {
                                     $g_lbp_messages .= '';
@@ -573,7 +573,7 @@
                             * @var wp_lightboxplus
                             */
                             $this->lightboxPlusInit();
-                            $g_lbp_messages .= '<strong>'.__('Please check and update your Lightbox Plus settings before continuing!','lightboxplus').'</strong>';
+                            $g_lbp_messages .= '<strong>'.__('Please check and update your Lightbox Plus ColorBox settings before continuing!','lightboxplus').'</strong>';
                             break;
                         default:
                             break;
@@ -606,12 +606,12 @@
                 }
             ?>
             <div class="wrap" id="lightbox">
-                <h2><?php _e( 'Lightbox Plus (v'.$g_lbp_version.') Options', 'lightboxplus' )?></h2>
+                <h2><?php _e( 'Lightbox Plus ColorBox (v'.$g_lbp_version.') Options', 'lightboxplus' )?></h2>
                 <h3><?php _e( 'With ColorBox (v'.$g_lbp_colorbox_version.') and PHP Simple HTML DOM Parser (v'.$g_lbp_simple_html_dom_version.')', 'lightboxplus' )?></h3>
                 <h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | 
-                        <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus FAQ">FAQ</a> | 
-                        <a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus Direct Support">Request Support</a> | 
-                        <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Support Forum">Support Forum</a> | 
+                        <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus ColorBox FAQ">FAQ</a> | 
+                        <a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus ColorBox Direct Support">Request Support</a> | 
+                        <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus ColorBox Support Forum">Support Forum</a> | 
                         <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Follow on Twitter</a> | 
                         <a href="http://www.facebook.com/23Systems" title="23Systems of Facebook">Add Facebook Page</a> | 
                     <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+ Page</a>' ); ?></h4>
@@ -648,8 +648,10 @@
                     $("#ilbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
 
                     $("#use_inline").click(function(){ if ($("#use_inline").prop("checked")) { $(".base_gen").show("fast"); } else { $(".base_gen").hide("fast"); } });
+                    $("#output_htmlv").click(function(){ if ($("#output_htmlv").attr('checked')) { $(".htmlv_settings").show("fast"); } else { $(".htmlv_settings").hide("fast"); } });
                     $("#use_perpage").click(function(){ if ($("#use_perpage").attr('checked')) { $(".base_blog").show("fast"); } else { $(".base_blog").hide("fast"); } });
                     $("#rel").click(function(){  if ($("#rel").attr('checked')) { $(".grouping_prim").hide("fast"); } else { $(".grouping_prim").show("fast"); } });
+                    $("#use_class_method").click(function(){ if ($("#use_class_method").prop("checked")) { $(".primary_class_name").show("fast"); } else { $(".primary_class_name").hide("fast"); } });
                     $("#slideshow").click(function(){ if ($("#slideshow").attr('checked')) { $(".slideshow_prim").show("fast"); } else { $(".slideshow_prim").hide("fast"); } });
                     $("#rel_sec").click(function(){ if ($("#rel_sec").attr('checked')) { $(".grouping_sec").hide("fast"); } else { $(".grouping_sec").show("fast"); } });
                     $("#slideshow_sec").click(function(){ if ($("#slideshow_sec").attr('checked')) { $(".slideshow_sec").show("fast"); } else { $(".slideshow_sec").hide("fast"); } });
@@ -676,4 +678,5 @@
     /**
     * Instantiate the class
     */
-if (class_exists('wp_lightboxplus')) { $wp_lightboxplus = new wp_lightboxplus(); }
+    if (class_exists('wp_lightboxplus')) { $wp_lightboxplus = new wp_lightboxplus(); }
+?>

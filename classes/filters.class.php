@@ -1,6 +1,6 @@
 <?php
     /**
-    * @package Lightbox Plus
+    * @package Lightbox Plus ColorBox
     * @subpackage filters.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
@@ -31,8 +31,8 @@
             function lightboxPlusReplace( $html_content, $unq_id ) {
                 global $post;
 
-                if (!empty($this->lightboxOptions)) {$lightboxPlusOptions   = $this->getAdminOptions($this->lightboxOptionsName);}
-                $postGroupID = $post->ID;
+                if (!empty($this->lightboxOptions)) {$lightboxPlusOptions = $this->getAdminOptions($this->lightboxOptionsName);}
+                $postGroupID    = $post->ID;
                 $postGroupTitle = $post->post_title;
 
                 $html = new simple_html_dom();
@@ -49,22 +49,43 @@
                             /**
                             * Use Class Method is selected - yes/no
                             */
-                            switch ($lightboxPlusOptions['use_class_method']) {
+                            switch ($lightboxPlusOptions['output_htmlv']) {
                                 case 1:
-                                    if ($e->class && $e->class != $lightboxPlusOptions['class_name']) {
-                                        $e->class .= ' '.$lightboxPlusOptions['class_name'];
-                                        if (!$e->rel) { $e->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
-                                    }
-                                    else {
-                                        $e->class = $lightboxPlusOptions['class_name'];
-                                        if (!$e->rel) { $e->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
-                                    }
-                                    break;
+                                $htmlv_prop = 'data-'.$lightboxPlusOptions['data_name'];
+                                switch ($lightboxPlusOptions['use_class_method']) {
+                                    case 1:
+                                        if ($e->class && $e->class != $lightboxPlusOptions['class_name']) {
+                                            $e->class .= ' '.$lightboxPlusOptions['class_name'];
+                                            if (!$e->$htmlv_prop) { $e->$htmlv_prop = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        }
+                                        else {
+                                            $e->class = $lightboxPlusOptions['class_name'];
+                                            if (!$e->$htmlv_prop) { $e->$htmlv_prop = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        }
+                                        break;
+                                    default:
+                                        if (!$e->$htmlv_prop) { $e->$htmlv_prop = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        break;
+                                }
+                                break;
                                 default:
+                                switch ($lightboxPlusOptions['use_class_method']) {
+                                    case 1:
+                                        if ($e->class && $e->class != $lightboxPlusOptions['class_name']) {
+                                            $e->class .= ' '.$lightboxPlusOptions['class_name'];
+                                            if (!$e->rel) { $e->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        }
+                                        else {
+                                            $e->class = $lightboxPlusOptions['class_name'];
+                                            if (!$e->rel) { $e->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        }
+                                        break;
+                                    default:
                                     if (!$e->rel) { $e->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
                                     break;
+                                }
+                                break;   
                             }
-
                             /**
                             * Do Not Display Title is select - yes/no
                             */
@@ -101,23 +122,53 @@
                         */
                         foreach($html->find('a[href*=jpg$] img, a[href*=gif$] img, a[href*=png$] img, a[href*=jpeg$] img, a[href*=bmp$] img') as $e) {
                             /**
-                            * Use Class Method is selected - yes/no
+                            * Generate HTML5 yes/no
                             */
-                            switch ($lightboxPlusOptions['use_class_method']) {
+                            switch ($lightboxPlusOptions['output_htmlv']) {
                                 case 1:
-                                    if ($e->parent()->class && $e->parent()->class != $lightboxPlusOptions['class_name']) {
-                                        $e->parent()->class .= ' '.$lightboxPlusOptions['class_name'];
-                                        if (!$e->parent()->rel) { $e->parent()->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
-                                    }
-                                    else {
-                                        $e->parent()->class = $lightboxPlusOptions['class_name'];
-                                        if (!$e->parent()->rel) { $e->parent()->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
-                                    }
-                                    break;
+                                $htmlv_prop = 'data-'.$lightboxPlusOptions['data_name'];
+                                switch ($lightboxPlusOptions['use_class_method']) {
+                                    /**
+                                    * Use Class Method is selected - yes/no
+                                    */
+                                    case 1:
+                                        if ($e->parent()->class && $e->parent()->class != $lightboxPlusOptions['class_name']) {
+                                            $e->parent()->class .= ' '.$lightboxPlusOptions['class_name'];
+                                            if (!$e->parent()->$htmlv_prop) { $e->parent()->$htmlv_prop = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        }
+                                        else {
+                                            $e->parent()->class = $lightboxPlusOptions['class_name'];
+                                            if (!$e->parent()->$htmlv_prop) { $e->parent()->$htmlv_prop = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        }
+                                        break;
+                                    default:
+                                        if (!$e->parent()->$htmlv_prop) { $e->parent()->$htmlv_prop = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        break;
+                                }
+                                break;
                                 default:
-                                    if (!$e->parent()->rel) { $e->parent()->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
-                                    break;
+                                switch ($lightboxPlusOptions['use_class_method']) {
+                                    /**
+                                    * Use Class Method is selected - yes/no
+                                    */
+                                    case 1:
+                                        if ($e->parent()->class && $e->parent()->class != $lightboxPlusOptions['class_name']) {
+                                            $e->parent()->class .= ' '.$lightboxPlusOptions['class_name'];
+                                            if (!$e->parent()->rel) { $e->parent()->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        }
+                                        else {
+                                            $e->parent()->class = $lightboxPlusOptions['class_name'];
+                                            if (!$e->parent()->rel) { $e->parent()->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        }
+                                        break;
+                                    default:
+                                        if (!$e->parent()->rel) { $e->parent()->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        break;
+                                }
+                                break;   
                             }
+
+
                             /**
                             * Do Not Display Title is select - yes/no
                             */
@@ -154,5 +205,4 @@
             }
         }
     }
-
 ?>

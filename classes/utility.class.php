@@ -1,6 +1,6 @@
 <?php
     /**
-    * @package Lightbox Plus
+    * @package Lightbox Plus ColorBox
     * @subpackage utility.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
@@ -11,7 +11,7 @@
     if (!class_exists('lbp_utilities')) {
 
         /**
-        * Lightbox Plus Utiltiy Functions used throughout plugin
+        * Lightbox Plus ColorBox Utiltiy Functions used throughout plugin
         *
         * Not sure if WordPress has equivelents but cannot locate in API docs if so
         */

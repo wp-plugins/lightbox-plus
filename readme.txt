@@ -1,4 +1,4 @@
-=== Lightbox Plus ===
+=== Lightbox Plus ColorBox ===
 Contributors: dzappone
 Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
@@ -8,21 +8,21 @@ Stable tag: 2.5.5
 License: GPLv2 and (components under MIT License)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Lightbox Plus permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
+Lightbox Plus ColorBox permits users to view larger versions of images, simple slide shows, videos and content all in an overlay.
 
 == Description ==
 
-Lightbox Plus implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus for WordPress implements ColorBox as a lightbox image overlay tool for WordPress. ColorBox was created by Jack Moore and is licensed under the MIT License. Lightbox Plus permits users to view larger versions of images without having to leave the current page. Lightbox is able to add a lightbox to WordPress gallery images, display simple slide shows, video, forms and external content in overlays. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image or video being viewed. Lightbox Plus captures the image title for display in the overlay.
+Lightbox Plus ColorBox implements ColorBox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus ColorBox for WordPress implements ColorBox as a lightbox image overlay tool for WordPress. ColorBox was created by Jack Moore and is licensed under the MIT License. Lightbox Plus ColorBox permits users to view larger versions of images without having to leave the current page. Lightbox is able to add a lightbox to WordPress gallery images, display simple slide shows, video, forms and external content in overlays. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image or video being viewed. Lightbox Plus ColorBox captures the image title for display in the overlay.
 
-Lightbox Plus uses WordPress' built in jQuery library. Lightbox Plus also uses the <a href="http://simplehtmldom.sourceforge.net/" title="PHP Simple HTML DOM Parser">PHP Simple HTML DOM Parser</a> helper class to navigate page content for inserting the Lightbox attibutes into elements.
+Lightbox Plus ColorBox uses WordPress' built in jQuery library. Lightbox Plus ColorBox also uses the <a href="http://simplehtmldom.sourceforge.net/" title="PHP Simple HTML DOM Parser">PHP Simple HTML DOM Parser</a> helper class to navigate page content for inserting the Lightbox attibutes into elements.
 
 = Troubleshooting =
 
 Please read the <a href="http://www.23systems.net/plugins/lightbox-plus/frequently-asked-questions/">FAQ</a> first if you are having problems.
 
-We offer limited support for Lightbox Plus via the <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Direct Support">support forums</a>. 
+We offer limited support for Lightbox Plus ColorBox via the <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus ColorBox Direct Support">support forums</a>. 
 
-For more in-depth support or if you need extra help you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.  Due to the volume of questions, I cannot may not be able to offer individual support though in an effort to resolve the issue I may contact you. The issue may be resolved by a new release of Lightbox Plus but it does help me get a better understanding of the issue.
+For more in-depth support or if you need extra help you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.  Due to the volume of questions, I cannot may not be able to offer individual support though in an effort to resolve the issue I may contact you. The issue may be resolved by a new release of Lightbox Plus ColorBox but it does help me get a better understanding of the issue.
 
 = Requirements =
 
@@ -33,7 +33,7 @@ Server
  * PHP mbstring extension (preferred but no longer required)
 * jQuery 1.4.3+
 
-Support for PHP 4 has been completely removed - DO NOT UPDATE if you want Lightbox Plus to work with PHP 4.
+Support for PHP 4 has been completely removed - DO NOT UPDATE if you want Lightbox Plus ColorBox to work with PHP 4.
 
 Client
 
@@ -41,7 +41,7 @@ Client
 
 = Usage =
 
-Note that getting the caption to appear in the overlay image by using the caption options built into WordPress Lightbox Plus uses the image title which is generated by "Edit Image Title" field and not the "Edit Caption Field."  You can also manually add lightbox tags to your images using the following instructions.
+Note that getting the caption to appear in the overlay image by using the caption options built into WordPress Lightbox Plus ColorBox uses the image title which is generated by "Edit Image Title" field and not the "Edit Caption Field."  You can also manually add lightbox tags to your images using the following instructions.
 
 1. Add a rel="lightbox[uniqueID|filename]" attribute to any link tag to activate the lightbox, include a name between square brackets in the rel attibute. For example:
 
@@ -60,22 +60,22 @@ Optional: Use the title attribute if you want to show a caption.
 = Automatic =
 
 1. In the admin panel plugins page click Add New
-2. Search for Lightbox Plus
-3. Find Lightbox Plus in the list an click Install Now
+2. Search for Lightbox Plus ColorBox
+3. Find Lightbox Plus ColorBox in the list an click Install Now
 4. Click OK when prompted
 5. Enjoy!
 
 = Manual =
 
 1. Extract lightbox-plus.zip to your `wp-content/plugins` directory.
-2. In the admin panel under plugins activate Lightbox Plus.
-3. In the admin panel under Appearance click on Lightbox Plus to configure to your taste.
+2. In the admin panel under plugins activate Lightbox Plus ColorBox.
+3. In the admin panel under Appearance click on Lightbox Plus ColorBox to configure to your taste.
 4. It should now be completely set up and functional
 5. Enjoy!
 
 = Caveats =
 
-Flash (i.e. YouTube videos, etc.) will sit atop the Lightbox Plus display no matter what the z-index is.  This is an issue with Flash.
+Flash (i.e. YouTube videos, etc.) will sit atop the Lightbox Plus ColorBox display no matter what the z-index is.  This is an issue with Flash.
 
 See <a href="http://go.adobe.com/kb/ts_tn_15523_en-us">Flash content displays on top of all DHTML layers</a> at Adobe for details.
 
@@ -86,7 +86,7 @@ To work around this issue you will need to add something like the following to y
 
 == Frequently Asked Questions ==
 
-= Lightbox Plus doesn't work =
+= Lightbox Plus ColorBox doesn't work =
 
 Well, yes, it does.  It's used by thousands of websites and if it doesn't work for you that because there is some problem with how it interacts with your site.
 
@@ -114,15 +114,15 @@ The problem may be with your WordPress theme, mangling image display properties.
 
 It also seems that some more recent version of WordPress (or perhaps the plugin is causing this in some way I am not aware of) do not automatically add the link to the full size image.  You must also make sure that when you are adding an image from the WordPress media dialog control you must make sure there is a link to the image in the Link URL field.  The easiest way to get the correct link is to click on the link to image button beneath the field.  <a href="http://www.23systems.net/wp-content/uploads/2008/07/file.png">Visual depiction</a> of what is required when adding images in order for lightbox to function correctly.
 
-= Lightbox Plus doesn't work properly in browser X, Y, or Z (Chrome, Safari, Firefox, Opera, Explorer 6, 7, etc.)? =
+= Lightbox Plus ColorBox doesn't work properly in browser X, Y, or Z (Chrome, Safari, Firefox, Opera, Explorer 6, 7, etc.)? =
 
 Yes it probably does, the problems may be the same as above or there may be a conflict with another plugin or a style conflict.  It has been tested in Chrome, IE 7+, Firefox 2+, Chrome, Safari 3+, Opera 8+ since development began.
 
-= Does Lightbox Plus work with PHP 4? If not, why not? =
+= Does Lightbox Plus ColorBox work with PHP 4? If not, why not? =
 
 No it doesn't.  PHP 4 reached end of life on August 8th 2008 (almost years ago.)  WordPress no longer supports PHP 4 and all plugin developers are encourage to follow.  The best solution at this time is to ask your host provider to upgrade to PHP 5.
 
-You will know that Lightbox Plus is not working because of PHP if you receive the following error:
+You will know that Lightbox Plus ColorBox is not working because of PHP if you receive the following error:
 
 <b>Plugin couldn't be activated because of fatal error</b>
 
@@ -136,33 +136,33 @@ Maybe, but probably not as they will most likely interfere with each other as th
 
 Yes, you can easily create additional styles by checking the use custom styles checkbox.  It will copy the existing styles to <code>wp-content/lbp-css</code> and you can modify any of the existing styles.  You can all adding a new folder to that directory and using the existing styles as examples create your completely custom styles.
 
-= How does Lightbox Plus differ from other Lightbox plugins for WordPress? =
+= How does Lightbox Plus ColorBox differ from other Lightbox plugins for WordPress? =
 
 Performance wise the ColorBox jQuery plugin is smaller and generally faster and has more options than most lightbox JavaScript plugins.  The regular expressions that handle the text are more robust handling a wider variety of characters and in addition it will also grab the image title from the image to use for the overlay image caption.
 
-= Does Lightbox Plus work with WordPress' built in gallery =
+= Does Lightbox Plus ColorBox work with WordPress' built in gallery =
 
-Yes it does.  There are few simple requirements however.  You must set <strong>Link thumbnails to: Image File</strong> or use <code>[gallery link="file"</code> for the gallery options.  You must check <em>Use For WP Gallery</em> box under <strong>Other Lightbox Plus Settings</strong>
+Yes it does.  There are few simple requirements however.  You must set <strong>Link thumbnails to: Image File</strong> or use <code>[gallery link="file"</code> for the gallery options.  You must check <em>Use For WP Gallery</em> box under <strong>Other Lightbox Plus ColorBox Settings</strong>
 
 = When resetting/re-initializing LBP the setting do not appear correctly when the page reloads, what gives? =
 
-This problem is only apparent in Chrome and Opera.  It seems to works fine in Internet Explorer, Firefox and Safari.  There are some browser related issues and I am investigating the problem at this time.  For Chrome the settings are being saved but not displayed immediately, click on the Lightbox Plus link under appearance and you will see the current settings.  Opera for whatever reason is completely failing to save re-initialization settings, you must manually set and save them or use another browser.  And, no, it doesn't make sense since it's server side activity.
+This problem is only apparent in Chrome and Opera.  It seems to works fine in Internet Explorer, Firefox and Safari.  There are some browser related issues and I am investigating the problem at this time.  For Chrome the settings are being saved but not displayed immediately, click on the Lightbox Plus ColorBox link under appearance and you will see the current settings.  Opera for whatever reason is completely failing to save re-initialization settings, you must manually set and save them or use another browser.  And, no, it doesn't make sense since it's server side activity.
 
 = Additional FAQs from Colorbox =
 
-For addtional information please see <a href="http://www.jacklmoore.com/colorbox/faq" title="ColorBox FAQ">ColorBox FAQ</a> for information about the jQuery plugin used by Lightbox Plus.
+For addtional information please see <a href="http://www.jacklmoore.com/colorbox/faq" title="ColorBox FAQ">ColorBox FAQ</a> for information about the jQuery plugin used by Lightbox Plus ColorBox.
 
 = Other Problems =
 
-If your problem isn't covered in this FAQ, your best bet would be to post your question to the WordPress <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Forum Support">support forums</a>.
+If your problem isn't covered in this FAQ, your best bet would be to post your question to the WordPress <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus ColorBox Forum Support">support forums</a>.
 
-<strong>Please do not contact Jack Moore the author of ColorBox for issues with Lightbox Plus.</strong>
+<strong>Please do not contact Jack Moore the author of ColorBox for issues with Lightbox Plus ColorBox.</strong>
 
-If you have read and tried the above and you are still having problems, and require more in-depth support or if you need extra help you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.  Due to the volume of questions, I cannot may not be able to offer individual support though in an effort to resolve the issue I may contact you. The issue may be resolved by a new release of Lightbox Plus but it does help me get a better understanding of the issue.
+If you have read and tried the above and you are still having problems, and require more in-depth support or if you need extra help you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.  Due to the volume of questions, I cannot may not be able to offer individual support though in an effort to resolve the issue I may contact you. The issue may be resolved by a new release of Lightbox Plus ColorBox but it does help me get a better understanding of the issue.
 
 = Known Problems =
 
-* Does not work correctly with W3 Total Cache if you are using automatic minify settings.  You can manually set up minify to work correctly bypassing Lightbox Plus (jquery-colorbox.min.js)
+* Does not work correctly with W3 Total Cache if you are using automatic minify settings.  You can manually set up minify to work correctly bypassing Lightbox Plus ColorBox (jquery-colorbox.min.js)
 * No support for iPad (if someone wants to donate an iPad to me I will guarantee support)
  * It generally seems to work though I just don't support it as I don't have an iPad.
 * In some instances performance may be slow in older versions IE - this may be due to plugin conflicts or slow JavaScript performance in IE.
@@ -170,29 +170,34 @@ If you have read and tried the above and you are still having problems, and requ
 
 = Plugin Conflicts =
 
-* Jetpack Carousel - When carousel is activate it take precedence over Lightbox Plus for image use as of LBP 2.x
+* Jetpack Carousel - When carousel is activate it take precedence over Lightbox Plus ColorBox for image use as of LBP 2.x
 * Flickr Mini Gallery - Verified.  Download hot fix for <a href="http://23systems.net/downloads/file/flickr-mini-gallery-jquery-hotfix.zip">Flickr Mini Gallery</a> (includes instructions) as of LBP 1.6.3
 * Tabbed Widgets - Verified as of LBP 1.6.3
 * DMSGuestbook - Un-verified as of LBP 1.6.3
 * Gengo - Un-verified as of LBP 1.6.3
 
-Note: Some of these conflicts were with very old versions of Lightbox Plus and may be mitigated
+Note: Some of these conflicts were with very old versions of Lightbox Plus ColorBox and may be mitigated
 
 == Screenshots ==
 
-1. Lightbox Plus - Image
-2. Lightbox Plus - Video
-3. Lightbox Plus - External Content
-4. Lightbox Plus - Inline Content (Form)
+1. Lightbox Plus ColorBox - Image
+2. Lightbox Plus ColorBox - Video
+3. Lightbox Plus ColorBox - External Content
+4. Lightbox Plus ColorBox - Inline Content (Form)
 
 == Change Log ==
 
-= 2.5.6 =
+= 2.6 =
+* Added option to generate HTML5 valid code.  Checkbox under Base Settings -> Advanced.  
+ * When checked will add data- instead if rel attributes.
+ * Can specify specify data- attribute so it can be site specific
+ * Does not effect inline lightbxes which were class based already
 * Fixed gallery short code issues with WordPress 3.0.x and version 3.1.x to 3.4.x.
  * Now creates correct gallery output for specific versions of WordPress
 * Fixed ColorBox version loading newer/older depending on WordPress version
  * It seems older verions of WordPress were having jQuery conflict with the latest version of ColorBox
 * Added information to submit for support under the support tab
+* Renamed plugin to Lightbox Plus ColorBox to reflect long time usage or ColorBox as the lightbox tool
 * Minor internal fixes and changes
 
 = 2.5.5 =

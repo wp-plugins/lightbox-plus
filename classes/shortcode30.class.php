@@ -1,6 +1,6 @@
 <?php
     /**
-    * @package Lightbox Plus
+    * @package Lightbox Plus ColorBox
     * @subpackage shortcode.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
