@@ -304,7 +304,7 @@
                     </div -->
                 </div>
                 <p class="submit">
-                    <input type="submit" style="padding:5px 30px 5px 30px;" name="Submit" title="<?php _e( 'Save all Lightbox Plus ColorBox settings', 'lightboxplus' )?>" value="<?php _e( 'Save settings', 'lightboxplus' )?> &raquo;" />
+                    <input type="submit" style="padding:5px 30px 5px 30px;" name="Submit" title="<?php _e( 'Save all Lightbox Plus ColorBox settings', 'lightboxplus' )?>" value="<?php _e( 'Save all settings', 'lightboxplus' )?> &raquo;" />
                 </p>
             </div>
 
@@ -922,7 +922,7 @@
                     //-->
                 </script>
                 <p class="submit">
-                    <input type="submit" style="padding:5px 30px 5px 30px;" name="Submit" title="<?php _e( 'Save all Lightbox Plus ColorBox settings', 'lightboxplus' )?>" value="<?php _e( 'Save settings', 'lightboxplus' )?> &raquo;" />
+                    <input type="submit" style="padding:5px 30px 5px 30px;" name="Submit" title="<?php _e( 'Save all Lightbox Plus ColorBox settings', 'lightboxplus' )?>" value="<?php _e( 'Save all settings', 'lightboxplus' )?> &raquo;" />
                 </p>
             </div>
         </div>

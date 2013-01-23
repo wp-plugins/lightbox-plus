@@ -200,10 +200,10 @@
                             switch ($lightboxPlusOptions['output_htmlv']) {
                                 case 1:
                                     $htmlv_prop = 'data-'.$lightboxPlusOptions['data_name'];
-                                    $lightboxPlusFnSecondary = '{'.implode(",", $lbpArraySecondary).'}';
-                                    $lightboxPlusFnPrimary = '{rel:$(this).attr("'.$htmlv_prop.'"),'.implode(",", $lbpArrayPrimary).'}';
+                                    //$lightboxPlusFnSecondary = '{'.implode(",", $lbpArraySecondary).'}';
+                                    $lightboxPlusFnSecondary = '{rel:$(this).attr("'.$htmlv_prop.'"),'.implode(",", $lbpArraySecondary).'}';
                                     $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name_sec'].'").each(function(){'.PHP_EOL;
-                                    $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+                                    $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnSecondary.');'.PHP_EOL;
                                     $lightboxPlusJavaScript .= '  });'.PHP_EOL;
                                     break;
                                 default:

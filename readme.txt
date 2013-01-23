@@ -184,6 +184,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 2. Lightbox Plus ColorBox - Video
 3. Lightbox Plus ColorBox - External Content
 4. Lightbox Plus ColorBox - Inline Content (Form)
+5. Lightbox Plus ColorBox - Options Page
 
 == Change Log ==
 
@@ -193,11 +194,16 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Can specify specify data- attribute so it can be site specific
  * Does not effect inline lightbxes which were class based already
 * Fixed (hopefully) all unset variable notices
+* Added option to load javascript in header or footer +
+ * Footer is prefered due to potential page load delays +
+* Added option to set priority of javascript loading +
+ * Low, Normal, High with priorities as follows 5, 11, 15 relative to other plugin loads +
+ * May resolve some plugin conflicts due to load order +
 * Fixed removal of settings on deactivate
  * Will now only remove settings on uninstall 
 * Fixed gallery short code issues with WordPress 3.0.x and version 3.1.x to 3.4.x.
  * Now creates correct gallery output for specific versions of WordPress
-* Fixed ColorBox version loading newer/older depending on WordPress version
+* Added ColorBox version loading newer/older depending on WordPress version
  * It seems older verions of WordPress were having jQuery conflict with the latest version of ColorBox
 * Added information to submit for support under the support tab
 * Renamed plugin to Lightbox Plus ColorBox to reflect long time usage or ColorBox as the lightbox tool

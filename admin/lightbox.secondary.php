@@ -454,18 +454,18 @@
                 <!-- Other -->
                 <div id="slbp-tabs-6">
                     <table class="form-table">
-                            <tr>
-                                <th scope="row">
-                                    <?php _e( 'File as photo', 'lightboxplus' )?>: </th>
-                                <td>
-                                    <input type="hidden" name="photo_sec" value="0">
-                                    <input type="checkbox" name="photo_sec" id="photo_sec" value="1"<?php checked('1', $lightboxPlusOptions['photo_sec']);?> />
-                                    <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                    <div class="lbp-bigtip" id="lbp_photo_sec_tip">
-                                        <?php _e( 'If checked, this setting forces Lightbox Plus ColorBox to display a link as a photo. Use this when automatic photo detection fails (such as using a url like "photo.php" instead of "photo.jpg"). <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr>
+                            <th scope="row">
+                                <?php _e( 'File as photo', 'lightboxplus' )?>: </th>
+                            <td>
+                                <input type="hidden" name="photo_sec" value="0">
+                                <input type="checkbox" name="photo_sec" id="photo_sec" value="1"<?php checked('1', $lightboxPlusOptions['photo_sec']);?> />
+                                <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                <div class="lbp-bigtip" id="lbp_photo_sec_tip">
+                                    <?php _e( 'If checked, this setting forces Lightbox Plus ColorBox to display a link as a photo. Use this when automatic photo detection fails (such as using a url like "photo.php" instead of "photo.jpg"). <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
+                                </div>
+                            </td>
+                        </tr>
                         <tr>
                             <th scope="row">
                                 <?php _e( 'Use iFrame', 'lightboxplus' )?>: </th>
@@ -560,22 +560,47 @@
                         </tr>
                         <tr>
                             <td>
-                                <p><a href="<?php echo $g_lightbox_plus_url ?>screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link</a></p>
-                                <p class="codebox"><code>&lt;a href="<?php echo $g_lightbox_plus_url ?>screenshot-2.jpg" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link&lt;/a></code></p>
-                                </p><a title="The Known Universe" href="http://www.youtube.com/embed/17jymDn0W6U" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - Video Test</a>
-                                <p class="codebox"><code>&lt;a title="The Known Universe" href="http://www.youtube.com/embed/17jymDn0W6U" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - Video Test&lt;/a></code></p>
-                                <p><a title="23Systems Lightbox Plus ColorBox Forums" href="http://www.23systems.net/forums/forum/lightbox-plus/" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - External Page Test</a></p>
-                                <p class="codebox"><code>&lt;a title="23Systems Lightbox Plus ColorBox Forums" href="http://www.23systems.net/forums/forum/lightbox-plus/" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?>>Secondary Lightbox - External Page Test&lt;/a></code></p>
-                                <p><a href="<?php echo $g_lightbox_plus_url ?>trivia.swf" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash</a></p>
-                                <p class="codebox"><code>&lt;a href="<?php echo $g_lightbox_plus_url ?>trivia.swf" <?php if ( $lightboxPlusOptions['class_name_sec'] ) { echo 'class="'.$lightboxPlusOptions['class_name_sec'].'"'; } ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash&lt;/a></code>
-                                </p>
+                                <p>
+                                <a href="<?php echo $g_lightbox_plus_url ?>screenshot-2.jpg"<?php 
+                                            if ( !empty($lightboxPlusOptions['class_name_sec']) ) { echo ' class="'.$lightboxPlusOptions['class_name_sec'].'"'; } 
+                                            if ( $lightboxPlusOptions['output_htmlv'] ) { echo ' data-'.$lightboxPlusOptions['data_name'].'="secondary-demo"'; } else { echo ' rel="lightbox[secondary-demo]"';}
+                                        ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link</a></p>
+                                <p class="codebox">
+                                <code>&lt;a href="<?php echo $g_lightbox_plus_url ?>screenshot-2.jpg"<?php 
+                                            if ( !empty($lightboxPlusOptions['class_name_sec']) ) { echo ' class="'.$lightboxPlusOptions['class_name_sec'].'"'; } 
+                                            if ( $lightboxPlusOptions['output_htmlv'] ) { echo ' data-'.$lightboxPlusOptions['data_name'].'="secondary-demo"'; } else { echo ' rel="lightbox[secondary-demo]"';}
+                                        ?> title="Secondary Lightbox - Screenshot 2">Secondary Lightbox - Screenshot 2 - Text Link&lt;/a></code></p>
+                                <p><a href="http://www.youtube.com/embed/17jymDn0W6U"<?php 
+                                            if ( !empty($lightboxPlusOptions['class_name_sec']) ) { echo ' class="'.$lightboxPlusOptions['class_name_sec'].'"'; } 
+                                            if ( $lightboxPlusOptions['output_htmlv'] ) { echo ' data-'.$lightboxPlusOptions['data_name'].'="secondary-demo"'; } else { echo ' rel="lightbox[secondary-demo]"';}
+                                    ?> title="Secondary Lightbox - Video Test">Secondary Lightbox - Video Test</a>
+                                <p class="codebox"><code>&lt;a href="http://www.youtube.com/embed/17jymDn0W6U"<?php 
+                                            if ( !empty($lightboxPlusOptions['class_name_sec']) ) { echo ' class="'.$lightboxPlusOptions['class_name_sec'].'"'; } 
+                                            if ( $lightboxPlusOptions['output_htmlv'] ) { echo ' data-'.$lightboxPlusOptions['data_name'].'="secondary-demo"'; } else { echo ' rel="lightbox[secondary-demo]"';}
+                                        ?> title="Secondary Lightbox - Video Test">Secondary Lightbox - Video Test&lt;/a></code></p>
+                                <p><a title="Lightbox Plus ColorBox Forums" href="http://wordpress.org/support/plugin/lightbox-plus"<?php 
+                                            if ( !empty($lightboxPlusOptions['class_name_sec']) ) { echo ' class="'.$lightboxPlusOptions['class_name_sec'].'"'; } 
+                                            if ( $lightboxPlusOptions['output_htmlv'] ) { echo ' data-'.$lightboxPlusOptions['data_name'].'="secondary-demo"'; } else { echo ' rel="lightbox[secondary-demo]"';}
+                                        ?>>Secondary Lightbox - External Page Test</a></p>
+                                <p class="codebox"><code>&lt;a href="http://wordpress.org/support/plugin/lightbox-plus"<?php 
+                                            if ( !empty($lightboxPlusOptions['class_name_sec']) ) { echo ' class="'.$lightboxPlusOptions['class_name_sec'].'"'; } 
+                                            if ( $lightboxPlusOptions['output_htmlv'] ) { echo ' data-'.$lightboxPlusOptions['data_name'].'="secondary-demo"'; } else { echo ' rel="lightbox[secondary-demo]"';}
+                                        ?> title="Lightbox Plus ColorBox Forums">Secondary Lightbox - External Page Test&lt;/a></code></p>
+                                <p><a href="<?php echo $g_lightbox_plus_url ?>trivia.swf"<?php 
+                                            if ( !empty($lightboxPlusOptions['class_name_sec']) ) { echo ' class="'.$lightboxPlusOptions['class_name_sec'].'"'; } 
+                                            if ( $lightboxPlusOptions['output_htmlv'] ) { echo ' data-'.$lightboxPlusOptions['data_name'].'="secondary-demo"'; } else { echo ' rel="lightbox[secondary-demo]"';}
+                                        ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash</a></p>
+                                <p class="codebox"><code>&lt;a href="<?php echo $g_lightbox_plus_url ?>trivia.swf"<?php 
+                                            if ( !empty($lightboxPlusOptions['class_name_sec']) ) { echo ' class="'.$lightboxPlusOptions['class_name_sec'].'"'; } 
+                                            if ( $lightboxPlusOptions['output_htmlv'] ) { echo ' data-'.$lightboxPlusOptions['data_name'].'="secondary-demo"'; } else { echo ' rel="lightbox[secondary-demo]"';}
+                                        ?> title="Secondary Lightbox - Interactive Flash">Secondary Lightbox - Interactive Flash&lt;/a></code></p>
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
             <p class="submit">
-                <input type="submit" style="padding:5px 30px 5px 30px;" name="Submit" title="<?php _e( 'Save all Lightbox Plus ColorBox settings', 'lightboxplus' )?>" value="<?php _e( 'Save settings', 'lightboxplus' )?> &raquo;" />
+                <input type="submit" style="padding:5px 30px 5px 30px;" name="Submit" title="<?php _e( 'Save all Lightbox Plus ColorBox settings', 'lightboxplus' )?>" value="<?php _e( 'Save all settings', 'lightboxplus' )?> &raquo;" />
             </p>
         </div>
     </div>
