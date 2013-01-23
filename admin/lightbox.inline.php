@@ -22,6 +22,7 @@
                 </ul>
                 <!-- General -->
                 <div id="ilbp-tabs-1">
+                    <input type="hidden" name="ready_inline" value="1" />
                     <table class="wp-list-table widefat">
                         <thead>
                             <tr>
@@ -121,9 +122,11 @@
                                         */
                                     ?>
                                     <td align="center">
+                                        <input type="hidden" name="inline_fixed_<?php echo $i; ?>" value="0" />
                                         <input type="checkbox" name="inline_fixed_<?php echo $i; ?>" id="inline_fixed_<?php echo $i; ?>" value="1"<?php if ( ($inline_fixeds[$i - 1] )) { echo ' checked="checked"'; }?> />
                                     </td>
                                     <td align="center">
+                                    <input type="hidden" name="inline_open_<?php echo $i; ?>" value="0" />
                                         <input type="checkbox" name="inline_open_<?php echo $i; ?>" id="inline_open_<?php echo $i; ?>" value="1"<?php if ( ($inline_opens[$i - 1] )) { echo ' checked="checked"'; }?> />
                                     </td>
                                     <td align="center">

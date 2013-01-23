@@ -192,6 +192,9 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * When checked will add data- instead if rel attributes.
  * Can specify specify data- attribute so it can be site specific
  * Does not effect inline lightbxes which were class based already
+* Fixed (hopefully) all unset variable notices
+* Fixed removal of settings on deactivate
+ * Will now only remove settings on uninstall 
 * Fixed gallery short code issues with WordPress 3.0.x and version 3.1.x to 3.4.x.
  * Now creates correct gallery output for specific versions of WordPress
 * Fixed ColorBox version loading newer/older depending on WordPress version

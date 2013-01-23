@@ -99,16 +99,12 @@
     require_once('classes/filters.class.php');
     require_once('classes/actions.class.php');
     require_once('classes/init.class.php');
-    require_once('classes/shd.class.php');
-
     /**
     * Require HTML Parser
     */
-    $lbputility = new lbp_utilities();
-    if ($lbputility->phpMinV('4.*')) {
-        require_once('classes/shd.class.php');
-    }
-    unset($lbputility);
+    require_once('classes/shd.class.php');
+
+
 
     /**
     * On Plugin Activation initialize settings
@@ -126,16 +122,26 @@
     */
     if (!function_exists('DeactivateLBP')) {
         function DeactivateLBP() {
+        }
+    }
+
+    /**
+    * On plugin deactivation remove settings
+    */
+    if (!function_exists('UninstallLBP')) {
+        function UninstallLBP() {
             delete_option('lightboxplus_options');
             delete_option('lightboxplus_init');
         }
     }
+
 
     /**
     * Register activation/deactivation hooks and text domain
     */
     register_activation_hook( __FILE__, 'ActivateLBP' );
     register_deactivation_hook( __FILE__, 'DeactivateLBP' );
+    register_uninstall_hook( __FILE__, 'UninstallLBP' );
     load_plugin_textdomain('lightboxplus', false, $path = $g_lightbox_plus_url.'languages');
 
     /**
@@ -197,19 +203,35 @@
 
                 if ( !empty( $this->lightboxOptions ) ) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
 
-                if (!is_admin()) {
-                    if ($lightboxPlusOptions['use_perpage']) {
-                        add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
+                /**
+                * Remove after a few versions or 2.6 is the prevelent version
+                */
+                if (!isset($lightboxPlusOptions['output_htmlv'])) {
+                    $lightboxPlusOptions['output_htmlv'] = '0';
+                    $lightboxPlusOptions['data_name'] = 'lightboxplus';
+                }
 
-                        if ($lightboxPlusOptions['use_forpage']) {
-                            if (get_post_meta( $the_post_id, '_lbp_use', true )) { $this->lbpFinal(); }
-                        }
-                        if ($lightboxPlusOptions['use_forpost']) {
-                            if (($wp_query->is_posts_page)|| is_single()) { $this->lbpFinal(); }
-                        }
-                    } else {
-                        $this->lbpFinal();
-                    }
+                //                if (!is_admin()) {
+                //                    if ($lightboxPlusOptions['use_perpage']) {
+                //                        add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
+
+                //                        if ($lightboxPlusOptions['use_forpage']) {
+                //                            if (get_post_meta( $the_post_id, '_lbp_use', true )) { $this->lbpFinal(); }
+                //                        }
+                //                        if ($lightboxPlusOptions['use_forpost']) {
+                //                            if (($wp_query->is_posts_page)|| is_single()) { $this->lbpFinal(); }
+                //                        }
+                //                    } else {
+                //                        $this->lbpFinal();
+                //                    }
+                //                }
+
+                if (!is_admin() && $lightboxPlusOptions['use_perpage']) {
+                    add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
+                    if ($lightboxPlusOptions['use_forpage'] && get_post_meta( $the_post_id, '_lbp_use', true )) { $this->lbpFinal(); }
+                    if ($lightboxPlusOptions['use_forpost'] && (($wp_query->is_posts_page)|| is_single())) { $this->lbpFinal(); }
+                } else {
+                    $this->lbpFinal();
                 }
             }
 
@@ -372,7 +394,7 @@
                             $g_lbp_messages      .= __('Lightbox Plus ColorBox base settings updated.','lightboxplus').'<br /><br />';
                             $g_lbp_messages      .= __('Primary lightbox settings updated.','lightboxplus').'<br /><br />';
 
-                            if ( $_POST['lightboxplus_multi'] ) {
+                            if ($_POST['lightboxplus_multi'] && isset($_POST['ready_sec'])) {
                                 $lightboxPlusSecondaryOptions = array(
                                     "transition_sec"       => $_POST['transition_sec'],
                                     "speed_sec"            => $_POST['speed_sec'],
@@ -419,7 +441,7 @@
                                 $g_lbp_messages .= __('Secondary lightbox settings updated.','lightboxplus').'<br /><br />';
                             }
 
-                            if ( $_POST['use_inline'] ) {
+                            if ( $_POST['use_inline']  && isset($_POST['ready_inline'])) {
                                 if (!empty($this->lightboxOptions)) {
                                     $lightboxPlusInlineOptions   = $this->getAdminOptions($this->lightboxOptionsName);
                                 }
@@ -511,14 +533,14 @@
                             /**
                             * Initialize Secondary Lightbox if enabled
                             */
-                            if ( $_POST['lightboxplus_multi'] && !$_POST['class_name_sec'] ) {
+                            if ( $_POST['lightboxplus_multi'] && !isset($_POST['class_name_sec']) ) {
                                 $this->lightboxPlusSecondaryInit();
                                 $g_lbp_messages .= __('Secondary lightbox settings initialized.','lightboxplus').'<br /><br />';
                             }
                             /**
                             *  Initialize Inline Lightboxes if enabled
                             */
-                            if ( $_POST['use_inline'] && !$_POST['inline_link_1'] ) {
+                            if ( $_POST['use_inline'] && !isset($_POST['inline_link_1']) ) {
                                 $this->lightboxPlusInlineInit($_POST['inline_num']);
                                 $g_lbp_messages .= __('Inline lightbox settings initialized.','lightboxplus').'<br /><br />';
                             }
@@ -527,7 +549,7 @@
 
                             break;
                         case 'reset':
-                            if ( !empty( $_POST[reinit_lightboxplus] )) {
+                            if ( !empty( $_POST['reinit_lightboxplus'] )) {
                                 delete_option( $this->lightboxOptionsName );
                                 delete_option( $this->lightboxInitName );
                                 delete_option( $this->lightboxStylePathName );
@@ -592,8 +614,7 @@
                 */
                 if ($lightboxPlusOptions['use_custom_style']) {
                     $stylePath = $g_lbp_global_style_path;
-                }
-                else {
+                } else {
                     $stylePath = $g_lbp_local_style_path;
                 }
                 if ( $handle = opendir( $stylePath )) {
@@ -628,44 +649,8 @@
                     }
                     require('admin/lightbox.admin.php');
             ?></div>
-            <script type="text/javascript">
-                <!--
-                jQuery(document).ready(function($){
-                    if (!$('#use_inline').attr('checked')) { $('.base_gen').hide(); }
-                    if (!$('#use_perpage').attr('checked')) { $('.base_blog').hide(); }
-                    if ($('#rel').attr('checked')) { $('.grouping_prim').hide(); }
-                    if (!$('#slideshow').attr('checked')) { $('.slideshow_prim').hide(); }
-                    if ($('#rel_sec').attr('checked')) { $('.grouping_sec').hide(); }
-                    if (!$('#slideshow_sec').attr('checked')) { $('.slideshow_sec').hide(); }
-
-                    $('.close-me').each(function() {$(this).addClass("closed");});
-                    $('#lbp_message').each(function() {$(this).fadeOut(5000);});
-                    $('.postbox h3').click( function() {$(this).next('.toggle').slideToggle('fast');});
-                    $('.lbp-info').click( function() {$(this).next('.lbp-bigtip').slideToggle(100);});
-                    $("#blbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
-                    $("#plbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
-                    $("#slbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
-                    $("#ilbp-tabs").tabs({ fx: { height: 'toggle', duration: 'fast' } });
-
-                    $("#use_inline").click(function(){ if ($("#use_inline").prop("checked")) { $(".base_gen").show("fast"); } else { $(".base_gen").hide("fast"); } });
-                    $("#output_htmlv").click(function(){ if ($("#output_htmlv").attr('checked')) { $(".htmlv_settings").show("fast"); } else { $(".htmlv_settings").hide("fast"); } });
-                    $("#use_perpage").click(function(){ if ($("#use_perpage").attr('checked')) { $(".base_blog").show("fast"); } else { $(".base_blog").hide("fast"); } });
-                    $("#rel").click(function(){  if ($("#rel").attr('checked')) { $(".grouping_prim").hide("fast"); } else { $(".grouping_prim").show("fast"); } });
-                    $("#use_class_method").click(function(){ if ($("#use_class_method").prop("checked")) { $(".primary_class_name").show("fast"); } else { $(".primary_class_name").hide("fast"); } });
-                    $("#slideshow").click(function(){ if ($("#slideshow").attr('checked')) { $(".slideshow_prim").show("fast"); } else { $(".slideshow_prim").hide("fast"); } });
-                    $("#rel_sec").click(function(){ if ($("#rel_sec").attr('checked')) { $(".grouping_sec").hide("fast"); } else { $(".grouping_sec").show("fast"); } });
-                    $("#slideshow_sec").click(function(){ if ($("#slideshow_sec").attr('checked')) { $(".slideshow_sec").show("fast"); } else { $(".slideshow_sec").hide("fast"); } });
-
-                    $("#lightboxplus_style").change(function () {
-                        var style = $(this).attr('value')
-                        $('#lbp-style-screenshot').find(".lbp-sample-current").hide(0).removeClass('lbp-sample-current').addClass('lbp-sample');
-                        $('#lbp-style-screenshot').find("#lbp-sample-"+style).show(0).addClass('lbp-sample-current').removeClass('lbp-sample');
-                    });
-
-                });
-                //-->
-            </script>
             <?php
+                wp_enqueue_script('lightboxplus-admin', $g_lightbox_plus_url.'js/lightbox.admin.js', array( 'jquery' ), $g_lbp_version, true);
             }
             /**
             * END CLASS
@@ -678,5 +663,4 @@
     /**
     * Instantiate the class
     */
-    if (class_exists('wp_lightboxplus')) { $wp_lightboxplus = new wp_lightboxplus(); }
-?>
+if (class_exists('wp_lightboxplus')) { $wp_lightboxplus = new wp_lightboxplus(); }

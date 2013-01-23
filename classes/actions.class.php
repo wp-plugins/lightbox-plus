@@ -17,7 +17,6 @@
             //                global $g_lightbox_plus_url;
             //
             //            }
-
             function getPostID() {
                 global $the_post_id;
                 global $wp_query;
@@ -82,6 +81,13 @@
                 global $g_lightbox_plus_url;
                 if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
+                    /**
+                    * Remove after a few versions or 2.6 is the prevelent version
+                    */
+                    if (!isset($lightboxPlusOptions['output_htmlv'])) {
+                        $lightboxPlusOptions['output_htmlv'] = '0';
+                        $lightboxPlusOptions['data_name'] = 'lightboxplus';
+                    }
                     $lightboxPlusJavaScript  = "";
                     $lightboxPlusJavaScript .= '<!-- Lightbox Plus ColorBox v2.5 - 2013.01.11 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.PHP_EOL;
                     $lightboxPlusJavaScript .= '<script type="text/javascript">'.PHP_EOL;

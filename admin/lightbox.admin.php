@@ -70,6 +70,7 @@
                                 <th scope="row">
                                     <?php _e( 'Use Secondary Lightbox', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="lightboxplus_multi" value="0">
                                     <input type="checkbox" name="lightboxplus_multi" id="lightboxplus_multi" value="1"<?php checked('1', $lightboxPlusOptions['lightboxplus_multi']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_lightboxplus_multi_tip">
@@ -81,6 +82,7 @@
                                 <th scope="row">
                                     <?php _e( 'Add Inline Lightboxes', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="use_inline" value="0">
                                     <input type="checkbox" name="use_inline" id="use_inline" value="1"<?php checked('1', $lightboxPlusOptions['use_inline']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"> <img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_use_inline_tip">
@@ -110,6 +112,7 @@
                                 <th scope="row">
                                     <?php _e( 'Hide "About Lightbox Plus ColorBox"', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="hide_about" value="0">
                                     <input type="checkbox" name="hide_about" id="hide_about" value="1"<?php checked('1', $lightboxPlusOptions['hide_about']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"> <img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_hide_about_tip">
@@ -169,6 +172,7 @@
                                 <th scope="row">
                                     <?php _e( 'Use Custom Styles', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="use_custom_style" value="0">
                                     <input type="checkbox" name="use_custom_style" id="use_custom_style" value="1"<?php checked('1', $lightboxPlusOptions['use_custom_style']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_use_custom_style_tip">
@@ -180,6 +184,7 @@
                                 <th scope="row">
                                     <?php _e( 'Disable Lightbox CSS', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="disable_css" value="0">
                                     <input type="checkbox" name="disable_css" id="disable_css" value="1"<?php checked('1', $lightboxPlusOptions['disable_css']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_disable_css_tip">
@@ -196,6 +201,7 @@
                                 <th scope="row">
                                     <?php _e( 'Output Valid HTML5', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="output_htmlv" value="0">
                                     <input type="checkbox" name="output_htmlv" id="output_htmlv" value="1"<?php checked('1', $lightboxPlusOptions['output_htmlv']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_lightboxplus_output_htmlv_tip">
@@ -203,7 +209,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="htmlv_settings closed">
+                            <tr class="htmlv_settings lbp-closed">
                                 <th scope="row">
                                     <?php _e( 'HTML Data attribute', 'lightboxplus' )?>: </th>
                                 <td>
@@ -218,6 +224,7 @@
                                 <th scope="row">
                                     <?php _e( 'Use per page/post options', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="use_perpage" value="0">
                                     <input type="checkbox" name="use_perpage" id="use_perpage" value="1"<?php checked('1', $lightboxPlusOptions['use_perpage']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_lightboxplus_use_perpage_tip">
@@ -229,6 +236,7 @@
                                 <th scope="row">
                                     <?php _e( 'Use for page', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="use_forpage" value="0">
                                     <input type="checkbox" name="use_forpage" id="use_forpage" value="1"<?php checked('1', $lightboxPlusOptions['use_forpage']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_lightboxplus_use_forpage_tip">
@@ -240,6 +248,7 @@
                                 <th scope="row">
                                     <?php _e( 'Use for posts/blog', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="use_forpost" value="0">
                                     <input type="checkbox" name="use_forpost" id="use_forpost" value="1"<?php checked('1', $lightboxPlusOptions['use_forpost']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_lightboxplus_use_forpost_tip">
@@ -260,7 +269,6 @@
                                         <h4>WordPress Information</h4>
                                         <strong>WordPress Version:</strong> <?php echo $wp_version; ?><br />
                                         <strong>jQuery Version:</strong> <script type="text/javascript">document.write(jQuery.fn.jquery);</script><br />
-                                        <strong>jQuery UI Version:</strong> <script type="text/javascript">document.write(jQuery.ui.version);</script>
                                     </td>
                                     <td width="50%" valign="top">
                                         <h4>Server Information</h4>
@@ -380,6 +388,7 @@
                                 <th scope="row">
                                     <?php _e( 'Pre-load images', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="preloading" value="0">
                                     <input type="checkbox" name="preloading" value="1"<?php checked('1', $lightboxPlusOptions['preloading']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_preloading_tip">
@@ -484,6 +493,7 @@
                                 <th scope="row">
                                     <?php _e( 'Resize', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="resize" value="0">
                                     <input type="checkbox" name="resize" id="resize" value="1"<?php checked('1', $lightboxPlusOptions['resize']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_resize_tip">
@@ -532,6 +542,7 @@
                                 <th scope="row">
                                     <?php _e( 'Fixed', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="fixed" value="0">
                                     <input type="checkbox" name="fixed" id="fixed" value="1"<?php checked('1', $lightboxPlusOptions['fixed']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_fixed_tip">
@@ -562,6 +573,7 @@
                                 <th scope="row">
                                     <?php _e( 'Overlay Close', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="overlay_close" value="0">
                                     <input type="checkbox" name="overlay_close" id="overlay_close" value="1"<?php checked('1', $lightboxPlusOptions['overlay_close']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_overlay_close_tip">
@@ -573,6 +585,7 @@
                                 <th scope="row">
                                     <?php _e( 'ESC Key Close', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="esc_key" value="0">
                                     <input type="checkbox" name="esc_key" id="esc_key" value="1"<?php checked('1', $lightboxPlusOptions['esc_key']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_esc_key_tip">
@@ -584,6 +597,7 @@
                                 <th scope="row">
                                     <?php _e( 'Scroll Bars', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="scrolling" value="0">
                                     <input type="checkbox" name="scrolling" id="scrolling" value="1"<?php checked('1', $lightboxPlusOptions['scrolling']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_scrolling_tip">
@@ -598,6 +612,7 @@
                                 <th scope="row">
                                     <?php _e( 'Disable grouping', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="rel" value="0">
                                     <input type="checkbox" name="rel" id="rel" value="nofollow"<?php if ( $lightboxPlusOptions['rel'] == 'nofollow' ) echo ' checked="checked"';?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_nogrouping_tip">
@@ -644,6 +659,7 @@
                                 <th scope="row">
                                     <?php _e( 'Arrow key navigation', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="arrow_key" value="0">
                                     <input type="checkbox" name="arrow_key" id="arrow_key" value="1"<?php checked('1', $lightboxPlusOptions['arrow_key']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_arrow_key_tip">
@@ -655,6 +671,7 @@
                                 <th scope="row">
                                     <?php _e( 'Loop image group', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="loop" value="0">
                                     <input type="checkbox" name="loop" id="loop" value="1"<?php checked('1', $lightboxPlusOptions['loop']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_loop_tip">
@@ -671,6 +688,7 @@
                                 <th scope="row">
                                     <?php _e( 'Slideshow', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="slideshow" value="0">
                                     <input type="checkbox" name="slideshow" id="slideshow" value="1"<?php checked('1', $lightboxPlusOptions['slideshow']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_slideshow_tip">
@@ -682,6 +700,7 @@
                                 <th scope="row">
                                     <?php _e( 'Auto-Start Slideshow', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="slideshow_auto" value="0">
                                     <input type="checkbox" name="slideshow_auto" id="slideshow_auto" value="1"<?php checked('1', $lightboxPlusOptions['slideshow_auto']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_slideshow_auto_tip">
@@ -739,8 +758,21 @@
                         <table class="form-table">
                             <tr>
                                 <th scope="row">
+                                    <?php _e( 'File as photo', 'lightboxplus' )?>: </th>
+                                <td>
+                                    <input type="hidden" name="photo" value="0">
+                                    <input type="checkbox" name="photo" id="photo" value="1"<?php checked('1', $lightboxPlusOptions['photo']);?> />
+                                    <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                    <div class="lbp-bigtip" id="lbp_photo_tip">
+                                        <?php _e( 'If checked, this setting forces Lightbox Plus ColorBox to display a link as a photo. Use this when automatic photo detection fails (such as using a url like "photo.php" instead of "photo.jpg"). <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
                                     <?php _e( 'Use WP Caption for LBP Caption', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="use_caption_title" value="0">
                                     <input type="checkbox" name="use_caption_title" id="use_caption_title" value="1"<?php checked('1', $lightboxPlusOptions['use_caption_title']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_use_caption_title_tip">
@@ -752,6 +784,7 @@
                                 <th scope="row">
                                     <?php _e( 'Use For WP Gallery', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="gallery_lightboxplus" value="0">
                                     <input type="checkbox" name="gallery_lightboxplus" id="gallery_lightboxplus" value="1"<?php checked('1', $lightboxPlusOptions['gallery_lightboxplus']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_gallery_lightboxplus_tip">
@@ -764,6 +797,7 @@
                                 <th scope="row">
                                     <?php _e( 'Seperate Galleries in Post?', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="multiple_galleries" value="0">
                                     <input type="checkbox" name="multiple_galleries" id="multiple_galleries" value="1"<?php checked('1', $lightboxPlusOptions['multiple_galleries']);?> /><a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_multiple_galleries_tip">
                                         <?php _e( 'If the option to separate multiple gallries in a single post is check Lightbox Plus ColorBox will create separate sets of lightbox display for each gallery in the post. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
@@ -774,6 +808,7 @@
                                 <th scope="row">
                                     <?php _e( 'Use Class Method', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="use_class_method" value="0">
                                     <input type="checkbox" name="use_class_method" id="use_class_method" value="1"<?php checked('1', $lightboxPlusOptions['use_class_method']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"> <img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_use_class_method_tip">
@@ -781,7 +816,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="primary_class_name closed">
+                            <tr class="primary_class_name lbp-closed">
                                 <th scope="row">
                                     <?php _e( 'Class name', 'lightboxplus' )?>: </th>
                                 <td>
@@ -796,6 +831,7 @@
                                 <th scope="row">
                                     <?php _e( 'Auto-Lightbox Text Links', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="text_links" value="0">
                                     <input type="checkbox" name="text_links" id="text_links" value="1"<?php checked('1', $lightboxPlusOptions['text_links']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_text_links_tip">
@@ -807,6 +843,7 @@
                                 <th scope="row">
                                     <?php _e( '<strong>Do Not</strong> Auto-Lightbox Images', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="no_auto_lightbox" value="0">
                                     <input type="checkbox" name="no_auto_lightbox" id="no_auto_lightbox" value="1"<?php checked('1', $lightboxPlusOptions['no_auto_lightbox']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_no_auto_lightbox_tip">
@@ -818,6 +855,7 @@
                                 <th scope="row">
                                     <?php _e( '<strong>Do Not</strong> Display Image Title', 'lightboxplus' )?>: </th>
                                 <td>
+                                    <input type="hidden" name="no_display_title" value="0">
                                     <input type="checkbox" name="no_display_title" id="no_display_title" value="1"<?php checked('1', $lightboxPlusOptions['no_display_title']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_no_display_title_tip">
@@ -863,8 +901,13 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <p class="primary_test_item"><a href="<?php echo $g_lightbox_plus_url ?>screenshot-1.jpg" <?php if ( $lightboxPlusOptions['use_class_method'] ) { echo 'class="'.$lightboxPlusOptions['class_name'].'"'; } else { echo 'rel="lightbox[test demo]"'; } ?> title="Screenshot 1"><img title="Screenshot 1" src="<?php echo $g_lightbox_plus_url ?>screenshot-1.jpg" alt="Screenshot 1" width="120" height="90" /></a><br />
-                                        <a href="<?php echo $g_lightbox_plus_url ?>screenshot-2.jpg" <?php if ( $lightboxPlusOptions['use_class_method'] ) { echo 'class="'.$lightboxPlusOptions['class_name'].'"'; } else { echo 'rel="lightbox[test demo]"'; } ?> title="Screenshot 2">Screenshot 2 Text Link</a></p>
+                                    <?php if ($lightboxPlusOptions['output_htmlv']) { ?>
+                                        <p class="primary_test_item"><a href="<?php echo $g_lightbox_plus_url ?>screenshot-1.jpg" <?php if ( $lightboxPlusOptions['use_class_method'] ) { echo 'class="'.$lightboxPlusOptions['class_name'].'"'; } else { echo 'data-'.$lightboxPlusOptions['data_name'].'="lightbox[test demo]"'; } ?> title="Screenshot 1"><img title="Screenshot 1" src="<?php echo $g_lightbox_plus_url ?>screenshot-1.jpg" alt="Screenshot 1" width="120" height="90" /></a><br />
+                                            <a href="<?php echo $g_lightbox_plus_url ?>screenshot-2.jpg" <?php if ( $lightboxPlusOptions['use_class_method'] ) { echo 'class="'.$lightboxPlusOptions['class_name'].'"'; } else { echo 'data-'.$lightboxPlusOptions['data_name'].'="lightbox[test demo]"'; } ?> title="Screenshot 2">Screenshot 2 Text Link</a></p>
+                                        <?php } else { ?>
+                                        <p class="primary_test_item"><a href="<?php echo $g_lightbox_plus_url ?>screenshot-1.jpg" <?php if ( $lightboxPlusOptions['use_class_method'] ) { echo 'class="'.$lightboxPlusOptions['class_name'].'"'; } else { echo 'rel="lightbox[test demo]"'; } ?> title="Screenshot 1"><img title="Screenshot 1" src="<?php echo $g_lightbox_plus_url ?>screenshot-1.jpg" alt="Screenshot 1" width="120" height="90" /></a><br />
+                                            <a href="<?php echo $g_lightbox_plus_url ?>screenshot-2.jpg" <?php if ( $lightboxPlusOptions['use_class_method'] ) { echo 'class="'.$lightboxPlusOptions['class_name'].'"'; } else { echo 'rel="lightbox[test demo]"'; } ?> title="Screenshot 2">Screenshot 2 Text Link</a></p>
+                                        <?php } ?>
                                 </td>
                             </tr>
                         </table>
@@ -922,7 +965,7 @@
 
 <!-- Inline Demo Form -->
 <div style="display:none">
-    <div id="<?php echo $inline_hrefs[0]; ?>" style="padding: 10px;background: #fff">
+    <div id="<?php if (isset($inline_hrefs[0])) {echo $inline_hrefs[0];}?>" style="padding: 10px;background: #fff">
         <h3><?php _e( 'About Lightbox Plus ColorBox for WordPress','lightboxplus' ); ?>: </h3>
         <div class="donate">
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post">

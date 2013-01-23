@@ -21,19 +21,19 @@
             *
             * @return string
             */
-            function EOL( ) {
-                switch ( strtoupper( substr( PHP_OS, 0, 3 ) ) ) {
-                    case 'WIN':
-                        return "\r\n";
-                        break;
-                    case 'MAC':
-                        return "\r";
-                        break;
-                    default:
-                        return "\n";
-                        break;
-                }
-            }
+//            function EOL( ) {
+//                switch ( strtoupper( substr( PHP_OS, 0, 3 ) ) ) {
+//                    case 'WIN':
+//                        return "\r\n";
+//                        break;
+//                    case 'MAC':
+//                        return "\r";
+//                        break;
+//                    default:
+//                        return "\n";
+//                        break;
+//                }
+//            }
 
             /**
             * Create dropdown name from stylesheet listing - make user friendly
