@@ -19,6 +19,7 @@ jQuery(document).ready(function($){
 
     $("#use_inline").click(function(){ if ($("#use_inline").attr("checked")) { $(".base_gen").show("fast"); } else { $(".base_gen").hide("fast"); } });
     $("#output_htmlv").click(function(){ if ($("#output_htmlv").attr('checked')) { $(".htmlv_settings").show("fast"); } else { $(".htmlv_settings").hide("fast"); } });
+    $("#lbp_setting_detail").click(function(){ $('#lbp_detail').toggle('fast') });
     $("#use_perpage").click(function(){ if ($("#use_perpage").attr('checked')) { $(".base_blog").show("fast"); } else { $(".base_blog").hide("fast"); } });
     $("#rel").click(function(){  if ($("#rel").attr('checked')) { $(".grouping_prim").hide("fast"); } else { $(".grouping_prim").show("fast"); } });
     $("#use_class_method").click(function(){ if ($("#use_class_method").attr("checked")) { $(".primary_class_name").show("fast"); } else { $(".primary_class_name").hide("fast"); } });

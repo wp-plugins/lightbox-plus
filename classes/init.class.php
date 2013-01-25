@@ -19,12 +19,11 @@
                 $lightboxPlusOptions = get_option('lightboxplus_options');
 
                 /**
-                * Remove after a few versions or 2.6 is the prevelent version
+                * Remove following 3 lines after a few versions or 2.6 is the prevelent version
                 */
-                if (!isset($lightboxPlusOptions['output_htmlv'])) {
-                    $lightboxPlusOptions['output_htmlv'] = '0';
-                    $lightboxPlusOptions['data_name'] = 'lightboxplus';
-                }
+                if (!isset($lightboxPlusOptions['output_htmlv']) || (array_key_exists('output_htmlv', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['output_htmlv'] = '0'; $lightboxPlusOptions['data_name'] = 'lightboxplus'; }
+                if (!isset($lightboxPlusOptions['load_location']) || (array_key_exists('load_location', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_location'] = 'wp_footer'; }
+                if (!isset($lightboxPlusOptions['load_priority']) || (array_key_exists('load_priority', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_priority'] = '10'; }
 
                 /**
                 * Call Initialize Primary Lightbox
@@ -73,6 +72,8 @@
                     "use_perpage"          => '0',
                     "use_forpage"          => '0',
                     "use_forpost"          => '0',
+                    "load_location"        => 'wp_footer',
+                    "load_priority"        => '10',
                     "transition"           => 'elastic',
                     "speed"                => '300',
                     "width"                => 'false',

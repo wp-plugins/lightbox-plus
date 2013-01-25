@@ -30,12 +30,15 @@
             function lightboxPlusAddHeader( ) {
                 global $post;
                 global $wp_version;
+                global $g_lbp_version;
                 global $g_lbp_colorbox_version;
                 global $g_lightbox_plus_url;
                 global $g_lbp_local_style_url;
                 global $g_lbp_global_style_url;
                 global $g_lbp_local_style_path;
                 global $g_lbp_global_style_path;
+
+                if ( !empty( $this->lightboxOptions ) ) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
 
                 if (!is_admin()) {
                     if (floatval($wp_version) < 3.1) {
@@ -45,30 +48,28 @@
                     } else {
                         wp_enqueue_script('jquery','','','',true);
                     }
-                    wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox.'.$g_lbp_colorbox_version.'-min.js', array( 'jquery' ), $g_lbp_colorbox_version, true);
+                    //wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox.'.$g_lbp_colorbox_version.'-min.js', array( 'jquery' ), $g_lbp_colorbox_version, $this->setLoadLocation($lightboxPlusOptions['load_location']));
+                    wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox.'.$g_lbp_colorbox_version.'.js', array( 'jquery' ), $g_lbp_colorbox_version, $this->setLoadLocation($lightboxPlusOptions['load_location']));
                 }
 
-                if ( !empty( $this->lightboxOptions ) ) {
-                    $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
+                if ($lightboxPlusOptions['use_custom_style']) {
+                    $style_path_url = $g_lbp_global_style_url;
+                    $style_path_dir = $g_lbp_global_style_path;
+                } else {
+                    $style_path_url = $g_lbp_local_style_url;
+                    $style_path_dir = $g_lbp_local_style_path;
+                }
 
-                    if ($lightboxPlusOptions['use_custom_style']) {
-                        $style_path_url = $g_lbp_global_style_url;
-                        $style_path_dir = $g_lbp_global_style_path;
-                    } else {
-                        $style_path_url = $g_lbp_local_style_url;
-                        $style_path_dir = $g_lbp_local_style_path;
-                    }
-
-                    if ( $lightboxPlusOptions['disable_css'] ) {
-                        echo "<!-- User set lightbox styles -->".PHP_EOL;
-                    } else {
-                        wp_register_style('lightboxStyle', $style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.5','screen');
-                        wp_enqueue_style('lightboxStyle');
-                        if (file_exists($style_path_dir.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js')) {
-                            wp_enqueue_script('lbp-helper',$style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js','','2.5',true);
-                        }
+                if ( $lightboxPlusOptions['disable_css'] ) {
+                    echo "<!-- User set lightbox styles -->".PHP_EOL;
+                } else {
+                    wp_register_style('lightboxStyle', $style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','',$g_lbp_version,'screen');
+                    wp_enqueue_style('lightboxStyle');
+                    if (file_exists($style_path_dir.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js')) {
+                        wp_enqueue_script('lbp-helper',$style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js','',$g_lbp_version,$this->setLoadLocation($lightboxPlusOptions['load_location']));
                     }
                 }
+
                 return $post->ID;
             }
 
@@ -79,17 +80,19 @@
             */
             function lightboxPlusColorbox( ) {
                 global $g_lightbox_plus_url;
+                global $g_lbp_version;
+                global $g_lbp_colorbox_version;
                 if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
                     /**
-                    * Remove after a few versions or 2.6 is the prevelent version
+                    * Remove following 3 lines after a few versions or 2.6 is the prevelent version
                     */
-                    if (!isset($lightboxPlusOptions['output_htmlv'])) {
-                        $lightboxPlusOptions['output_htmlv'] = '0';
-                        $lightboxPlusOptions['data_name'] = 'lightboxplus';
-                    }
+                    if (!isset($lightboxPlusOptions['output_htmlv']) || (array_key_exists('output_htmlv', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['output_htmlv'] = '0'; $lightboxPlusOptions['data_name'] = 'lightboxplus'; }
+                    if (!isset($lightboxPlusOptions['load_location']) || (array_key_exists('load_location', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_location'] = 'wp_footer'; }
+                    if (!isset($lightboxPlusOptions['load_priority']) || (array_key_exists('load_priority', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_priority'] = '10'; }
+
                     $lightboxPlusJavaScript  = "";
-                    $lightboxPlusJavaScript .= '<!-- Lightbox Plus ColorBox v2.5 - 2013.01.11 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.PHP_EOL;
+                    $lightboxPlusJavaScript .= '<!-- Lightbox Plus ColorBox v'.$g_lbp_version.'/'.$g_lbp_colorbox_version.' - 2013.01.24 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.PHP_EOL;
                     $lightboxPlusJavaScript .= '<script type="text/javascript">'.PHP_EOL;
                     $lightboxPlusJavaScript .= 'jQuery(document).ready(function($){'.PHP_EOL;
                     $lbpArrayPrimary = array();

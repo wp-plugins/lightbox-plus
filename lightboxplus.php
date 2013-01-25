@@ -204,12 +204,11 @@
                 if ( !empty( $this->lightboxOptions ) ) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
 
                 /**
-                * Remove after a few versions or 2.6 is the prevelent version
+                * Remove following 3 lines after a few versions or 2.6 is the prevelent version
                 */
-                if (!isset($lightboxPlusOptions['output_htmlv'])) {
-                    $lightboxPlusOptions['output_htmlv'] = '0';
-                    $lightboxPlusOptions['data_name'] = 'lightboxplus';
-                }
+                if (!isset($lightboxPlusOptions['output_htmlv']) || (array_key_exists('output_htmlv', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['output_htmlv'] = '0'; $lightboxPlusOptions['data_name'] = 'lightboxplus'; }
+                if (!isset($lightboxPlusOptions['load_location']) || (array_key_exists('load_location', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_location'] = 'wp_footer'; }
+                if (!isset($lightboxPlusOptions['load_priority']) || (array_key_exists('load_priority', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_priority'] = '10'; }
 
                 //                if (!is_admin()) {
                 //                    if ($lightboxPlusOptions['use_perpage']) {
@@ -227,7 +226,7 @@
                 //                }
 
                 if (!is_admin() && $lightboxPlusOptions['use_perpage']) {
-                    add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
+                    add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ), intval($lightboxPlusOptions['load_priority']));
                     if ($lightboxPlusOptions['use_forpage'] && get_post_meta( $the_post_id, '_lbp_use', true )) { $this->lbpFinal(); }
                     if ($lightboxPlusOptions['use_forpost'] && (($wp_query->is_posts_page)|| is_single())) { $this->lbpFinal(); }
                 } else {
@@ -236,7 +235,9 @@
             }
 
             function lbpFinal() {
-                add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
+                if ( !empty( $this->lightboxOptions ) ) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
+
+                add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ),intval($lightboxPlusOptions['load_priority']) );
                 /**
                 * Get lightbox options to check for auto-lightbox and gallery
                 */
@@ -260,7 +261,8 @@
                         }
                     }
                 }
-                add_action( 'wp_footer', array( &$this, 'lightboxPlusColorbox' ) );
+                //add_action( 'wp_footer', array( &$this, 'lightboxPlusColorbox' ) );
+                add_action( $lightboxPlusOptions['load_location'], array( &$this, 'lightboxPlusColorbox' ),(intval($lightboxPlusOptions['load_priority']) + 4) );
             }
 
             /**
@@ -304,9 +306,10 @@
                     $links[] = '<a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus ColorBox Direct Support">' . __('Request Support','lightboxplus') . '</a>';
                     $links[] = '<a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus ColorBox Support Forum">' . __('Support Forum','lightboxplus') . '</a>';
                     $links[] = '<a href="http://www.23systems.net/donate/" title="Donate to Lightbox Plus ColorBox">' . __('Donate','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://twitter.com/23systems" title="@23System on Twitter">' . __('Follow on Twitter','lightboxplus') . '</a>';
-                    $links[] = '<a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">' . __('Facebook Page','lightboxplus') . '</a>';
-                    $links[] = '<a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">' . __('Google+ Page','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://twitter.com/23systems" title="@23System on Twitter">' . __('Twitter','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">' . __('Facebook','lightboxplus') . '</a>';
+                    $links[] = '<a href="http://www.linkedin.com/company/23systems" title="23Systems on LinkedIn">' . __('LinkedIn','lightboxplus') . '</a>';
+                    $links[] = '<a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">' . __('Google+','lightboxplus') . '</a>';
                 }
                 return $links;
             }
@@ -342,6 +345,8 @@
                                 "hide_about"           => $_POST['hide_about'],
                                 "output_htmlv"         => $_POST['output_htmlv'],
                                 "data_name"            => $_POST['data_name'],
+                                "load_location"        => $_POST['load_location'],
+                                "load_priority"        => $_POST['load_priority'],
                                 "use_perpage"          => $_POST['use_perpage'],
                                 "use_forpage"          => $_POST['use_forpage'],
                                 "use_forpost"          => $_POST['use_forpost'],
@@ -633,11 +638,11 @@
                         <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus ColorBox FAQ">FAQ</a> | 
                         <a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus ColorBox Direct Support">Request Support</a> | 
                         <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus ColorBox Support Forum">Support Forum</a> | 
-                        <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Follow on Twitter</a> | 
-                        <a href="http://www.facebook.com/23Systems" title="23Systems of Facebook">Add Facebook Page</a> | 
-                    <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+ Page</a>' ); ?></h4>
-
-                <br style="clear: both;" />
+                        <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Twitter</a> | 
+                        <a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">Facebook</a> | 
+                        <a href="http://www.linkedin.com/company/23systems" title="23Systems of LinkedIn">LinkedIn</a> | 
+                        <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+</a>' ); ?></h4>
+                
                 <?php
                     if ($g_lbp_messages) {
                         echo '<div id="lbp_message" title="'.$g_lbp_message_title.'" style="display:none">'.$g_lbp_messages.'</div>';

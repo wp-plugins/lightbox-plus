@@ -16,6 +16,13 @@
     global $g_lbp_shortcode_version;
     global $g_lbp_colorbox_version;
     global $g_lbp_simple_html_dom_version;
+
+    /**
+    * Remove after a few versions or 2.6 is the prevelent version
+    */
+    if (!isset($lightboxPlusOptions['output_htmlv']) || (array_key_exists('output_htmlv', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['output_htmlv'] = '0'; $lightboxPlusOptions['data_name'] = 'lightboxplus'; }
+    if (!isset($lightboxPlusOptions['load_location']) || (array_key_exists('load_location', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_location'] = 'wp_footer'; }
+    if (!isset($lightboxPlusOptions['load_priority']) || (array_key_exists('load_priority', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_priority'] = '10'; }
 ?>
 <!-- About Lightbox Plus ColorBox for WordPress -->
 <div id="poststuff" class="lbp">
@@ -36,7 +43,7 @@
             </div>
             <h4><?php _e( 'Thank you for downloading and installing Lightbox Plus ColorBox for WordPress','lightboxplus' ); ?></h4>
             <p style="text-align: justify;">
-                <?php _e( 'Lightbox Plus ColorBox implements ColorBox as a lightbox image overlay tool for WordPress.  ColorBox was created by Jack Moore of <a href="http://www.jacklmoore.com/colorbox">Color Powered</a> and is licensed under the MIT License. Lightbox Plus ColorBox allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  Lightbox Plus ColorBox uses the built in WordPress jQuery library. Lightbox Plus ColorBox also uses the <a href="http://simplehtmldom.sourceforge.net/" title="PHP Simple HTML DOM Parser">PHP Simple HTML DOM Parser</a> helper class to navigate page content for inserting the Lightbox attibutes into elements. See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.','lightboxplus' ); ?>
+                <?php _e( 'Lightbox Plus ColorBox implements ColorBox as a lightbox image overlay tool for WordPress.  ColorBox was created by <a href="http://www.jacklmoore.com/colorbox">Jack Moore</a> and is licensed under the MIT License. Lightbox Plus ColorBox allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  Lightbox Plus ColorBox uses the built in WordPress jQuery library. Lightbox Plus ColorBox also uses the <a href="http://simplehtmldom.sourceforge.net/" title="PHP Simple HTML DOM Parser">PHP Simple HTML DOM Parser</a> helper class to navigate page content for inserting the Lightbox attibutes into elements. See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.','lightboxplus' ); ?>
             </p>
             <p style="text-align: justify;">
                 <?php _e( 'I spend as much of my spare time as possible working on <strong>Lightbox Plus ColorBox</strong> and any donation is appreciated. Donations play a crucial role in supporting Free and Open Source Software projects. So why are donations important? As a developer the more donations I receive the more time I can invest in working on <strong>Lightbox Plus ColorBox</strong>. Donations help cover the cost of hardware for development and to pay hosting bills. This is critical to the development of free software. I know a lot of other developers do the same and I try to donate to them whenever I can. As a developer I greatly appreciate any donation you can make to help support further development of quality plugins and themes for WordPress.','lightboxplus' ); ?>
@@ -256,6 +263,35 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                <th scope="row">
+                                    <?php _e( 'Load in Header/Footer', 'lightboxplus' )?>: </th>
+                                <td>
+                                    <select name="load_location" id="load_location">
+                                        <option value="wp_footer"<?php selected('wp_footer', $lightboxPlusOptions['load_location']);?>>Footer</option>
+                                        <option value="wp_head"<?php selected('wp_head', $lightboxPlusOptions['load_location']);?>>Header</option>
+                                    </select>
+                                    <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                    <div class="lbp-bigtip" id="lbp_load_location_tip">
+                                        <?php _e('You can set whether you want to inline scripts to load in the header or footer. Footer loads at the end of page and is highly recommended. <strong><em>Default: Footer</em></strong>',"lightboxplus"); ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <?php _e( 'Load Priority', 'lightboxplus' )?>: </th>
+                                <td>
+                                    <select name="load_priority" id="load_priority">
+                                        <option value="15"<?php selected('15', $lightboxPlusOptions['load_priority']);?>>Low</option>
+                                        <option value="10"<?php selected('10', $lightboxPlusOptions['load_priority']);?>>Normal</option>
+                                        <option value="5"<?php selected('5', $lightboxPlusOptions['load_priority']);?>>High</option>
+                                    </select>
+                                    <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                    <div class="lbp-bigtip" id="lbp_load_priority_tip">
+                                        <?php _e('Allows you to set the priority for the load action for the inline scripts, higher will load sooner. <strong><em>Default: Normal</em></strong>',"lightboxplus"); ?>
+                                    </div>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                     <!-- Support -->
@@ -291,6 +327,21 @@
                                         <strong>Viewport:</strong> <script type="text/javascript">document.write(jQuery(window).width() + 'x' + jQuery(window).height());</script><br />
                                         <strong>Platform:</strong> <script type="text/javascript">document.write(navigator.platform);</script><br />
                                         <strong>Javascript:</strong> <noscript>No</noscript><script type="text/javascript">document.write('Yes');</script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" valign="top">
+                                        <a class="button" id="lbp_setting_detail">Display Raw Settings</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" valign="top" id="lbp_detail">
+                                            <?php
+                                                foreach ($lightboxPlusOptions as $key => $value) {
+                                                    echo '<b>'.$key.':</b> '.$value.' | ';
+                                                }
+                                                //print_r($lightboxPlusOptions);
+                                            ?>
                                     </td>
                                 </tr>
                             </tbody>

@@ -47,6 +47,16 @@
                 return $styleName;
             }
 
+            function setLoadLocation( $loadlocation ) {
+                if ($loadlocation == 'wp_head') {
+                    return false;
+                    exit;                    
+                } else {
+                    return true;
+                    exit;                    
+                }
+            }
+            
             /**
             * Convert DB booleans to text for use with JavaScript (jQuery) parameters
             *

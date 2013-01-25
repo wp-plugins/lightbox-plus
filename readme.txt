@@ -194,8 +194,9 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Can specify specify data- attribute so it can be site specific
  * Does not effect inline lightbxes which were class based already
 * Fixed (hopefully) all unset variable notices
+ * Please notify me if you still seem them
 * Added option to load javascript in header or footer +
- * Footer is prefered due to potential page load delays +
+ * Footer is prefered due to potential page load delays
 * Added option to set priority of javascript loading +
  * Low, Normal, High with priorities as follows 5, 11, 15 relative to other plugin loads +
  * May resolve some plugin conflicts due to load order +
@@ -207,6 +208,11 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * It seems older verions of WordPress were having jQuery conflict with the latest version of ColorBox
 * Added information to submit for support under the support tab
 * Renamed plugin to Lightbox Plus ColorBox to reflect long time usage or ColorBox as the lightbox tool
+* Updated ColorBox to version 1.3.28
+ * Fixed compatibility issue with old versions of jQuery (1.3.2-1.4.2)
+ * Added className property.
+ * Minor bugfix: clear the onload event handler after photo has loaded.
+ * Minor bugfix for calling ColorBox on empty jQuery collections without a selector.
 * Minor internal fixes and changes
 
 = 2.5.5 =
