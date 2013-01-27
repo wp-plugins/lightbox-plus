@@ -185,6 +185,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 3. Lightbox Plus ColorBox - External Content
 4. Lightbox Plus ColorBox - Inline Content (Form)
 5. Lightbox Plus ColorBox - Options Page
+6. Lightbox Plus ColorBox - Style Examples
 
 == Change Log ==
 
@@ -207,6 +208,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 * Added ColorBox version loading newer/older depending on WordPress version
  * It seems older verions of WordPress were having jQuery conflict with the latest version of ColorBox
 * Added information to submit for support under the support tab
+* Fixed issue where PHP HTML DOM Parser would throw error when getting title if link had no child img to get title from.
 * Renamed plugin to Lightbox Plus ColorBox to reflect long time usage or ColorBox as the lightbox tool
 * Updated ColorBox to version 1.3.28
  * Fixed compatibility issue with old versions of jQuery (1.3.2-1.4.2)

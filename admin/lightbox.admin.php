@@ -18,11 +18,9 @@
     global $g_lbp_simple_html_dom_version;
 
     /**
-    * Remove after a few versions or 2.6 is the prevelent version
+    * Remove following line after a few versions or 2.6 is the prevelent version
     */
-    if (!isset($lightboxPlusOptions['output_htmlv']) || (array_key_exists('output_htmlv', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['output_htmlv'] = '0'; $lightboxPlusOptions['data_name'] = 'lightboxplus'; }
-    if (!isset($lightboxPlusOptions['load_location']) || (array_key_exists('load_location', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_location'] = 'wp_footer'; }
-    if (!isset($lightboxPlusOptions['load_priority']) || (array_key_exists('load_priority', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_priority'] = '10'; }
+    $lightboxPlusOptions = $this->setMissingOptions($lightboxPlusOptions);
 ?>
 <!-- About Lightbox Plus ColorBox for WordPress -->
 <div id="poststuff" class="lbp">
@@ -336,12 +334,12 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" valign="top" id="lbp_detail">
-                                            <?php
-                                                foreach ($lightboxPlusOptions as $key => $value) {
-                                                    echo '<b>'.$key.':</b> '.$value.' | ';
-                                                }
-                                                //print_r($lightboxPlusOptions);
-                                            ?>
+                                        <?php
+                                            foreach ($lightboxPlusOptions as $key => $value) {
+                                                echo '<b>'.$key.':</b> '.$value.' | ';
+                                            }
+                                            //print_r($lightboxPlusOptions);
+                                        ?>
                                     </td>
                                 </tr>
                             </tbody>

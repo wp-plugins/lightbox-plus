@@ -32,6 +32,11 @@
                 global $post;
 
                 if (!empty($this->lightboxOptions)) {$lightboxPlusOptions = $this->getAdminOptions($this->lightboxOptionsName);}
+                /**
+                * Remove following line after a few versions or 2.6 is the prevelent version
+                */
+                $lightboxPlusOptions = $this->setMissingOptions($lightboxPlusOptions);
+
                 $postGroupID    = $post->ID;
                 $postGroupTitle = $post->post_title;
 
@@ -81,8 +86,8 @@
                                         }
                                         break;
                                     default:
-                                    if (!$e->rel) { $e->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
-                                    break;
+                                        if (!$e->rel) { $e->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
+                                        break;
                                 }
                                 break;   
                             }
@@ -98,9 +103,9 @@
                                     * If title doesn't exist then get a title
                                     * Set to caption title->image->post title by default then set to image title is exists
                                     */
-                                    if (!$e->title) {
-                                        if ($e->first_child()->title) {
-                                            $e->title = $e->first_child()->title;
+                                    if (!$e->title && $e->first_child()) {
+                                        if ($e->first_child()->alt) {
+                                            $e->title = $e->first_child()->alt;
                                         } else {
                                             $e->title = $postGroupTitle;
                                         }
@@ -109,9 +114,14 @@
                                     * If use caption for title try to get the text from the caption - this could be wrong
                                     */
                                     if ($lightboxPlusOptions['use_caption_title']) {
-                                        if ($e->find('img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]') && $e->next_sibling()->innertext) { $e->title = $e->next_sibling()->innertext; }
-                                        elseif ($e->find('img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]') && $e->parent()->next_sibling()->class = 'gallery-caption') { $e->title = $e->parent()->next_sibling()->innertext; }
+                                        if ($e->next_sibling()->class = 'wp-caption-text') {
+                                            $e->title = $e->next_sibling()->innertext; 
+                                        }
+                                        elseif ($e->parent()->next_sibling()->class = 'gallery-caption') {
+                                            $e->title = $e->parent()->next_sibling()->innertext; 
+                                        }
                                     }
+
                                     break;
                             }
                         }
@@ -189,7 +199,7 @@
                                         //if ($e->parent()->next_sibling()->innertext) { $e->parent()->title = $e->parent()->next_sibling()->innertext; }
                                         //if ($e->parent()->next_sibling()->innertext) { $e->title = $e->parent()->next_sibling()->innertext; }
 
-                                        if ($e->find('img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]') && $e->next_sibling()->innertext) { $e->title = $e->next_sibling()->innertext; }
+                                        if ($e->find('img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]') && $e->next_sibling()->class = 'wp-caption-text') { $e->title = $e->next_sibling()->innertext; }
                                         elseif ($e->find('img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]') && $e->parent()->next_sibling()->class = 'gallery-caption') { $e->title = $e->parent()->next_sibling()->innertext; }
                                     }
                                     break;

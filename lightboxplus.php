@@ -69,10 +69,10 @@
         case 3.1:
         case 3.2:
         case 3.3:
-            $g_lbp_colorbox_version = '1.3.19';
+            $g_lbp_colorbox_version = '1.3.29';
             break;
         default:
-            $g_lbp_colorbox_version = '1.3.21';
+            $g_lbp_colorbox_version = '1.3.29';
             break;
     }
     /**
@@ -103,8 +103,6 @@
     * Require HTML Parser
     */
     require_once('classes/shd.class.php');
-
-
 
     /**
     * On Plugin Activation initialize settings
@@ -170,12 +168,8 @@
             */
             function init() {
                 $this->lightboxOptions = $this->getAdminOptions( $this->lightboxOptionsName );
-                /**
-                * TODO 15: check this code and modify if needed.
-                */
-                //if ( !get_option( $this->lightboxInitName ) ) {
-                //    $this->lightboxPlusInit( );
-                //}
+                
+                if ( !empty( $this->lightboxOptions ) ) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
 
                 /**
                 * If user is in the admin panel
@@ -185,7 +179,7 @@
                     /**
                     * Check to see if the user wants to use per page/post options
                     */
-                    if (isset($lightboxPlusOptions['use_forpage']) && $lightboxPlusOptions['use_forpage']) {
+                    if (isset($lightboxPlusOptions['use_forpage']) && $lightboxPlusOptions['use_forpage'] == '1') {
                         add_action( 'save_post', array( &$this, 'lightboxPlusSaveMeta'),10,1 );
                         add_action( 'add_meta_boxes', array( &$this, "lightboxPlusMetaBox" ),10,1 );
                     }
@@ -204,45 +198,31 @@
                 if ( !empty( $this->lightboxOptions ) ) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
 
                 /**
-                * Remove following 3 lines after a few versions or 2.6 is the prevelent version
+                * Remove following line after a few versions or 2.6 is the prevelent version
                 */
-                if (!isset($lightboxPlusOptions['output_htmlv']) || (array_key_exists('output_htmlv', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['output_htmlv'] = '0'; $lightboxPlusOptions['data_name'] = 'lightboxplus'; }
-                if (!isset($lightboxPlusOptions['load_location']) || (array_key_exists('load_location', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_location'] = 'wp_footer'; }
-                if (!isset($lightboxPlusOptions['load_priority']) || (array_key_exists('load_priority', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_priority'] = '10'; }
-
-                //                if (!is_admin()) {
-                //                    if ($lightboxPlusOptions['use_perpage']) {
-                //                        add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ) );
-
-                //                        if ($lightboxPlusOptions['use_forpage']) {
-                //                            if (get_post_meta( $the_post_id, '_lbp_use', true )) { $this->lbpFinal(); }
-                //                        }
-                //                        if ($lightboxPlusOptions['use_forpost']) {
-                //                            if (($wp_query->is_posts_page)|| is_single()) { $this->lbpFinal(); }
-                //                        }
-                //                    } else {
-                //                        $this->lbpFinal();
-                //                    }
-                //                }
+                $lightboxPlusOptions = $this->setMissingOptions($lightboxPlusOptions);
 
                 if (!is_admin() && $lightboxPlusOptions['use_perpage']) {
                     add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ), intval($lightboxPlusOptions['load_priority']));
                     if ($lightboxPlusOptions['use_forpage'] && get_post_meta( $the_post_id, '_lbp_use', true )) { $this->lbpFinal(); }
-                    if ($lightboxPlusOptions['use_forpost'] && (($wp_query->is_posts_page)|| is_single())) { $this->lbpFinal(); }
+                    if ($lightboxPlusOptions['use_forpost'] && (($wp_query->is_posts_page) || is_single())) { $this->lbpFinal(); }
                 } else {
                     $this->lbpFinal();
                 }
             }
 
             function lbpFinal() {
-                if ( !empty( $this->lightboxOptions ) ) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
-
-                add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ),intval($lightboxPlusOptions['load_priority']) );
                 /**
                 * Get lightbox options to check for auto-lightbox and gallery
                 */
                 if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
+                    /**
+                    * Remove following line after a few versions or 2.6 is the prevelent version
+                    */
+                    $lightboxPlusOptions = $this->setMissingOptions($lightboxPlusOptions);
+
+                    add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ),intval($lightboxPlusOptions['load_priority']) );
 
                     /**
                     * Check to see if users wants images auto-lightboxed
@@ -252,7 +232,7 @@
                         * Check to see if user wants to have gallery images lightboxed
                         */
                         if ($lightboxPlusOptions['gallery_lightboxplus'] != 1) {
-                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 10 );
+                            add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 11 );
                         }
                         else {
                             remove_shortcode( 'gallery' );
@@ -260,9 +240,9 @@
                             add_filter( 'the_content', array( &$this, 'filterLightboxPlusReplace' ), 11 );
                         }
                     }
+                    //add_action( 'wp_footer', array( &$this, 'lightboxPlusColorbox' ) );
+                    add_action( $lightboxPlusOptions['load_location'], array( &$this, 'lightboxPlusColorbox' ),(intval($lightboxPlusOptions['load_priority']) + 4) );
                 }
-                //add_action( 'wp_footer', array( &$this, 'lightboxPlusColorbox' ) );
-                add_action( $lightboxPlusOptions['load_location'], array( &$this, 'lightboxPlusColorbox' ),(intval($lightboxPlusOptions['load_priority']) + 4) );
             }
 
             /**
@@ -641,8 +621,8 @@
                         <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Twitter</a> | 
                         <a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">Facebook</a> | 
                         <a href="http://www.linkedin.com/company/23systems" title="23Systems of LinkedIn">LinkedIn</a> | 
-                        <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+</a>' ); ?></h4>
-                
+                    <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+</a>' ); ?></h4>
+
                 <?php
                     if ($g_lbp_messages) {
                         echo '<div id="lbp_message" title="'.$g_lbp_message_title.'" style="display:none">'.$g_lbp_messages.'</div>';
@@ -655,7 +635,6 @@
                     require('admin/lightbox.admin.php');
             ?></div>
             <?php
-                wp_enqueue_script('lightboxplus-admin', $g_lightbox_plus_url.'js/lightbox.admin.js', array( 'jquery' ), $g_lbp_version, true);
             }
             /**
             * END CLASS

@@ -19,11 +19,9 @@
                 $lightboxPlusOptions = get_option('lightboxplus_options');
 
                 /**
-                * Remove following 3 lines after a few versions or 2.6 is the prevelent version
+                * Remove following line after a few versions or 2.6 is the prevelent version
                 */
-                if (!isset($lightboxPlusOptions['output_htmlv']) || (array_key_exists('output_htmlv', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['output_htmlv'] = '0'; $lightboxPlusOptions['data_name'] = 'lightboxplus'; }
-                if (!isset($lightboxPlusOptions['load_location']) || (array_key_exists('load_location', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_location'] = 'wp_footer'; }
-                if (!isset($lightboxPlusOptions['load_priority']) || (array_key_exists('load_priority', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_priority'] = '10'; }
+                $lightboxPlusOptions = $this->setMissingOptions($lightboxPlusOptions);
 
                 /**
                 * Call Initialize Primary Lightbox

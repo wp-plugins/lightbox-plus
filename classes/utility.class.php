@@ -56,6 +56,17 @@
                     exit;                    
                 }
             }
+
+            function setMissingOptions( $lbpOptionsArray ) {
+                /**
+                * Remove following 3 lines after a few versions or 2.6 is the prevelent version
+                */
+                if (!isset($lbpOptionsArray['output_htmlv']) || (array_key_exists('output_htmlv', $lbpOptionsArray) == false) ) { $lbpOptionsArray['output_htmlv'] = '0'; $lbpOptionsArray['data_name'] = 'lightboxplus'; }
+                if (!isset($lbpOptionsArray['load_location']) || (array_key_exists('load_location', $lbpOptionsArray) == false) ) { $lbpOptionsArray['load_location'] = 'wp_footer'; }
+                if (!isset($lbpOptionsArray['load_priority']) || (array_key_exists('load_priority', $lbpOptionsArray) == false) ) { $lbpOptionsArray['load_priority'] = '10'; }
+                return $lbpOptionsArray;
+            }
+
             
             /**
             * Convert DB booleans to text for use with JavaScript (jQuery) parameters

@@ -5,8 +5,8 @@
 * @author Jack Moore / jacklmoore.com
 * @author Dan Zappone / 23Systems
 * @version 2.5.6 / 1.3.19
-* @$Id: lightbox.admin.css 654094 2013-01-17 05:54:08Z dzappone $
-* @$URL: http://plugins.svn.wordpress.org/lightbox-plus/trunk/admin/lightbox.admin.css $
+* @$Id: $
+* @$URL: $
 */
 // ColorBox v1.3.19 - jQuery lightbox plugin
 // (c) 2011 Jack Moore - jacklmoore.com

@@ -40,10 +40,15 @@
 
                 if ( !empty( $this->lightboxOptions ) ) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
 
+                /**
+                * Remove following line after a few versions or 2.6 is the prevelent version
+                */
+                $lightboxPlusOptions = $this->setMissingOptions($lightboxPlusOptions);
+
                 if (!is_admin()) {
                     if (floatval($wp_version) < 3.1) {
                         wp_deregister_script('jquery'); 
-                        wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"), false, '1.4.4'); 
+                        wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js", false, null);
                         wp_enqueue_script('jquery');
                     } else {
                         wp_enqueue_script('jquery','','','',true);
@@ -85,11 +90,9 @@
                 if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
                     /**
-                    * Remove following 3 lines after a few versions or 2.6 is the prevelent version
+                    * Remove following line after a few versions or 2.6 is the prevelent version
                     */
-                    if (!isset($lightboxPlusOptions['output_htmlv']) || (array_key_exists('output_htmlv', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['output_htmlv'] = '0'; $lightboxPlusOptions['data_name'] = 'lightboxplus'; }
-                    if (!isset($lightboxPlusOptions['load_location']) || (array_key_exists('load_location', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_location'] = 'wp_footer'; }
-                    if (!isset($lightboxPlusOptions['load_priority']) || (array_key_exists('load_priority', $lightboxPlusOptions) == false) ) { $lightboxPlusOptions['load_priority'] = '10'; }
+                    $lightboxPlusOptions = $this->setMissingOptions($lightboxPlusOptions);
 
                     $lightboxPlusJavaScript  = "";
                     $lightboxPlusJavaScript .= '<!-- Lightbox Plus ColorBox v'.$g_lbp_version.'/'.$g_lbp_colorbox_version.' - 2013.01.24 - Message: '.$lightboxPlusOptions['lightboxplus_multi'].'-->'.PHP_EOL;
@@ -268,12 +271,14 @@
             */
             function lightboxPlusAdminScripts( ) {
                 global $g_lightbox_plus_url;
+                global $g_lbp_version;
                 global $g_lbp_colorbox_version;
                 wp_enqueue_script('jquery','','','',true);
                 wp_enqueue_script('jquery-ui-core','','','',true);
                 wp_enqueue_script('jquery-ui-dialog','','','',true);
                 wp_enqueue_script('jquery-ui-tabs','','','',true);
                 wp_enqueue_script('jquery-colorbox', $g_lightbox_plus_url.'js/jquery.colorbox.'.$g_lbp_colorbox_version.'-min.js', array( 'jquery' ), $g_lbp_colorbox_version, true);
+                wp_enqueue_script('lightboxplus-admin', $g_lightbox_plus_url.'js/lightbox.admin.js', array( 'jquery' ), $g_lbp_version, true);
             }
 
             /**
@@ -342,7 +347,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row" colspan="2"><?php _e('Lightbox Plus ColorBox unique ID for this page/post:','lightboxplus'); ?>: </th>
+                    <th scope="row" colspan="2"><?php _e('Lightbox Plus ColorBox unique ID for this page:','lightboxplus'); ?>: </th>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -361,27 +366,25 @@
                     return;
                 }
 
-                if ( !wp_verify_nonce( $_POST['nonce_lbp'], 'lbp_meta_nonce' ) ) {
+                if (isset($_POST['nonce_lbp']) && !wp_verify_nonce( $_POST['nonce_lbp'], 'lbp_meta_nonce' ) ) {
                     return;
                 }
 
-                if ( 'page' == $_POST['post_type'] ) {
+                if ( isset($_POST['post_type']) && $_POST['post_type'] == 'page' ) {
                     if ( !current_user_can( 'edit_page', $postid ) ) {
                         return;
                     }
                 } else {
-                    if ( !current_user_can( 'edit_post', $postid ) ) {
+                    if ( isset($postid) && !current_user_can( 'edit_post', $postid ) ) {
                         return;
                     }
                 }
 
-                $lbp_use = $_POST['lbp_use'];
-                $lbp_autoload = $_POST['lbp_autoload'];
-                $lbp_uid = $_POST['lbp_uid'];
-
-                update_post_meta( $post_id, '_lbp_use', $lbp_use );
-                update_post_meta( $post_id, '_lbp_autoload', $lbp_autoload );
-                update_post_meta( $post_id, '_lbp_uid', $lbp_uid );
+                if ( isset($postid)) {
+                    if (isset($_POST['lbp_use'])) { $lbp_use = $_POST['lbp_use']; update_post_meta( $post_id, '_lbp_use', $lbp_use );}
+                    if (isset($_POST['lbp_autoload'])) { $lbp_autoload = $_POST['lbp_autoload']; update_post_meta( $post_id, '_lbp_autoload', $lbp_autoload );}
+                    if (isset($_POST['lbp_uid'])) { $lbp_uid = $_POST['lbp_uid']; update_post_meta( $post_id, '_lbp_uid', $lbp_uid );}
+                }
 
                 return $post_id;
             }
