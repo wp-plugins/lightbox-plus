@@ -194,23 +194,33 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * When checked will add data- instead if rel attributes.
  * Can specify specify data- attribute so it can be site specific
  * Does not effect inline lightbxes which were class based already
+ * Option located in first tab (General) of base settings
 * Fixed (hopefully) all unset variable notices
  * Please notify me if you still seem them
-* Added option to load javascript in header or footer +
+* Fixed issues with per page loading
+ * Please note there is no per post loading - it's either set for your blog/single posts or it's not
+ * Fixed issue with auto load per page loading final image
+* Added option to load javascript in header or footer
  * Footer is prefered due to potential page load delays
-* Added option to set priority of javascript loading +
- * Low, Normal, High with priorities as follows 5, 11, 15 relative to other plugin loads +
- * May resolve some plugin conflicts due to load order +
+* Added option to set priority of javascript loading
+ * Low, Normal, High with priorities as follows 5, 11, 15 relative to other plugin loads
+ * May resolve some plugin conflicts due to load order
 * Fixed removal of settings on deactivate
  * Will now only remove settings on uninstall 
 * Fixed gallery short code issues with WordPress 3.0.x and version 3.1.x to 3.4.x.
  * Now creates correct gallery output for specific versions of WordPress
+* Moved 'Use for WordPress Galleries' option to first tab to ease location
+ * Located on General tab of Primary Settings
 * Added ColorBox version loading newer/older depending on WordPress version
  * It seems older verions of WordPress were having jQuery conflict with the latest version of ColorBox
 * Added information to submit for support under the support tab
 * Fixed issue where PHP HTML DOM Parser would throw error when getting title if link had no child img to get title from.
 * Renamed plugin to Lightbox Plus ColorBox to reflect long time usage or ColorBox as the lightbox tool
-* Updated ColorBox to version 1.3.28
+* Updated ColorBox to version 1.3.32
+ * Improved internal event subscribing & fixed event bug introduced in v1.3.21
+ * Fixed a size-calculation bug
+ * Delayed border-width calculations until after opening, to avoid a bug in FF when using ColorBox in a hidden iframe.
+ * Fixes bug with bubbling delegated events
  * Fixed compatibility issue with old versions of jQuery (1.3.2-1.4.2)
  * Added className property.
  * Minor bugfix: clear the onload event handler after photo has loaded.

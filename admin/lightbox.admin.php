@@ -4,7 +4,7 @@
     * @subpackage lightbox.admin.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.5.6
+    * @version 2.6
     * @$Id$
     * @$URL$
     */
@@ -115,6 +115,29 @@
                             </tr>
                             <tr>
                                 <th scope="row">
+                                    <?php _e( 'Output Valid HTML5', 'lightboxplus' )?>: </th>
+                                <td>
+                                    <input type="hidden" name="output_htmlv" value="0">
+                                    <input type="checkbox" name="output_htmlv" id="output_htmlv" value="1"<?php checked('1', $lightboxPlusOptions['output_htmlv']);?> />
+                                    <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                    <div class="lbp-bigtip" id="lbp_lightboxplus_output_htmlv_tip">
+                                        <?php _e('If checked Lightbox Plus ColorBox will create valid HTML5 lightbox links. <strong><em>Default: Unchecked</em></strong>',"lightboxplus"); ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="htmlv_settings lbp-closed">
+                                <th scope="row">
+                                    <?php _e( 'HTML Data attribute', 'lightboxplus' )?>: </th>
+                                <td>
+                                    data-<input type="text" size="15" name="data_name" id="data_name" value="<?php if (empty( $lightboxPlusOptions['data_name'] )) { echo 'lightboxplus'; } else {echo $lightboxPlusOptions['data_name'];}?>" />
+                                    <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                    <div class="lbp-bigtip" id="lbp_lightboxplus_data_name_tip">
+                                        <?php _e('Specify HTML5 data attribute to use or leave as default. <strong><em>Default: lightboxplus</em></strong>',"lightboxplus"); ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
                                     <?php _e( 'Hide "About Lightbox Plus ColorBox"', 'lightboxplus' )?>: </th>
                                 <td>
                                     <input type="hidden" name="hide_about" value="0">
@@ -204,36 +227,13 @@
                         <table class="form-table">
                             <tr>
                                 <th scope="row">
-                                    <?php _e( 'Output Valid HTML5', 'lightboxplus' )?>: </th>
-                                <td>
-                                    <input type="hidden" name="output_htmlv" value="0">
-                                    <input type="checkbox" name="output_htmlv" id="output_htmlv" value="1"<?php checked('1', $lightboxPlusOptions['output_htmlv']);?> />
-                                    <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                    <div class="lbp-bigtip" id="lbp_lightboxplus_output_htmlv_tip">
-                                        <?php _e('If checked Lightbox Plus ColorBox will create valid HTML5 lightbox links. <strong><em>Default: Unchecked</em></strong>',"lightboxplus"); ?>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="htmlv_settings lbp-closed">
-                                <th scope="row">
-                                    <?php _e( 'HTML Data attribute', 'lightboxplus' )?>: </th>
-                                <td>
-                                    data-<input type="text" size="15" name="data_name" id="data_name" value="<?php if (empty( $lightboxPlusOptions['data_name'] )) { echo 'lightboxplus'; } else {echo $lightboxPlusOptions['data_name'];}?>" />
-                                    <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                    <div class="lbp-bigtip" id="lbp_lightboxplus_data_name_tip">
-                                        <?php _e('Specify HTML5 data attribute to use or leave as default. <strong><em>Default: lightboxplus</em></strong>',"lightboxplus"); ?>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <?php _e( 'Use per page/post options', 'lightboxplus' )?>: </th>
+                                    <?php _e( 'Use page/post options', 'lightboxplus' )?>: </th>
                                 <td>
                                     <input type="hidden" name="use_perpage" value="0">
                                     <input type="checkbox" name="use_perpage" id="use_perpage" value="1"<?php checked('1', $lightboxPlusOptions['use_perpage']);?> />
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_lightboxplus_use_perpage_tip">
-                                        <?php _e('If checked allows you specify which posts or pages to load Lightbox Plus ColorBox on while writing the post or page. <strong><em>Default: Unchecked</em></strong>',"lightboxplus"); ?>
+                                        <?php _e('If checked allows you specify which posts or pages to load Lightbox Plus ColorBox on while writing the page or set for blog/single posts. <strong><em>Default: Unchecked</em></strong>',"lightboxplus"); ?>
                                     </div>
                                 </td>
                             </tr>
@@ -345,7 +345,7 @@
                             </tbody>
                         </table>
                         <p><?php _e( 'It would also be a good idea to read the <a title="Lightbox Plus ColorBox Frequently Asked Questions" href="httphttp://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">Lightbox Plus ColorBox FAQ</a> to see if you question is answered there. For more in-depth support or if you need extra help with one of our plugins you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.','lightboxplus' ); ?></p>
-                        <p><?php _e( '23Systems does not offer phone support for any of our plugs unless you are an existing client.  If you would like phone support please fill out the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support</a> page and request phone support.  Once we receive the support request we can contact you with rates and information.','lightboxplus' ); ?></p>
+                        <p><?php _e( '23Systems does not offer phone support for any of our plugs unless you are an existing client.  If you are an <b>existing client</b> and would like phone support please fill out the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support</a> page and request phone support.  Once we receive the support request we can contact you with rates and information.','lightboxplus' ); ?></p>
                         <p><?php _e( 'If you would like to show your support for our free WordPress plugins please consider a <a title="Help support Free and Open Source software by donating to our free plugin development" href="http://www.23systems.net/wordpress-plugins/donate/">donation</a>.','lightboxplus' ); ?></p>
                     </div>
                     <!-- Usage -->
@@ -442,6 +442,30 @@
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_preloading_tip">
                                         <?php _e( 'Allows for preloading of "Next" and "Previous" content in a shared relation group (same values for the "rel" attribute), after the current content has finished loading. Uncheck to disable. <strong><em>Default: Checked</em></strong>', 'lightboxplus' )?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <?php _e( 'Use For WordPress Galleries', 'lightboxplus' )?>: </th>
+                                <td>
+                                    <input type="hidden" name="gallery_lightboxplus" value="0">
+                                    <input type="checkbox" name="gallery_lightboxplus" id="gallery_lightboxplus" value="1"<?php checked('1', $lightboxPlusOptions['gallery_lightboxplus']);?> />
+                                    <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                    <div class="lbp-bigtip" id="lbp_gallery_lightboxplus_tip">
+                                        <?php _e( 'If checked, Lightbox Plus ColorBox will add the Lightboxing feature to the WordPress built in gallery feature.  In order for this to work correcly you must set <strong>Link thumbnails to: Image File</strong> or use <code>[gallery link="file"</code> for the gallery options. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <th scope="row">
+                                    <?php _e( 'Separate Galleries in Post?', 'lightboxplus' )?>: </th>
+                                <td>
+                                    <input type="hidden" name="multiple_galleries" value="0">
+                                    <input type="checkbox" name="multiple_galleries" id="multiple_galleries" value="1"<?php checked('1', $lightboxPlusOptions['multiple_galleries']);?> /><a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
+                                    <div class="lbp-bigtip" id="lbp_multiple_galleries_tip">
+                                        <?php _e( 'If the option to separate multiple gallries in a single post is check Lightbox Plus ColorBox will create separate sets of lightbox display for each gallery in the post. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
                                     </div>
                                 </td>
                             </tr>
@@ -826,30 +850,6 @@
                                     <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
                                     <div class="lbp-bigtip" id="lbp_use_caption_title_tip">
                                         <?php _e( 'If checked, Lightbox Plus ColorBox will attempt to use the displayed caption for the image on the page as the caption for the image in the Lightbox Plus ColorBox overlay. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <?php _e( 'Use For WP Gallery', 'lightboxplus' )?>: </th>
-                                <td>
-                                    <input type="hidden" name="gallery_lightboxplus" value="0">
-                                    <input type="checkbox" name="gallery_lightboxplus" id="gallery_lightboxplus" value="1"<?php checked('1', $lightboxPlusOptions['gallery_lightboxplus']);?> />
-                                    <a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                    <div class="lbp-bigtip" id="lbp_gallery_lightboxplus_tip">
-                                        <?php _e( 'If checked, Lightbox Plus ColorBox will add the Lightboxing feature to the WordPress built in gallery feature.  In order for this to work correcly you must set <strong>Link thumbnails to: Image File</strong> or use <code>[gallery link="file"</code> for the gallery options. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                            <tr>
-                                <th scope="row">
-                                    <?php _e( 'Seperate Galleries in Post?', 'lightboxplus' )?>: </th>
-                                <td>
-                                    <input type="hidden" name="multiple_galleries" value="0">
-                                    <input type="checkbox" name="multiple_galleries" id="multiple_galleries" value="1"<?php checked('1', $lightboxPlusOptions['multiple_galleries']);?> /><a class="lbp-info" title="<?php _e('Click for Help!', 'lightboxplus')?>"><img src="<?php echo $g_lightbox_plus_url.'admin/images/help.png'?>" alt="<?php _e('Click for Help!', 'lightboxplus'); ?>" /></a>
-                                    <div class="lbp-bigtip" id="lbp_multiple_galleries_tip">
-                                        <?php _e( 'If the option to separate multiple gallries in a single post is check Lightbox Plus ColorBox will create separate sets of lightbox display for each gallery in the post. <strong><em>Default: Unchecked</em></strong>', 'lightboxplus' )?>
                                     </div>
                                 </td>
                             </tr>

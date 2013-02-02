@@ -4,7 +4,7 @@
 * @internal 2012.03.30
 * @author Jack Moore / jacklmoore.com
 * @author Dan Zappone / 23Systems
-* @version 2.5.6 / 1.3.19
+* @version 2.6 / 1.3.19
 * @$Id: $
 * @$URL: $
 */

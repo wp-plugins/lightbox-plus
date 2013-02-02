@@ -4,7 +4,7 @@
     * @subpackage actions.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.5.6
+    * @version 2.6
     * @$Id$
     * @$URL$
     */
@@ -87,6 +87,7 @@
                 global $g_lightbox_plus_url;
                 global $g_lbp_version;
                 global $g_lbp_colorbox_version;
+                global $post;
                 if ( !empty( $this->lightboxOptions ) ) {
                     $lightboxPlusOptions     = $this->getAdminOptions( $this->lightboxOptionsName );
                     /**
@@ -134,20 +135,27 @@
                     if ( $lightboxPlusOptions['bottom'] != 'false' ) { $lbpArrayPrimary[] = 'bottom:'.$this->setValue( $lightboxPlusOptions['bottom'] ); }
                     if ( $lightboxPlusOptions['left'] != 'false'  ) { $lbpArrayPrimary[] = 'left:'.$this->setValue( $lightboxPlusOptions['left'] ); }
                     if ( $lightboxPlusOptions['fixed'] == '1' ) { $lbpArrayPrimary[] = 'fixed:'.$this->setBoolean( $lightboxPlusOptions['fixed'] ); }
+                    if (!is_admin()) {
+                        $lbp_autoload = get_post_meta( $post->ID, '_lbp_autoload', true );
+                        if ( $lbp_autoload == '1' ) { $lbpArrayPrimary[] = 'open:true'; }
+                    }
                     switch ($lightboxPlusOptions['output_htmlv']) {
                         case 1:
                         $htmlv_prop = 'data-'.$lightboxPlusOptions['data_name'];
-                        $lightboxPlusFnPrimary = '{rel:$(this).attr("'.$htmlv_prop.'"),'.implode(",", $lbpArrayPrimary).'}';
+//                        $lightboxPlusFnPrimary = '{rel:$(this).attr("'.$htmlv_prop.'"),'.implode(",", $lbpArrayPrimary).'}';
+                        $lightboxPlusFnPrimary = '{rel:$("a['.$htmlv_prop.'*=lightbox]"),'.implode(",", $lbpArrayPrimary).'}';
                         switch ( $lightboxPlusOptions['use_class_method'] ) {
                             case 1:
-                                $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").each(function(){'.PHP_EOL;
-                                $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
-                                $lightboxPlusJavaScript .= '  });'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+//                                $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").each(function(){'.PHP_EOL;
+//                                $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+//                                $lightboxPlusJavaScript .= '  });'.PHP_EOL;
                                 break;
                             default:
-                                $lightboxPlusJavaScript .= '  $("a['.$htmlv_prop.'*=lightbox]").each(function(){'.PHP_EOL;
-                                $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
-                                $lightboxPlusJavaScript .= '  });'.PHP_EOL;
+                            $lightboxPlusJavaScript .= '  $("a['.$htmlv_prop.'*=lightbox]").colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+//                                $lightboxPlusJavaScript .= '  $("a['.$htmlv_prop.'*=lightbox]").each(function(){'.PHP_EOL;
+//                                $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+//                                $lightboxPlusJavaScript .= '  });'.PHP_EOL;
                                 break;
                         }                     
                         break;
@@ -290,8 +298,9 @@
                 global $g_lbp_global_style_url;
                 global $g_lbp_local_style_path;
                 global $g_lbp_global_style_path;
+                global $g_lbp_version;
 
-                wp_register_style('lightboxplusStyles', $g_lightbox_plus_url.'admin/lightbox.admin.css','','2.5','screen');
+                wp_register_style('lightboxplusStyles', $g_lightbox_plus_url.'admin/lightbox.admin.css','',$g_lbp_version,'screen');
                 wp_enqueue_style('lightboxplusStyles');
 
                 if ( !empty( $this->lightboxOptions ) ) {
@@ -309,10 +318,10 @@
                     if ( $lightboxPlusOptions['disable_css'] ) {
                         echo "<!-- User set lightbox styles -->".PHP_EOL;
                     } else {
-                        wp_register_style('lightboxStyle', $style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','','2.5','screen');
+                        wp_register_style('lightboxStyle', $style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/colorbox.css','',$g_lbp_version,'screen');
                         wp_enqueue_style('lightboxStyle');
                         if (file_exists($style_path_dir.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js')) {
-                            wp_enqueue_script('lbp-helper',$style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js','','2.5',true);
+                            wp_enqueue_script('lbp-helper',$style_path_url.'/'.$lightboxPlusOptions['lightboxplus_style'].'/helper.js','',$g_lbp_version,true);
                         }
                     }
                 }
@@ -331,19 +340,23 @@
 
             function drawLightboxPlusMeta($post) {
                 wp_nonce_field('lbp_meta_nonce','nonce_lbp');
+                $lbp_use = get_post_meta( $post->ID, '_lbp_use', true );
                 $lbp_uid = get_post_meta( $post->ID, '_lbp_uid', true);
+                $lbp_autoload = get_post_meta( $post->ID, '_lbp_autoload', true );
             ?>
             <table class="form-table">
                 <tr>
                     <th scope="row"><?php _e('Use with this page/post:','lightboxplus'); ?>: </th>
                     <td>
-                        <input type="checkbox" name="lbp_use" id="lbp_use" value="1" <?php checked( '1', get_post_meta( $post->ID, '_lbp_use', true ) ); ?> />
+                        <input type="hidden" name="lbp_use" value="0">
+                        <input type="checkbox" name="lbp_use" id="lbp_use" value="1" <?php if (isset($lbp_use)) { checked( '1', $lbp_use ); }?> />
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><?php _e('Auto launch on this page/post:','lightboxplus'); ?>: </th>
                     <td>
-                        <input type="checkbox" name="lbp_autoload" id="lbp_autoload" value="1"<?php checked( '1', get_post_meta( $post->ID, '_lbp_autoload', true ) );?> />
+                        <input type="hidden" name="lbp_autoload" value="0">
+                        <input type="checkbox" name="lbp_autoload" id="lbp_autoload" value="1"<?php if (isset($lbp_autoload)) { checked( '1', $lbp_autoload ); }?> />
                     </td>
                 </tr>
                 <tr>
@@ -362,25 +375,17 @@
             }
 
             function lightboxPlusSaveMeta($post_id) {
-                if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-                    return;
-                }
+                if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
 
-                if (isset($_POST['nonce_lbp']) && !wp_verify_nonce( $_POST['nonce_lbp'], 'lbp_meta_nonce' ) ) {
-                    return;
-                }
+                if (isset($_POST['nonce_lbp']) && !wp_verify_nonce( $_POST['nonce_lbp'], 'lbp_meta_nonce' ) ) { return; }
 
                 if ( isset($_POST['post_type']) && $_POST['post_type'] == 'page' ) {
-                    if ( !current_user_can( 'edit_page', $postid ) ) {
-                        return;
-                    }
+                    if ( !current_user_can( 'edit_page', $postid ) ) { return; }
                 } else {
-                    if ( isset($postid) && !current_user_can( 'edit_post', $postid ) ) {
-                        return;
-                    }
+                    if ( isset($postid) && !current_user_can( 'edit_post', $postid ) ) { return; }
                 }
 
-                if ( isset($postid)) {
+                if ( isset($post_id)) {
                     if (isset($_POST['lbp_use'])) { $lbp_use = $_POST['lbp_use']; update_post_meta( $post_id, '_lbp_use', $lbp_use );}
                     if (isset($_POST['lbp_autoload'])) { $lbp_autoload = $_POST['lbp_autoload']; update_post_meta( $post_id, '_lbp_autoload', $lbp_autoload );}
                     if (isset($_POST['lbp_uid'])) { $lbp_uid = $_POST['lbp_uid']; update_post_meta( $post_id, '_lbp_uid', $lbp_uid );}

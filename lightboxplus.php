@@ -13,7 +13,7 @@
     * @subpackage lightboxplus.php DEV VERSION 
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.5.6-Beta
+    * @version 2.6
     * @$Id$
     * @$URL$ 
     */
@@ -69,10 +69,10 @@
         case 3.1:
         case 3.2:
         case 3.3:
-            $g_lbp_colorbox_version = '1.3.29';
+            $g_lbp_colorbox_version = '1.3.32';
             break;
         default:
-            $g_lbp_colorbox_version = '1.3.29';
+            $g_lbp_colorbox_version = '1.3.32';
             break;
     }
     /**
@@ -168,7 +168,7 @@
             */
             function init() {
                 $this->lightboxOptions = $this->getAdminOptions( $this->lightboxOptionsName );
-                
+
                 if ( !empty( $this->lightboxOptions ) ) { $lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName ); }
 
                 /**
@@ -179,9 +179,9 @@
                     /**
                     * Check to see if the user wants to use per page/post options
                     */
-                    if (isset($lightboxPlusOptions['use_forpage']) && $lightboxPlusOptions['use_forpage'] == '1') {
-                        add_action( 'save_post', array( &$this, 'lightboxPlusSaveMeta'),10,1 );
-                        add_action( 'add_meta_boxes', array( &$this, "lightboxPlusMetaBox" ),10,1 );
+                    if ((isset($lightboxPlusOptions['use_forpage']) && $lightboxPlusOptions['use_forpage'] == '1') || (isset($lightboxPlusOptions['use_forpost']) && $lightboxPlusOptions['use_forpost'] == '1')) {
+                            add_action( 'save_post', array( &$this, 'lightboxPlusSaveMeta'),10,2 );
+                            add_action( 'add_meta_boxes', array( &$this, "lightboxPlusMetaBox" ),10,2 );
                     }
                     $this->lbpFinal();
                 }
@@ -202,7 +202,7 @@
                 */
                 $lightboxPlusOptions = $this->setMissingOptions($lightboxPlusOptions);
 
-                if (!is_admin() && $lightboxPlusOptions['use_perpage']) {
+                if (isset($lightboxPlusOptions['use_perpage']) && $lightboxPlusOptions['use_perpage'] != '0') {
                     add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ), intval($lightboxPlusOptions['load_priority']));
                     if ($lightboxPlusOptions['use_forpage'] && get_post_meta( $the_post_id, '_lbp_use', true )) { $this->lbpFinal(); }
                     if ($lightboxPlusOptions['use_forpost'] && (($wp_query->is_posts_page) || is_single())) { $this->lbpFinal(); }

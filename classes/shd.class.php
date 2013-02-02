@@ -5,7 +5,7 @@
     * @see PHP Simple HTML DOM Parser
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.5.6
+    * @version 2.6
     * @$Id$
     * @$URL$
     */
