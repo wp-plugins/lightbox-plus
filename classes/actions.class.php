@@ -142,20 +142,17 @@
                     switch ($lightboxPlusOptions['output_htmlv']) {
                         case 1:
                         $htmlv_prop = 'data-'.$lightboxPlusOptions['data_name'];
-//                        $lightboxPlusFnPrimary = '{rel:$(this).attr("'.$htmlv_prop.'"),'.implode(",", $lbpArrayPrimary).'}';
-                        $lightboxPlusFnPrimary = '{rel:$("a['.$htmlv_prop.'*=lightbox]"),'.implode(",", $lbpArrayPrimary).'}';
+                        $lightboxPlusFnPrimary = '{rel:$(this).attr("'.$htmlv_prop.'"),'.implode(",", $lbpArrayPrimary).'}';
                         switch ( $lightboxPlusOptions['use_class_method'] ) {
                             case 1:
-                                $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
-//                                $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").each(function(){'.PHP_EOL;
-//                                $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
-//                                $lightboxPlusJavaScript .= '  });'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '  $(".'.$lightboxPlusOptions['class_name'].'").each(function(){'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '  });'.PHP_EOL;
                                 break;
                             default:
-                            $lightboxPlusJavaScript .= '  $("a['.$htmlv_prop.'*=lightbox]").colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
-//                                $lightboxPlusJavaScript .= '  $("a['.$htmlv_prop.'*=lightbox]").each(function(){'.PHP_EOL;
-//                                $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
-//                                $lightboxPlusJavaScript .= '  });'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '  $("a['.$htmlv_prop.'*=lightbox]").each(function(){'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '    $(this).colorbox('.$lightboxPlusFnPrimary.');'.PHP_EOL;
+                                $lightboxPlusJavaScript .= '  });'.PHP_EOL;
                                 break;
                         }                     
                         break;
