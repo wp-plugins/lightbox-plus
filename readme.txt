@@ -4,7 +4,7 @@ Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 3.0
 Tested up to: 3.6-alpha
-Stable tag: 2.5.5
+Stable tag: 2.6
 License: GPLv2 and (components under MIT License)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -199,7 +199,6 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Please notify me if you still seem them
 * Fixed issues with per page loading
  * Please note there is no per post loading - it's either set for your blog/single posts or it's not
- * Fixed issue with auto load per page loading final image
 * Added option to load javascript in header or footer
  * Footer is prefered due to potential page load delays
 * Added option to set priority of javascript loading
