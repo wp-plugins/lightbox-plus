@@ -1,6 +1,6 @@
 <?php
     /**
-    * @package Lightbox Plus ColorBox
+    * @package Lightbox Plus Colorbox
     * @subpackage shd.class.php
     * @see PHP Simple HTML DOM Parser
     * @internal 2013.01.16

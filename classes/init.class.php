@@ -1,6 +1,6 @@
 <?php
     /**
-    * @package Lightbox Plus ColorBox
+    * @package Lightbox Plus Colorbox
     * @subpackage init.class.php
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
@@ -44,7 +44,7 @@
                     $savedOptions = get_option('lightboxplus_options');
 
                     /**
-                    * If Lightbox Plus ColorBox has been initialized - set to true
+                    * If Lightbox Plus Colorbox has been initialized - set to true
                     */
                     if ($savedOptions) { update_option('lightboxplus_init', true); }
                 } else {
