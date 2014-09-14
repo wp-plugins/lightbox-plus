@@ -1,18 +1,18 @@
 <?php
 /**
  * @package    Lightbox Plus Colorbox
- * @subpackage filters.class.php
+ * @subpackage class-filters.php
  * @internal   2013.01.16
  * @author     Dan Zappone / 23Systems
  * @version    2.7
- * @$Id$
- * @$URL$
+ * @$Id: class-filters.php 983793 2014-09-07 19:22:57Z dzappone $
+ * @$URL: http://plugins.svn.wordpress.org/lightbox-plus/trunk/classes/class-filters.php $
  */
 
 if ( ! interface_exists( 'LBP_Filters_Interface' ) ) {
 	interface LBP_Filters_Interface {
-		function filterLightboxPlusReplace( $content );
-		function lightboxPlusReplace( $html_content, $unq_id );
+		function lbp_replace_content( $content );
+		function lbp_replace( $html_content, $unq_id );
 	}
 }
 
@@ -26,9 +26,8 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 		 *
 		 * @return simple_html_dom
 		 */
-		function filterLightboxPlusReplace( $content ) {
-			$lightboxPlusOptions = get_option( 'lightboxplus_options' );
-			return $this->lightboxPlusReplace( $content, '' );
+		function lbp_replace_content( $content ) {
+			return $this->lbp_replace( $content, '' );
 		}
 
 		/**
@@ -38,23 +37,15 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 		 *
 		 * @return mixed
 		 */
-		function lightboxPlusReplace( $html_content, $unq_id ) {
+		function lbp_replace( $html_content, $unq_id ) {
 			global $post;
+			global $g_lbp_base_options;
+			global $g_lbp_primary_options;
 
-			$lightboxPlusOptions        = $this->getAdminOptions( $this->lightboxOptionsName );
-			$lightboxPlusPrimaryOptions = $this->getAdminOptions( $this->lightboxOptionsPrimaryName );
-			/**
-			 * TODO: Remove if not needed - probably not so probably remove
-			 */
-//			$lightboxPlusSecondaryOptions = $this->getAdminOptions( $this->lightboxOptionsSecondaryName );
-//			$lightboxPlusInlineOptions = $this->getAdminOptions( $this->lightboxOptionsInlineName );
-//			if ( ! isset( $this->lightboxInlineOptions ) ) {
-//				$lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
-//			}
 			/**
 			 * TODO: Remove following line after a few versions or 2.6 is the prevelent version
 			 */
-//			if (isset($lightboxPlusOptions)) { $lightboxPlusOptions = $this->setMissingOptions( $lightboxPlusOptions ); }
+			if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options ); }
 
 			$postGroupID    = $post->ID;
 			$postGroupTitle = $post->post_title;
@@ -67,30 +58,30 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 			 *
 			 * If (autolightbox text links) then
 			 */
-//			if (isset($lightboxPlusPrimaryOptions['text_links'])) {
-//				$switch_value = $lightboxPlusPrimaryOptions['text_links'];
+//			if (isset($g_lbp_primary_options['text_links'])) {
+//				$switch_value = $g_lbp_primary_options['text_links'];
 //			} else {
 //				$switch_value = false;
 //			}
 
-			switch ( $lightboxPlusPrimaryOptions['text_links'] ) {
+			switch ( $g_lbp_primary_options['text_links'] ) {
 				case 1:
 					foreach ( $html->find( 'a[href*=jpg$], a[href*=gif$], a[href*=png$], a[href*=jpeg$], a[href*=bmp$]' ) as $e ) {
 						/**
 						 * Use Class Method is selected - yes/no
 						 */
-						switch ( $lightboxPlusOptions['output_htmlv'] ) {
+						switch ( $g_lbp_base_options['output_htmlv'] ) {
 							case 1:
-								$htmlv_prop = 'data-' . $lightboxPlusOptions['data_name'];
-								switch ( $lightboxPlusPrimaryOptions['use_class_method'] ) {
+								$htmlv_prop = 'data-' . $g_lbp_base_options['data_name'];
+								switch ( $g_lbp_primary_options['use_class_method'] ) {
 									case 1:
-										if ( $e->class && $e->class != $lightboxPlusPrimaryOptions['class_name'] ) {
-											$e->class .= ' ' . $lightboxPlusPrimaryOptions['class_name'];
+										if ( $e->class && $e->class != $g_lbp_primary_options['class_name'] ) {
+											$e->class .= ' ' . $g_lbp_primary_options['class_name'];
 											if ( ! $e->$htmlv_prop ) {
 												$e->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
 										} else {
-											$e->class = $lightboxPlusPrimaryOptions['class_name'];
+											$e->class = $g_lbp_primary_options['class_name'];
 											if ( ! $e->$htmlv_prop ) {
 												$e->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
@@ -104,15 +95,15 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 								}
 								break;
 							default:
-								switch ( $lightboxPlusPrimaryOptions['use_class_method'] ) {
+								switch ( $g_lbp_primary_options['use_class_method'] ) {
 									case 1:
-										if ( $e->class && $e->class != $lightboxPlusPrimaryOptions['class_name'] ) {
-											$e->class .= ' ' . $lightboxPlusPrimaryOptions['class_name'];
+										if ( $e->class && $e->class != $g_lbp_primary_options['class_name'] ) {
+											$e->class .= ' ' . $g_lbp_primary_options['class_name'];
 											if ( ! $e->rel ) {
 												$e->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
 										} else {
-											$e->class = $lightboxPlusPrimaryOptions['class_name'];
+											$e->class = $g_lbp_primary_options['class_name'];
 											if ( ! $e->rel ) {
 												$e->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
@@ -129,7 +120,7 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 						/**
 						 * Do Not Display Title is select - yes/no
 						 */
-						switch ( $lightboxPlusPrimaryOptions['no_display_title'] ) {
+						switch ( $g_lbp_primary_options['no_display_title'] ) {
 							case 1:
 								$e->title = null;
 								break;
@@ -148,7 +139,7 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 								/**
 								 * If use caption for title try to get the text from the caption - this could be wrong
 								 */
-								if ( $lightboxPlusPrimaryOptions['use_caption_title'] ) {
+								if ( $g_lbp_primary_options['use_caption_title'] ) {
 									if ( $e->next_sibling()->class = 'wp-caption-text' ) {
 										$e->title = $e->next_sibling()->innertext;
 									} elseif ( $e->parent()->next_sibling()->class = 'gallery-caption' ) {
@@ -168,21 +159,21 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 						/**
 						 * Generate HTML5 yes/no
 						 */
-						switch ( $lightboxPlusOptions['output_htmlv'] ) {
+						switch ( $g_lbp_base_options['output_htmlv'] ) {
 							case 1:
-								$htmlv_prop = 'data-' . $lightboxPlusOptions['data_name'];
-								switch ( $lightboxPlusPrimaryOptions['use_class_method'] ) {
+								$htmlv_prop = 'data-' . $g_lbp_base_options['data_name'];
+								switch ( $g_lbp_primary_options['use_class_method'] ) {
 									/**
 									 * Use Class Method is selected - yes/no
 									 */
 									case 1:
-										if ( $e->parent()->class && $e->parent()->class != $lightboxPlusPrimaryOptions['class_name'] ) {
-											$e->parent()->class .= ' ' . $lightboxPlusPrimaryOptions['class_name'];
+										if ( $e->parent()->class && $e->parent()->class != $g_lbp_primary_options['class_name'] ) {
+											$e->parent()->class .= ' ' . $g_lbp_primary_options['class_name'];
 											if ( ! $e->parent()->$htmlv_prop ) {
 												$e->parent()->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
 										} else {
-											$e->parent()->class = $lightboxPlusPrimaryOptions['class_name'];
+											$e->parent()->class = $g_lbp_primary_options['class_name'];
 											if ( ! $e->parent()->$htmlv_prop ) {
 												$e->parent()->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
@@ -196,18 +187,18 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 								}
 								break;
 							default:
-								switch ( $lightboxPlusPrimaryOptions['use_class_method'] ) {
+								switch ( $g_lbp_primary_options['use_class_method'] ) {
 									/**
 									 * Use Class Method is selected - yes/no
 									 */
 									case 1:
-										if ( $e->parent()->class && $e->parent()->class != $lightboxPlusPrimaryOptions['class_name'] ) {
-											$e->parent()->class .= ' ' . $lightboxPlusPrimaryOptions['class_name'];
+										if ( $e->parent()->class && $e->parent()->class != $g_lbp_primary_options['class_name'] ) {
+											$e->parent()->class .= ' ' . $g_lbp_primary_options['class_name'];
 											if ( ! $e->parent()->rel ) {
 												$e->parent()->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
 										} else {
-											$e->parent()->class = $lightboxPlusPrimaryOptions['class_name'];
+											$e->parent()->class = $g_lbp_primary_options['class_name'];
 											if ( ! $e->parent()->rel ) {
 												$e->parent()->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
@@ -226,7 +217,7 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 						/**
 						 * Do Not Display Title is select - yes/no
 						 */
-						switch ( $lightboxPlusPrimaryOptions['no_display_title'] ) {
+						switch ( $g_lbp_primary_options['no_display_title'] ) {
 							case 1:
 								$e->parent()->title = null;
 								break;
@@ -238,7 +229,7 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 										$e->parent()->title = $postGroupTitle;
 									}
 								}
-								if ( $lightboxPlusPrimaryOptions['use_caption_title'] ) {
+								if ( $g_lbp_primary_options['use_caption_title'] ) {
 									//if ($e->parent()->next_sibling()->innertext) { $e->parent()->title = $e->parent()->next_sibling()->innertext; }
 									//if ($e->parent()->next_sibling()->innertext) { $e->title = $e->parent()->next_sibling()->innertext; }
 

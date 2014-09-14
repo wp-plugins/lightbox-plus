@@ -1,24 +1,40 @@
 <?php
 /**
  * @package    Lightbox Plus Colorbox
- * @subpackage shortcode.class.php
+ * @subpackage class-shortcode.php
  * @internal   2013.01.16
  * @author     Dan Zappone / 23Systems
  * @version    2.7
- * @$Id$
- * @$URL$
+ * @$Id: class-shortcode.php 983793 2014-09-07 19:22:57Z dzappone $
+ * @$URL: http://plugins.svn.wordpress.org/lightbox-plus/trunk/classes/class-shortcode.php $
  */
-if ( ! class_exists( 'lbp_shortcode' ) ) {
-	class lbp_shortcode extends lbp_utilities {
+
+if ( ! interface_exists( 'LBP_Shortcode_Interface' ) ) {
+	interface LBP_Shortcode_Interface {
+		/**
+		 * @param $attr
+		 *
+		 * @return mixed
+		 */
+		function lbp_gallery( $attr );
+	}
+}
+
+if ( ! class_exists( 'LBP_Shortcode' ) ) {
+	class LBP_Shortcode extends LBP_Utilities implements LBP_Shortcode_Interface {
 		/**
 		 * Replacement shortcode gallery function adds rel="lightbox" or class="cboxModal"
 		 * Overrides the default gallery template
 		 *
-		 * @param string|false $attr
-		 * @return string
+		 * @param $attr
+		 *
+		 * @return mixed|string|void
 		 */
-		function lightboxPlusGallery( $attr ) {
+		function lbp_gallery( $attr ) {
 			global $post;
+			global $g_lbp_base_options;
+			global $g_lbp_primary_options;
+
 			$post = get_post();
 
 			static $instance = 0;
@@ -148,8 +164,8 @@ if ( ! class_exists( 'lbp_shortcode' ) ) {
 			/**
 			 * TODO: remove next line if not needed
 			 */
-			$lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );
-			$lightboxPlusPrimaryOptions = $this->getAdminOptions( $this->lightboxOptionsPrimaryName );
+			$g_lbp_base_options = get_option( $this->lbp_options_base_name );
+			$g_lbp_primary_options = get_option( $this->lbp_options_primary_name );
 
 			foreach ( $attachments as $id => $attachment ) {
 				$link = isset( $attr['link'] ) && 'file' == $attr['link'] ? wp_get_attachment_link( $id, $size, false, false ) : wp_get_attachment_link( $id, $size, true, false );
@@ -159,7 +175,7 @@ if ( ! class_exists( 'lbp_shortcode' ) ) {
 				 *
 				 * @var mixed
 				 */
-				if ( $lightboxPlusPrimaryOptions['multiple_galleries'] ) {
+				if ( $g_lbp_primary_options['multiple_galleries'] ) {
 				} else {
 					$link = $this->lightboxPlusReplace( $link, '' );
 				}
@@ -188,4 +204,3 @@ if ( ! class_exists( 'lbp_shortcode' ) ) {
 		}
 	}
 }
-?>

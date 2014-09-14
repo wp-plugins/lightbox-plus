@@ -8,42 +8,243 @@
 * @$URL: http://plugins.svn.wordpress.org/lightbox-plus/trunk/admin/lightbox.admin.css $
 */
 /*---- Lightbox Plus Colorbox Styles ----*/
-.notice{background:#dff0f5 url(../images/information.png) center no-repeat;background-position:15px 50%;text-align:left;border:1px solid #3796b3;display:block;padding:5px 20px 5px 45px;color:#046380;width:90%;margin:10px auto;-webkit-border-radius:10px;-moz-border-radius:10px;-khtml-border-radius:10px;}
-.about{background:#dff0f5;text-align:left;border:1px solid #3796b3;display:block;padding:5px 20px 5px 20px;color:#046380;width:90%;margin:10px auto;-webkit-border-radius:10px;-moz-border-radius:10px;-khtml-border-radius:10px;}
-.alert{background:#faf0e6 url(../images/exclamation.png) no-repeat center;background-position:15px 50%;text-align:left;border:1px solid #800000;display:block;padding:5px 20px 5px 45px;color:#800000;width:90%;margin:10px auto;-webkit-border-radius:10px;-moz-border-radius:10px;-khtml-border-radius:10px;}
-.notice h3,.about h3{font-weight:bold;font-size:1.2em;display:block;}
-.notice h4,.about h4{font-weight:bold;font-size:1.1em;display:block;}
-.notice h5,.about h5{font-weight:bold;font-size:1.0em;display:block;}
-.widefat thead th a{color:#d7d7d7 !important;text-decoration:underline;}
-.widefat tr{padding:0;}
-.error{padding:12px;}
-.wrap.alternate{margin-bottom:1.5em;padding:0 0 0 8px;}
-.lbpbox.closed .inside,.postbox.closed .inside{display:none;}
-.lbp-closed{display:none;}
-#lbp_detail{display:none;margin:10px; padding:10px;font-family: monospace;}
-.lbpbox{border:1px solid #cccccc;clear:both;margin:15px 5%;padding:1em;}
-#poststuff.lbp{margin:0 !important;}
-h3.nohandle {cursor: default;}
-h3.handle {cursor: pointer;}
-.lbpbox a.togbox{border:1px solid #cccccc;background:#ffffff;color:#999999;padding:2px 4px;text-decoration:none;cursor:pointer;}
-.lbpbox.closed a.togbox{padding:2px 4px;text-decoration:none;background:#000097;color:#ffffff;border-top:1px solid #0000db;border-left:1px solid #0000db;border-bottom:1px solid #000075;border-right:1px solid #000075;cursor:pointer;}
-.postbox.closed a.togbox{padding:2px 4px;text-decoration:none;background:#000097;color:#ffffff;border-top:1px solid #0000db;border-left:1px solid #0000db;border-bottom:1px solid #000075;border-right:1px solid #000075;cursor:pointer;}
-a.togbox:hover{border:1px solid #cccccc;background:#ffffff;color:#999999;}
-.lbp-info{cursor:pointer;top:0;}
-.lbp-support-info{border:1px solid #ccc;}
-.lbp-support-info td {font-size:0.8em;}
-.lbp-tip{max-width:500px;text-align:left;display:none;}
-.lbp-bigtip{max-width:100%;text-align:left;display:none;}
-.lbp input{max-width:500px;}
-.lbp .primary_test,.lbp .secondary_test,.lbp .inline_html_test,.lbp .inline_link_test{width:100%;min-width:500px;max-width:100%;font-family:monospace;}
-.lbp-elements{max-width:500px;text-align:left;}
-#lbp-style-screenshot {border:1px solid #999;width:150px;height:150px;float:left;}
-.lbp-sample{display:none;}
-.lbp-sample-current{display:block;}
-.donate{float:right;margin:30px;text-align:center;}
-.codebox {border:1px solid #999999;background-color:#eaeaea;display:block;padding: 15px; margin: 15px;font-size:1.1em;}
-.subhelp {font-size:0.9em;}
-.clear{clear:both;}
+.notice {
+	background:            #dff0f5 url(../images/information.png) center no-repeat;
+	background-position:   15px 50%;
+	text-align:            left;
+	border:                1px solid #3796b3;
+	display:               block;
+	padding:               5px 20px 5px 45px;
+	color:                 #046380;
+	width:                 90%;
+	margin:                10px auto;
+	-webkit-border-radius: 10px;
+	-moz-border-radius:    10px;
+	-khtml-border-radius:  10px;
+}
+
+.about {
+	background:            #dff0f5;
+	text-align:            left;
+	border:                1px solid #3796b3;
+	display:               block;
+	padding:               5px 20px 5px 20px;
+	color:                 #046380;
+	width:                 90%;
+	margin:                10px auto;
+	-webkit-border-radius: 10px;
+	-moz-border-radius:    10px;
+	-khtml-border-radius:  10px;
+}
+
+.alert {
+	background:            #faf0e6 url(../images/exclamation.png) no-repeat center;
+	background-position:   15px 50%;
+	text-align:            left;
+	border:                1px solid #800000;
+	display:               block;
+	padding:               5px 20px 5px 45px;
+	color:                 #800000;
+	width:                 90%;
+	margin:                10px auto;
+	-webkit-border-radius: 10px;
+	-moz-border-radius:    10px;
+	-khtml-border-radius:  10px;
+}
+
+.notice h3, .about h3 {
+	font-weight: bold;
+	font-size:   1.2em;
+	display:     block;
+}
+
+.notice h4, .about h4 {
+	font-weight: bold;
+	font-size:   1.1em;
+	display:     block;
+}
+
+.notice h5, .about h5 {
+	font-weight: bold;
+	font-size:   1.0em;
+	display:     block;
+}
+
+.lbp-alt {
+	background-color: #e1e1e1;
+}
+
+.widefat thead th a {
+	color:           #d7d7d7 !important;
+	text-decoration: underline;
+}
+
+.widefat tr {
+	padding: 0;
+}
+
+.error {
+	padding: 12px;
+}
+
+.wrap.alternate {
+	margin-bottom: 1.5em;
+	padding:       0 0 0 8px;
+}
+
+.lbpbox.closed .inside, .postbox.closed .inside {
+	display: none;
+}
+
+.lbp-closed {
+	display: none;
+}
+
+#lbp_detail {
+	display:     none;
+	margin:      10px;
+	padding:     10px;
+	font-family: monospace;
+}
+
+.lbpbox {
+	border:  1px solid #cccccc;
+	clear:   both;
+	margin:  15px 5%;
+	padding: 1em;
+}
+
+.poststuff {
+	margin: 0 !important;
+}
+
+h3.nohandle {
+	cursor: default;
+}
+
+h3.handle {
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.lbpbox a.togbox {
+	border:          1px solid #cccccc;
+	background:      #ffffff;
+	color:           #999999;
+	padding:         2px 4px;
+	text-decoration: none;
+	cursor:          pointer;
+}
+
+.lbpbox.closed a.togbox {
+	padding:         2px 4px;
+	text-decoration: none;
+	background:      #000097;
+	color:           #ffffff;
+	border-top:      1px solid #0000db;
+	border-left:     1px solid #0000db;
+	border-bottom:   1px solid #000075;
+	border-right:    1px solid #000075;
+	cursor:          pointer;
+}
+
+.postbox.closed a.togbox {
+	padding:         2px 4px;
+	text-decoration: none;
+	background:      #000097;
+	color:           #ffffff;
+	border-top:      1px solid #0000db;
+	border-left:     1px solid #0000db;
+	border-bottom:   1px solid #000075;
+	border-right:    1px solid #000075;
+	cursor:          pointer;
+}
+
+a.togbox:hover {
+	border:     1px solid #cccccc;
+	background: #ffffff;
+	color:      #999999;
+}
+
+.lbp-info {
+	cursor: pointer;
+	top:    0;
+}
+
+.lbp-support-info {
+	border: 1px solid #ccc;
+}
+
+.lbp-support-info td {
+	font-size: 0.8em;
+}
+
+.lbp-tip {
+	max-width:  500px;
+	text-align: left;
+	display:    none;
+}
+
+.lbp-bigtip {
+	max-width:  100%;
+	text-align: left;
+	display:    none;
+	font-size: 0.8em;
+}
+
+.lbp input {
+	max-width: 500px;
+}
+
+.lbp .primary_test, .lbp .secondary_test, .lbp .inline_html_test, .lbp .inline_link_test {
+	width:       100%;
+	min-width:   500px;
+	max-width:   100%;
+	font-family: monospace;
+}
+
+.lbp-elements {
+	max-width:  500px;
+	text-align: left;
+}
+
+#lbp-style-screenshot {
+	border: 1px solid #999;
+	width:  150px;
+	height: 150px;
+	float:  left;
+}
+
+.lbp-sample {
+	display: none;
+}
+
+.lbp-sample-current {
+	display: block;
+}
+
+.donate {
+	float:      right;
+	margin:     30px;
+	text-align: center;
+}
+
+.codebox {
+	border:           1px solid #999999;
+	background-color: #eaeaea;
+	display:          block;
+	padding:          15px;
+	margin:           15px;
+	font-size:        1.1em;
+}
+
+.subhelp {
+	font-size: 0.9em;
+}
+
+.clear {
+	clear: both;
+}
 /*
 * jQuery UI CSS Framework 1.8.16
 *
@@ -353,3 +554,15 @@ a.togbox:hover{border:1px solid #cccccc;background:#ffffff;color:#999999;}
 .ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
 .ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: none; }
 .ui-tabs .ui-tabs-hide { display: none !important; }
+
+.ui-tooltip {
+	padding: 8px;
+	position: absolute;
+	z-index: 9999;
+	max-width: 300px;
+	-webkit-box-shadow: 0 0 5px #aaa;
+	box-shadow: 0 0 5px #aaa;
+}
+body .ui-tooltip {
+	border-width: 2px;
+}

@@ -24,12 +24,29 @@ jQuery(document).ready(function ($) {
 		$('.slideshow_sec').hide();
 	}
 
+	$("[title]").tooltip({
+		position: {
+			my: "left top",
+			at: "right+5 top-5"
+		}
+	});
+
+	//$("<button>")
+	//	.text("Show help")
+	//	.button()
+	//	.click(function () {
+	//		tooltips.tooltip("open");
+	//	})
+	//	.insertAfter("form");
+
 	$('.close-me').each(function () {
 		$(this).addClass("closed");
 	});
+
 	$('#lbp_message').each(function () {
 		$(this).fadeOut(5000);
 	});
+
 	$('.postbox h3').click(function () {
 		$(this).next('.toggle').slideToggle('fast');
 	});
@@ -126,8 +143,6 @@ jQuery(document).ready(function ($) {
 	$("#lightboxplus-settings").submit(function (e) {
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
-		//alert('postdata: ' + postData);
-		//alert('formurl : ' + formURL);
 		$.ajax(
 			{
 				url    : formURL,
@@ -145,22 +160,22 @@ jQuery(document).ready(function ($) {
 				}
 			});
 		e.preventDefault(); //STOP default action
-		e.off(); //unbind. to stop multiple form submit.
+		//e.off(); //unbind. to stop multiple form submit.
 	});
 
 //callback handler for save settings form submit
 	$("#lightboxplus-settings-primary").submit(function (e) {
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
-		alert('postdata: ' + postData);
-		alert('formurl : ' + formURL);
+		//alert('postdata: ' + postData);
+		//alert('formurl : ' + formURL);
 		$.ajax(
 			{
 				url    : formURL,
 				type   : "POST",
 				data   : postData,
 				success: function (data, textStatus, jqXHR) {
-					$("#success").show().delay(3500).fadeOut(3500);
+					//$("#success").show().delay(3500).fadeOut(3500);
 					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=primary';
 					//data: return ''
 				},
@@ -171,7 +186,7 @@ jQuery(document).ready(function ($) {
 				}
 			});
 		e.preventDefault(); //STOP default action
-		e.off(); //unbind. to stop multiple form submit.
+		$(this).off(); //unbind. to stop multiple form submit.
 	});
 
 //callback handler for save settings form submit
@@ -226,23 +241,30 @@ jQuery(document).ready(function ($) {
 	$("#lightboxplus-settings-reset").submit(function (e) {
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
-		alert('reset');
-		$.ajax(
-			{
-				url    : formURL,
-				type   : "POST",
-				data   : postData,
-				success: function (data, textStatus, jqXHR) {
-					//$("#success").show().delay(3500).fadeOut(3500);
-					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=reset';
-					//data: return ''
-				},
-				error  : function (jqXHR, textStatus, errorThrown) {
-					//$("#fail").show().delay(3500).fadeOut(3500);
-					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=reset-error';
-					//if fails
-				}
-			});
+		var txt;
+		var r = confirm("Reset all Lightbox Plus Colorbox settings?");
+		if (r == true) {
+			$.ajax(
+				{
+					url    : formURL,
+					type   : "POST",
+					data   : postData,
+					success: function (data, textStatus, jqXHR) {
+						//$("#success").show().delay(3500).fadeOut(3500);
+						window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=reset';
+						//data: return ''
+					},
+					error  : function (jqXHR, textStatus, errorThrown) {
+						//$("#fail").show().delay(3500).fadeOut(3500);
+						window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=reset-error';
+						//if fails
+					}
+				});
+		} else {
+			window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=reset-cancel';
+		}
+
+
 		e.preventDefault(); //STOP default action
 		e.off(); //unbind. to stop multiple form submit.
 	});
