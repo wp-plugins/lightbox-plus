@@ -70,7 +70,9 @@ Optional: Use the title attribute if you want to show a caption.
 2. Search for Lightbox Plus Colorbox
 3. Find Lightbox Plus Colorbox in the list an click Install Now
 4. Click OK when prompted
-5. Enjoy!
+5. Click activate plugin when prompted
+5. In the admin panel under Appearance click on Lightbox Plus Colorbox to configure to your taste.
+6. Enjoy!
 
 = Manual =
 
