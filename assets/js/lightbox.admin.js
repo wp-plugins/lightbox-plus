@@ -24,7 +24,28 @@ jQuery(document).ready(function ($) {
 		$('.slideshow_sec').hide();
 	}
 
-	$("[title]").tooltip({
+	$("input[title]").tooltip({
+		position: {
+			my: "left top",
+			at: "right+5 top-5"
+		}
+	});
+
+	$("select[title]").tooltip({
+		position: {
+			my: "left top",
+			at: "right+5 top-5"
+		}
+	});
+
+	$("checkbox[title]").tooltip({
+		position: {
+			my: "left top",
+			at: "right+5 top-5"
+		}
+	});
+
+	$(".lbp-help[title]").tooltip({
 		position: {
 			my: "left top",
 			at: "right+5 top-5"
@@ -167,8 +188,6 @@ jQuery(document).ready(function ($) {
 	$("#lightboxplus-settings-primary").submit(function (e) {
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
-		//alert('postdata: ' + postData);
-		//alert('formurl : ' + formURL);
 		$.ajax(
 			{
 				url    : formURL,
@@ -186,7 +205,7 @@ jQuery(document).ready(function ($) {
 				}
 			});
 		e.preventDefault(); //STOP default action
-		$(this).off(); //unbind. to stop multiple form submit.
+		//e.off(); //unbind. to stop multiple form submit.
 	});
 
 //callback handler for save settings form submit
@@ -210,7 +229,7 @@ jQuery(document).ready(function ($) {
 				}
 			});
 		e.preventDefault(); //STOP default action
-		e.off(); //unbind. to stop multiple form submit.
+		//e.off(); //unbind. to stop multiple form submit.
 	});
 
 //callback handler for save settings form submit
@@ -234,7 +253,7 @@ jQuery(document).ready(function ($) {
 				}
 			});
 		e.preventDefault(); //STOP default action
-		e.off(); //unbind. to stop multiple form submit.
+		//e.off(); //unbind. to stop multiple form submit.
 	});
 
 //callback handler for save settings form submit
@@ -266,6 +285,6 @@ jQuery(document).ready(function ($) {
 
 
 		e.preventDefault(); //STOP default action
-		e.off(); //unbind. to stop multiple form submit.
+		//e.off(); //unbind. to stop multiple form submit.
 	});
 });

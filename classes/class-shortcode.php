@@ -177,7 +177,7 @@ if ( ! class_exists( 'LBP_Shortcode' ) ) {
 				 */
 				if ( $g_lbp_primary_options['multiple_galleries'] ) {
 				} else {
-					$link = $this->lightboxPlusReplace( $link, '' );
+					$link = $this->lbp_replace( $link, '' );
 				}
 				$output .= "<{$itemtag} class='gallery-item'>";
 				$output .= "

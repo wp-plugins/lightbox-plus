@@ -21,7 +21,7 @@ if ( ! interface_exists( 'LBP_Init_Interface' ) ) {
 
 		function lbp_secondary_init();
 
-		function lbp_inline_init( $inline_number = 5 );
+		function lbp_inline_init( $inline_number );
 
 		function lbp_deactivate();
 
@@ -271,10 +271,10 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 				"loop_sec"             => '1',
 				"esc_key_sec"          => '1',
 				"arrow_key_sec"        => '1',
-				"top_sec"              => '0',
-				"right_sec"            => '0',
-				"bottom_sec"           => '0',
-				"left_sec"             => '0',
+				"top_sec"              => 'false',
+				"right_sec"            => 'false',
+				"bottom_sec"           => 'false',
+				"left_sec"             => 'false',
 				"fixed_sec"            => '0'
 			);
 		}
@@ -287,23 +287,23 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 		 * @return array
 		 */
 		function lbp_inline_init( $inline_number = 5 ) {
-			$inline_links            = '';
-			$inline_hrefs            = '';
-			$inline_transitions      = '';
-			$inline_speeds           = '';
-			$inline_widths           = '';
-			$inline_heights          = '';
-			$inline_inner_widths     = '';
-			$inline_inner_heights    = '';
-			$inline_max_widths       = '';
-			$inline_max_heights      = '';
-			$inline_position_tops    = '';
-			$inline_position_rights  = '';
-			$inline_position_bottoms = '';
-			$inline_position_lefts   = '';
-			$inline_fixeds           = '';
-			$inline_opens            = '';
-			$inline_opacitys         = '';
+//			$inline_links            = '';
+//			$inline_hrefs            = '';
+//			$inline_transitions      = '';
+//			$inline_speeds           = '';
+//			$inline_widths           = '';
+//			$inline_heights          = '';
+//			$inline_inner_widths     = '';
+//			$inline_inner_heights    = '';
+//			$inline_max_widths       = '';
+//			$inline_max_heights      = '';
+//			$inline_position_tops    = '';
+//			$inline_position_rights  = '';
+//			$inline_position_bottoms = '';
+//			$inline_position_lefts   = '';
+//			$inline_fixeds           = '';
+//			$inline_opens            = '';
+//			$inline_opacitys         = '';
 
 			if ( ! empty( $inline_number ) ) {
 				for ( $i = 1; $i <= $inline_number; $i ++ ) {

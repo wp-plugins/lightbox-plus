@@ -68,7 +68,7 @@ if ( ! interface_exists( 'LBP_Utilities_Interface' ) ) {
 		 *
 		 * @return mixed
 		 */
-		function array_trim( $array, $num_to_trim );
+		function lbp_array_trim( $array, $num_to_trim );
 
 		/**
 		 * @param $source
@@ -82,6 +82,13 @@ if ( ! interface_exists( 'LBP_Utilities_Interface' ) ) {
 		 * @return mixed
 		 */
 		function post_thumbnail_caption();
+
+		/**
+		 * @param $json
+		 *
+		 * @return mixed
+		 */
+		function json_pretty( $json );
 	}
 }
 
@@ -186,7 +193,7 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 			if ( is_dir( $directory ) ) {
 				$directory_handle = opendir( $directory );
 			}
-			if ( !isset($directory_handle) ) {
+			if ( ! isset( $directory_handle ) ) {
 				return false;
 			}
 			while ( $file = readdir( $directory_handle ) ) {
@@ -230,10 +237,10 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 		 * @return array
 		 */
 		function directory_list( $directory ) {
-			$types      = array(
+			$types            = array(
 				'css',
 			);
-			$results    = array();
+			$results          = array();
 			$directory_handle = opendir( $directory );
 			while ( $file = readdir( $directory_handle ) ) {
 				$type = strtolower( substr( strrchr( $file, '.' ), 1 ) );
@@ -254,11 +261,12 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 		 *
 		 * @return mixed
 		 */
-		function array_trim( $array, $num_to_trim ) {
+		function lbp_array_trim( $array, $num_to_trim ) {
 			for ( $i = 1; $i <= $num_to_trim; $i ++ ) {
-				array_pop( $value );
+				array_pop( $array );
 			}
-			return $value;
+
+			return $array;
 		}
 
 		/**
@@ -301,6 +309,65 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 			), $attr ) );
 
 			return $caption;
+		}
+
+		/**
+		 * Indents a flat JSON string to make it more human-readable.
+		 * Function used instead of JSON_PRETTY_PRINT to support versions of PHP older than 5.4
+		 * Original function by Dave Perrett
+		 *
+		 * @param $json
+		 *
+		 * @return string
+		 */
+		function json_pretty( $json ) {
+
+			$formatted_result = '';
+			$position         = 0;
+			$string_length    = strlen( $json );
+			$indent_string    = '  ';
+			$prev_character   = '';
+			$end_of_quotes    = true;
+
+			for ( $i = 0; $i <= $string_length; $i ++ ) {
+
+				// Grab the next character in the string.
+				$character = substr( $json, $i, 1 );
+
+				// Are we inside a quoted string?
+				if ( $character == '"' && $prev_character != '\\' ) {
+					$end_of_quotes = ! $end_of_quotes;
+
+					// If this character is the end of an element,
+					// output a new line and indent the next line.
+				} else if ( ( $character == '}' || $character == ']' ) && $end_of_quotes ) {
+					$formatted_result .= PHP_EOL;
+					$position --;
+					for ( $j = 0; $j < $position; $j ++ ) {
+						$formatted_result .= $indent_string;
+					}
+				}
+
+				// Add the character to the result string.
+				$formatted_result .= $character;
+
+				// If the last character was the beginning of an element,
+				// output a new line and indent the next line.
+				if ( ( $character == ',' || $character == '{' || $character == '[' ) && $end_of_quotes ) {
+					$formatted_result .= PHP_EOL;
+					if ( $character == '{' || $character == '[' ) {
+						$position ++;
+					}
+
+					for ( $j = 0; $j < $position; $j ++ ) {
+						$formatted_result .= $indent_string;
+					}
+				}
+
+				$prev_character = $character;
+			}
+
+			return $formatted_result;
 		}
 	}
 }

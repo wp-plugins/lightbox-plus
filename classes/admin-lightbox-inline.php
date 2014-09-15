@@ -48,8 +48,8 @@
 	<th style="text-align:center;"><b><?php _e( 'Position', 'lightboxplus' ); ?></b><br />
 
 		<div style="font-size:8px;line-height:9px;"><?php _e( 'Top', 'lightboxplus' ); ?>
-			<br /><?php _e( 'Right, Bottom', 'lightboxplus' ); ?>
-			<br /><?php _e( 'Left', 'lightboxplus' ); ?></div>
+			<br /><?php _e( 'Right, Left', 'lightboxplus' ); ?>
+			<br /><?php _e( 'Bottom', 'lightboxplus' ); ?></div>
 	</th>
 	<th style="text-align:center;"><b><?php _e( 'Fixed</b>', 'lightboxplus' ); ?></th>
 	<th style="text-align:center;"><b><?php _e( 'Auto Open', 'lightboxplus' ); ?></b></th>
@@ -111,7 +111,7 @@ for ( $i = 1; $i <= $g_lbp_base_options['inline_num']; $i ++ ) {
 			} ?>" title="<?php _e( "Name for the <div id='' which the inline content number $i. is contained in. DEFAULT: lbp-inline-href-$i", "lightboxplus" ) ?>" />
 		</td>
 		<td align="center">
-			<select name="inline_transition[<?php echo $i; ?>]" id="inline_transition_<?php echo $i; ?>" title="<?php _e( "Specifies the transition type for inline lightbox number $i. Can be set to 'elastic', 'fade', or 'none'. DEFAULT: Elastic", "lightboxplus" ) ?>>
+			<select name="inline_transition[<?php echo $i; ?>]" id="inline_transition_<?php echo $i; ?>" title="<?php _e( "Specifies the transition type for inline lightbox number $i. Can be set to 'elastic', 'fade', or 'none'. DEFAULT: Elastic", "lightboxplus" ) ?>">
 				<option value="elastic"<?php if ( isset( $inline_transitions[ $i ] ) && $inline_transitions[ $i ] == 'elastic' ) {
 					echo ' selected="selected"';
 				}
@@ -190,20 +190,22 @@ for ( $i = 1; $i <= $g_lbp_base_options['inline_num']; $i ++ ) {
 				echo '';
 			} else {
 				echo $inline_position_tops[ $i ];
-			} ?>"title="<?php _e( "Accepts a pixel or percent value (50, 50px, 10%). Controls vertical positioning for inline lightbox $i instead of using the default position of being centered in the viewport. DEFAULT: null", "lightboxplus" ) ?>" /><br />
+			} ?>"title="<?php _e( "Accepts a pixel or percent value (50, 50px, 10%). Controls vertical positioning for inline lightbox $i instead of using the default position of being centered in the viewport. DEFAULT: null", "lightboxplus" ) ?>" />
+
+			<br />
 			<input type="text" size="5" name="inline_position_right[<?php echo $i; ?>]" id="inline_position_right_<?php echo $i; ?>" value="<?php if ( empty( $inline_position_rights[ $i ] ) ) {
 				echo '';
 			} else {
 				echo $inline_position_rights[ $i ];
-			} ?>" title="<?php _e( "Accepts a pixel or percent value (50, 50px, 10%). Controls horizontal positioning for inline lightbox $i instead of using the default position of being centered in the viewport. DEFAULT: null", "lightboxplus" ) ?>" /><input type="text" size="5" name="inline_position_bottom_<?php echo $i; ?>" id="inline_position_bottom_<?php echo $i; ?>" value="<?php if ( empty( $inline_position_bottoms[ $i ] ) ) {
-				echo '';
-			} else {
-				echo $inline_position_bottoms[ $i ];
-			} ?>" title="<?php _e( "Accepts a pixel or percent value (50, 50px, 10%). Controls horizontal positioning for inline lightbox $i instead of using the default position of being centered in the viewport. DEFAULT: null", "lightboxplus" ) ?>" /><br />
-			<input type="text" size="5" name="inline_position_left[<?php echo $i; ?>]" id="inline_position_left_<?php echo $i; ?>" value="<?php if ( empty( $inline_position_lefts[ $i ] ) ) {
+			} ?>" title="<?php _e( "Accepts a pixel or percent value (50, 50px, 10%). Controls horizontal positioning for inline lightbox $i instead of using the default position of being centered in the viewport. DEFAULT: null", "lightboxplus" ) ?>" /><input type="text" size="5" name="inline_position_left[<?php echo $i; ?>]" id="inline_position_left_<?php echo $i; ?>" value="<?php if ( empty( $inline_position_lefts[ $i ] ) ) {
 				echo '';
 			} else {
 				echo $inline_position_lefts[ $i ];
+			} ?>" title="<?php _e( "Accepts a pixel or percent value (50, 50px, 10%). Controls horizontal positioning for inline lightbox $i instead of using the default position of being centered in the viewport. DEFAULT: null", "lightboxplus" ) ?>" /><br />
+			<input type="text" size="5" name="inline_position_bottom[<?php echo $i; ?>]" id="inline_position_bottom_<?php echo $i; ?>" value="<?php if ( empty( $inline_position_bottoms[ $i ] ) ) {
+				echo '';
+			} else {
+				echo $inline_position_bottoms[ $i ];
 			} ?>" title="<?php _e( "Accepts a pixel or percent value (50, 50px, 10%). Controls vertical positioning for inline lightbox $i instead of using the default position of being centered in the viewport. DEFAULT: null", "lightboxplus" ) ?>" />
 		</td>
 		<?php

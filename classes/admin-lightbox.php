@@ -188,7 +188,7 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 				<?php _e( 'Example Style', 'lightboxplus' ) ?>:
 			</th>
 			<td>
-				<div id="lbp-style-screenshot" title="<?php _e( 'Example showing the look and feel of the selected style', 'lightboxplus' ) ?>">
+				<div id="lbp-style-screenshot" class="lbp-help" title="<?php _e( 'Example showing the look and feel of the selected style', 'lightboxplus' ) ?>">
 					<?php
 					if ( $g_lbp_base_options['use_custom_style'] == 1 ) {
 						$style_path_url = LBP_CUSTOM_STYLE_URL;
@@ -331,20 +331,23 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" valign="top" id="lbp_detail"><pre>
+			<td colspan="2" valign="top" id="lbp_detail">
 				<?php
-				echo json_encode( $g_lbp_base_options, JSON_PRETTY_PRINT );
-				echo json_encode( $g_lbp_primary_options, JSON_PRETTY_PRINT );
+				echo "<h4>Lightbox Plus Colorbox Basic Settings - Raw<h4>";
+				echo '<pre>'.$this->json_pretty(json_encode( $g_lbp_base_options )).'</pre>';
+				echo "<h4>Lightbox Plus Colorbox Primary Settings - Raw<h4>";
+				echo '<pre>'.$this->json_pretty(json_encode( $g_lbp_primary_options )).'</pre>';
 				$secondary_init = get_option( 'lightboxplus_init_secondary' );
 				if ( isset( $secondary_init ) && $secondary_init == 1 ) {
-					echo json_encode( $g_lbp_secondary_options, JSON_PRETTY_PRINT );
+					echo "<h4>Lightbox Plus Colorbox Secondary Settings - Raw<h4>";
+					echo '<pre>'.$this->json_pretty(json_encode( $g_lbp_secondary_options )).'</pre>';
 				}
 				$inline_init = get_option( 'lightboxplus_init_inline' );
 				if ( isset( $inline_init ) && $inline_init == 1 ) {
-					echo json_encode( $g_lbp_inline_options, JSON_PRETTY_PRINT );
+					echo "<h4>Lightbox Plus Colorbox Primary Settings - Raw<h4>";
+					echo '<pre>'.$this->json_pretty(json_encode( $g_lbp_inline_options )).'</pre>';
 				}
 				?>
-				</pre>
 			</td>
 		</tr>
 		</tbody>
@@ -916,7 +919,7 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 			<td>
 				<h4><?php _e( 'Basic Usage of Lightbox Plus Colorbox' ); ?></h4>
 
-				<p><?php _e( 'All of the settings described here also apply to the secondary lightbox', 'lightboxplus' ) ?></p>
+				<p><?php _e( 'All of the settings described here also apply to the secondary lightbox.  <span class="lbp-help" title="Hover over each settings item on the form for more information.">Hover</span> over each settings item on the form for more information.', 'lightboxplus' ) ?></p>
 				<h5 class="subhelp"><?php _e( 'General Tab', 'lightboxplus' ) ?></h5>
 
 				<p><?php _e( 'Lets you specify basic functions of how Lightbox Plus Colorbox works.', 'lightboxplus' ) ?></p>

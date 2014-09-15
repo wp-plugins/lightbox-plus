@@ -376,18 +376,21 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 					}
 
 					if ( isset( $_POST['use_inline'] ) && isset( $_POST['inline_num'] ) ) {
+						$lbp_base_options_current   = get_option( 'lightboxplus_options_base' );
+						$lbp_inline_options_current = get_option( 'lightboxplus_options_inline' );
 
-						$lbp_base_options_current   = get_option( $this->lbp_options_base_name );
-						$lbp_inline_options_current = get_option( $this->lbp_options_inline_name );
-
-						if ( $_POST['inline_num'] > $g_lbp_base_options['inline_num'] ) {
+						if ( $_POST['inline_num'] > $lbp_base_options_current['inline_num'] ) {
 							$lbp_inline_options_new = $this->lbp_inline_init( $_POST['inline_num'] );
 							$g_lbp_inline_options   = array_replace_recursive( $lbp_inline_options_new, $lbp_inline_options_current );
 							update_option( 'lightboxplus_options_inline', $g_lbp_inline_options );
-						} elseif ( $_POST['inline_num'] < $lbp_base_options_current['inline_num'] ) {
+						} elseif ( $lbp_base_options_current['inline_num'] > $_POST['inline_num'] ) {
 							foreach ( $lbp_inline_options_current as $key => $value ) {
-								array_trim($value, ( $lbp_base_options_current['inline_num'] - $_POST['inline_num'] ));
-								$g_lbp_inline_options[ $key ] = $value;
+//								for ( $i = 1; $i <= ( $lbp_base_options_current['inline_num'] - $_POST['inline_num'] ); $i ++ ) {
+//									array_pop( $value );
+//								}
+
+								$g_lbp_inline_options[ $key ] = $this->lbp_array_trim( $value, ( $lbp_base_options_current['inline_num'] - $_POST['inline_num'] ) );
+//								$g_lbp_inline_options[ $key ] = $value;
 							}
 
 							update_option( 'lightboxplus_options_inline', $g_lbp_inline_options );
@@ -517,23 +520,23 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 
 						if ( $g_lbp_base_options['use_inline'] && isset( $g_lbp_base_options['inline_num'] ) ) {
 							for ( $i = 1; $i <= $g_lbp_base_options['inline_num']; $i ++ ) {
-								$inline_links[]            = $_POST["inline_link"][ $i ];
-								$inline_hrefs[]            = $_POST["inline_href"][ $i ];
-								$inline_transitions[]      = $_POST["inline_transition"][ $i ];
-								$inline_speeds[]           = $_POST["inline_speed"][ $i ];
-								$inline_widths[]           = $_POST["inline_width"][ $i ];
-								$inline_heights[]          = $_POST["inline_height"][ $i ];
-								$inline_inner_widths[]     = $_POST["inline_inner_width"][ $i ];
-								$inline_inner_heights[]    = $_POST["inline_inner_height"][ $i ];
-								$inline_max_widths[]       = $_POST["inline_max_width"][ $i ];
-								$inline_max_heights[]      = $_POST["inline_max_height"][ $i ];
-								$inline_position_tops[]    = $_POST["inline_position_top"][ $i ];
-								$inline_position_rights[]  = $_POST["inline_position_right"][ $i ];
-								$inline_position_bottoms[] = $_POST["inline_position_bottom"][ $i ];
-								$inline_position_lefts[]   = $_POST["inline_position_left"][ $i ];
-								$inline_fixeds[]           = $_POST["inline_fixed"][ $i ];
-								$inline_opens[]            = $_POST["inline_open"][ $i ];
-								$inline_opacitys[]         = $_POST["inline_opacity"][ $i ];
+								$inline_links[ $i ]            = $_POST["inline_link"][ $i ];
+								$inline_hrefs[ $i ]            = $_POST["inline_href"][ $i ];
+								$inline_transitions[ $i ]      = $_POST["inline_transition"][ $i ];
+								$inline_speeds[ $i ]           = $_POST["inline_speed"][ $i ];
+								$inline_widths[ $i ]           = $_POST["inline_width"][ $i ];
+								$inline_heights[ $i ]          = $_POST["inline_height"][ $i ];
+								$inline_inner_widths[ $i ]     = $_POST["inline_inner_width"][ $i ];
+								$inline_inner_heights[ $i ]    = $_POST["inline_inner_height"][ $i ];
+								$inline_max_widths[ $i ]       = $_POST["inline_max_width"][ $i ];
+								$inline_max_heights[ $i ]      = $_POST["inline_max_height"][ $i ];
+								$inline_position_tops[ $i ]    = $_POST["inline_position_top"][ $i ];
+								$inline_position_rights[ $i ]  = $_POST["inline_position_right"][ $i ];
+								$inline_position_bottoms[ $i ] = $_POST["inline_position_bottom"][ $i ];
+								$inline_position_lefts[ $i ]   = $_POST["inline_position_left"][ $i ];
+								$inline_fixeds[ $i ]           = $_POST["inline_fixed"][ $i ];
+								$inline_opens[ $i ]            = $_POST["inline_open"][ $i ];
+								$inline_opacitys[ $i ]         = $_POST["inline_opacity"][ $i ];
 							}
 						}
 
