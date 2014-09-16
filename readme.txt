@@ -14,7 +14,7 @@ Lightbox Plus Colorbox permits users to view larger versions of images, simple s
 
 Lightbox Plus Colorbox implements Colorbox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">Colorbox</a> was created by Jack Moore and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.  Lightbox Plus Colorbox for WordPress implements Colorbox as a lightbox image overlay tool for WordPress. Colorbox was created by Jack Moore and is licensed under the MIT License. Lightbox Plus Colorbox permits users to view larger versions of images without having to leave the current page. Lightbox is able to add a lightbox to WordPress gallery images, display simple slide shows, video, forms and external content in overlays. The use of the dark or light background, which dims the page over which the image has been overlaid, also serves to highlight the image or video being viewed. Lightbox Plus Colorbox captures the image title for display in the overlay.
 
-Lightbox Plus Colorbox uses WordPress' built in jQuery library. Lightbox Plus Colorbox also uses the <a href="http://simplehtmldom.sourceforge.net/" title="PHP Simple HTML DOM Parser">PHP Simple HTML DOM Parser</a> helper class to navigate page content for inserting the Lightbox attibutes into elements.
+Lightbox Plus Colorbox uses WordPress' built in jQuery library. Lightbox Plus Colorbox also uses the <a href="http://simplehtmldom.sourceforge.net/" title="PHP Simple HTML DOM Parser">PHP Simple HTML DOM Parser</a> helper class to navigate page content for inserting the Lightbox attributes into elements.
 
 NOTE: Lightbox Plus Colorbox is undergoing a complete rewrite to improve performance and bring it in line with the latest WordPress coding standard.  This will be release as with a new version matching the latest version of WordPress when released.
 
@@ -32,7 +32,7 @@ You can get community support for Lightbox Plus Colorbox via the <a href="http:/
 
 Server
 
-* WordPress 3.6+ (May word with earlier versions)
+* WordPress 3.6+ (May work with earlier versions)
 * PHP 5+ (Required)
  * PHP mbstring extension (preferred but no longer required)
 * jQuery 1.4.3+
@@ -129,7 +129,7 @@ Yes it probably does, the problems may be the same as above or there may be a co
 
 = Does Lightbox Plus Colorbox work with PHP 4? If not, why not? =
 
-No it doesn't.  PHP 4 reached end of life on August 8th 2008 (about 6 years ago.)  WordPress no longer supports PHP 4 and all plugin developers are encourage to follow.  The best solution at this time is to ask your host provider to upgrade to PHP 5.
+No it doesn't.  PHP 4 reached end of life on August 8th 2008 (about 6 years ago.)  WordPress no longer supports PHP 4 and all plugin developers are encouraged to follow.  The best solution at this time is to ask your host provider to upgrade to PHP 5.
 
 You will know that Lightbox Plus Colorbox is not working because of PHP if you receive the following error:
 
@@ -155,7 +155,7 @@ Yes it does.  There are few simple requirements however.  You must set <strong>L
 
 = When resetting/re-initializing LBP the setting do not appear correctly when the page reloads, what gives? =
 
-This problem is only apparent in Chrome and Opera.  It seems to works fine in Internet Explorer, Firefox and Safari.  There are some browser related issues and I am investigating the problem at this time.  For Chrome the settings are being saved but not displayed immediately, click on the Lightbox Plus Colorbox link under appearance and you will see the current settings.  Opera for whatever reason is completely failing to save re-initialization settings, you must manually set and save them or use another browser.  And, no, it doesn't make sense since it's server side activity.
+This problem is only apparent in Chrome and Opera.  It seems to works fine in Internet Explorer, Firefox and Safari.  There are some browser related issues and I am investigating the problem at this time.  For Chrome the settings are being saved but not displayed immediately, click on the Lightbox Plus Colorbox link under appearance and you will see the current settings.  Opera for whatever reason is completely failing to save re-initialization settings; you must manually set and save them or use another browser.  And, no, it doesn't make sense since its server side activity.
 
 = Additional FAQs from Colorbox =
 
@@ -175,7 +175,7 @@ You can get community support for Lightbox Plus Colorbox via the <a href="http:/
 * No support for iPad (if someone wants to donate an iPad to me I will guarantee support)
  * It generally seems to work though I just don't support it as I don't have an iPad.
 * In some instances performance may be slow in older versions IE - this may be due to plugin conflicts or slow JavaScript performance in IE.
-* Lightboxed video does not seem to work in IE on locally installed sites, for example viewing in IE 7.0 while running XAMPP, this seems to be a Windows only issue.
+* Lightboxed video does not seem to work in IE on locally installed sites, for example viewing in IE 7.0 while running XAMPP; this seems to be a Windows only issue.
 
 = Plugin Conflicts =
 
@@ -271,7 +271,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 * Added option to generate HTML5 valid code.  Checkbox under Base Settings -> Advanced.  
  * When checked will add data- instead if rel attributes.
  * Can specify specify data- attribute so it can be site specific
- * Does not effect inline lightboxes which were class based already
+ * Does not affect inline lightboxes which were class based already
  * Option located in first tab (General) of base settings
 * Fixed (hopefully) all unset variable notices
  * Please notify me if you still seem them
@@ -340,7 +340,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 
 = 2.5 =
 * Added positioning options
- * Absolute top, right, bottom, left positioning.  Now able to specify horizontal and vertical position in viewport as opposed to center only.
+ * Absolute top, right, bottom, left positioning.  You are now able to specify horizontal and vertical position in viewport as opposed to center only.
  * Fixed positioning that allows lightbox stays on page when scrolled.
 * Rebuilt interface
  * Changed interface to a combination of collapsible and tabbed to make it more concise and usable
@@ -348,7 +348,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Added enhanced instructions and details of usage.
  * Improved and updated demos and tests.
 * Page/Post Options
- * Auto launch on page.  If auto-launch is set Lightbox Plus will automatically open the first lightboxed item on the page.
+ * Auto launch on page.  If Lightbox Plus Colorbox auto-launch is set Lightbox Plus will automatically open the first lightboxed item on the page.
  * Per page loading. If per page options are set Lightbox JavaScript will only load for specified pages.
  * Blog/posts only loading. if per page options are set Lightbox JavaScript will only load for specified pages. 
 * Image grouping
@@ -422,8 +422,8 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 * Updated Colorbox to version 1.3.17
  * Added properties "top", "bottom", "left" and "right" to specify a position relative to the viewport, rather than using the default centering.
  * Added property "data" to specify GET or POST data when using Ajax.  Colorbox's ajax functionality is handled by jQuery's .load() method, so the data property works the same way as it does with .load().
- * Added property "fixed" which can provide fixed positioning for Colorbox, rather than absolute positioning.  This will allow Colorbox to remain in a fixed position within the visitors viewport, despite scrolling.  IE6 support for this was not added, it will continue to use the default absolute positioning.
- * Fixed ClearType problem with IE7.
+ * Added property "fixed" which can provide fixed positioning for Colorbox, rather than absolute positioning.  This will allow Colorbox to remain in a fixed position within the visitor’s viewport, despite scrolling.  IE6 support for this was not added, it will continue to use the default absolute positioning.
+ * Fixed Clear Type problem with IE7.
  * Minor fixes.
 * Updated Colorbox to version 1.3.16  
  * Better IE related transparency workarounds.  IE7 and up now uses the same background image sprite as other browsers.
@@ -519,7 +519,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Added better feedback for users
 * Added backend test/demo areas
  * Allows user to test lightbox settings in the admin panel
- * Provides demos and examples for secondary lightbox using video, external webpages and interactive flash
+ * Provides demos and examples for secondary lightbox using video, external web pages and interactive flash
  * Provides demos and examples for inline lightbox using inline content
 * Fixed issue with saving setting and changes not being reflected.
 * Updated Colorbox to version 1.3.8
@@ -544,7 +544,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 
 = 1.6.9.6 =
 * Skipping of auto-lightboxing of second image when image links were next to each other in html source should be fixed. At least in my testing.
-* Fixed do not display image titles to work with text links.
+* Fixed Do Not Display Image Titles to work with text links.
  * Note - must already not have title tag in links elements.
 * Fixed ability to use class method in text only links and gallery.
 * Added ability to specify the class name used with class method.  Defaults to cboxModal for the class.
@@ -758,3 +758,4 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 == More Information ==
 
 <a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">FAQ</a> | <a href="http://wordpress.org/support/plugin/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/23Systems">Add Facebook Page</a>
+

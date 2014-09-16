@@ -34,7 +34,6 @@ if ( $handle = opendir( $st_style_path ) ) {
 	closedir( $handle );
 }
 
-
 /**
  * Remove following line after a few versions or 2.6 is the prevelent version
  */
@@ -49,16 +48,14 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 
 		<div class="inside toggle">
 			<div class="donate">
-				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 					<input type="hidden" name="cmd" value="_s-xclick">
 					<input type="hidden" name="hosted_button_id" value="BKVLWU2KWRNAG">
-					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 				</form>
-				<h4>&mdash; or try a 23Systems affiliate program &mdash;</h4>
-				<a href="http://6e772-ccdd75pi48yf3kdqfke0.hop.clickbank.net/?tid=DIGWP" target="_top" name="Digging into WordPress - Really Learn It"><img src="<?php echo LBP_ASSETS_URL . '/images/aflt-100x26-digwp.jpg' ?>" alt="Digging into WordPress - Really Learn It" border="0" /></a>
-				<a href="https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=107849" target="ejejcsingle" name=""><img src="<?php echo LBP_ASSETS_URL . '/images/aflt-100x26-grvfrm.jpg' ?>" alt="Gravity Forms - WordPress Form Management" border="0" /></a><br />
-				<a target="_blank" href="http://www.shareasale.com/r.cfm?b=241697&u=734275&m=28169&urllink=&afftrack="><img src="<?php echo LBP_ASSETS_URL . '/images/aflt-100x26-genesis.jpg' ?>" alt="Professional Designed WordPress Themes" border="0" /></a>
-				<a href="https://www.e-junkie.com/ecom/gb.php?ii=195647&c=ib&aff=107849&cl=12635" target="ejejcsingle" name="How to be a Rockstar WordPress Designer"><img src="<?php echo LBP_ASSETS_URL . '/images/aflt-100x26-rckstr.jpg' ?>" alt="How to be a Rockstar WordPress Designer" border="0" /></a>
+				<hr class="lbp_hr" />
+				<h3><a href="http://premium.wpmudev.org/blog/donate-1-to-every-free-wordpress-plugin-you-use/" title="Why Donate?">Why Should I Donate?</a></h3>
 			</div>
 			<h4><?php _e( 'Thank you for downloading and installing Lightbox Plus Colorbox for WordPress', 'lightboxplus' ); ?></h4>
 
@@ -1050,16 +1047,15 @@ if ( $g_lbp_base_options['use_inline'] ) {
 		<h3><?php _e( 'About Lightbox Plus Colorbox for WordPress', 'lightboxplus' ); ?>: </h3>
 
 		<div class="donate">
-			<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="BKVLWU2KWRNAG">
-				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 			</form>
-			<h4>&mdash; or try a 23Systems affiliate program &mdash;</h4>
-			<a href="http://6e772-ccdd75pi48yf3kdqfke0.hop.clickbank.net/?tid=DIGWP" target="_top" name="Digging into WordPress - Really Learn It"><img src="<?php echo LBP_ASSETS_URL . '/images/aflt-100x26-digwp.jpg' ?>" alt="Digging into WordPress - Really Learn It" border="0" /></a>
-			<a href="https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=107849" target="ejejcsingle" name=""><img src="<?php echo LBP_ASSETS_URL . '/images/aflt-100x26-grvfrm.jpg' ?>" alt="Gravity Forms - WordPress Form Management" border="0" /></a><br />
-			<a target="_blank" href="http://www.shareasale.com/r.cfm?b=241698&u=734275&m=28169&urllink=&afftrack="><img src="<?php echo LBP_ASSETS_URL . '/images/aflt-100x26-genesis.jpg' ?>" alt="Professionally Designed WordPress Themes" border="0" /></a>
-			<a href="https://www.e-junkie.com/ecom/gb.php?ii=195647&c=ib&aff=107849&cl=12635" target="ejejcsingle" name="How to be a Rockstar WordPress Designer"><img src="<?php echo LBP_ASSETS_URL . '/images/aflt-100x26-rckstr.jpg' ?>" alt="How to be a Rockstar WordPress Designer" border="0" /></a>
+
+			<hr class="lbp_hr" />
+			<h3><a href="http://premium.wpmudev.org/blog/donate-1-to-every-free-wordpress-plugin-you-use/" title="Why Donate?">Why Should I Donate?</a></h3>
 		</div>
 		<h4><?php _e( 'Thank you for downloading and installing Lightbox Plus Colorbox for WordPress', 'lightboxplus' ); ?></h4>
 

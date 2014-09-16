@@ -322,52 +322,41 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 		 */
 		function json_pretty( $json ) {
 
-			$formatted_result = '';
+			$formatted_json = '';
 			$position         = 0;
-			$string_length    = strlen( $json );
-			$indent_string    = '  ';
 			$prev_character   = '';
 			$end_of_quotes    = true;
 
-			for ( $i = 0; $i <= $string_length; $i ++ ) {
-
-				// Grab the next character in the string.
+			for ( $i = 0; $i <= strlen( $json ); $i ++ ) {
 				$character = substr( $json, $i, 1 );
 
-				// Are we inside a quoted string?
 				if ( $character == '"' && $prev_character != '\\' ) {
 					$end_of_quotes = ! $end_of_quotes;
-
-					// If this character is the end of an element,
-					// output a new line and indent the next line.
 				} else if ( ( $character == '}' || $character == ']' ) && $end_of_quotes ) {
-					$formatted_result .= PHP_EOL;
+					$formatted_json .= PHP_EOL;
 					$position --;
 					for ( $j = 0; $j < $position; $j ++ ) {
-						$formatted_result .= $indent_string;
+						$formatted_json .= '  ';
 					}
 				}
 
-				// Add the character to the result string.
-				$formatted_result .= $character;
+				$formatted_json .= $character;
 
-				// If the last character was the beginning of an element,
-				// output a new line and indent the next line.
 				if ( ( $character == ',' || $character == '{' || $character == '[' ) && $end_of_quotes ) {
-					$formatted_result .= PHP_EOL;
+					$formatted_json .= PHP_EOL;
 					if ( $character == '{' || $character == '[' ) {
 						$position ++;
 					}
 
 					for ( $j = 0; $j < $position; $j ++ ) {
-						$formatted_result .= $indent_string;
+						$formatted_json .= '  ';
 					}
 				}
 
 				$prev_character = $character;
 			}
 
-			return $formatted_result;
+			return $formatted_json;
 		}
 	}
 }

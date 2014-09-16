@@ -37,6 +37,7 @@ global $g_lbp_messages;
 global $g_lbp_message_title;
 global $g_lbp_plugin_page;
 
+global $g_lbp_old_options;
 global $g_lbp_base_options;
 global $g_lbp_primary_options;
 global $g_lbp_secondary_options;
@@ -180,6 +181,13 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			global $g_lbp_primary_options;
 			global $g_lbp_secondary_options;
 			global $g_lbp_inline_options;
+			global $g_lbp_old_options;
+
+			$g_lbp_old_options = get_option('lightboxplus_options');
+			if (isset($g_lbp_old_options)) {
+				$this->lbp_convert($g_lbp_old_options);
+				update_option('lightboxplus_options_old',$g_lbp_old_options);
+			}
 
 			$g_lbp_base_options      = get_option( $this->lbp_options_base_name );
 			$g_lbp_primary_options   = get_option( $this->lbp_options_primary_name );
@@ -695,7 +703,8 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
                         <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Twitter</a> |
                         <a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">Facebook</a> |
                         <a href="http://www.linkedin.com/company/23systems" title="23Systems of LinkedIn">LinkedIn</a> |
-                    <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+</a>' ); ?></h4>
+                    <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+</a>' ); ?> |
+					</h4>
 				</div>
 				<?php
 				require( LBP_CLASS_PATH . '/admin-lightbox.php' );
