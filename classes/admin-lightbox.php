@@ -118,7 +118,7 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 			</th>
 			<td>
 				<select name="inline_num" id="inline_num" title="<?php _e( 'Select the number of inline lightboxes (up to 1000). There is a performance hit after about 100. DEFAULT: 5', 'lightboxplus' ) ?>">
-					<?php for ( $i = 5; $i <= 50; $i += 5 ) {
+					<?php for ( $i = 5; $i <= 100; $i += 5 ) {
 						?>
 						<option value="<?php echo $i; ?>"<?php selected( $i, $g_lbp_base_options['inline_num'] ); ?>><?php echo $i; ?></option>
 					<?php

@@ -55,7 +55,8 @@ $g_lbp_message_title = '';
 
 DEFINE( 'LBP_ADMIN_PAGE', 'themes.php?page=lightboxplus' );
 
-DEFINE( 'LBP_VERSION', '2.7' );
+DEFINE( 'LBP_VERSION', '2.8' );
+DEFINE( 'LBP_PREV_VERSION', '2.7' );
 DEFINE( 'LBP_SHD_VERSION', '1.5 rev 202' );
 DEFINE( 'LBP_COLORBOX_VERSION', '1.5.14' );
 DEFINE( 'LBP_SHORTCODE_VERSION', '3.9+' );
@@ -97,9 +98,38 @@ register_uninstall_hook( __FILE__, 'uninstall_lbp' );
  */
 if ( ! function_exists( 'activate_lbp' ) ) {
 	function activate_lbp() {
-		$lbp_activate = new LBP_Init();
-		$lbp_activate->lbp_install();
-		unset( $lbp_activate );
+		$g_lbp_old_version = get_option( 'lightboxplus_version' );
+		if ( ! isset( $g_lbp_old_version ) || false == $g_lbp_old_version) {
+			/**
+			 * To update versions greater than 1.4 up to 2.7 to new database schema
+			 */
+			$g_lbp_old_options = get_option( 'lightboxplus_options' );
+			if ( isset( $g_lbp_old_options ) ) {
+				require_once( LBP_CLASS_PATH . '/class-update.php' );
+				$lbp_update = new LBP_Update();
+				$lbp_update->lbp_convert( $g_lbp_old_options );
+				update_option( 'lightboxplus_options_old', $g_lbp_old_options );
+				unset( $lbp_update );
+
+				return true;
+			} else {
+				return false;
+			}
+		} elseif ( isset( $g_lbp_old_version ) && $g_lbp_old_version >= LBP_VERSION ) {
+			/**
+			 * For future updates
+			 */
+			return true;
+		} else {
+			/**
+			 * If none of the above - initilize settings.
+			 */
+			$lbp_activate = new LBP_Init();
+			$lbp_activate->lbp_install();
+			unset( $lbp_activate );
+
+			return true;
+		}
 	}
 }
 
@@ -183,11 +213,6 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			global $g_lbp_inline_options;
 			global $g_lbp_old_options;
 
-			$g_lbp_old_options = get_option('lightboxplus_options');
-			if (isset($g_lbp_old_options)) {
-				$this->lbp_convert($g_lbp_old_options);
-				update_option('lightboxplus_options_old',$g_lbp_old_options);
-			}
 
 			$g_lbp_base_options      = get_option( $this->lbp_options_base_name );
 			$g_lbp_primary_options   = get_option( $this->lbp_options_primary_name );
