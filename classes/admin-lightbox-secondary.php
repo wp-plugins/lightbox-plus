@@ -16,7 +16,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 <!-- Secondary Lightbox Settings -->
 <form name="lightboxplus-settings-secondary" id="lightboxplus-settings-secondary" method="post" action="<?php echo LBP_ADMIN_PAGE; ?>">
 <input type="hidden" name="action" value="secondary" />
-<input type="hidden" name="sub" id="sub" value="secondary" />
+<input type="hidden" name="sub" id="secondary-sub" value="secondary" />
 
 <div id="poststuff-secondary" class="lbp poststuff">
 <div class="postbox"> <!-- add  close-me  to class to set auto closed -->
@@ -27,7 +27,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 <ul>
 	<li><a href="#slbp-tabs-1"><?php _e( 'General', 'lightboxplus' ); ?></a></li>
 	<li><a href="#slbp-tabs-2"><?php _e( 'Size', 'lightboxplus' ); ?></a></li>
-	<li><a href="#slbp-tabs-3"><?php _e( 'Postition', 'lightboxplus' ); ?></a></li>
+	<li><a href="#slbp-tabs-3"><?php _e( 'Position', 'lightboxplus' ); ?></a></li>
 	<li><a href="#slbp-tabs-4"><?php _e( 'Interface', 'lightboxplus' ); ?></a></li>
 	<li><a href="#slbp-tabs-5"><?php _e( 'Slideshow', 'lightboxplus' ); ?></a></li>
 	<li><a href="#slbp-tabs-6"><?php _e( 'Other', 'lightboxplus' ); ?></a></li>
@@ -59,17 +59,14 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 					<?php
 					for ( $i = 0; $i <= 5001; ) {
 						?>
-						<option value="<?php echo $i; ?>"<?php
-						if ( $g_lbp_secondary_options['speed_sec'] == strval( $i ) ) {
-							echo ' selected="selected"';
-						} ?>><?php echo $i; ?></option>
+						<option value="<?php echo $i; ?>"<?php selected($i, $g_lbp_secondary_options['speed_sec']); ?>><?php echo $i; ?></option>
 						<?php
 						if ( 2000 <= $i ) {
-							$i = $i + 500;
+							$i += 500;
 						} elseif ( 1250 <= $i ) {
-							$i = $i + 250;
+							$i += 250;
 						} else {
-							$i = $i + 50;
+							$i += 50;
 						}
 					}
 					?>
@@ -85,10 +82,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 					<?php
 					for ( $i = 0; $i <= 1.01; $i = $i + .05 ) {
 						?>
-						<option value="<?php echo $i; ?>"<?php if ( $g_lbp_secondary_options['opacity_sec'] == strval( $i ) ) {
-							echo ' selected="selected"';
-						} ?>><?php echo( $i * 100 ); ?>%
-						</option>
+						<option value="<?php echo $i; ?>"<?php selected($i, $g_lbp_secondary_options['opacity_sec']); ?>><?php echo( $i * 100 ); ?>%</option>
 					<?php
 					}
 					?>
@@ -437,17 +431,14 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 					<?php
 					for ( $i = 500; $i <= 20001; ) {
 						?>
-						<option value="<?php echo $i; ?>"<?php
-						if ( $g_lbp_secondary_options['slideshow_speed_sec'] == strval( $i ) ) {
-							echo ' selected="selected"';
-						} ?>><?php echo $i; ?></option>
+						<option value="<?php echo $i; ?>"<?php selected ($i, $g_lbp_secondary_options['slideshow_speed_sec']); ?>><?php echo $i; ?></option>
 						<?php
 						if ( 15000 <= $i ) {
-							$i = $i + 5000;
+							$i += 5000;
 						} elseif ( 10000 <= $i ) {
-							$i = $i + 1000;
+							$i += 1000;
 						} else {
-							$i = $i + 500;
+							$i += 500;
 						}
 					}
 					?>
@@ -498,10 +489,9 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="iframe_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked, specifies that content should be displayed in an iFrame. Must be used when using Lightbox Plus Colorbox to display content from another site.  Can be used to display external web pages, video and more. DEFAULT:  Unchecked', 'lightboxplus'  ) ?>" name="iframe_sec" id="iframe_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['iframe_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( 'If checked, specifies that content should be displayed in an iFrame. Must be used when using Lightbox Plus Colorbox to display content from another site.  Can be used to display external web pages, video and more. DEFAULT:  Checked', 'lightboxplus'  ) ?>" name="iframe_sec" id="iframe_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['iframe_sec'] ); ?> />
 			</td>
 		</tr>
-
 		<tr>
 			<th scope="row">
 				<label for="class_name_sec"><?php _e( 'Secondary Class Name', 'lightboxplus' ) ?></label>:

@@ -33,7 +33,8 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 		/**
 		 * New method to parse page content navigating the dom and replacing found elements with modified HTML to acomodate LBP appropriate HTML
 		 *
-		 * @param mixed $content
+		 * @param $html_content
+		 * @param $unq_id
 		 *
 		 * @return mixed
 		 */

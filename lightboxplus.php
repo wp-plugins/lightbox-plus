@@ -384,7 +384,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			 * Check form submission and update setting
 			 */
 			if ( isset( $_REQUEST['action'] ) ) {
-				if ( $_REQUEST['action'] == 'basic' ) {
+				if ( 'basic' == $_REQUEST['action'] ) {
 					$g_lbp_base_options = array(
 						"lightboxplus_multi" => $_POST['lightboxplus_multi'],
 						"use_inline"         => $_POST['use_inline'],
@@ -435,7 +435,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 
 					update_option( 'lightboxplus_options_base', $g_lbp_base_options );
 
-				} elseif ( $_REQUEST['action'] == 'primary' ) {
+				} elseif ( 'primary' == $_REQUEST['action']) {
 					$g_lbp_primary_options = array(
 						"transition"           => $_POST['transition'],
 						"speed"                => $_POST['speed'],
@@ -483,8 +483,8 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 					);
 					update_option( 'lightboxplus_options_primary', $g_lbp_primary_options );
 
-				} elseif ( $_REQUEST['action'] == 'secondary' ) {
-					if ( $_POST['lightboxplus_multi'] && isset( $_POST['ready_sec'] ) ) {
+				} elseif ( 'secondary' == $_REQUEST['action']) {
+					if ( isset( $_POST['ready_sec'] ) ) {
 						$g_lbp_secondary_options = array(
 							"transition_sec"       => $_POST['transition_sec'],
 							"speed_sec"            => $_POST['speed_sec'],
@@ -530,49 +530,72 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 						}
 
 					}
-				} elseif ( $_REQUEST['action'] == 'inline' ) {
+				} elseif ( 'inline' == $_REQUEST['action']) {
 					$g_lbp_base_options = get_option( $this->lbp_options_base_name );
 					if ( $g_lbp_base_options['use_inline'] && isset( $_POST['ready_inline'] ) ) {
-						$inline_links            = '';
-						$inline_hrefs            = '';
-						$inline_transitions      = '';
-						$inline_speeds           = '';
-						$inline_widths           = '';
-						$inline_heights          = '';
-						$inline_inner_widths     = '';
-						$inline_inner_heights    = '';
-						$inline_max_widths       = '';
-						$inline_max_heights      = '';
-						$inline_position_tops    = '';
-						$inline_position_rights  = '';
-						$inline_position_bottoms = '';
-						$inline_position_lefts   = '';
-						$inline_fixeds           = '';
-						$inline_opens            = '';
-						$inline_opacitys         = '';
+//						$inline_links            = '';
+//						$inline_hrefs            = '';
+//						$inline_transitions      = '';
+//						$inline_speeds           = '';
+//						$inline_widths           = '';
+//						$inline_heights          = '';
+//						$inline_inner_widths     = '';
+//						$inline_inner_heights    = '';
+//						$inline_max_widths       = '';
+//						$inline_max_heights      = '';
+//						$inline_position_tops    = '';
+//						$inline_position_rights  = '';
+//						$inline_position_bottoms = '';
+//						$inline_position_lefts   = '';
+//						$inline_fixeds           = '';
+//						$inline_opens            = '';
+//						$inline_reuses           = '';
+//						$inline_opacitys         = '';
+
+//						if ( $g_lbp_base_options['use_inline'] && isset( $g_lbp_base_options['inline_num'] ) ) {
+//							for ( $i = 1; $i <= $g_lbp_base_options['inline_num']; $i ++ ) {
+//								$inline_links[ $i ]            = $_POST["inline_link"][ $i ];
+//								$inline_hrefs[ $i ]            = $_POST["inline_href"][ $i ];
+//								$inline_transitions[ $i ]      = $_POST["inline_transition"][ $i ];
+//								$inline_speeds[ $i ]           = $_POST["inline_speed"][ $i ];
+//								$inline_widths[ $i ]           = $_POST["inline_width"][ $i ];
+//								$inline_heights[ $i ]          = $_POST["inline_height"][ $i ];
+//								$inline_inner_widths[ $i ]     = $_POST["inline_inner_width"][ $i ];
+//								$inline_inner_heights[ $i ]    = $_POST["inline_inner_height"][ $i ];
+//								$inline_max_widths[ $i ]       = $_POST["inline_max_width"][ $i ];
+//								$inline_max_heights[ $i ]      = $_POST["inline_max_height"][ $i ];
+//								$inline_position_tops[ $i ]    = $_POST["inline_position_top"][ $i ];
+//								$inline_position_rights[ $i ]  = $_POST["inline_position_right"][ $i ];
+//								$inline_position_bottoms[ $i ] = $_POST["inline_position_bottom"][ $i ];
+//								$inline_position_lefts[ $i ]   = $_POST["inline_position_left"][ $i ];
+//								$inline_fixeds[ $i ]           = $_POST["inline_fixed"][ $i ];
+//								$inline_opens[ $i ]            = $_POST["inline_open"][ $i ];
+//								$inline_reuses[ $i ]           = $_POST["inline_reuse"][ $i ];
+//								$inline_opacitys[ $i ]         = $_POST["inline_opacity"][ $i ];
+//							}
+//						}
 
 						if ( $g_lbp_base_options['use_inline'] && isset( $g_lbp_base_options['inline_num'] ) ) {
-							for ( $i = 1; $i <= $g_lbp_base_options['inline_num']; $i ++ ) {
-								$inline_links[ $i ]            = $_POST["inline_link"][ $i ];
-								$inline_hrefs[ $i ]            = $_POST["inline_href"][ $i ];
-								$inline_transitions[ $i ]      = $_POST["inline_transition"][ $i ];
-								$inline_speeds[ $i ]           = $_POST["inline_speed"][ $i ];
-								$inline_widths[ $i ]           = $_POST["inline_width"][ $i ];
-								$inline_heights[ $i ]          = $_POST["inline_height"][ $i ];
-								$inline_inner_widths[ $i ]     = $_POST["inline_inner_width"][ $i ];
-								$inline_inner_heights[ $i ]    = $_POST["inline_inner_height"][ $i ];
-								$inline_max_widths[ $i ]       = $_POST["inline_max_width"][ $i ];
-								$inline_max_heights[ $i ]      = $_POST["inline_max_height"][ $i ];
-								$inline_position_tops[ $i ]    = $_POST["inline_position_top"][ $i ];
-								$inline_position_rights[ $i ]  = $_POST["inline_position_right"][ $i ];
-								$inline_position_bottoms[ $i ] = $_POST["inline_position_bottom"][ $i ];
-								$inline_position_lefts[ $i ]   = $_POST["inline_position_left"][ $i ];
-								$inline_fixeds[ $i ]           = $_POST["inline_fixed"][ $i ];
-								$inline_opens[ $i ]            = $_POST["inline_open"][ $i ];
-								$inline_opacitys[ $i ]         = $_POST["inline_opacity"][ $i ];
-							}
+							$inline_links            = $_POST["inline_link"];
+							$inline_hrefs            = $_POST["inline_href"];
+							$inline_transitions      = $_POST["inline_transition"];
+							$inline_speeds           = $_POST["inline_speed"];
+							$inline_widths           = $_POST["inline_width"];
+							$inline_heights          = $_POST["inline_height"];
+							$inline_inner_widths     = $_POST["inline_inner_width"];
+							$inline_inner_heights    = $_POST["inline_inner_height"];
+							$inline_max_widths       = $_POST["inline_max_width"];
+							$inline_max_heights      = $_POST["inline_max_height"];
+							$inline_position_tops    = $_POST["inline_position_top"];
+							$inline_position_rights  = $_POST["inline_position_right"];
+							$inline_position_bottoms = $_POST["inline_position_bottom"];
+							$inline_position_lefts   = $_POST["inline_position_left"];
+							$inline_fixeds           = $_POST["inline_fixed"];
+							$inline_opens            = $_POST["inline_open"];
+							$inline_reuses           = $_POST["inline_reuse"];
+							$inline_opacitys         = $_POST["inline_opacity"];
 						}
-
+						
 						$g_lbp_inline_options = array(
 							"inline_links"            => $inline_links,
 							"inline_hrefs"            => $inline_hrefs,
@@ -590,6 +613,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 							"inline_position_lefts"   => $inline_position_lefts,
 							"inline_fixeds"           => $inline_fixeds,
 							"inline_opens"            => $inline_opens,
+							"inline_reuses"           => $inline_reuses,
 							"inline_opacitys"         => $inline_opacitys
 						);
 

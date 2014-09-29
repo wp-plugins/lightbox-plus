@@ -37,7 +37,9 @@ if ( $handle = opendir( $st_style_path ) ) {
 /**
  * Remove following line after a few versions or 2.6 is the prevelent version
  */
-if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options ); }
+if ( isset( $g_lbp_base_options ) ) {
+	$g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options );
+}
 ?>
 <!-- About Lightbox Plus Colorbox for WordPress -->
 <div id="poststuff-about" class="lbp poststuff">
@@ -51,11 +53,13 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 					<input type="hidden" name="cmd" value="_s-xclick">
 					<input type="hidden" name="hosted_button_id" value="BKVLWU2KWRNAG">
-					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
 					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 				</form>
 				<hr class="lbp_hr" />
-				<h3><a href="http://premium.wpmudev.org/blog/donate-1-to-every-free-wordpress-plugin-you-use/" title="Why Donate?">Why Should I Donate?</a></h3>
+				<h3>
+					<a href="http://premium.wpmudev.org/blog/donate-1-to-every-free-wordpress-plugin-you-use/" title="Why Donate?">Why Should I Donate?</a>
+				</h3>
 			</div>
 			<h4><?php _e( 'Thank you for downloading and installing Lightbox Plus Colorbox for WordPress', 'lightboxplus' ); ?></h4>
 
@@ -76,7 +80,7 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 <!-- Settings/Options -->
 <form name="lightboxplus-settings" id="lightboxplus-settings" method="post" action="<?php echo LBP_ADMIN_PAGE; ?>">
 <input type="hidden" name="action" value="basic" />
-<input type="hidden" name="sub" id="sub" value="settings" />
+<input type="hidden" name="sub" id="basic-sub" value="settings" />
 
 <div id="poststuff-settings" class="lbp poststuff">
 <div class="postbox">
@@ -118,10 +122,16 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 			</th>
 			<td>
 				<select name="inline_num" id="inline_num" title="<?php _e( 'Select the number of inline lightboxes (up to 1000). There is a performance hit after about 100. DEFAULT: 5', 'lightboxplus' ) ?>">
-					<?php for ( $i = 5; $i <= 100; $i += 5 ) {
+					<?php
+					for ( $i = 1; $i <= 51; ) {
 						?>
 						<option value="<?php echo $i; ?>"<?php selected( $i, $g_lbp_base_options['inline_num'] ); ?>><?php echo $i; ?></option>
-					<?php
+						<?php
+						if ( 10 <= $i ) {
+							$i += 5;
+						} else {
+							$i += 1;
+						}
 					}
 					?>
 				</select>
@@ -331,18 +341,18 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 			<td colspan="2" valign="top" id="lbp_detail">
 				<?php
 				echo "<h4>Lightbox Plus Colorbox Basic Settings - Raw<h4>";
-				echo '<pre>'.$this->json_pretty(json_encode( $g_lbp_base_options )).'</pre>';
+				echo '<pre>' . $this->json_pretty( json_encode( $g_lbp_base_options ) ) . '</pre>';
 				echo "<h4>Lightbox Plus Colorbox Primary Settings - Raw<h4>";
-				echo '<pre>'.$this->json_pretty(json_encode( $g_lbp_primary_options )).'</pre>';
+				echo '<pre>' . $this->json_pretty( json_encode( $g_lbp_primary_options ) ) . '</pre>';
 				$secondary_init = get_option( 'lightboxplus_init_secondary' );
 				if ( isset( $secondary_init ) && $secondary_init == 1 ) {
 					echo "<h4>Lightbox Plus Colorbox Secondary Settings - Raw<h4>";
-					echo '<pre>'.$this->json_pretty(json_encode( $g_lbp_secondary_options )).'</pre>';
+					echo '<pre>' . $this->json_pretty( json_encode( $g_lbp_secondary_options ) ) . '</pre>';
 				}
 				$inline_init = get_option( 'lightboxplus_init_inline' );
 				if ( isset( $inline_init ) && $inline_init == 1 ) {
 					echo "<h4>Lightbox Plus Colorbox Primary Settings - Raw<h4>";
-					echo '<pre>'.$this->json_pretty(json_encode( $g_lbp_inline_options )).'</pre>';
+					echo '<pre>' . $this->json_pretty( json_encode( $g_lbp_inline_options ) ) . '</pre>';
 				}
 				?>
 			</td>
@@ -370,7 +380,7 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 
 <form name="lightboxplus-settings-primary" id="lightboxplus-settings-primary" method="post" action="<?php echo LBP_ADMIN_PAGE; ?>">
 <input type="hidden" name="action" value="primary" />
-<input type="hidden" name="sub" id="sub" value="primary" />
+<input type="hidden" name="sub" id="primary-sub" value="primary" />
 
 <!-- Primary Lightbox Settings -->
 <div id="poststuff-primary" class="lbp poststuff">
@@ -413,16 +423,14 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 					<?php
 					for ( $i = 0; $i <= 5001; ) {
 						?>
-						<option value="<?php echo $i; ?>"<?php if ( $g_lbp_primary_options['speed'] == strval( $i ) ) {
-							echo ' selected="selected"';
-						} ?>><?php echo $i; ?></option>
+						<option value="<?php echo $i; ?>"<?php selected( $i, $g_lbp_primary_options['speed'] ); ?>><?php echo $i; ?></option>
 						<?php
 						if ( 2000 <= $i ) {
-							$i = $i + 500;
+							$i += 500;
 						} elseif ( 1250 <= $i ) {
-							$i = $i + 250;
+							$i += 250;
 						} else {
-							$i = $i + 50;
+							$i += 50;
 						}
 					}
 					?>
@@ -438,10 +446,7 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 					<?php
 					for ( $i = 0; $i <= 1.01; $i = $i + .05 ) {
 						?>
-						<option value="<?php echo $i; ?>"<?php if ( $g_lbp_primary_options['opacity'] == strval( $i ) ) {
-							echo ' selected="selected"';
-						} ?>><?php echo( $i * 100 ); ?>%
-						</option>
+						<option value="<?php echo $i; ?>"<?php selected( $i, $g_lbp_primary_options['opacity'] ); ?>><?php echo( $i * 100 ); ?>%</option>
 					<?php
 					}
 					?>
@@ -645,13 +650,13 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 <!-- Interface -->
 <div id="plbp-tabs-4">
 	<table class="form-table">
-        <tr>
-            <th scope="row"></th>
-            <td ><strong><?php _e( 'General Interface Options', 'lightboxplus' ) ?></strong></td>
-        </tr>
+		<tr>
+			<th scope="row"></th>
+			<td><strong><?php _e( 'General Interface Options', 'lightboxplus' ) ?></strong></td>
+		</tr>
 		<tr>
 			<th scope="row">
-                <label for="close"><?php _e( 'Close image text', 'lightboxplus' ) ?></label>:
+				<label for="close"><?php _e( 'Close image text', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
 				<input type="text" title="<?php _e( 'Text for the close button.  If Overlay Close or ESC Key Close are check those options will also close the lightbox. DEFAULT: close', "lightboxplus" ) ?>" size="15" name="close" id="close" value="<?php if ( empty( $g_lbp_primary_options['close'] ) ) {
@@ -690,7 +695,7 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 		</tr>
 		<tr>
 			<th scope="row"></th>
-            <td ><strong><?php _e( 'Image Grouping', 'lightboxplus' ) ?></strong></td>
+			<td><strong><?php _e( 'Image Grouping', 'lightboxplus' ) ?></strong></td>
 		</tr>
 		<tr>
 			<th scope="row">
@@ -796,16 +801,14 @@ if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_optio
 					<?php
 					for ( $i = 500; $i <= 20001; ) {
 						?>
-						<option value="<?php echo $i; ?>"<?php if ( $g_lbp_primary_options['slideshow_speed'] == strval( $i ) ) {
-							echo ' selected="selected"';
-						} ?>><?php echo $i; ?></option>
+						<option value="<?php echo $i; ?>"<?php selected( $i, $g_lbp_primary_options['slideshow_speed'] ); ?>><?php echo $i; ?></option>
 						<?php
 						if ( 15000 <= $i ) {
-							$i = $i + 5000;
+							$i += 5000;
 						} elseif ( 10000 >= $i ) {
-							$i = $i + 1000;
+							$i += 1000;
 						} else {
-							$i = $i + 500;
+							$i += 500;
 						}
 					}
 					?>
@@ -1007,8 +1010,6 @@ if ( $g_lbp_base_options['use_inline'] ) {
 	require( LBP_CLASS_PATH . '/admin-lightbox-inline.php' );
 }
 ?>
-</div>
-
 
 <!-- Reset/Re-initialize -->
 <div id="poststuff-reset" class="lbp poststuff">
@@ -1041,7 +1042,9 @@ if ( $g_lbp_base_options['use_inline'] ) {
 
 <!-- Inline Demo Form -->
 <div style="display:none">
-	<div id="<?php if ( isset( $inline_hrefs[1] ) ) {
+	<div class="<?php if ( isset( $inline_hrefs[1] ) ) {
+		echo $inline_hrefs[1];
+	} ?>" id="<?php if ( isset( $inline_hrefs[1] ) ) {
 		echo $inline_hrefs[1];
 	} ?>" style="padding: 10px;background: #fff">
 		<h3><?php _e( 'About Lightbox Plus Colorbox for WordPress', 'lightboxplus' ); ?>: </h3>
@@ -1050,12 +1053,14 @@ if ( $g_lbp_base_options['use_inline'] ) {
 			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="BKVLWU2KWRNAG">
-				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
 				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 			</form>
 
 			<hr class="lbp_hr" />
-			<h3><a href="http://premium.wpmudev.org/blog/donate-1-to-every-free-wordpress-plugin-you-use/" title="Why Donate?">Why Should I Donate?</a></h3>
+			<h3>
+				<a href="http://premium.wpmudev.org/blog/donate-1-to-every-free-wordpress-plugin-you-use/" title="Why Donate?">Why Should I Donate?</a>
+			</h3>
 		</div>
 		<h4><?php _e( 'Thank you for downloading and installing Lightbox Plus Colorbox for WordPress', 'lightboxplus' ); ?></h4>
 

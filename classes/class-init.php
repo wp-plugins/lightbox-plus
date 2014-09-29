@@ -148,6 +148,8 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 					return false;
 				}
 			}
+
+			return true;
 		}
 
 		/**
@@ -259,7 +261,6 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 				"slideshow_start_sec"  => 'start',
 				"slideshow_stop_sec"   => 'stop',
 				"iframe_sec"           => '1',
-				//"use_class_method_sec" => '0',
 				"class_name_sec"       => 'lbp_secondary',
 				"no_display_title_sec" => '0',
 				"scrolling_sec"        => '1',
@@ -284,23 +285,24 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 		 * @return array
 		 */
 		function lbp_inline_init( $inline_number = 5 ) {
-//			$inline_links            = '';
-//			$inline_hrefs            = '';
-//			$inline_transitions      = '';
-//			$inline_speeds           = '';
-//			$inline_widths           = '';
-//			$inline_heights          = '';
-//			$inline_inner_widths     = '';
-//			$inline_inner_heights    = '';
-//			$inline_max_widths       = '';
-//			$inline_max_heights      = '';
-//			$inline_position_tops    = '';
-//			$inline_position_rights  = '';
-//			$inline_position_bottoms = '';
-//			$inline_position_lefts   = '';
-//			$inline_fixeds           = '';
-//			$inline_opens            = '';
-//			$inline_opacitys         = '';
+			$inline_links            = '';
+			$inline_hrefs            = '';
+			$inline_transitions      = '';
+			$inline_speeds           = '';
+			$inline_widths           = '';
+			$inline_heights          = '';
+			$inline_inner_widths     = '';
+			$inline_inner_heights    = '';
+			$inline_max_widths       = '';
+			$inline_max_heights      = '';
+			$inline_position_tops    = '';
+			$inline_position_rights  = '';
+			$inline_position_bottoms = '';
+			$inline_position_lefts   = '';
+			$inline_fixeds           = '';
+			$inline_opens            = '';
+			$inline_reuses           = '';
+			$inline_opacitys         = '';
 
 			if ( ! empty( $inline_number ) ) {
 				for ( $i = 1; $i <= $inline_number; $i ++ ) {
@@ -320,6 +322,7 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 					$inline_position_lefts[ $i ]   = 'false';
 					$inline_fixeds[ $i ]           = '0';
 					$inline_opens[ $i ]            = '0';
+					$inline_reuses[ $i ]           = '0';
 					$inline_opacitys[ $i ]         = '0.8';
 				}
 			}
@@ -341,6 +344,7 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 				"inline_position_lefts"   => $inline_position_lefts,
 				"inline_fixeds"           => $inline_fixeds,
 				"inline_opens"            => $inline_opens,
+				"inline_reuses"           => $inline_reuses,
 				"inline_opacitys"         => $inline_opacitys
 			);
 		}
@@ -390,7 +394,6 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 				return false;
 			}
 		}
-
 
 
 		/**

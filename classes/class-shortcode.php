@@ -164,8 +164,8 @@ if ( ! class_exists( 'LBP_Shortcode' ) ) {
 			/**
 			 * TODO: remove next line if not needed
 			 */
-			$g_lbp_base_options = get_option( $this->lbp_options_base_name );
-			$g_lbp_primary_options = get_option( $this->lbp_options_primary_name );
+			$g_lbp_base_options = get_option( 'lightboxplus_base_settings' );
+			$g_lbp_primary_options = get_option( 'lightboxplus_primary_settings' );
 
 			foreach ( $attachments as $id => $attachment ) {
 				$link = isset( $attr['link'] ) && 'file' == $attr['link'] ? wp_get_attachment_link( $id, $size, false, false ) : wp_get_attachment_link( $id, $size, true, false );

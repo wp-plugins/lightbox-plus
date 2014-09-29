@@ -58,7 +58,9 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 			/**
 			 * Remove following line after a few versions or 2.6 is the prevelent version
 			 */
-			if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options ); }
+			if ( isset( $g_lbp_base_options ) ) {
+				$g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options );
+			}
 
 			if ( ! is_admin() ) {
 				if ( floatval( $wp_version ) < 3.1 ) {
@@ -112,7 +114,9 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 				/**
 				 * Remove following line after a few versions or 2.6 is the prevelent version
 				 */
-				if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options ); }
+				if ( isset( $g_lbp_base_options ) ) {
+					$g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options );
+				}
 
 				$st_lbp_javascript = "";
 				$st_lbp_javascript .= '<!-- Lightbox Plus Colorbox v' . LBP_VERSION . '/' . LBP_COLORBOX_VERSION . ' - 2013.01.24 - Message: ' . $g_lbp_base_options['lightboxplus_multi'] . '-->' . PHP_EOL;
@@ -228,7 +232,7 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 				}
 				switch ( $g_lbp_base_options['output_htmlv'] ) {
 					case 1:
-						$htmlv_prop            = 'data-' . $g_lbp_base_options['data_name'];
+						$htmlv_prop             = 'data-' . $g_lbp_base_options['data_name'];
 						$lbp_primary_javascript = '{rel:$(this).attr("' . $htmlv_prop . '"),' . implode( ",", $ar_lbp_primary ) . '}';
 						switch ( $g_lbp_base_options['use_class_method'] ) {
 							case 1:
@@ -399,6 +403,7 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 //					$inline_position_lefts   = array();
 //					$inline_fixeds           = array();
 //					$inline_opens            = array();
+//					$inline_reuses            = array();
 //					$inline_opacitys         = array();
 
 					$ar_inline_links            = $g_lbp_inline_options['inline_links'];
@@ -417,11 +422,17 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 					$ar_inline_position_lefts   = $g_lbp_inline_options['inline_position_lefts'];
 					$ar_inline_fixeds           = $g_lbp_inline_options['inline_fixeds'];
 					$ar_inline_opens            = $g_lbp_inline_options['inline_opens'];
+					$ar_inline_reuses           = $g_lbp_inline_options['inline_reuses'];
 					$ar_inline_opacitys         = $g_lbp_inline_options['inline_opacitys'];
 
 					for ( $i = 1; $i <= $g_lbp_base_options['inline_num']; $i ++ ) {
-						$st_lbp_javascript .= '  $(".' . $ar_inline_links[ $i ] . '").colorbox({transition:' . $this->set_value( $ar_inline_transitions[ $i ] ) . ', speed:' . $this->set_value( $ar_inline_speeds[ $i ] ) . ', width:' . $this->set_value( $ar_inline_widths[ $i ] ) . ', height:' . $this->set_value( $ar_inline_heights[ $i ] ) . ', innerWidth:' . $this->set_value( $ar_inline_inner_widths[ $i ] ) . ', innerHeight:' . $this->set_value( $ar_inline_inner_heights[ $i ] ) . ', maxWidth:' . $this->set_value( $ar_inline_max_widths[ $i ] ) . ', maxHeight:' . $this->set_value( $ar_inline_max_heights[ $i ] ) . ', top:' . $this->set_value( $ar_inline_position_tops[ $i ] ) . ', right:' . $this->set_value( $ar_inline_position_rights[ $i ] ) . ', bottom:' . $this->set_value( $ar_inline_position_bottoms[ $i ] ) . ', left:' . $this->set_value( $ar_inline_position_lefts[ $i ] ) . ', fixed:' . $this->set_boolean( $ar_inline_fixeds[ $i ] ) . ', open:' . $this->set_boolean( $ar_inline_opens[ $i ] ) . ', opacity:' . $this->set_value( $ar_inline_opacitys[ $i ] ) . ', inline:true, href:"#' . $ar_inline_hrefs[ $i ] . '"});' . PHP_EOL;
+						if ( isset( $ar_inline_reuses[ $i ] ) && 1 == $ar_inline_reuses[ $i ] ) {
+							$st_lbp_javascript .= '  $(".' . $ar_inline_links[ $i ] . '").click(function() { $(this).colorbox({transition:' . $this->set_value( $ar_inline_transitions[ $i ] ) . ', speed:' . $this->set_value( $ar_inline_speeds[ $i ] ) . ', width:' . $this->set_value( $ar_inline_widths[ $i ] ) . ', height:' . $this->set_value( $ar_inline_heights[ $i ] ) . ', innerWidth:' . $this->set_value( $ar_inline_inner_widths[ $i ] ) . ', innerHeight:' . $this->set_value( $ar_inline_inner_heights[ $i ] ) . ', maxWidth:' . $this->set_value( $ar_inline_max_widths[ $i ] ) . ', maxHeight:' . $this->set_value( $ar_inline_max_heights[ $i ] ) . ', top:' . $this->set_value( $ar_inline_position_tops[ $i ] ) . ', right:' . $this->set_value( $ar_inline_position_rights[ $i ] ) . ', bottom:' . $this->set_value( $ar_inline_position_bottoms[ $i ] ) . ', left:' . $this->set_value( $ar_inline_position_lefts[ $i ] ) . ', fixed:' . $this->set_boolean( $ar_inline_fixeds[ $i ] ) . ', open:' . $this->set_boolean( $ar_inline_opens[ $i ] ) . ', opacity:' . $this->set_value( $ar_inline_opacitys[ $i ] ) . ', inline:true, href: "." + $(this).attr("data-link")}); });' . PHP_EOL;
+						} else {
+							$st_lbp_javascript .= '  $(".' . $ar_inline_links[ $i ] . '").colorbox({transition:' . $this->set_value( $ar_inline_transitions[ $i ] ) . ', speed:' . $this->set_value( $ar_inline_speeds[ $i ] ) . ', width:' . $this->set_value( $ar_inline_widths[ $i ] ) . ', height:' . $this->set_value( $ar_inline_heights[ $i ] ) . ', innerWidth:' . $this->set_value( $ar_inline_inner_widths[ $i ] ) . ', innerHeight:' . $this->set_value( $ar_inline_inner_heights[ $i ] ) . ', maxWidth:' . $this->set_value( $ar_inline_max_widths[ $i ] ) . ', maxHeight:' . $this->set_value( $ar_inline_max_heights[ $i ] ) . ', top:' . $this->set_value( $ar_inline_position_tops[ $i ] ) . ', right:' . $this->set_value( $ar_inline_position_rights[ $i ] ) . ', bottom:' . $this->set_value( $ar_inline_position_bottoms[ $i ] ) . ', left:' . $this->set_value( $ar_inline_position_lefts[ $i ] ) . ', fixed:' . $this->set_boolean( $ar_inline_fixeds[ $i ] ) . ', open:' . $this->set_boolean( $ar_inline_opens[ $i ] ) . ', opacity:' . $this->set_value( $ar_inline_opacitys[ $i ] ) . ', inline:true, href:"#' . $ar_inline_hrefs[ $i ] . '"});' . PHP_EOL;
+						}
 					}
+
 				}
 
 				$st_lbp_javascript .= '});' . PHP_EOL;
@@ -461,13 +472,13 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 		 */
 		function lbp_admin_styles() {
 			global $g_lbp_base_options;
-			if (!isset($g_lbp_base_options)) {
-				$g_lbp_base_options = get_option('lightboxplus_options_base');
+			if ( ! isset( $g_lbp_base_options ) ) {
+				$g_lbp_base_options = get_option( 'lightboxplus_options_base' );
 			}
 			wp_register_style( 'lbp_styles', LBP_ASSETS_URL . '/css/lightbox-admin.css', '', LBP_VERSION, 'screen' );
 			wp_enqueue_style( 'lbp_styles' );
 
-			if ( isset($g_lbp_base_options) ) {
+			if ( isset( $g_lbp_base_options ) ) {
 				//$g_lbp_base_options = get_option( $this->lbp_options_base_name );
 
 				if ( $g_lbp_base_options['use_custom_style'] == 1 ) {
@@ -513,7 +524,9 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 			?>
 			<table class="form-table">
 				<tr>
-					<th scope="row"><?php _e( 'Use with this page/post:', 'lightboxplus' ); ?>:</th>
+					<th scope="row">
+						<label for="lbp_use"><?php _e( 'Use with this page/post:', 'lightboxplus' ); ?></label>:
+					</th>
 					<td>
 						<input type="hidden" name="lbp_use" value="0">
 						<input type="checkbox" name="lbp_use" id="lbp_use" value="1" <?php if ( isset( $lbp_use ) ) {
@@ -522,7 +535,9 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><?php _e( 'Auto launch on this page/post:', 'lightboxplus' ); ?>:</th>
+					<th scope="row">
+						<label for="lbp_autoload"><?php _e( 'Auto launch on this page/post:', 'lightboxplus' ); ?></label>:
+					</th>
 					<td>
 						<input type="hidden" name="lbp_autoload" value="0">
 						<input type="checkbox" name="lbp_autoload" id="lbp_autoload" value="1"<?php if ( isset( $lbp_autoload ) ) {
@@ -531,11 +546,13 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" colspan="2"><?php _e( 'Lightbox Plus Colorbox unique ID for this page:', 'lightboxplus' ); ?>:</th>
+					<th scope="row" colspan="2">
+						<label for="lbp_uid"><?php _e( 'Lightbox Plus Colorbox unique ID for this page:', 'lightboxplus' ); ?></label>:
+					</th>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" id="lbp_uid" name="lbp_uid" size="40" value="<?php if ( ! empty( $lbp_uid ) ) {
+						<input type="text" id="lbp_uid" name="lbp_uid" size="20" value="<?php if ( ! empty( $lbp_uid ) ) {
 							echo $lbp_uid;
 						} else {
 							echo $post->post_name;

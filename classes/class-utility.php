@@ -62,9 +62,8 @@ if ( ! interface_exists( 'LBP_Utilities_Interface' ) ) {
 		function directory_list( $directory );
 
 		/**
-		 * @param array $array
-		 * @param       $left
-		 * @param       $right
+		 * @param $array
+		 * @param $num_to_trim
 		 *
 		 * @return mixed
 		 */
@@ -256,10 +255,9 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 
 		/**
 		 * @param array $array
-		 * @param       $old_num
-		 * @param       $new_num
+		 * @param       $num_to_trim
 		 *
-		 * @return mixed
+		 * @return array|mixed
 		 */
 		function lbp_array_trim( $array, $num_to_trim ) {
 			for ( $i = 1; $i <= $num_to_trim; $i ++ ) {
@@ -274,6 +272,8 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 		 *
 		 * @param $source
 		 * @param $destination
+		 *
+		 * @return mixed|void
 		 */
 		function copy_directory( $source, $destination ) {
 			if ( is_dir( $source ) ) {

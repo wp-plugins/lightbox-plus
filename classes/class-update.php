@@ -19,19 +19,19 @@ if ( ! interface_exists( 'LBP_Update_Interface' ) ) {
 
 		function lbp_inline_convert( $array );
 
-		function fix_array_links_values($value,$num);
+		function fix_array_links_values( $value, $num );
 
-		function fix_array_href_values($value,$num);
+		function fix_array_href_values( $value, $num );
 
-		function fix_array_transition_values($value);
+		function fix_array_transition_values( $value );
 
-		function fix_array_speed_values($value);
+		function fix_array_speed_values( $value );
 
-		function fix_array_text_values($value);
+		function fix_array_text_values( $value );
 
-		function fix_array_checkbox_values($value);
+		function fix_array_checkbox_values( $value );
 
-		function fix_array_opacity_values($value);
+		function fix_array_opacity_values( $value );
 
 	}
 }
@@ -199,7 +199,6 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 				"slideshow_start_sec"  => $array['slideshow_start_sec'],
 				"slideshow_stop_sec"   => $array['slideshow_stop_sec'],
 				"iframe_sec"           => $array['iframe_sec'],
-				//"use_class_method_sec" => $array['use_class_method_sec'],
 				"class_name_sec"       => $array['class_name_sec'],
 				"no_display_title_sec" => $array['no_display_title_sec'],
 				"scrolling_sec"        => $array['scrolling_sec'],
@@ -217,25 +216,48 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 		}
 
 		function lbp_inline_convert( $array ) {
+			$inline_links            = '';
+			$inline_hrefs            = '';
+			$inline_transitions      = '';
+			$inline_speeds           = '';
+			$inline_widths           = '';
+			$inline_heights          = '';
+			$inline_inner_widths     = '';
+			$inline_inner_heights    = '';
+			$inline_max_widths       = '';
+			$inline_max_heights      = '';
+			$inline_position_tops    = '';
+			$inline_position_rights  = '';
+			$inline_position_bottoms = '';
+			$inline_position_lefts   = '';
+			$inline_fixeds           = '';
+			$inline_opens            = '';
+			$inline_reuses           = '';
+			$inline_opacitys         = '';
+
 			if ( isset( $array['inline_num'] ) ) {
 				for ( $i = 1; $i <= $array['inline_num']; $i ++ ) {
-					$inline_links[ $i ]            = $this->fix_array_links_values($array['inline_links'][ $i - 1 ],$i);
-					$inline_hrefs[ $i ]            = $this->fix_array_href_values($array['inline_hrefs'][ $i - 1 ],$i);
-					$inline_transitions[ $i ]      = $this->fix_array_transition_values($array['inline_transitions'][ $i - 1 ]);
-					$inline_speeds[ $i ]           = $this->fix_array_speed_values($array['inline_speeds'][ $i - 1 ]);
-					$inline_widths[ $i ]           = $this->fix_array_text_values($array['inline_widths'][ $i - 1 ]);
-					$inline_heights[ $i ]          = $this->fix_array_text_values($array['inline_heights'][ $i - 1 ]);
-					$inline_inner_widths[ $i ]     = $this->fix_array_text_values($array['inline_inner_widths'][ $i - 1 ]);
-					$inline_inner_heights[ $i ]    = $this->fix_array_text_values($array['inline_inner_heights'][ $i - 1 ]);
-					$inline_max_widths[ $i ]       = $this->fix_array_text_values($array['inline_max_widths'][ $i - 1 ]);
-					$inline_max_heights[ $i ]      = $this->fix_array_text_values($array['inline_max_heights'][ $i - 1 ]);
-					$inline_position_tops[ $i ]    = $this->fix_array_text_values($array['inline_position_tops'][ $i - 1 ]);
-					$inline_position_rights[ $i ]  = $this->fix_array_text_values($array['inline_position_rights'][ $i - 1 ]);
-					$inline_position_bottoms[ $i ] = $this->fix_array_text_values($array['inline_position_bottoms'][ $i - 1 ]);
-					$inline_position_lefts[ $i ]   = $this->fix_array_text_values($array['inline_position_lefts'][ $i - 1 ]);
-					$inline_fixeds[ $i ]           = $this->fix_array_checkbox_values($array['inline_fixeds'][ $i - 1 ]);
-					$inline_opens[ $i ]            = $this->fix_array_checkbox_values($array['inline_opens'][ $i - 1 ]);
-					$inline_opacitys[ $i ]         = $this->fix_array_opacity_values($array['inline_opacitys'][ $i - 1 ]);
+					$inline_links[ $i ]            = $this->fix_array_links_values( $array['inline_links'][ $i - 1 ], $i );
+					$inline_hrefs[ $i ]            = $this->fix_array_href_values( $array['inline_hrefs'][ $i - 1 ], $i );
+					$inline_transitions[ $i ]      = $this->fix_array_transition_values( $array['inline_transitions'][ $i - 1 ] );
+					$inline_speeds[ $i ]           = $this->fix_array_speed_values( $array['inline_speeds'][ $i - 1 ] );
+					$inline_widths[ $i ]           = $this->fix_array_text_values( $array['inline_widths'][ $i - 1 ] );
+					$inline_heights[ $i ]          = $this->fix_array_text_values( $array['inline_heights'][ $i - 1 ] );
+					$inline_inner_widths[ $i ]     = $this->fix_array_text_values( $array['inline_inner_widths'][ $i - 1 ] );
+					$inline_inner_heights[ $i ]    = $this->fix_array_text_values( $array['inline_inner_heights'][ $i - 1 ] );
+					$inline_max_widths[ $i ]       = $this->fix_array_text_values( $array['inline_max_widths'][ $i - 1 ] );
+					$inline_max_heights[ $i ]      = $this->fix_array_text_values( $array['inline_max_heights'][ $i - 1 ] );
+					$inline_position_tops[ $i ]    = $this->fix_array_text_values( $array['inline_position_tops'][ $i - 1 ] );
+					$inline_position_rights[ $i ]  = $this->fix_array_text_values( $array['inline_position_rights'][ $i - 1 ] );
+					$inline_position_bottoms[ $i ] = $this->fix_array_text_values( $array['inline_position_bottoms'][ $i - 1 ] );
+					$inline_position_lefts[ $i ]   = $this->fix_array_text_values( $array['inline_position_lefts'][ $i - 1 ] );
+					$inline_fixeds[ $i ]           = $this->fix_array_checkbox_values( $array['inline_fixeds'][ $i - 1 ] );
+					$inline_opens[ $i ]            = $this->fix_array_checkbox_values( $array['inline_opens'][ $i - 1 ] );
+					$inline_reuses[ $i ]           = "0";
+					$inline_opacitys[ $i ]         = $this->fix_array_opacity_values( $array['inline_opacitys'][ $i - 1 ] );
+					if ( 50 == $i ) {
+						break;
+					}
 				}
 			}
 
@@ -256,6 +278,7 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 				"inline_position_lefts"   => $inline_position_lefts,
 				"inline_fixeds"           => $inline_fixeds,
 				"inline_opens"            => $inline_opens,
+				"inline_reuses"           => $inline_reuses,
 				"inline_opacitys"         => $inline_opacitys
 			);
 		}
@@ -266,8 +289,8 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 		 *
 		 * @return string
 		 */
-		function fix_array_links_values($value,$num) {
-			if (empty($value) || null == $value) {
+		function fix_array_links_values( $value, $num ) {
+			if ( empty( $value ) || null == $value ) {
 				return 'false';
 			} else {
 				return $value;
@@ -280,8 +303,8 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 		 *
 		 * @return string
 		 */
-		function fix_array_href_values($value,$num) {
-			if (empty($value) || null == $value) {
+		function fix_array_href_values( $value, $num ) {
+			if ( empty( $value ) || null == $value ) {
 				return 'false';
 			} else {
 				return $value;
@@ -293,8 +316,8 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 		 *
 		 * @return string
 		 */
-		function fix_array_transition_values($value) {
-			if (empty($value) || null == $value) {
+		function fix_array_transition_values( $value ) {
+			if ( empty( $value ) || null == $value ) {
 				return 'elastic';
 			} else {
 				return $value;
@@ -306,8 +329,8 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 		 *
 		 * @return string
 		 */
-		function fix_array_speed_values($value) {
-			if (empty($value) || null == $value) {
+		function fix_array_speed_values( $value ) {
+			if ( empty( $value ) || null == $value ) {
 				return '300';
 			} else {
 				return $value;
@@ -319,8 +342,8 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 		 *
 		 * @return string
 		 */
-		function fix_array_text_values($value) {
-			if (empty($value) || null == $value) {
+		function fix_array_text_values( $value ) {
+			if ( empty( $value ) || null == $value ) {
 				return 'false';
 			} else {
 				return $value;
@@ -332,8 +355,8 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 		 *
 		 * @return string
 		 */
-		function fix_array_checkbox_values($value) {
-			if (empty($value) || null == $value) {
+		function fix_array_checkbox_values( $value ) {
+			if ( empty( $value ) || null == $value ) {
 				return '0';
 			} else {
 				return $value;
@@ -345,8 +368,8 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 		 *
 		 * @return string
 		 */
-		function fix_array_opacity_values($value) {
-			if (empty($value) || null == $value) {
+		function fix_array_opacity_values( $value ) {
+			if ( empty( $value ) || null == $value ) {
 				return '0.8';
 			} else {
 				return $value;
