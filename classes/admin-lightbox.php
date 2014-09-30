@@ -93,7 +93,7 @@ if ( isset( $g_lbp_base_options ) ) {
 	<li><a href="#blbp-tabs-2"><?php _e( 'Styles', 'lightboxplus' ); ?></a></li>
 	<li><a href="#blbp-tabs-3"><?php _e( 'Advanced', 'lightboxplus' ); ?></a></li>
 	<li><a href="#blbp-tabs-4"><?php _e( 'Support', 'lightboxplus' ); ?></a></li>
-	<!-- li><a href="#blbp-tabs-5"><?php // _e( 'Usage','lightboxplus' ); ?></a></li -->
+
 </ul>
 <!-- General -->
 <div id="blbp-tabs-1">
@@ -156,6 +156,15 @@ if ( isset( $g_lbp_base_options ) ) {
 				} else {
 					echo $g_lbp_base_options['data_name'];
 				} ?>" />
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<label for="disable_mobile"><?php _e( 'Disable for mobile devices', 'lightboxplus' ) ?></label>:
+			</th>
+			<td>
+				<input type="hidden" name="disable_mobile" value="0">
+				<input type="checkbox" name="disable_mobile" id="disable_mobile" value="1"<?php checked( '1', $g_lbp_base_options['disable_mobile'] ); ?> title="<?php _e( 'If checked disable lightbox effect on mobile devices. This will disable Lightbox Plus Colorbox for all phones and tablets. Uses wp_is_mobile() for detection. DEFAULT: Unchecked', "lightboxplus" ); ?>" />
 			</td>
 		</tr>
 		<tr>
@@ -365,9 +374,6 @@ if ( isset( $g_lbp_base_options ) ) {
 
 	<p><?php _e( 'If you would like to show your support for our free WordPress plugins please consider a <a title="Help support Free and Open Source software by donating to our free plugin development" href="http://www.23systems.net/wordpress-plugins/donate/">donation</a>.', 'lightboxplus' ); ?></p>
 </div>
-<!-- Usage -->
-<!-- div id="blbp-tabs-5">
-</div -->
 </div>
 <p class="submit">
 	<input type="submit" name="Submit" class="button-primary save-all-settings" id="save-settings" title="<?php _e( 'Save Basic Lightbox Plus Colorbox settings', 'lightboxplus' ) ?>" value="<?php _e( 'Save Basic settings', 'lightboxplus' ) ?> &raquo;" />
@@ -395,7 +401,7 @@ if ( isset( $g_lbp_base_options ) ) {
 	<li><a href="#plbp-tabs-3"><?php _e( 'Postition', 'lightboxplus' ); ?></a></li>
 	<li><a href="#plbp-tabs-4"><?php _e( 'Interface', 'lightboxplus' ); ?></a></li>
 	<li><a href="#plbp-tabs-5"><?php _e( 'Slideshow', 'lightboxplus' ); ?></a></li>
-	<li><a href="#plbp-tabs-6"><?php _e( 'Other', 'lightboxplus' ); ?></a></li>
+	<li><a href="#plbp-tabs-6"><?php _e( 'Advanced', 'lightboxplus' ); ?></a></li>
 	<li><a href="#plbp-tabs-7"><?php _e( 'Usage', 'lightboxplus' ); ?></a></li>
 	<li><a href="#plbp-tabs-8"><?php _e( 'Demo/Test', 'lightboxplus' ); ?></a></li>
 </ul>
@@ -841,7 +847,7 @@ if ( isset( $g_lbp_base_options ) ) {
 		</tr>
 	</table>
 </div>
-<!-- Other -->
+<!-- Advanced -->
 <div id="plbp-tabs-6">
 	<table class="form-table">
 		<tr>
@@ -898,7 +904,7 @@ if ( isset( $g_lbp_base_options ) ) {
 			</th>
 			<td>
 				<input type="hidden" name="no_auto_lightbox" value="0">
-				<input type="checkbox" name="no_auto_lightbox" id="no_auto_lightbox" value="1"<?php checked( '1', $g_lbp_primary_options['no_auto_lightbox'] ); ?> title="<?php _e( "If checked, Lightbox Plus Colorbox will not automatically add appropriate attibutes (either rel='lightbox[postID]' or 'class: cboxModal') to Image URL.  You will need to manually add the appropriate attribute for Lightbox Plus Colorbox to work. DEFAULT: Unchecked", "lightboxplus" ) ?>" />
+				<input type="checkbox" name="no_auto_lightbox" id="no_auto_lightbox" value="1"<?php checked( '1', $g_lbp_primary_options['no_auto_lightbox'] ); ?> title="<?php _e( "If checked, Lightbox Plus Colorbox will not automatically add appropriate attributes (either rel='lightbox[postID]' or 'class: cboxModal') to Image URL.  You will need to manually add the appropriate attribute for Lightbox Plus Colorbox to work. DEFAULT: Unchecked", "lightboxplus" ) ?>" />
 			</td>
 		</tr>
 		<tr>
@@ -908,6 +914,36 @@ if ( isset( $g_lbp_base_options ) ) {
 			<td>
 				<input type="hidden" name="no_display_title" value="0">
 				<input type="checkbox" name="no_display_title" id="no_display_title" value="1"<?php checked( '1', $g_lbp_primary_options['no_display_title'] ); ?> title="<?php _e( 'If checked, Lightbox Plus Colorbox will not display image titles automatically.  This has no effect if the Do Not Auto-Lightbox Images option is checked. DEFAULT: Unchecked', "lightboxplus" ) ?>" />
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<label for="retina_image"><?php _e( 'Retina Image', 'lightboxplus' ) ?></label>:
+			</th>
+			<td>
+				<input type="hidden" name="retina_image" value="0">
+				<input type="checkbox" name="retina_image" id="retina_image" value="1"<?php checked( '1', $g_lbp_primary_options['retina_image'] ); ?> title="<?php _e( "If checked Lightbox Plus Colorbox will scale down the current photo to match the screen's pixel ratio. DEFAULT: Unchecked", "lightboxplus" ); ?>" />
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<label for="retina_url"><?php _e( 'Retina URL', 'lightboxplus' ) ?></label>:
+			</th>
+			<td>
+				<input type="hidden" name="retina_url" value="0">
+				<input type="checkbox" name="retina_url" id="retina_url" value="1"<?php checked( '1', $g_lbp_primary_options['retina_url'] ); ?> title="<?php _e( "If checked and the device has a high resolution display, Colorbox will replace the current photo's file extension with the retinaSuffix+extension. DEFAULT: Unchecked", "lightboxplus" ); ?>" />
+			</td>
+		</tr>
+		<tr class="retina_suffix lbp-closed">
+			<th scope="row">
+				<label for="retina_suffix"><?php _e( 'Retina Suffix', 'lightboxplus' ) ?></label>:
+			</th>
+			<td>
+				<input type="text" size="15" name="retina_suffix" id="retina_suffix" value="<?php if ( empty( $g_lbp_primary_options['retina_suffix'] ) ) {
+					echo '$1';
+				} else {
+					echo $g_lbp_primary_options['retina_suffix'];
+				} ?>" title="<?php _e( "If Retina URL is checked and the device has a high resolution display, the href value will have it's extension extended with this suffix. For example, if you had an image named 'my-photo.jpg' and another retina image called 'my-photo@2x.jpg' you would put @2x.$1 (the $1 represents the file extension, in this case jpg) and the name would changed from 'my-photo.jpg' to 'my-photo@2x.jpg'. DEFAULT: .$1", "lightboxplus" ) ?>" />
 			</td>
 		</tr>
 	</table>

@@ -10,6 +10,9 @@
  */
 
 if ( ! interface_exists( 'LBP_Init_Interface' ) ) {
+	/**
+	 * Interface LBP_Init_Interface
+	 */
 	interface LBP_Init_Interface {
 		function lbp_install();
 
@@ -34,6 +37,9 @@ if ( ! interface_exists( 'LBP_Init_Interface' ) ) {
 }
 
 if ( ! class_exists( 'LBP_Init' ) ) {
+	/**
+	 * Class LBP_Init
+	 */
 	class LBP_Init extends LBP_Actions implements LBP_Init_Interface {
 		/**
 		 * Add some default options if they don't exist or if reinitialized
@@ -168,6 +174,7 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 				"hide_about"         => '0',
 				"output_htmlv"       => '0',
 				"data_name"          => 'lightboxplus',
+				"disable_mobile"     => '0',
 				"use_perpage"        => '0',
 				"use_forpage"        => '0',
 				"use_forpost"        => '0',
@@ -215,6 +222,9 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 				"no_auto_lightbox"     => '0',
 				"text_links"           => '1',
 				"no_display_title"     => '0',
+				"retina_image"         => '0',
+				"retina_url"           => '0',
+				"retina_suffix"        => '.$1',
 				"scrolling"            => '1',
 				"photo"                => '0',
 				"rel"                  => 'false', //Disable grouping
@@ -263,6 +273,9 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 				"iframe_sec"           => '1',
 				"class_name_sec"       => 'lbp_secondary',
 				"no_display_title_sec" => '0',
+				"retina_image_sec"     => '0',
+				"retina_url_sec"       => '0',
+				"retina_suffix_sec"    => '.$1',
 				"scrolling_sec"        => '1',
 				"photo_sec"            => '0',
 				"rel_sec"              => '0', //Disable grouping
@@ -284,7 +297,7 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 		 *
 		 * @return array
 		 */
-		function lbp_inline_init( $inline_number = 5 ) {
+		function lbp_inline_init( $inline_number = 1 ) {
 			$inline_links            = '';
 			$inline_hrefs            = '';
 			$inline_transitions      = '';
@@ -349,6 +362,9 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 			);
 		}
 
+		/**
+		 * @return bool
+		 */
 		function lbp_deactivate() {
 			/**
 			 * TODO: Change/remove before release
@@ -365,7 +381,9 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 			return false;
 		}
 
-
+		/**
+		 * @return bool
+		 */
 		function lbp_uninstall() {
 			delete_option( 'lightboxplus_options_base' );
 			delete_option( 'lightboxplus_options_primary' );
@@ -382,7 +400,7 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 		/**
 		 * Initialize the external style directory
 		 *
-		 * @return boolean
+		 * @return bool
 		 */
 		function lbp_global_styles_init() {
 			$directory_create = mkdir( LBP_CUSTOM_STYLE_PATH, 0755 );

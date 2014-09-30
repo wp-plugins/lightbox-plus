@@ -224,6 +224,17 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 				if ( $g_lbp_primary_options['fixed'] == '1' ) {
 					$ar_lbp_primary[] = 'fixed:' . $this->set_boolean( $g_lbp_primary_options['fixed'] );
 				}
+				if ( $g_lbp_primary_options['retina_image'] == '1' ) {
+					$ar_lbp_primary[] = 'retinaImage:' . $this->set_boolean( $g_lbp_primary_options['retina_image'] );
+				}
+				if ( $g_lbp_primary_options['retina_url'] == '1' ) {
+					$ar_lbp_primary[] = 'retinaUrl:' . $this->set_boolean( $g_lbp_primary_options['retina_url'] );
+				}
+				if ( $g_lbp_primary_options['retina_url'] == '1' ) {
+					if ( isset( $g_lbp_primary_options['retina_suffix'] )) {
+						$ar_lbp_primary[] = "retinaSuffix:'".$g_lbp_primary_options['retina_suffix']."'";
+					}
+				}
 				if ( ! is_admin() ) {
 					$lbp_autoload = get_post_meta( $post->ID, '_lbp_autoload', true );
 					if ( $lbp_autoload == '1' ) {
@@ -366,7 +377,18 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 						if ( $g_lbp_secondary_options['fixed_sec'] == '1' ) {
 							$ar_lbp_secondary[] = 'fixed:' . $this->set_boolean( $g_lbp_secondary_options['fixed_sec'] );
 						}
-						//$st_lbp_secondary_javascript = '{'.implode(",", $ar_lbp_secondary).'}';
+						if ( $g_lbp_primary_options['retina_image_sec'] == '1' ) {
+							$ar_lbp_primary[] = 'retinaImage:' . $this->set_boolean( $g_lbp_primary_options['retina_image_sec'] );
+						}
+						if ( $g_lbp_primary_options['retina_url_sec'] == '1' ) {
+							$ar_lbp_primary[] = 'retinaUrl:' . $this->set_boolean( $g_lbp_primary_options['retina_url_sec'] );
+						}
+						if ( $g_lbp_primary_options['retina_url_sec'] == '1' ) {
+							if ( isset( $g_lbp_primary_options['retina_suffix_sec'] ) ) {
+								$ar_lbp_primary[] = "retinaSuffix:'".$g_lbp_primary_options['retina_suffix_sec']."'";
+							}
+						}
+						$st_lbp_secondary_javascript = '{'.implode(",", $ar_lbp_secondary).'}';
 						switch ( $g_lbp_base_options['output_htmlv'] ) {
 							case 1:
 								$htmlv_prop = 'data-' . $g_lbp_base_options['data_name'];
@@ -387,25 +409,6 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 				}
 
 				if ( isset( $g_lbp_base_options['use_inline'] ) && '' != $g_lbp_base_options['inline_num'] ) {
-//					$inline_links            = array();
-//					$inline_hrefs            = array();
-//					$inline_transitions      = array();
-//					$inline_speeds           = array();
-//					$inline_widths           = array();
-//					$inline_heights          = array();
-//					$inline_inner_widths     = array();
-//					$inline_inner_heights    = array();
-//					$inline_max_widths       = array();
-//					$inline_max_heights      = array();
-//					$inline_position_tops    = array();
-//					$inline_position_rights  = array();
-//					$inline_position_bottoms = array();
-//					$inline_position_lefts   = array();
-//					$inline_fixeds           = array();
-//					$inline_opens            = array();
-//					$inline_reuses            = array();
-//					$inline_opacitys         = array();
-
 					$ar_inline_links            = $g_lbp_inline_options['inline_links'];
 					$ar_inline_hrefs            = $g_lbp_inline_options['inline_hrefs'];
 					$ar_inline_transitions      = $g_lbp_inline_options['inline_transitions'];
@@ -428,8 +431,10 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 					for ( $i = 1; $i <= $g_lbp_base_options['inline_num']; $i ++ ) {
 						if ( isset( $ar_inline_reuses[ $i ] ) && 1 == $ar_inline_reuses[ $i ] ) {
 							$st_lbp_javascript .= '  $(".' . $ar_inline_links[ $i ] . '").click(function() { $(this).colorbox({transition:' . $this->set_value( $ar_inline_transitions[ $i ] ) . ', speed:' . $this->set_value( $ar_inline_speeds[ $i ] ) . ', width:' . $this->set_value( $ar_inline_widths[ $i ] ) . ', height:' . $this->set_value( $ar_inline_heights[ $i ] ) . ', innerWidth:' . $this->set_value( $ar_inline_inner_widths[ $i ] ) . ', innerHeight:' . $this->set_value( $ar_inline_inner_heights[ $i ] ) . ', maxWidth:' . $this->set_value( $ar_inline_max_widths[ $i ] ) . ', maxHeight:' . $this->set_value( $ar_inline_max_heights[ $i ] ) . ', top:' . $this->set_value( $ar_inline_position_tops[ $i ] ) . ', right:' . $this->set_value( $ar_inline_position_rights[ $i ] ) . ', bottom:' . $this->set_value( $ar_inline_position_bottoms[ $i ] ) . ', left:' . $this->set_value( $ar_inline_position_lefts[ $i ] ) . ', fixed:' . $this->set_boolean( $ar_inline_fixeds[ $i ] ) . ', open:' . $this->set_boolean( $ar_inline_opens[ $i ] ) . ', opacity:' . $this->set_value( $ar_inline_opacitys[ $i ] ) . ', inline:true, href: "." + $(this).attr("data-link")}); });' . PHP_EOL;
-						} else {
+						} elseif ( isset( $ar_inline_links[ $i ] ) ) {
 							$st_lbp_javascript .= '  $(".' . $ar_inline_links[ $i ] . '").colorbox({transition:' . $this->set_value( $ar_inline_transitions[ $i ] ) . ', speed:' . $this->set_value( $ar_inline_speeds[ $i ] ) . ', width:' . $this->set_value( $ar_inline_widths[ $i ] ) . ', height:' . $this->set_value( $ar_inline_heights[ $i ] ) . ', innerWidth:' . $this->set_value( $ar_inline_inner_widths[ $i ] ) . ', innerHeight:' . $this->set_value( $ar_inline_inner_heights[ $i ] ) . ', maxWidth:' . $this->set_value( $ar_inline_max_widths[ $i ] ) . ', maxHeight:' . $this->set_value( $ar_inline_max_heights[ $i ] ) . ', top:' . $this->set_value( $ar_inline_position_tops[ $i ] ) . ', right:' . $this->set_value( $ar_inline_position_rights[ $i ] ) . ', bottom:' . $this->set_value( $ar_inline_position_bottoms[ $i ] ) . ', left:' . $this->set_value( $ar_inline_position_lefts[ $i ] ) . ', fixed:' . $this->set_boolean( $ar_inline_fixeds[ $i ] ) . ', open:' . $this->set_boolean( $ar_inline_opens[ $i ] ) . ', opacity:' . $this->set_value( $ar_inline_opacitys[ $i ] ) . ', inline:true, href:"#' . $ar_inline_hrefs[ $i ] . '"});' . PHP_EOL;
+						} else {
+							$st_lbp_javascript .= '';
 						}
 					}
 

@@ -14,6 +14,13 @@ jQuery(document).ready(function ($) {
 	if ($("#use_class_method").attr('checked')) {
 		$('.primary_class_name').show();
 	}
+
+	if ($("#retina_url").attr('checked')) {
+		$('.retina_suffix').show();
+	}
+	if ($("#retina_url_sec").attr('checked')) {
+		$('.retina_suffix_sec').show();
+	}
 	if (!$('#slideshow').attr('checked')) {
 		$('.slideshow_prim').hide();
 	}
@@ -115,6 +122,20 @@ jQuery(document).ready(function ($) {
 			$(".primary_class_name").show("fast");
 		} else {
 			$(".primary_class_name").hide("fast");
+		}
+	});
+	$("#retina_url").click(function () {
+		if ($("#retina_url").attr("checked")) {
+			$(".retina_suffix").show("fast");
+		} else {
+			$(".retina_suffix").hide("fast");
+		}
+	});
+	$("#retina_url_sec").click(function () {
+		if ($("#retina_url_sec").attr("checked")) {
+			$(".retina_suffix_sec").show("fast");
+		} else {
+			$(".retina_suffix_sec").hide("fast");
 		}
 	});
 	$("#slideshow").click(function () {

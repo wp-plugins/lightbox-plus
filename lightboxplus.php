@@ -99,9 +99,20 @@ register_uninstall_hook( __FILE__, 'uninstall_lbp' );
 if ( ! function_exists( 'activate_lbp' ) ) {
 	function activate_lbp() {
 		$g_lbp_old_version = get_option( 'lightboxplus_version' );
-		if ( ! isset( $g_lbp_old_version ) || false == $g_lbp_old_version) {
+		$g_lbp_old_init = get_option( 'lightboxplus_init' );
+		if ( ! isset( $g_lbp_old_version ) && !isset($g_lbp_old_init) ) {
 			/**
-			 * To update versions greater than 1.4 up to 2.7 to new database schema
+			 * If none of the above are set initialize Lightbox Plus
+			 */
+			$lbp_activate = new LBP_Init();
+			$lbp_activate->lbp_install();
+			unset( $lbp_activate );
+
+			return true;
+		}
+		if ( ! isset( $g_lbp_old_version ) && isset($g_lbp_old_init) ) {
+			/**
+			 * Is version is not set but init is then update
 			 */
 			$g_lbp_old_options = get_option( 'lightboxplus_options' );
 			if ( isset( $g_lbp_old_options ) ) {
@@ -117,7 +128,7 @@ if ( ! function_exists( 'activate_lbp' ) ) {
 			}
 		} elseif ( isset( $g_lbp_old_version ) && $g_lbp_old_version >= LBP_VERSION ) {
 			/**
-			 * For future updates
+			 * For future updates - compare versions and update as needed
 			 */
 			return true;
 		} else {
@@ -233,7 +244,13 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 				}
 				$this->lbp_final();
 			}
-			add_action( 'template_redirect', array( &$this, 'lbp_initial' ) );
+			if ( isset( $g_lbp_base_options['disable_mobile'] ) && 1 == $g_lbp_base_options['disable_mobile'] ) {
+				if ( ! wp_is_mobile() ) {
+					add_action( 'template_redirect', array( &$this, 'lbp_initial' ) );
+				}
+			} else {
+				add_action( 'template_redirect', array( &$this, 'lbp_initial' ) );
+			}
 			add_filter( 'plugin_row_meta', array( &$this, 'register_lbp_links' ), 10, 2 );
 		}
 
@@ -395,6 +412,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 						"hide_about"         => $_POST['hide_about'],
 						"output_htmlv"       => $_POST['output_htmlv'],
 						"data_name"          => $_POST['data_name'],
+						"disable_mobile"     => $_POST['disable_mobile'],
 						"load_location"      => $_POST['load_location'],
 						"load_priority"      => $_POST['load_priority'],
 						"use_perpage"        => $_POST['use_perpage'],
@@ -435,7 +453,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 
 					update_option( 'lightboxplus_options_base', $g_lbp_base_options );
 
-				} elseif ( 'primary' == $_REQUEST['action']) {
+				} elseif ( 'primary' == $_REQUEST['action'] ) {
 					$g_lbp_primary_options = array(
 						"transition"           => $_POST['transition'],
 						"speed"                => $_POST['speed'],
@@ -469,6 +487,9 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 						"no_auto_lightbox"     => $_POST['no_auto_lightbox'],
 						"text_links"           => $_POST['text_links'],
 						"no_display_title"     => $_POST['no_display_title'],
+						"retina_image"         => $_POST['retina_image'],
+						"retina_url"           => $_POST['retina_url'],
+						"retina_suffix"        => $_POST['retina_suffix'],
 						"scrolling"            => $_POST['scrolling'],
 						"photo"                => $_POST['photo'],
 						"rel"                  => $_POST['rel'], //Disable grouping
@@ -483,7 +504,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 					);
 					update_option( 'lightboxplus_options_primary', $g_lbp_primary_options );
 
-				} elseif ( 'secondary' == $_REQUEST['action']) {
+				} elseif ( 'secondary' == $_REQUEST['action'] ) {
 					if ( isset( $_POST['ready_sec'] ) ) {
 						$g_lbp_secondary_options = array(
 							"transition_sec"       => $_POST['transition_sec'],
@@ -513,6 +534,9 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 							"iframe_sec"           => $_POST['iframe_sec'],
 							"class_name_sec"       => $_POST['class_name_sec'],
 							"no_display_title_sec" => $_POST['no_display_title_sec'],
+							"retina_image_sec"     => $_POST['retina_image_sec'],
+							"retina_url_sec"       => $_POST['retina_url_sec'],
+							"retina_suffix_sec"    => $_POST['retina_suffix_sec'],
 							"scrolling_sec"        => $_POST['scrolling_sec'],
 							"photo_sec"            => $_POST['photo_sec'],
 							"rel_sec"              => $_POST['rel_sec'], //Disable grouping
@@ -530,50 +554,9 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 						}
 
 					}
-				} elseif ( 'inline' == $_REQUEST['action']) {
+				} elseif ( 'inline' == $_REQUEST['action'] ) {
 					$g_lbp_base_options = get_option( $this->lbp_options_base_name );
 					if ( $g_lbp_base_options['use_inline'] && isset( $_POST['ready_inline'] ) ) {
-//						$inline_links            = '';
-//						$inline_hrefs            = '';
-//						$inline_transitions      = '';
-//						$inline_speeds           = '';
-//						$inline_widths           = '';
-//						$inline_heights          = '';
-//						$inline_inner_widths     = '';
-//						$inline_inner_heights    = '';
-//						$inline_max_widths       = '';
-//						$inline_max_heights      = '';
-//						$inline_position_tops    = '';
-//						$inline_position_rights  = '';
-//						$inline_position_bottoms = '';
-//						$inline_position_lefts   = '';
-//						$inline_fixeds           = '';
-//						$inline_opens            = '';
-//						$inline_reuses           = '';
-//						$inline_opacitys         = '';
-
-//						if ( $g_lbp_base_options['use_inline'] && isset( $g_lbp_base_options['inline_num'] ) ) {
-//							for ( $i = 1; $i <= $g_lbp_base_options['inline_num']; $i ++ ) {
-//								$inline_links[ $i ]            = $_POST["inline_link"][ $i ];
-//								$inline_hrefs[ $i ]            = $_POST["inline_href"][ $i ];
-//								$inline_transitions[ $i ]      = $_POST["inline_transition"][ $i ];
-//								$inline_speeds[ $i ]           = $_POST["inline_speed"][ $i ];
-//								$inline_widths[ $i ]           = $_POST["inline_width"][ $i ];
-//								$inline_heights[ $i ]          = $_POST["inline_height"][ $i ];
-//								$inline_inner_widths[ $i ]     = $_POST["inline_inner_width"][ $i ];
-//								$inline_inner_heights[ $i ]    = $_POST["inline_inner_height"][ $i ];
-//								$inline_max_widths[ $i ]       = $_POST["inline_max_width"][ $i ];
-//								$inline_max_heights[ $i ]      = $_POST["inline_max_height"][ $i ];
-//								$inline_position_tops[ $i ]    = $_POST["inline_position_top"][ $i ];
-//								$inline_position_rights[ $i ]  = $_POST["inline_position_right"][ $i ];
-//								$inline_position_bottoms[ $i ] = $_POST["inline_position_bottom"][ $i ];
-//								$inline_position_lefts[ $i ]   = $_POST["inline_position_left"][ $i ];
-//								$inline_fixeds[ $i ]           = $_POST["inline_fixed"][ $i ];
-//								$inline_opens[ $i ]            = $_POST["inline_open"][ $i ];
-//								$inline_reuses[ $i ]           = $_POST["inline_reuse"][ $i ];
-//								$inline_opacitys[ $i ]         = $_POST["inline_opacity"][ $i ];
-//							}
-//						}
 
 						if ( $g_lbp_base_options['use_inline'] && isset( $g_lbp_base_options['inline_num'] ) ) {
 							$inline_links            = $_POST["inline_link"];
@@ -595,7 +578,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 							$inline_reuses           = $_POST["inline_reuse"];
 							$inline_opacitys         = $_POST["inline_opacity"];
 						}
-						
+
 						$g_lbp_inline_options = array(
 							"inline_links"            => $inline_links,
 							"inline_hrefs"            => $inline_hrefs,

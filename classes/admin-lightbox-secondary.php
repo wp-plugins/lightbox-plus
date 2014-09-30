@@ -30,7 +30,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 	<li><a href="#slbp-tabs-3"><?php _e( 'Position', 'lightboxplus' ); ?></a></li>
 	<li><a href="#slbp-tabs-4"><?php _e( 'Interface', 'lightboxplus' ); ?></a></li>
 	<li><a href="#slbp-tabs-5"><?php _e( 'Slideshow', 'lightboxplus' ); ?></a></li>
-	<li><a href="#slbp-tabs-6"><?php _e( 'Other', 'lightboxplus' ); ?></a></li>
+	<li><a href="#slbp-tabs-6"><?php _e( 'Advanced', 'lightboxplus' ); ?></a></li>
 	<li><a href="#slbp-tabs-7"><?php _e( 'Usage', 'lightboxplus' ); ?></a></li>
 	<li><a href="#slbp-tabs-8"><?php _e( 'Demo/Test', 'lightboxplus' ); ?></a></li>
 </ul>
@@ -505,7 +505,6 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				} ?>" />
 			</td>
 		</tr>
-
 		<tr>
 			<th scope="row">
 				<label for="no_display_title_sec"><?php _e( '<strong>Do Not</strong> Display Image Title', 'lightboxplus' ) ?></label>:
@@ -513,6 +512,36 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			<td>
 				<input type="hidden" name="no_display_title_sec" value="0" />
 				<input type="checkbox" title="<?php _e( "If checked, Lightbox Plus Colorbox will not display image titles automatically.  This has no effect if the 'Do Not Auto-Lightbox Images' option is checked. DEFAULT:  Unchecked", 'lightboxplus'  ) ?>" name="no_display_title_sec" id="no_display_title_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['no_display_title_sec'] ); ?> />
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<label for="retina_image_sec"><?php _e( 'Retina Image', 'lightboxplus' ) ?></label>:
+			</th>
+			<td>
+				<input type="hidden" name="retina_image_sec" value="0">
+				<input type="checkbox" name="retina_image_sec" id="retina_image_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['retina_image'] ); ?> title="<?php _e( "If checked Lightbox Plus Colorbox will scale down the current photo to match the screen's pixel ratio. DEFAULT: Unchecked", "lightboxplus" ); ?>" />
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">
+				<label for="retina_url_sec"><?php _e( 'Retina URL', 'lightboxplus' ) ?></label>:
+			</th>
+			<td>
+				<input type="hidden" name="retina_url_sec" value="0">
+				<input type="checkbox" name="retina_url_sec" id="retina_url" value="1"<?php checked( '1', $g_lbp_secondary_options['retina_url'] ); ?> title="<?php _e( "If checked and the device has a high resolution display, Colorbox will replace the current photo's file extension with the retinaSuffix+extension. DEFAULT: Unchecked", "lightboxplus" ); ?>" />
+			</td>
+		</tr>
+		<tr class="retina_suffix_sec lbp-closed">
+			<th scope="row">
+				<label for="retina_suffix_sec"><?php _e( 'Retina Suffix', 'lightboxplus' ) ?></label>:
+			</th>
+			<td>
+				<input type="text" size="15" name="retina_suffix_sec" id="retina_suffix_sec" value="<?php if ( empty( $g_lbp_secondary_options['retina_suffix_sec'] ) ) {
+					echo '@2x.$1';
+				} else {
+					echo $g_lbp_secondary_options['retina_suffix_sec'];
+				} ?>" title="<?php _e( "If Retina URL is checked and the device has a high resolution display, the href value will have it's extension extended with this suffix. For example, if you had an image named 'my-photo.jpg' and another retina image called 'my-photo@2x.jpg' you would put @2x.$1 (the $1 represents the file extension, in this case jpg) and the name would changed from 'my-photo.jpg' to 'my-photo@2x.jpg'. DEFAULT: .$1'. DEFAULT: @2x.$1", "lightboxplus" ) ?>" />
 			</td>
 		</tr>
 	</table>
