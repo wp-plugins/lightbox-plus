@@ -9,8 +9,8 @@
  * @$URL: http://plugins.svn.wordpress.org/lightbox-plus/trunk/admin/admin-lightbox-secondary.php $
  */
 
-//$g_lbp_base_options           = get_option( $this->lbp_options_base_name );
-$g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
+global $g_lbp_base_options;
+global $g_lbp_secondary_options;
 
 ?>
 <!-- Secondary Lightbox Settings -->
@@ -55,11 +55,11 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="speed_sec"><?php _e( 'Resize Speed', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<select name="speed_sec" id="speed_sec" title="<?php _e( 'Controls the speed of the fade and elastic transitions, in milliseconds. DEFAULT:  350', 'lightboxplus'  ) ?>">
+				<select name="speed_sec" id="speed_sec" title="<?php _e( 'Controls the speed of the fade and elastic transitions, in milliseconds. DEFAULT:  350', 'lightboxplus' ) ?>">
 					<?php
 					for ( $i = 0; $i <= 5001; ) {
 						?>
-						<option value="<?php echo $i; ?>"<?php selected($i, $g_lbp_secondary_options['speed_sec']); ?>><?php echo $i; ?></option>
+						<option value="<?php echo $i; ?>"<?php selected( $i, $g_lbp_secondary_options['speed_sec'] ); ?>><?php echo $i; ?></option>
 						<?php
 						if ( 2000 <= $i ) {
 							$i += 500;
@@ -78,11 +78,11 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="opacity_sec"><?php _e( 'Overlay Opacity', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<select name="opacity_sec" id="opacity_sec" title="<?php _e( 'Controls transparency of shadow overlay. Lower numbers are more transparent. DEFAULT:  80%', 'lightboxplus'  ) ?>">
+				<select name="opacity_sec" id="opacity_sec" title="<?php _e( 'Controls transparency of shadow overlay. Lower numbers are more transparent. DEFAULT:  80%', 'lightboxplus' ) ?>">
 					<?php
 					for ( $i = 0; $i <= 1.01; $i = $i + .05 ) {
 						?>
-						<option value="<?php echo $i; ?>"<?php selected($i, $g_lbp_secondary_options['opacity_sec']); ?>><?php echo( $i * 100 ); ?>%</option>
+						<option value="<?php echo $i; ?>"<?php selected( $i, $g_lbp_secondary_options['opacity_sec'] ); ?>><?php echo( $i * 100 ); ?>%</option>
 					<?php
 					}
 					?>
@@ -94,7 +94,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="preloading_sec"><?php _e( 'Pre-load images', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="checkbox" title="<?php _e( "Allows for preloading of 'Next' and 'Previous' content in a shared relation group (same values for the 'rel' attribute), after the current content has finished loading. Uncheck to disable. DEFAULT:  Checked", 'lightboxplus'  ) ?>" name="preloading_sec" id="preloading_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['preloading_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( "Allows for preloading of 'Next' and 'Previous' content in a shared relation group (same values for the 'rel' attribute), after the current content has finished loading. Uncheck to disable. DEFAULT:  Checked", 'lightboxplus' ) ?>" name="preloading_sec" id="preloading_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['preloading_sec'] ); ?> />
 			</td>
 		</tr>
 	</table>
@@ -119,7 +119,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="height_sec"><?php _e( 'Height', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( "Set a fixed total height. This includes borders and buttons. Example: '100%', '500px', or 500, or false for no defined height. DEFAULT: false", 'lightboxplus'  ) ?>" size="15" name="height_sec" id="height_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['height_sec'] ) ) {
+				<input type="text" title="<?php _e( "Set a fixed total height. This includes borders and buttons. Example: '100%', '500px', or 500, or false for no defined height. DEFAULT: false", 'lightboxplus' ) ?>" size="15" name="height_sec" id="height_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['height_sec'] ) ) {
 					echo $g_lbp_secondary_options['height_sec'];
 				} else {
 					echo '';
@@ -131,7 +131,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="inner_width_sec"><?php _e( 'Inner Width', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( "This is an alternative to 'width' used to set a fixed inner width. This excludes borders and buttons. Example: '50%', '500px', or 500, or false for no inner width.  DEFAULT:  false", 'lightboxplus'  ) ?>" size="15" name="inner_width_sec" id="inner_width_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['inner_width_sec'] ) ) {
+				<input type="text" title="<?php _e( "This is an alternative to 'width' used to set a fixed inner width. This excludes borders and buttons. Example: '50%', '500px', or 500, or false for no inner width.  DEFAULT:  false", 'lightboxplus' ) ?>" size="15" name="inner_width_sec" id="inner_width_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['inner_width_sec'] ) ) {
 					echo $g_lbp_secondary_options['inner_width_sec'];
 				} else {
 					echo '';
@@ -143,7 +143,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="inner_height_sec"><?php _e( 'Inner Height', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( "This is an alternative to 'height' used to set a fixed inner height. This excludes borders and buttons. Example: '50%', '500px', or 500 or false for no inner height. DEFAULT:  false", 'lightboxplus'  ) ?>" size="15" name="inner_height_sec" id="inner_height_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['inner_height_sec'] ) ) {
+				<input type="text" title="<?php _e( "This is an alternative to 'height' used to set a fixed inner height. This excludes borders and buttons. Example: '50%', '500px', or 500 or false for no inner height. DEFAULT:  false", 'lightboxplus' ) ?>" size="15" name="inner_height_sec" id="inner_height_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['inner_height_sec'] ) ) {
 					echo $g_lbp_secondary_options['inner_height_sec'];
 				} else {
 					echo '';
@@ -155,7 +155,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="initial_width_sec"><?php _e( 'Initial Width', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( 'Set the initial width, prior to any content being loaded.  DEFAULT:  300', 'lightboxplus'  ) ?>" size="15" name="initial_width_sec" id="initial_width_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['initial_width_sec'] ) ) {
+				<input type="text" title="<?php _e( 'Set the initial width, prior to any content being loaded.  DEFAULT:  300', 'lightboxplus' ) ?>" size="15" name="initial_width_sec" id="initial_width_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['initial_width_sec'] ) ) {
 					echo $g_lbp_secondary_options['initial_width_sec'];
 				} else {
 					echo '';
@@ -167,7 +167,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="initial_height_sec"><?php _e( 'Initial Height', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( 'Set the initial height, prior to any content being loaded. DEFAULT:  100', 'lightboxplus'  ) ?>" size="15" name="initial_height_sec" id="initial_height_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['initial_height_sec'] ) ) {
+				<input type="text" title="<?php _e( 'Set the initial height, prior to any content being loaded. DEFAULT:  100', 'lightboxplus' ) ?>" size="15" name="initial_height_sec" id="initial_height_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['initial_height_sec'] ) ) {
 					echo $g_lbp_secondary_options['initial_height_sec'];
 				} else {
 					echo '';
@@ -179,7 +179,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="max_width_sec"><?php _e( 'Maximum Width', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( 'Set a maximum width for loaded content.  Example: "75%", "500px", 500, or false for no maximum width.  DEFAULT:  false', 'lightboxplus'  ) ?>" size="15" name="max_width_sec" id="max_width_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['max_width_sec'] ) ) {
+				<input type="text" title="<?php _e( 'Set a maximum width for loaded content.  Example: "75%", "500px", 500, or false for no maximum width.  DEFAULT:  false', 'lightboxplus' ) ?>" size="15" name="max_width_sec" id="max_width_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['max_width_sec'] ) ) {
 					echo $g_lbp_secondary_options['max_width_sec'];
 				} else {
 					echo '';
@@ -191,7 +191,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="max_height_sec"><?php _e( 'Maximum Height', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( "Set a maximum height for loaded content.  Example: '75%', '500px', 500, or false for no maximum height. DEFAULT:  false", 'lightboxplus'  ) ?>" size="15" name="max_height_sec" id="max_height_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['max_height_sec'] ) ) {
+				<input type="text" title="<?php _e( "Set a maximum height for loaded content.  Example: '75%', '500px', 500, or false for no maximum height. DEFAULT:  false", 'lightboxplus' ) ?>" size="15" name="max_height_sec" id="max_height_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['max_height_sec'] ) ) {
 					echo $g_lbp_secondary_options['max_height_sec'];
 				} else {
 					echo '';
@@ -204,7 +204,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="resize_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked and if Maximum Width or Maximum Height have been defined, Lightbx Plus will resize photos to fit within the those values. DEFAULT:  Checked', 'lightboxplus'  ) ?>" name="resize_sec" id="resize_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['resize_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( 'If checked and if Maximum Width or Maximum Height have been defined, Lightbx Plus will resize photos to fit within the those values. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="resize_sec" id="resize_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['resize_sec'] ); ?> />
 			</td>
 		</tr>
 	</table>
@@ -217,7 +217,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="top_sec"><?php _e( 'Top', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input name="top_sec" type="text" title="<?php _e( "Accepts a pixel or percent value (50, '50px', '10%'). Controls vertical positioning instead of using the default position of being centered in the viewport. DEFAULT:  null", 'lightboxplus'  ) ?>" id="top_sec" size="8" maxlength="8" value="<?php if ( ! empty( $g_lbp_secondary_options['top'] ) ) {
+				<input name="top_sec" type="text" title="<?php _e( "Accepts a pixel or percent value (50, '50px', '10%'). Controls vertical positioning instead of using the default position of being centered in the viewport. DEFAULT:  null", 'lightboxplus' ) ?>" id="top_sec" size="8" maxlength="8" value="<?php if ( ! empty( $g_lbp_secondary_options['top'] ) ) {
 					echo $g_lbp_secondary_options['top'];
 				} else {
 					echo '';
@@ -229,7 +229,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="right_sec"><?php _e( 'Right', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input name="right_sec" type="text" title="<?php _e( "Accepts a pixel or percent value (50, '50px', '10%'). Controls horizontal positioning instead of using the default position of being centered in the viewport. DEFAULT:  null", 'lightboxplus'  ) ?>" id="right_sec" size="8" maxlength="8" value="<?php if ( ! empty( $g_lbp_secondary_options['right'] ) ) {
+				<input name="right_sec" type="text" title="<?php _e( "Accepts a pixel or percent value (50, '50px', '10%'). Controls horizontal positioning instead of using the default position of being centered in the viewport. DEFAULT:  null", 'lightboxplus' ) ?>" id="right_sec" size="8" maxlength="8" value="<?php if ( ! empty( $g_lbp_secondary_options['right'] ) ) {
 					echo $g_lbp_secondary_options['right'];
 				} else {
 					echo '';
@@ -241,7 +241,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="bottom_sec"><?php _e( 'Bottom', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input name="bottom_sec" type="text" title="<?php _e( "Accepts a pixel or percent value (50, '50px', '10%'). Controls vertical positioning instead of using the default position of being centered in the viewport. DEFAULT:  false", 'lightboxplus'  ) ?>" id="bottom_sec" size="8" maxlength="8" value="<?php if ( ! empty( $g_lbp_secondary_options['bottom'] ) ) {
+				<input name="bottom_sec" type="text" title="<?php _e( "Accepts a pixel or percent value (50, '50px', '10%'). Controls vertical positioning instead of using the default position of being centered in the viewport. DEFAULT:  false", 'lightboxplus' ) ?>" id="bottom_sec" size="8" maxlength="8" value="<?php if ( ! empty( $g_lbp_secondary_options['bottom'] ) ) {
 					echo $g_lbp_secondary_options['bottom'];
 				} else {
 					echo '';
@@ -253,7 +253,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="left_sec"><?php _e( 'Left', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input name="left_sec" type="text" title="<?php _e( "SetAccepts a pixel or percent value (50, '50px', '10%'). Controls horizontal positioning instead of using the default position of being centered in the viewport. DEFAULT:  false", 'lightboxplus'  ) ?>" id="left_sec" size="8" maxlength="8" value="<?php if ( ! empty( $g_lbp_secondary_options['left'] ) ) {
+				<input name="left_sec" type="text" title="<?php _e( "SetAccepts a pixel or percent value (50, '50px', '10%'). Controls horizontal positioning instead of using the default position of being centered in the viewport. DEFAULT:  false", 'lightboxplus' ) ?>" id="left_sec" size="8" maxlength="8" value="<?php if ( ! empty( $g_lbp_secondary_options['left'] ) ) {
 					echo $g_lbp_secondary_options['left'];
 				} else {
 					echo '';
@@ -266,7 +266,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="fixed_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If check, the lightbox will always be displayed in a fixed position within the viewport. In otherwords it will stay within the viewport while scolling on the page.  This is unlike the default absolute positioning relative to the document. DEFAULT:  Unchecked', 'lightboxplus'  ) ?>" name="fixed_sec" id="fixed_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['fixed'] ) ) {
+				<input type="checkbox" title="<?php _e( 'If check, the lightbox will always be displayed in a fixed position within the viewport. In otherwords it will stay within the viewport while scolling on the page.  This is unlike the default absolute positioning relative to the document. DEFAULT:  Unchecked', 'lightboxplus' ) ?>" name="fixed_sec" id="fixed_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['fixed'] ) ) {
 					checked( '1', $g_lbp_secondary_options['fixed'] );
 				} ?> />
 			</td>
@@ -285,7 +285,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="close_sec"><?php _e( 'Close image text', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( 'Text for the close button. If Overlay Close or ESC Key Close are check those options will also close the lightbox. DEFAULT:  close', 'lightboxplus'  ) ?>" size="15" name="close_sec" id="close_sec" value="<?php if ( empty( $g_lbp_secondary_options['close_sec'] ) ) {
+				<input type="text" title="<?php _e( 'Text for the close button. If Overlay Close or ESC Key Close are check those options will also close the lightbox. DEFAULT:  close', 'lightboxplus' ) ?>" size="15" name="close_sec" id="close_sec" value="<?php if ( empty( $g_lbp_secondary_options['close_sec'] ) ) {
 					echo '';
 				} else {
 					echo $g_lbp_secondary_options['close_sec'];
@@ -298,7 +298,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="overlay_close_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked, enables closing Lightbox Plus Colorbox by clicking on the background overlay. DEFAULT:  Checked', 'lightboxplus'  ) ?>" name="overlay_close_sec" id="overlay_close_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['overlay_close_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( 'If checked, enables closing Lightbox Plus Colorbox by clicking on the background overlay. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="overlay_close_sec" id="overlay_close_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['overlay_close_sec'] ); ?> />
 			</td>
 		</tr>
 		<tr>
@@ -307,7 +307,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="esc_key_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked, enables closing Lightbox Plus Colorbox using the ESC key. DEFAULT:  Checked', 'lightboxplus'  ) ?>" name="esc_key_sec" id="esc_key_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['esc_key_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( 'If checked, enables closing Lightbox Plus Colorbox using the ESC key. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="esc_key_sec" id="esc_key_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['esc_key_sec'] ); ?> />
 			</td>
 		</tr>
 		<tr>
@@ -316,7 +316,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="scrolling_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If unchecked, Lightbox Plus Colorbox will hide scrollbars for overflowing content. DEFAULT:  Checked', 'lightboxplus'  ) ?>" name="scrolling_sec" id="scrolling_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['scrolling_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( 'If unchecked, Lightbox Plus Colorbox will hide scrollbars for overflowing content. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="scrolling_sec" id="scrolling_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['scrolling_sec'] ); ?> />
 			</td>
 		</tr>
 		<tr>
@@ -329,7 +329,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="rel_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked will disbale the useage of grouping labels. DEFAULT:  Unchecked', 'lightboxplus'  ) ?>" id="rel_sec" name="rel_sec" value="nofollow"<?php if ( $g_lbp_secondary_options['rel_sec'] == 'nofollow' ) {
+				<input type="checkbox" title="<?php _e( 'If checked will disbale the useage of grouping labels. DEFAULT:  Unchecked', 'lightboxplus' ) ?>" id="rel_sec" name="rel_sec" value="nofollow"<?php if ( $g_lbp_secondary_options['rel_sec'] == 'nofollow' ) {
 					echo ' checked="checked"';
 				} ?> />
 			</td>
@@ -339,13 +339,13 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="label_imag_sec"><?php _e( 'Grouping Labels', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( 'Text format for the content group / gallery count. {current} and {total} are detected and replaced with actual numbers while Colorbox runs.DEFAULT:  Image {current} of {total}', 'lightboxplus'  ) ?>" size="15" name="label_image_sec" id="label_imag_sec" value="<?php if ( empty( $g_lbp_secondary_options['label_image_sec'] ) ) {
+				<input type="text" title="<?php _e( 'Text format for the content group / gallery count. {current} and {total} are detected and replaced with actual numbers while Colorbox runs.DEFAULT:  Image {current} of {total}', 'lightboxplus' ) ?>" size="15" name="label_image_sec" id="label_imag_sec" value="<?php if ( empty( $g_lbp_secondary_options['label_image_sec'] ) ) {
 					echo '';
 				} else {
 					echo $g_lbp_secondary_options['label_image_sec'];
 				} ?>" />
 				#
-				<input type="text" title="<?php _e( 'Text format for the content group / gallery count. {current} and {total} are detected and replaced with actual numbers while Colorbox runs.DEFAULT:  Image {current} of {total}', 'lightboxplus'  ) ?>" size="15" name="label_of_sec" id="label_of_sec" value="<?php if ( empty( $g_lbp_secondary_options['label_of_sec'] ) ) {
+				<input type="text" title="<?php _e( 'Text format for the content group / gallery count. {current} and {total} are detected and replaced with actual numbers while Colorbox runs.DEFAULT:  Image {current} of {total}', 'lightboxplus' ) ?>" size="15" name="label_of_sec" id="label_of_sec" value="<?php if ( empty( $g_lbp_secondary_options['label_of_sec'] ) ) {
 					echo '';
 				} else {
 					echo $g_lbp_secondary_options['label_of_sec'];
@@ -358,7 +358,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="previous_sec"><?php _e( 'Previous image text', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( "Text for the previous button in a shared relation group (same values for 'rel' attribute). DEFAULT:  previous", 'lightboxplus'  ) ?>" size="15" name="previous_sec" id="previous_sec" value="<?php if ( empty( $g_lbp_secondary_options['previous_sec'] ) ) {
+				<input type="text" title="<?php _e( "Text for the previous button in a shared relation group (same values for 'rel' attribute). DEFAULT:  previous", 'lightboxplus' ) ?>" size="15" name="previous_sec" id="previous_sec" value="<?php if ( empty( $g_lbp_secondary_options['previous_sec'] ) ) {
 					echo '';
 				} else {
 					echo $g_lbp_secondary_options['previous_sec'];
@@ -370,7 +370,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="next_sec"><?php _e( 'Next image text', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( "Text for the next button in a shared relation group (same values for 'rel' attribute).  DEFAULT:  next", 'lightboxplus'  ) ?>" size="15" name="next_sec" id="next_sec" value="<?php if ( empty( $g_lbp_secondary_options['next_sec'] ) ) {
+				<input type="text" title="<?php _e( "Text for the next button in a shared relation group (same values for 'rel' attribute).  DEFAULT:  next", 'lightboxplus' ) ?>" size="15" name="next_sec" id="next_sec" value="<?php if ( empty( $g_lbp_secondary_options['next_sec'] ) ) {
 					echo '';
 				} else {
 					echo $g_lbp_secondary_options['next_sec'];
@@ -383,7 +383,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="arrow_key_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked, enables the left and right arrow keys for navigating between the items in a group. DEFAULT:  Checked', 'lightboxplus'  ) ?>" name="arrow_key_sec" id="arrow_key_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['arrow_key_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( 'If checked, enables the left and right arrow keys for navigating between the items in a group. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="arrow_key_sec" id="arrow_key_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['arrow_key_sec'] ); ?> />
 			</td>
 		</tr>
 		<tr class="grouping_sec">
@@ -392,7 +392,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="loop_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked, enables the ability to loop back to the beginning of the group when on the last element. DEFAULT:  Checked', 'lightboxplus'  ) ?>" name="loop_sec" id="loop_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['loop_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( 'If checked, enables the ability to loop back to the beginning of the group when on the last element. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="loop_sec" id="loop_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['loop_sec'] ); ?> />
 			</td>
 		</tr>
 	</table>
@@ -406,7 +406,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="slideshow_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked, adds slideshow capablity to a content group / gallery. DEFAULT:  Unchecked', 'lightboxplus'  ) ?>" name="slideshow_sec" id="slideshow_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['slideshow_auto'] ) ) {
+				<input type="checkbox" title="<?php _e( 'If checked, adds slideshow capablity to a content group / gallery. DEFAULT:  Unchecked', 'lightboxplus' ) ?>" name="slideshow_sec" id="slideshow_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['slideshow_auto'] ) ) {
 					checked( '1', $g_lbp_secondary_options['slideshow_sec'] );
 				} ?> />
 			</td>
@@ -417,7 +417,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="slideshow_auto_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked, the slideshows will automatically start to play when content grou opened. DEFAULT:  Checked', 'lightboxplus'  ) ?>" name="slideshow_auto_sec" id="slideshow_auto_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['slideshow_auto'] ) ) {
+				<input type="checkbox" title="<?php _e( 'If checked, the slideshows will automatically start to play when content grou opened. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="slideshow_auto_sec" id="slideshow_auto_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['slideshow_auto'] ) ) {
 					checked( '1', $g_lbp_secondary_options['slideshow_auto'] );
 				} ?> />
 			</td>
@@ -427,11 +427,11 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="slideshow_speed_sec"><?php _e( 'Slideshow Speed', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<select name="slideshow_speed_sec" id="slideshow_speed_sec" title="<?php _e( 'Controls the speed of the slideshow, in milliseconds. DEFAULT:  2500', 'lightboxplus'  ) ?>">
+				<select name="slideshow_speed_sec" id="slideshow_speed_sec" title="<?php _e( 'Controls the speed of the slideshow, in milliseconds. DEFAULT:  2500', 'lightboxplus' ) ?>">
 					<?php
 					for ( $i = 500; $i <= 20001; ) {
 						?>
-						<option value="<?php echo $i; ?>"<?php selected ($i, $g_lbp_secondary_options['slideshow_speed_sec']); ?>><?php echo $i; ?></option>
+						<option value="<?php echo $i; ?>"<?php selected( $i, $g_lbp_secondary_options['slideshow_speed_sec'] ); ?>><?php echo $i; ?></option>
 						<?php
 						if ( 15000 <= $i ) {
 							$i += 5000;
@@ -450,7 +450,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="slideshow_start_sec"><?php _e( 'Slideshow start text', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( 'Text for the slideshow start button. DEFAULT:  start', 'lightboxplus'  ) ?>" size="15" name="slideshow_start_sec" id="slideshow_start_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['slideshow_start_sec'] ) ) {
+				<input type="text" title="<?php _e( 'Text for the slideshow start button. DEFAULT:  start', 'lightboxplus' ) ?>" size="15" name="slideshow_start_sec" id="slideshow_start_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['slideshow_start_sec'] ) ) {
 					echo $g_lbp_secondary_options['slideshow_start_sec'];
 				} else {
 					echo 'start';
@@ -462,7 +462,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 				<label for="slideshow_stop_sec"><?php _e( 'Slideshow stop text', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( 'Text for the slideshow stop button.  DEFAULT:  stop', 'lightboxplus'  ) ?>" size="15" name="slideshow_stop_sec" id="slideshow_stop_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['slideshow_stop_sec'] ) ) {
+				<input type="text" title="<?php _e( 'Text for the slideshow stop button.  DEFAULT:  stop', 'lightboxplus' ) ?>" size="15" name="slideshow_stop_sec" id="slideshow_stop_sec" value="<?php if ( ! empty( $g_lbp_secondary_options['slideshow_stop_sec'] ) ) {
 					echo $g_lbp_secondary_options['slideshow_stop_sec'];
 				} else {
 					echo 'stop';
@@ -480,7 +480,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="photo_sec" value="0">
-				<input type="checkbox" title="<?php _e( "If checked, this setting forces Lightbox Plus Colorbox to display a link as a photo. Use this when automatic photo detection fails (such as using a url like 'photo.php' instead of 'photo.jpg'). DEFAULT:  Unchecked", 'lightboxplus'  ) ?>" name="photo_sec" id="photo_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['photo_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( "If checked, this setting forces Lightbox Plus Colorbox to display a link as a photo. Use this when automatic photo detection fails (such as using a url like 'photo.php' instead of 'photo.jpg'). DEFAULT:  Unchecked", 'lightboxplus' ) ?>" name="photo_sec" id="photo_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['photo_sec'] ); ?> />
 			</td>
 		</tr>
 		<tr>
@@ -489,7 +489,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="iframe_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked, specifies that content should be displayed in an iFrame. Must be used when using Lightbox Plus Colorbox to display content from another site.  Can be used to display external web pages, video and more. DEFAULT:  Checked', 'lightboxplus'  ) ?>" name="iframe_sec" id="iframe_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['iframe_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( 'If checked, specifies that content should be displayed in an iFrame. Must be used when using Lightbox Plus Colorbox to display content from another site.  Can be used to display external web pages, video and more. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="iframe_sec" id="iframe_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['iframe_sec'] ); ?> />
 			</td>
 		</tr>
 		<tr>
@@ -498,7 +498,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<!-- Class name: -->
-				<input type="text" title="<?php _e( "If checked, Lightbox Plus Colorbox will only lightbox images using a class instead of the 'rel=lightbox[]' attribute.  Using this method you can manually control which images are affected by Lightbox Plus Colorbox by adding the class to the Advanced Link Settings in the WordPress Edit Image tool or by adding it to the image link URL and checking the 'Do Not Auto-Lightbox Images' option. You can also specify the name of the class instead of using the default. DEFAULT:  Unchecked / Default lbp_secondary", 'lightboxplus'  ) ?>" size="15" name="class_name_sec" id="class_name_sec" value="<?php if ( empty( $g_lbp_secondary_options['class_name_sec'] ) ) {
+				<input type="text" title="<?php _e( "If checked, Lightbox Plus Colorbox will only lightbox images using a class instead of the 'rel=lightbox[]' attribute.  Using this method you can manually control which images are affected by Lightbox Plus Colorbox by adding the class to the Advanced Link Settings in the WordPress Edit Image tool or by adding it to the image link URL and checking the 'Do Not Auto-Lightbox Images' option. You can also specify the name of the class instead of using the default. DEFAULT:  Unchecked / Default lbp_secondary", 'lightboxplus' ) ?>" size="15" name="class_name_sec" id="class_name_sec" value="<?php if ( empty( $g_lbp_secondary_options['class_name_sec'] ) ) {
 					echo 'lbpModal';
 				} else {
 					echo $g_lbp_secondary_options['class_name_sec'];
@@ -511,7 +511,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="no_display_title_sec" value="0" />
-				<input type="checkbox" title="<?php _e( "If checked, Lightbox Plus Colorbox will not display image titles automatically.  This has no effect if the 'Do Not Auto-Lightbox Images' option is checked. DEFAULT:  Unchecked", 'lightboxplus'  ) ?>" name="no_display_title_sec" id="no_display_title_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['no_display_title_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( "If checked, Lightbox Plus Colorbox will not display image titles automatically.  This has no effect if the 'Do Not Auto-Lightbox Images' option is checked. DEFAULT:  Unchecked", 'lightboxplus' ) ?>" name="no_display_title_sec" id="no_display_title_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['no_display_title_sec'] ); ?> />
 			</td>
 		</tr>
 		<tr>
@@ -520,7 +520,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="retina_image_sec" value="0">
-				<input type="checkbox" name="retina_image_sec" id="retina_image_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['retina_image'] ); ?> title="<?php _e( "If checked Lightbox Plus Colorbox will scale down the current photo to match the screen's pixel ratio. DEFAULT: Unchecked", "lightboxplus" ); ?>" />
+				<input type="checkbox" name="retina_image_sec" id="retina_image_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['retina_image_sec'] ); ?> title="<?php _e( "If checked Lightbox Plus Colorbox will scale down the current photo to match the screen's pixel ratio. DEFAULT: Unchecked", "lightboxplus" ); ?>" />
 			</td>
 		</tr>
 		<tr>
@@ -529,7 +529,7 @@ $g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
 			</th>
 			<td>
 				<input type="hidden" name="retina_url_sec" value="0">
-				<input type="checkbox" name="retina_url_sec" id="retina_url" value="1"<?php checked( '1', $g_lbp_secondary_options['retina_url'] ); ?> title="<?php _e( "If checked and the device has a high resolution display, Colorbox will replace the current photo's file extension with the retinaSuffix+extension. DEFAULT: Unchecked", "lightboxplus" ); ?>" />
+				<input type="checkbox" name="retina_url_sec" id="retina_url" value="1"<?php checked( '1', $g_lbp_secondary_options['retina_url_sec'] ); ?> title="<?php _e( "If checked and the device has a high resolution display, Colorbox will replace the current photo's file extension with the retinaSuffix+extension. DEFAULT: Unchecked", "lightboxplus" ); ?>" />
 			</td>
 		</tr>
 		<tr class="retina_suffix_sec lbp-closed">

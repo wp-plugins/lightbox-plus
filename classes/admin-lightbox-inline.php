@@ -9,13 +9,9 @@
  * @$URL: http://plugins.svn.wordpress.org/lightbox-plus/trunk/admin/admin-lightbox-inline.php $
  */
 
-if ( ! isset( $g_lbp_base_options ) ) {
-	$g_lbp_base_options = get_option( 'lightboxplus_base_settings' );
-}
+global $g_lbp_base_options;
+global $g_lbp_inline_options;
 
-if ( ! isset( $g_lbp_inline_options ) ) {
-	$g_lbp_inline_options = get_option( 'lightboxplus_base_settings' );
-}
 ?>
 <!-- Inline Lightbox Settings -->
 <form name="lightboxplus-settings-inline" id="lightboxplus-settings-inline" method="post" action="<?php echo LBP_ADMIN_PAGE; ?>">

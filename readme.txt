@@ -172,7 +172,6 @@ You can get community support for Lightbox Plus Colorbox via the <a href="http:/
 = Known Problems =
 
 * Does not work correctly with W3 Total Cache if you are using automatic minify settings.  You can manually set up minify to work correctly bypassing Lightbox Plus Colorbox (jquery-colorbox.min.js)
-* No support for iPad (if someone wants to donate an iPad to me I will guarantee support)
  * It generally seems to work though I just don't support it as I don't have an iPad.
 * In some instances performance may be slow in older versions IE - this may be due to plugin conflicts or slow JavaScript performance in IE.
 * Lightboxed video does not seem to work in IE on locally installed sites, for example viewing in IE 7.0 while running XAMPP; this seems to be a Windows only issue.
@@ -197,6 +196,36 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 6. Lightbox Plus Colorbox - Style Examples
 
 == Change Log ==
+
+= 2.8 =
+* Validated against WordPress 4.0.x
+* Refactored code to make strict compliant.
+ * I'm not seeing any more notification but if I missed anything let me know.
+* Refactored files and classes to keep in line with WordPress coding standards.
+* Cleaned up code and reduced memory footprint.
+* Cleaned up admin panel to make use of newer WordPress functions and styles.
+* Changed saving options to individual saving of individual options separately (e.g. Base settings and primary lightbox settings have their own save button, etc.)
+* Change help tips to display on hover over form field.
+* Added code to update database to new storage options
+ * If plugin does not update correctly please use Reset/Reinitialize
+* Added controls for retina display alternate images
+ * Must have an alternate image in the same directory as the base image
+ * Lightbox Plus Colorbox will automatically find the image given the correct naming parameters (See help text in plugin.)
+* Changed the way inline lightboxes work.
+ * Limited to 50 inline lightboxes due to common maximum post variables setting in PHP
+ * Made inline lightboxes re-usable so that the same size inline lightbox can be used for multiple inline content
+  * Inline lightboxes have option for each to be re-used.
+ * Inline lightboxes do not support retina alternate images
+* Added ability to disable lightboxes for mobile using wp_is_mobile()
+ * This will disable for tablets as well.
+ * Should work better with responsive designs
+* Fixed colorbox.min.js now loads again instead of colorbox.js (unminified)
+* Updated Colorbox to version 1.5.14 which includes the following fixes
+ * When opening, append Colorbox to the DOM if it was detached for whatever reason. Fixes #645.
+ * Fixed regression introduced with v1.5.12 with legacy versions of jQuery (1.3x-1.6x). References #628.
+ * Allowed setting the overlay opacity via CSS, by setting Colorbox's opacity property to false. References #628.
+ * Fixed bug where setting opacity to 0 was ignored. Fixes #628.
+ * Minor misc. tweaks (merging pull requests #611, #612, #615, #619, #620).
 
 = 2.7 =
 * Initial release of version 2.7

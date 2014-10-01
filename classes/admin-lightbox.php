@@ -9,22 +9,23 @@
  * @$URL: http://plugins.svn.wordpress.org/lightbox-plus/trunk/admin/admin-lightbox.php $
  */
 
-/**
- * Check if there are styles
- *
- * @var mixed
- */
 global $g_lbp_base_options;
 global $g_lbp_primary_options;
 global $g_lbp_secondary_options;
 global $g_lbp_inline_options;
 global $wp_version;
 
+/**
+ * Check if there are styles
+ *
+ * @var mixed
+ */
 if ( $g_lbp_base_options['use_custom_style'] == 1 ) {
 	$st_style_path = LBP_CUSTOM_STYLE_PATH;
 } else {
 	$st_style_path = LBP_STYLE_PATH;
 }
+
 if ( $handle = opendir( $st_style_path ) ) {
 	while ( false !== ( $file = readdir( $handle ) ) ) {
 		if ( $file != "." && $file != ".." && $file != ".DS_Store" && $file != ".svn" && $file != "index.html" ) {

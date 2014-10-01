@@ -11,7 +11,19 @@
 
 if ( ! interface_exists( 'LBP_Filters_Interface' ) ) {
 	interface LBP_Filters_Interface {
+		/**
+		 * @param $content
+		 *
+		 * @return mixed
+		 */
 		function lbp_replace_content( $content );
+
+		/**
+		 * @param $html_content
+		 * @param $unq_id
+		 *
+		 * @return mixed
+		 */
 		function lbp_replace( $html_content, $unq_id );
 	}
 }

@@ -14,22 +14,51 @@ if ( ! interface_exists( 'LBP_Init_Interface' ) ) {
 	 * Interface LBP_Init_Interface
 	 */
 	interface LBP_Init_Interface {
+		/**
+		 * @return mixed
+		 */
 		function lbp_install();
 
+		/**
+		 * @return mixed
+		 */
 		function lbp_reinstall();
 
+		/**
+		 * @return mixed
+		 */
 		function lbp_base_init();
 
+		/**
+		 * @return mixed
+		 */
 		function lbp_primary_init();
 
+		/**
+		 * @return mixed
+		 */
 		function lbp_secondary_init();
 
+		/**
+		 * @param $inline_number
+		 *
+		 * @return mixed
+		 */
 		function lbp_inline_init( $inline_number );
 
+		/**
+		 * @return mixed
+		 */
 		function lbp_deactivate();
 
+		/**
+		 * @return mixed
+		 */
 		function lbp_uninstall();
 
+		/**
+		 * @return mixed
+		 */
 		function lbp_global_styles_init();
 
 
@@ -52,14 +81,15 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 			 * Call Initialize Secondary Lightbox if enabled
 			 * Call Initialize Inline Lightboxes if enabled
 			 *
-			 */
+			 * Generate and saved options and...
+			*/
 			update_option( 'lightboxplus_options_base', $this->lbp_base_init() );
 			update_option( 'lightboxplus_options_primary', $this->lbp_primary_init() );
 			update_option( 'lightboxplus_options_secondary', $this->lbp_secondary_init() );
 			update_option( 'lightboxplus_options_inline', $this->lbp_inline_init() );
 
 			/**
-			 * Saved options and then get them out of the db to see if they are actually there
+			 *  ...then get them out of the db to see if they are actually there
 			 */
 			$ar_saved_options = get_option( 'lightboxplus_options_base' );
 
@@ -104,8 +134,6 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 			 * Call Initialize Primary Lightbox
 			 * Call Initialize Secondary Lightbox if enabled
 			 * Call Initialize Inline Lightboxes if enabled
-			 *
-			 * @var LBP_Lightboxplus
 			 */
 			if ( isset( $_POST['reinit_lightboxplus'] ) ) {
 				$g_lbp_base_options      = $this->lbp_base_init();
@@ -114,14 +142,18 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 				$g_lbp_inline_options    = $this->lbp_inline_init();
 
 				update_option( 'lightboxplus_init', 0 );
+
 				/**
-				 * Saved options and then get them out of the db to see if they are actually there
+				 * Save options and...
 				 */
 				update_option( 'lightboxplus_options_base', $this->lbp_base_init() );
 				update_option( 'lightboxplus_options_primary', $this->lbp_primary_init() );
 				update_option( 'lightboxplus_options_secondary', $this->lbp_secondary_init() );
 				update_option( 'lightboxplus_options_inline', $this->lbp_inline_init() );
 
+				/**
+				 *  ...then get them out of the db to see if they are actually there
+				 */
 				$ar_saved_options = get_option( 'lightboxplus_options_base' );
 
 				/**
@@ -184,7 +216,7 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 		}
 
 		/**
-		 * Initialize Primary Lightbox by buiding array of options and committing to database
+		 * Initialize Primary Lightbox by building array of options and committing to database
 		 *
 		 * @return array
 		 */
@@ -240,7 +272,7 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 		}
 
 		/**
-		 * Initialize Secondary Lightbox by buiding array of options and returning
+		 * Initialize Secondary Lightbox by building array of options and returning
 		 *
 		 * @return array
 		 */
@@ -291,7 +323,7 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 		}
 
 		/**
-		 * Initialize Inline Lightbox by buiding array of options and committing to database
+		 * Initialize Inline Lightbox by building array of options and committing to database
 		 *
 		 * @param int $inline_number
 		 *

@@ -10,6 +10,9 @@
  */
 
 if ( ! interface_exists( 'LBP_Utilities_Interface' ) ) {
+	/**
+	 * Interface LBP_Utilities_Interface
+	 */
 	interface LBP_Utilities_Interface {
 		/**
 		 * @param $style_name
@@ -94,17 +97,19 @@ if ( ! interface_exists( 'LBP_Utilities_Interface' ) ) {
 if ( ! class_exists( 'LBP_Utilities' ) ) {
 
 	/**
-	 * Lightbox Plus Colorbox Utiltiy Functions used throughout plugin
+	 * Lightbox Plus Colorbox Utility Functions used throughout plugin
 	 *
-	 * Not sure if WordPress has equivelents but cannot locate in API docs if so
+	 * Not sure if WordPress has equivalents but cannot locate in API docs if so
 	 */
 	class LBP_Utilities implements LBP_Utilities_Interface {
 		/**
 		 * Create dropdown name from stylesheet listing - make user friendly
+		 */
+
+		/**
+		 * @param $style_name
 		 *
-		 * @param mixed $style_name
-		 *
-		 * @return string
+		 * @return mixed|string
 		 */
 		function set_proper_name( $style_name ) {
 			$style_name = str_replace( '.css', '', $style_name );
@@ -112,6 +117,11 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 			return ucfirst( $style_name );
 		}
 
+		/**
+		 * @param $loadlocation
+		 *
+		 * @return bool|mixed
+		 */
 		function set_load_location( $loadlocation ) {
 			if ( $loadlocation == 'wp_head' ) {
 				return false;
@@ -120,6 +130,11 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 			}
 		}
 
+		/**
+		 * @param $name
+		 *
+		 * @return bool
+		 */
 		function switch_boolean_get( $name ) {
 			if ( isset( $name ) ) {
 				return $name;
@@ -323,9 +338,9 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 		function json_pretty( $json ) {
 
 			$formatted_json = '';
-			$position         = 0;
-			$prev_character   = '';
-			$end_of_quotes    = true;
+			$position       = 0;
+			$prev_character = '';
+			$end_of_quotes  = true;
 
 			for ( $i = 0; $i <= strlen( $json ); $i ++ ) {
 				$character = substr( $json, $i, 1 );

@@ -10,33 +10,96 @@
  */
 
 if ( ! interface_exists( 'LBP_Update_Interface' ) ) {
+	/**
+	 * Interface LBP_Update_Interface
+	 */
 	interface LBP_Update_Interface {
+		/**
+		 * @param $old_array
+		 *
+		 * @return mixed
+		 */
 		function lbp_convert( $old_array );
 
+		/**
+		 * @param $array
+		 *
+		 * @return mixed
+		 */
 		function lbp_base_convert( $array );
 
+		/**
+		 * @param $array
+		 *
+		 * @return mixed
+		 */
 		function lbp_secondary_convert( $array );
 
+		/**
+		 * @param $array
+		 *
+		 * @return mixed
+		 */
 		function lbp_inline_convert( $array );
 
+		/**
+		 * @param $value
+		 * @param $num
+		 *
+		 * @return mixed
+		 */
 		function fix_array_links_values( $value, $num );
 
+		/**
+		 * @param $value
+		 * @param $num
+		 *
+		 * @return mixed
+		 */
 		function fix_array_href_values( $value, $num );
 
+		/**
+		 * @param $value
+		 *
+		 * @return mixed
+		 */
 		function fix_array_transition_values( $value );
 
+		/**
+		 * @param $value
+		 *
+		 * @return mixed
+		 */
 		function fix_array_speed_values( $value );
 
+		/**
+		 * @param $value
+		 *
+		 * @return mixed
+		 */
 		function fix_array_text_values( $value );
 
+		/**
+		 * @param $value
+		 *
+		 * @return mixed
+		 */
 		function fix_array_checkbox_values( $value );
 
+		/**
+		 * @param $value
+		 *
+		 * @return mixed
+		 */
 		function fix_array_opacity_values( $value );
 
 	}
 }
 
 if ( ! interface_exists( 'LBP_Update' ) ) {
+	/**
+	 * Class LBP_Update
+	 */
 	class LBP_Update implements LBP_Update_Interface {
 
 		/**
@@ -222,6 +285,11 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 			);
 		}
 
+		/**
+		 * @param $array
+		 *
+		 * @return array|mixed
+		 */
 		function lbp_inline_convert( $array ) {
 			$inline_links            = '';
 			$inline_hrefs            = '';
@@ -268,6 +336,9 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 				}
 			}
 
+			/**
+			 *
+			 */
 			return array(
 				"inline_links"            => $inline_links,
 				"inline_hrefs"            => $inline_hrefs,

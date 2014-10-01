@@ -10,6 +10,9 @@
  */
 
 if ( ! interface_exists( 'LBP_Shortcode_Interface' ) ) {
+	/**
+	 * Interface LBP_Shortcode_Interface
+	 */
 	interface LBP_Shortcode_Interface {
 		/**
 		 * @param $attr
@@ -21,6 +24,9 @@ if ( ! interface_exists( 'LBP_Shortcode_Interface' ) ) {
 }
 
 if ( ! class_exists( 'LBP_Shortcode' ) ) {
+	/**
+	 * Class LBP_Shortcode
+	 */
 	class LBP_Shortcode extends LBP_Utilities implements LBP_Shortcode_Interface {
 		/**
 		 * Replacement shortcode gallery function adds rel="lightbox" or class="cboxModal"

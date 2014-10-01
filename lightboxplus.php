@@ -11,16 +11,15 @@ Version: 2.7
 /**
  * @package    Lightbox Plus Colorbox
  * @subpackage lightboxplus.php DEV VERSION
- * @internal   2013.01.16
+ * @internal   2014.09.30
  * @author     Dan Zappone / 23Systems
  * @version    2.7
  * @$Id$
  * @$URL$
  */
+
 /**
  * WordPress Globals
- *
- * @var mixed
  */
 global $post;
 global $content;
@@ -28,15 +27,14 @@ global $page;
 global $wp_query;
 global $wp_version;
 global $the_post_id;
+
 /**
  * Lightbox Plus Colorbox Globals
  *
- * @var mixed
  */
 global $g_lbp_messages;
 global $g_lbp_message_title;
 global $g_lbp_plugin_page;
-
 global $g_lbp_old_options;
 global $g_lbp_base_options;
 global $g_lbp_primary_options;
@@ -45,7 +43,6 @@ global $g_lbp_inline_options;
 
 /**
  * Instantiate Lightbox Plus Colorbox Global Variables
- * Hungarian Notation Where possible
  *
  * @var mixed
  */
@@ -53,14 +50,23 @@ $g_lbp_plugin_page   = '';
 $g_lbp_messages      = '';
 $g_lbp_message_title = '';
 
+/**
+ * Define plugin page url path
+ */
 DEFINE( 'LBP_ADMIN_PAGE', 'themes.php?page=lightboxplus' );
 
+/**
+ * Define version information
+ */
 DEFINE( 'LBP_VERSION', '2.8' );
 DEFINE( 'LBP_PREV_VERSION', '2.7' );
 DEFINE( 'LBP_SHD_VERSION', '1.5 rev 202' );
 DEFINE( 'LBP_COLORBOX_VERSION', '1.5.14' );
 DEFINE( 'LBP_SHORTCODE_VERSION', '3.9+' );
 
+/**
+ * Define various more or less permanant settings
+ */
 DEFINE( 'LBP_PATH', plugin_dir_path( __FILE__ ) );
 DEFINE( 'LBP_URL', plugin_dir_url( __FILE__ ) );
 DEFINE( 'LBP_ASSETS_PATH', LBP_PATH . 'assets' );
@@ -81,13 +87,13 @@ require_once( LBP_CLASS_PATH . '/class-filters.php' );
 require_once( LBP_CLASS_PATH . '/class-actions.php' );
 require_once( LBP_CLASS_PATH . '/class-init.php' );
 /**
- * Require PHP HTML Parser - This thing is slow should be replaced
+ * Require PHP HTML Parser - This thing is slow-ish should be replaced someday
+ * Write one when you have the time
  */
 require_once( LBP_CLASS_PATH . '/class-shd.php' );
 
-
 /**
- * Register activation/deactivation hooks and text domain
+ * Register activation/deactivation/uninstall hooks and text domain
  */
 register_activation_hook( __FILE__, 'activate_lbp' );
 register_deactivation_hook( __FILE__, 'deactivate_lbp' );
@@ -99,8 +105,8 @@ register_uninstall_hook( __FILE__, 'uninstall_lbp' );
 if ( ! function_exists( 'activate_lbp' ) ) {
 	function activate_lbp() {
 		$g_lbp_old_version = get_option( 'lightboxplus_version' );
-		$g_lbp_old_init = get_option( 'lightboxplus_init' );
-		if ( ! isset( $g_lbp_old_version ) && !isset($g_lbp_old_init) ) {
+		$g_lbp_old_init    = get_option( 'lightboxplus_init' );
+		if ( ! isset( $g_lbp_old_version ) && ! isset( $g_lbp_old_init ) ) {
 			/**
 			 * If none of the above are set initialize Lightbox Plus
 			 */
@@ -110,7 +116,7 @@ if ( ! function_exists( 'activate_lbp' ) ) {
 
 			return true;
 		}
-		if ( ! isset( $g_lbp_old_version ) && isset($g_lbp_old_init) ) {
+		if ( ! isset( $g_lbp_old_version ) && isset( $g_lbp_old_init ) ) {
 			/**
 			 * Is version is not set but init is then update
 			 */
@@ -168,23 +174,39 @@ if ( ! function_exists( 'uninstall_lbp' ) ) {
 
 load_plugin_textdomain( 'lightboxplus', false, $path = LBP_URL . 'languages' );
 
-
 if ( ! interface_exists( 'LBP_Lightboxplus_Interface' ) ) {
 	interface LBP_Lightboxplus_Interface {
+		/**
+		 * Class construct function
+		 */
 		function __construct();
 
+		/**
+		 * @return mixed
+		 */
 		function init();
 
+		/**
+		 * @return mixed
+		 */
 		function lbp_initial();
 
+		/**
+		 * @return mixed
+		 */
 		function lbp_final();
 
-		function get_admin_options( $optionsName );
-
-		function save_admin_options( $optionsName, $options );
-
+		/**
+		 * @param $links
+		 * @param $file
+		 *
+		 * @return mixed
+		 */
 		function register_lbp_links( $links, $file );
 
+		/**
+		 * @return mixed
+		 */
 		function lbp_admin_panel();
 	}
 }
@@ -194,21 +216,6 @@ if ( ! interface_exists( 'LBP_Lightboxplus_Interface' ) ) {
  */
 if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 	class LBP_Lightboxplus extends LBP_Init implements LBP_Lightboxplus_Interface {
-		/**
-		 * The name the options are saved under in the database
-		 *
-		 * @var mixed
-		 */
-		var $lbp_options_base_name = 'lightboxplus_options_base';
-		var $lbp_options_primary_name = 'lightboxplus_options_primary';
-		var $lbp_options_secondary_name = 'lightboxplus_options_secondary';
-		var $lbp_options_inline_name = 'lightboxplus_options_inline';
-		var $lbp_init_name = 'lightboxplus_init';
-		var $lbp_verison_name = 'lightboxplus_version';
-		var $lbp_style_pathname = 'lightboxplus_style_path';
-		var $lbp_options = '';
-
-
 		/**
 		 * The PHP 5 Constructor - initializes the plugin and sets up panels
 		 */
@@ -222,13 +229,11 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			global $g_lbp_primary_options;
 			global $g_lbp_secondary_options;
 			global $g_lbp_inline_options;
-			global $g_lbp_old_options;
 
-
-			$g_lbp_base_options      = get_option( $this->lbp_options_base_name );
-			$g_lbp_primary_options   = get_option( $this->lbp_options_primary_name );
-			$g_lbp_secondary_options = get_option( $this->lbp_options_secondary_name );
-			$g_lbp_inline_options    = get_option( $this->lbp_options_inline_name );
+			$g_lbp_base_options      = get_option( 'lightboxplus_options_base' );
+			$g_lbp_primary_options   = get_option( 'lightboxplus_options_primary' );
+			$g_lbp_secondary_options = get_option( 'lightboxplus_options_secondary' );
+			$g_lbp_inline_options    = get_option( 'lightboxplus_options_inline' );
 
 			/**
 			 * If user is in the admin panel
@@ -254,6 +259,9 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			add_filter( 'plugin_row_meta', array( &$this, 'register_lbp_links' ), 10, 2 );
 		}
 
+		/**
+		 * @return mixed|void
+		 */
 		function lbp_initial() {
 			global $the_post_id;
 			global $wp_query;
@@ -284,6 +292,9 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			}
 		}
 
+		/**
+		 * @return mixed|void
+		 */
 		function lbp_final() {
 			global $g_lbp_base_options;
 			global $g_lbp_primary_options;
@@ -324,38 +335,6 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 				&$this,
 				'lbp_colorbox'
 			), ( intval( $g_lbp_base_options['load_priority'] ) + 4 ) );
-//			}
-		}
-
-		/**
-		 * Retrieves the options from the database.
-		 *
-		 * @param mixed $optionsName
-		 *
-		 * @return array
-		 */
-		function get_admin_options( $optionsName ) {
-			$theOptions   = '';
-			$savedOptions = get_option( $optionsName );
-			if ( ! empty( $savedOptions ) ) {
-				foreach ( $savedOptions as $key => $option ) {
-					$theOptions[ $key ] = $option;
-				}
-			}
-			update_option( $optionsName, $theOptions );
-
-			return $theOptions;
-		}
-
-		/**
-		 * Saves the admin options to the database.
-		 * TODO: Check to see if used remove if not
-		 *
-		 * @param mixed $optionsName
-		 * @param mixed $options
-		 */
-		function save_admin_options( $optionsName, $options ) {
-			update_option( $optionsName, $options );
 		}
 
 		/**
@@ -388,6 +367,8 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 		/**
 		 * The admin panel funtion
 		 * handles creating admin panel and processing of form submission
+		 *
+		 * @return mixed|void
 		 */
 		function lbp_admin_panel() {
 			global $g_lbp_messages;
@@ -555,7 +536,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 
 					}
 				} elseif ( 'inline' == $_REQUEST['action'] ) {
-					$g_lbp_base_options = get_option( $this->lbp_options_base_name );
+					$g_lbp_base_options = get_option( 'lightboxplus_options_base' );
 					if ( $g_lbp_base_options['use_inline'] && isset( $_POST['ready_inline'] ) ) {
 
 						if ( $g_lbp_base_options['use_inline'] && isset( $g_lbp_base_options['inline_num'] ) ) {
@@ -607,10 +588,10 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 					}
 				} elseif ( $_REQUEST['action'] == 'reset' ) {
 					if ( isset( $_REQUEST['reinit_lightboxplus'] ) ) {
-						delete_option( $this->lbp_options_base_name );
-						delete_option( $this->lbp_options_primary_name );
-						delete_option( $this->lbp_options_secondary_name );
-						delete_option( $this->lbp_options_inline_name );
+						delete_option( 'lightboxplus_options_base' );
+						delete_option( 'lightboxplus_options_primary' );
+						delete_option( 'lightboxplus_options_secondary' );
+						delete_option( 'lightboxplus_options_inline' );
 						delete_option( $this->lbp_init_name );
 						delete_option( $this->lbp_verison_name );
 						delete_option( $this->lbp_style_pathname );
@@ -670,9 +651,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 								/**
 								 * Load options info array if not yet loaded
 								 */
-								if ( ! empty( $this->lbp_options_base_name ) ) {
-									$g_lbp_base_options = get_option( $this->lbp_options_base_name );
-								}
+								$g_lbp_base_options = get_option( 'lightboxplus_options_base' );
 
 								/**
 								 * Initialize Custom lightbox Plus Path

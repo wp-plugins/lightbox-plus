@@ -2,15 +2,19 @@ jQuery(document).ready(function ($) {
 	if (!$('#use_inline').attr('checked')) {
 		$('.base_gen').hide();
 	}
+
 	if (!$('#use_perpage').attr('checked')) {
 		$('.base_blog').hide();
 	}
+
 	if ($("#output_htmlv").attr('checked')) {
 		$('.htmlv_settings').show();
 	}
+
 	if ($('#rel').attr('checked')) {
 		$('.grouping_prim').hide();
 	}
+
 	if ($("#use_class_method").attr('checked')) {
 		$('.primary_class_name').show();
 	}
@@ -18,15 +22,19 @@ jQuery(document).ready(function ($) {
 	if ($("#retina_url").attr('checked')) {
 		$('.retina_suffix').show();
 	}
+
 	if ($("#retina_url_sec").attr('checked')) {
 		$('.retina_suffix_sec').show();
 	}
+
 	if (!$('#slideshow').attr('checked')) {
 		$('.slideshow_prim').hide();
 	}
+
 	if ($('#rel_sec').attr('checked')) {
 		$('.grouping_sec').hide();
 	}
+
 	if (!$('#slideshow_sec').attr('checked')) {
 		$('.slideshow_sec').hide();
 	}
@@ -58,14 +66,6 @@ jQuery(document).ready(function ($) {
 			at: "right+5 top-5"
 		}
 	});
-
-	//$("<button>")
-	//	.text("Show help")
-	//	.button()
-	//	.click(function () {
-	//		tooltips.tooltip("open");
-	//	})
-	//	.insertAfter("form");
 
 	$('.close-me').each(function () {
 		$(this).addClass("closed");
@@ -100,9 +100,11 @@ jQuery(document).ready(function ($) {
 			$(".htmlv_settings").hide("fast");
 		}
 	});
+
 	$("#lbp_setting_detail").click(function () {
 		$('#lbp_detail').toggle('fast')
 	});
+
 	$("#use_perpage").click(function () {
 		if ($("#use_perpage").attr('checked')) {
 			$(".base_blog").show("fast");
@@ -110,6 +112,7 @@ jQuery(document).ready(function ($) {
 			$(".base_blog").hide("fast");
 		}
 	});
+
 	$("#rel").click(function () {
 		if ($("#rel").attr('checked')) {
 			$(".grouping_prim").hide("fast");
@@ -117,6 +120,7 @@ jQuery(document).ready(function ($) {
 			$(".grouping_prim").show("fast");
 		}
 	});
+
 	$("#use_class_method").click(function () {
 		if ($("#use_class_method").attr("checked")) {
 			$(".primary_class_name").show("fast");
@@ -124,6 +128,7 @@ jQuery(document).ready(function ($) {
 			$(".primary_class_name").hide("fast");
 		}
 	});
+
 	$("#retina_url").click(function () {
 		if ($("#retina_url").attr("checked")) {
 			$(".retina_suffix").show("fast");
@@ -131,6 +136,7 @@ jQuery(document).ready(function ($) {
 			$(".retina_suffix").hide("fast");
 		}
 	});
+
 	$("#retina_url_sec").click(function () {
 		if ($("#retina_url_sec").attr("checked")) {
 			$(".retina_suffix_sec").show("fast");
@@ -138,6 +144,7 @@ jQuery(document).ready(function ($) {
 			$(".retina_suffix_sec").hide("fast");
 		}
 	});
+
 	$("#slideshow").click(function () {
 		if ($("#slideshow").attr('checked')) {
 			$(".slideshow_prim").show("fast");
@@ -145,6 +152,7 @@ jQuery(document).ready(function ($) {
 			$(".slideshow_prim").hide("fast");
 		}
 	});
+
 	$("#rel_sec").click(function () {
 		if ($("#rel_sec").attr('checked')) {
 			$(".grouping_sec").hide("fast");
@@ -152,6 +160,7 @@ jQuery(document).ready(function ($) {
 			$(".grouping_sec").show("fast");
 		}
 	});
+
 	$("#slideshow_sec").click(function () {
 		if ($("#slideshow_sec").attr('checked')) {
 			$(".slideshow_sec").show("fast");
@@ -170,6 +179,11 @@ jQuery(document).ready(function ($) {
 		$(".fade-notice").fadeOut(9000);
 	}
 
+	/**
+	 * @param sParam
+	 * @returns {*}
+	 * @constructor
+	 */
 	function GetURLParameter(sParam) {
 		var sPageURL = window.location.search.substring(1);
 		var sURLVariables = sPageURL.split('&');
@@ -181,7 +195,9 @@ jQuery(document).ready(function ($) {
 		}
 	}
 
-//callback handler for save settings form submit
+	/**
+	 * callback handler for save settings base lightbox form submit
+	 */
 	$("#lightboxplus-settings").submit(function (e) {
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
@@ -202,10 +218,12 @@ jQuery(document).ready(function ($) {
 				}
 			});
 		e.preventDefault(); //STOP default action
-		//e.off(); //unbind. to stop multiple form submit.
+		//e.off(); //unbind. To stop multiple form submit this throws an error
 	});
 
-//callback handler for save settings form submit
+	/**
+	 * callback handler for save settings primary lightbox form submit
+	 */
 	$("#lightboxplus-settings-primary").submit(function (e) {
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
@@ -226,10 +244,12 @@ jQuery(document).ready(function ($) {
 				}
 			});
 		e.preventDefault(); //STOP default action
-		//e.off(); //unbind. to stop multiple form submit.
+		//e.off(); //unbind. To stop multiple form submit this throws an error
 	});
 
-//callback handler for save settings form submit
+	/**
+	 * callback handler for save settings secondary lightbox form submit
+	 */
 	$("#lightboxplus-settings-secondary").submit(function (e) {
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
@@ -250,10 +270,12 @@ jQuery(document).ready(function ($) {
 				}
 			});
 		e.preventDefault(); //STOP default action
-		//e.off(); //unbind. to stop multiple form submit.
+		//e.off(); //unbind. To stop multiple form submit this throws an error
 	});
 
-//callback handler for save settings form submit
+	/**
+	 * callback handler for save settings inline lightbox form submit
+	 */
 	$("#lightboxplus-settings-inline").submit(function (e) {
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
@@ -277,7 +299,9 @@ jQuery(document).ready(function ($) {
 		//e.off(); //unbind. to stop multiple form submit.
 	});
 
-//callback handler for save settings form submit
+	/**
+	 * callback handler for save settings reset lightbox form submit
+	 */
 	$("#lightboxplus-settings-reset").submit(function (e) {
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
@@ -303,7 +327,6 @@ jQuery(document).ready(function ($) {
 		} else {
 			window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=reset-cancel';
 		}
-
 
 		e.preventDefault(); //STOP default action
 		//e.off(); //unbind. to stop multiple form submit.
