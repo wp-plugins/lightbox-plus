@@ -53,13 +53,6 @@ jQuery(document).ready(function ($) {
 		}
 	});
 
-	$("checkbox[title]").tooltip({
-		position: {
-			my: "left top",
-			at: "right+5 top-5"
-		}
-	});
-
 	$(".lbp-help[title]").tooltip({
 		position: {
 			my: "left top",
@@ -78,9 +71,7 @@ jQuery(document).ready(function ($) {
 	$('.postbox h3').click(function () {
 		$(this).next('.toggle').slideToggle('fast');
 	});
-	$('.lbp-info').click(function () {
-		$(this).next('.lbp-bigtip').slideToggle(100);
-	});
+
 	$("#blbp-tabs").tabs({fx: {height: 'toggle', duration: 'fast'}});
 	$("#plbp-tabs").tabs({fx: {height: 'toggle', duration: 'fast'}});
 	$("#slbp-tabs").tabs({fx: {height: 'toggle', duration: 'fast'}});
@@ -93,6 +84,7 @@ jQuery(document).ready(function ($) {
 			$(".base_gen").hide("fast");
 		}
 	});
+
 	$("#output_htmlv").click(function () {
 		if ($("#output_htmlv").attr('checked')) {
 			$(".htmlv_settings").show("fast");
@@ -180,22 +172,6 @@ jQuery(document).ready(function ($) {
 	}
 
 	/**
-	 * @param sParam
-	 * @returns {*}
-	 * @constructor
-	 */
-	function GetURLParameter(sParam) {
-		var sPageURL = window.location.search.substring(1);
-		var sURLVariables = sPageURL.split('&');
-		for (var i = 0; i < sURLVariables.length; i++) {
-			var sParameterName = sURLVariables[i].split('=');
-			if (sParameterName[0] == sParam) {
-				return sParameterName[1];
-			}
-		}
-	}
-
-	/**
 	 * callback handler for save settings base lightbox form submit
 	 */
 	$("#lightboxplus-settings").submit(function (e) {
@@ -206,15 +182,11 @@ jQuery(document).ready(function ($) {
 				url    : formURL,
 				type   : "POST",
 				data   : postData,
-				success: function (data, textStatus, jqXHR) {
-					//$("#success").show().delay(3500).fadeOut(3500);
+				success: function () {
 					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=basic';
-					//data: return ''
 				},
-				error  : function (jqXHR, textStatus, errorThrown) {
-					//$("#fail").show().delay(3500).fadeOut(3500);
+				error  : function () {
 					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=basic-error';
-					//if fails
 				}
 			});
 		e.preventDefault(); //STOP default action
@@ -232,15 +204,12 @@ jQuery(document).ready(function ($) {
 				url    : formURL,
 				type   : "POST",
 				data   : postData,
-				success: function (data, textStatus, jqXHR) {
-					//$("#success").show().delay(3500).fadeOut(3500);
+				success: function () {
 					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=primary';
-					//data: return ''
 				},
-				error  : function (jqXHR, textStatus, errorThrown) {
-					//$("#fail").show().delay(3500).fadeOut(3500);
+				error  : function () {
+
 					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=primary-error';
-					//if fails
 				}
 			});
 		e.preventDefault(); //STOP default action
@@ -258,15 +227,11 @@ jQuery(document).ready(function ($) {
 				url    : formURL,
 				type   : "POST",
 				data   : postData,
-				success: function (data, textStatus, jqXHR) {
-					//$("#success").show().delay(3500).fadeOut(3500);
+				success: function () {
 					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=secondary';
-					//data: return ''
 				},
-				error  : function (jqXHR, textStatus, errorThrown) {
-					//$("#fail").show().delay(3500).fadeOut(3500);
+				error  : function () {
 					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=secondary-error';
-					//if fails
 				}
 			});
 		e.preventDefault(); //STOP default action
@@ -284,15 +249,11 @@ jQuery(document).ready(function ($) {
 				url    : formURL,
 				type   : "POST",
 				data   : postData,
-				success: function (data, textStatus, jqXHR) {
-					//$("#success").show().delay(3500).fadeOut(3500);
+				success: function () {
 					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=inline';
-					//data: return ''
 				},
-				error  : function (jqXHR, textStatus, errorThrown) {
-					//$("#fail").show().delay(3500).fadeOut(3500);
+				error  : function () {
 					window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=inline-error';
-					//if fails
 				}
 			});
 		e.preventDefault(); //STOP default action
@@ -305,7 +266,6 @@ jQuery(document).ready(function ($) {
 	$("#lightboxplus-settings-reset").submit(function (e) {
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
-		var txt;
 		var r = confirm("Reset all Lightbox Plus Colorbox settings?");
 		if (r == true) {
 			$.ajax(
@@ -313,21 +273,16 @@ jQuery(document).ready(function ($) {
 					url    : formURL,
 					type   : "POST",
 					data   : postData,
-					success: function (data, textStatus, jqXHR) {
-						//$("#success").show().delay(3500).fadeOut(3500);
+					success: function () {
 						window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=reset';
-						//data: return ''
 					},
-					error  : function (jqXHR, textStatus, errorThrown) {
-						//$("#fail").show().delay(3500).fadeOut(3500);
+					error  : function () {
 						window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=reset-error';
-						//if fails
 					}
 				});
 		} else {
 			window.location.href = "//" + window.location.host + window.location.pathname + '?page=lightboxplus&message=reset-cancel';
 		}
-
 		e.preventDefault(); //STOP default action
 		//e.off(); //unbind. to stop multiple form submit.
 	});

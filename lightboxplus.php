@@ -65,7 +65,7 @@ DEFINE( 'LBP_COLORBOX_VERSION', '1.5.14' );
 DEFINE( 'LBP_SHORTCODE_VERSION', '3.9+' );
 
 /**
- * Define various more or less permanant settings
+ * Define various more or less permanent settings
  */
 DEFINE( 'LBP_PATH', plugin_dir_path( __FILE__ ) );
 DEFINE( 'LBP_URL', plugin_dir_url( __FILE__ ) );
@@ -106,47 +106,54 @@ if ( ! function_exists( 'activate_lbp' ) ) {
 	function activate_lbp() {
 		$g_lbp_old_version = get_option( 'lightboxplus_version' );
 		$g_lbp_old_init    = get_option( 'lightboxplus_init' );
-		if ( ! isset( $g_lbp_old_version ) && ! isset( $g_lbp_old_init ) ) {
-			/**
-			 * If none of the above are set initialize Lightbox Plus
-			 */
-			$lbp_activate = new LBP_Init();
-			$lbp_activate->lbp_install();
-			unset( $lbp_activate );
 
-			return true;
-		}
-		if ( ! isset( $g_lbp_old_version ) && isset( $g_lbp_old_init ) ) {
-			/**
-			 * Is version is not set but init is then update
-			 */
-			$g_lbp_old_options = get_option( 'lightboxplus_options' );
-			if ( isset( $g_lbp_old_options ) ) {
-				require_once( LBP_CLASS_PATH . '/class-update.php' );
-				$lbp_update = new LBP_Update();
-				$lbp_update->lbp_convert( $g_lbp_old_options );
-				update_option( 'lightboxplus_options_old', $g_lbp_old_options );
-				unset( $lbp_update );
+		if ( isset( $g_lbp_old_version ) && false == $g_lbp_old_version ) {
+			if ( isset( $g_lbp_old_init ) && false == $g_lbp_old_init ) {
+				/**
+				 * If lightboxplus_version is not set and lightboxplus_init is not set then initialize Lightbox Plus
+				 */
+				$lbp_activate = new LBP_Init();
+				$lbp_activate->lbp_install();
+				unset( $lbp_activate );
 
 				return true;
 			} else {
-				return false;
-			}
-		} elseif ( isset( $g_lbp_old_version ) && $g_lbp_old_version >= LBP_VERSION ) {
-			/**
-			 * For future updates - compare versions and update as needed
-			 */
-			return true;
-		} else {
-			/**
-			 * If none of the above - initilize settings.
-			 */
-			$lbp_activate = new LBP_Init();
-			$lbp_activate->lbp_install();
-			unset( $lbp_activate );
+				/**
+				 * If lightboxplus_version is not set but lightboxplus_init is set then update
+				 */
+				$g_lbp_old_options = get_option( 'lightboxplus_options' );
+				if ( isset( $g_lbp_old_options ) ) {
+					require_once( LBP_CLASS_PATH . '/class-update.php' );
+					$lbp_update = new LBP_Update();
+					$lbp_update->lbp_convert( $g_lbp_old_options );
+					update_option( 'lightboxplus_options_old', $g_lbp_old_options );
+					unset( $lbp_update );
 
-			return true;
+					return true;
+				} else {
+					return false;
+				}
+
+			}
+		} else {
+			if ( isset( $g_lbp_old_version ) && $g_lbp_old_version >= LBP_VERSION ) {
+				/**
+				 * For future updates - if version is set then compare old to new version and put updates here if needed
+				 */
+				return true;
+			}
 		}
+//		else {
+//			/**
+//			 * If none of the above - initilize settings.
+//			 */
+//			$lbp_activate = new LBP_Init();
+//			$lbp_activate->lbp_install();
+//			unset( $lbp_activate );
+//
+//			return true;
+//		}
+		return null;
 	}
 }
 
@@ -197,6 +204,16 @@ if ( ! interface_exists( 'LBP_Lightboxplus_Interface' ) ) {
 		function lbp_final();
 
 		/**
+		 * Remove the following line after a few versions or 2.8+ is the prevelent version
+		 * This is for manual updaters only
+		 *
+		 * @param $lbp_old_options
+		 *
+		 * @return null
+		 */
+		function in_place_update( $lbp_old_options );
+
+		/**
 		 * @param $links
 		 * @param $file
 		 *
@@ -229,7 +246,23 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			global $g_lbp_primary_options;
 			global $g_lbp_secondary_options;
 			global $g_lbp_inline_options;
+			global $g_lbp_old_options;
 
+			/**
+			 * Remove this block after a few versions or 2.8+ is the prevelent version
+			 * This is for manual updaters only
+			 */
+			$g_lbp_old_version = get_option( 'lightboxplus_version' );
+			$g_lbp_old_options = get_option( 'lightboxplus_options' );
+			if ( isset( $g_lbp_old_version ) && false == $g_lbp_old_version ) {
+				if ( isset( $g_lbp_old_options ) ) {
+					activate_lbp();
+				}
+			}
+
+			/**
+			 * Get all the options
+			 */
 			$g_lbp_base_options      = get_option( 'lightboxplus_options_base' );
 			$g_lbp_primary_options   = get_option( 'lightboxplus_options_primary' );
 			$g_lbp_secondary_options = get_option( 'lightboxplus_options_secondary' );
@@ -270,11 +303,12 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			$the_post_id = $wp_query->post->ID;
 
 			/**
-			 * Remove following line after a few versions or 2.6 is the prevelent version
+			 * Remove following block after a few versions or 2.6 is the prevelent version
 			 */
 			if ( isset( $g_lbp_base_options ) ) {
 				$g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options );
 			}
+
 
 			if ( isset( $g_lbp_base_options['use_perpage'] ) && '0' != $g_lbp_base_options['use_perpage'] ) {
 				add_action( 'wp_print_styles', array(
@@ -335,6 +369,30 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 				&$this,
 				'lbp_colorbox'
 			), ( intval( $g_lbp_base_options['load_priority'] ) + 4 ) );
+		}
+
+		/**
+		 * Remove the following line after a few versions or 2.8+ is the prevelent version
+		 * This is for manual updaters only
+		 *
+		 * @param $lbp_old_options
+		 *
+		 * @return null
+		 */
+		function in_place_update( $lbp_old_options ) {
+			if ( isset( $lbp_old_options ) ) {
+				require_once( LBP_CLASS_PATH . '/class-update.php' );
+				$lbp_update = new LBP_Update();
+				$success    = $lbp_update->lbp_convert( $lbp_old_options );
+				if ( isset( $success ) && true == $success ) {
+					update_option( 'lightboxplus_options_old', $lbp_old_options );
+					unset( $lbp_update );
+
+					return true;
+				} else {
+					return false;
+				}
+			}
 		}
 
 		/**
@@ -417,12 +475,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 							update_option( 'lightboxplus_options_inline', $g_lbp_inline_options );
 						} elseif ( $lbp_base_options_current['inline_num'] > $_POST['inline_num'] ) {
 							foreach ( $lbp_inline_options_current as $key => $value ) {
-//								for ( $i = 1; $i <= ( $lbp_base_options_current['inline_num'] - $_POST['inline_num'] ); $i ++ ) {
-//									array_pop( $value );
-//								}
-
 								$g_lbp_inline_options[ $key ] = $this->lbp_array_trim( $value, ( $lbp_base_options_current['inline_num'] - $_POST['inline_num'] ) );
-//								$g_lbp_inline_options[ $key ] = $value;
 							}
 
 							update_option( 'lightboxplus_options_inline', $g_lbp_inline_options );
@@ -539,6 +592,25 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 					$g_lbp_base_options = get_option( 'lightboxplus_options_base' );
 					if ( $g_lbp_base_options['use_inline'] && isset( $_POST['ready_inline'] ) ) {
 
+						$inline_links            = '';
+						$inline_hrefs            = '';
+						$inline_transitions      = '';
+						$inline_speeds           = '';
+						$inline_widths           = '';
+						$inline_heights          = '';
+						$inline_inner_widths     = '';
+						$inline_inner_heights    = '';
+						$inline_max_widths       = '';
+						$inline_max_heights      = '';
+						$inline_position_tops    = '';
+						$inline_position_rights  = '';
+						$inline_position_bottoms = '';
+						$inline_position_lefts   = '';
+						$inline_fixeds           = '';
+						$inline_opens            = '';
+						$inline_reuses           = '';
+						$inline_opacitys         = '';
+
 						if ( $g_lbp_base_options['use_inline'] && isset( $g_lbp_base_options['inline_num'] ) ) {
 							$inline_links            = $_POST["inline_link"];
 							$inline_hrefs            = $_POST["inline_href"];
@@ -588,13 +660,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 					}
 				} elseif ( $_REQUEST['action'] == 'reset' ) {
 					if ( isset( $_REQUEST['reinit_lightboxplus'] ) ) {
-						delete_option( 'lightboxplus_options_base' );
-						delete_option( 'lightboxplus_options_primary' );
-						delete_option( 'lightboxplus_options_secondary' );
-						delete_option( 'lightboxplus_options_inline' );
-						delete_option( $this->lbp_init_name );
-						delete_option( $this->lbp_verison_name );
-						delete_option( $this->lbp_style_pathname );
+
 						/**
 						 * Used to remove old setting from previous versions of LBP
 						 *
@@ -721,7 +787,8 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 				require( LBP_CLASS_PATH . '/admin-lightbox.php' );
 			}
 			?>
-		<?php
+			<?php
+			return true;
 		}
 	}
 

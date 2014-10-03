@@ -241,6 +241,8 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 
 				return true;
 			}
+
+			return true;
 		}
 
 		/**

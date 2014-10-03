@@ -200,15 +200,15 @@ global $g_lbp_inline_options;
 				</td>
 				<td align="center">
 					<input type="hidden" name="inline_fixed[<?php echo $i; ?>]" value="0" />
-					<input type="checkbox" name="inline_fixed[<?php echo $i; ?>]" id="inline_fixed_<?php echo $i; ?>" value="1"<?php checked( $inline_fixeds[ $i ] ); ?> title="<?php _e( "If checked, inline lightbox $i will always be displayed in a fixed position within the viewport. In other words it will stay within the viewport while scrolling on the page. This is unlike the default absolute positioning relative to the document. DEFAULT: Unchecked", "lightboxplus" ) ?>" />
+					<input type="checkbox" name="inline_fixed[<?php echo $i; ?>]" id="inline_fixed_<?php echo $i; ?>" value="1"<?php checked(1, $inline_fixeds[ $i ] ); ?> title="<?php _e( "If checked, inline lightbox $i will always be displayed in a fixed position within the viewport. In other words it will stay within the viewport while scrolling on the page. This is unlike the default absolute positioning relative to the document. DEFAULT: Unchecked", "lightboxplus" ) ?>" />
 				</td>
 				<td align="center">
 					<input type="hidden" name="inline_open[<?php echo $i; ?>]" value="0" />
-					<input type="checkbox" name="inline_open[<?php echo $i; ?>]" id="inline_open_<?php echo $i; ?>" value="1"<?php checked( 1, $inline_opens ); ?>  title="<?php _e( "If checked, inline lightbox $i will automatically open when the page is loaded. DEFAULT: Unchecked", "lightboxplus" ) ?>" />
+					<input type="checkbox" name="inline_open[<?php echo $i; ?>]" id="inline_open_<?php echo $i; ?>" value="1"<?php checked(1, $inline_opens[ $i ] ); ?> title="<?php _e( "If checked, inline lightbox $i will automatically open when the page is loaded. DEFAULT: Unchecked", "lightboxplus" ) ?>" />
 				</td>
 				<td align="center">
 					<input type="hidden" name="inline_reuse[<?php echo $i; ?>]" value="0" />
-					<input type="checkbox" name="inline_reuse[<?php echo $i; ?>]" id="inline_reuse_<?php echo $i; ?>" value="1"<?php checked( 1, $inline_reuses[ $i ] ); ?>  title="<?php _e( "If checked, inline lightbox $i will automatically will be reused for multiple lightboxes  Good for a lot of inline content with the same sized lightbox. DEFAULT: Unchecked", "lightboxplus" ) ?>" />
+					<input type="checkbox" name="inline_reuse[<?php echo $i; ?>]" id="inline_reuse_<?php echo $i; ?>" value="1"<?php checked( 1, $inline_reuses[ $i ] ); ?> title="<?php _e( "If checked, inline lightbox $i will automatically will be reused for multiple lightboxes  Good for a lot of inline content with the same sized lightbox. DEFAULT: Unchecked", "lightboxplus" ) ?>" />
 				</td>
 				<td align="center">
 
@@ -224,6 +224,7 @@ global $g_lbp_inline_options;
 				</td>
 			</tr>
 		<?php
+			if (0 == ($i % 10) ) { flush(); }
 		}
 		?>
 		</tbody>

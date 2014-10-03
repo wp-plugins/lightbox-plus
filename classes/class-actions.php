@@ -98,10 +98,8 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 				} else {
 					wp_enqueue_script( 'jquery', '', '', '', true );
 				}
-				// Production
-				wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '-min.js', array( 'jquery' ), LBP_COLORBOX_VERSION, $this->set_load_location( $lbp_options['load_location'] ) );
-				// Development
-				//wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '.js', array( 'jquery' ), LBP_COLORBOX_VERSION, $this->set_load_location( $g_lbp_base_options['load_location'] ) );
+				wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '-min.js', array( 'jquery' ), LBP_COLORBOX_VERSION, $this->set_load_location( $g_lbp_base_options['load_location'] ) );  // PROD
+				//wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '.js', array( 'jquery' ), LBP_COLORBOX_VERSION, $this->set_load_location( $g_lbp_base_options['load_location'] ) ); // DEV
 			}
 
 			if ( $g_lbp_base_options['use_custom_style'] ) {
@@ -496,8 +494,10 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 			wp_enqueue_script( 'jquery-ui-dialog', '', '', '', true );
 			wp_enqueue_script( 'jquery-ui-tabs', '', '', '', true );
 			wp_enqueue_script( 'jquery-ui-tooltip', '', '', '', true );
-			wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '-min.js', array( 'jquery' ), LBP_COLORBOX_VERSION, true );
-			wp_enqueue_script( 'lightboxplus-admin', LBP_ASSETS_URL . '/js/lightbox.admin.js', array( 'jquery' ), LBP_VERSION, true );
+			//wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '.js', array( 'jquery' ), LBP_COLORBOX_VERSION, true ); // DEV
+			wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '-min.js', array( 'jquery' ), LBP_COLORBOX_VERSION, true ); //PROD
+			//wp_enqueue_script( 'lightboxplus-admin', LBP_ASSETS_URL . '/js/lightbox.admin.js', array( 'jquery' ), LBP_VERSION, true );   // DEV
+			wp_enqueue_script( 'lightboxplus-admin', LBP_ASSETS_URL . '/js/lightbox.admin.min.js', array( 'jquery' ), LBP_VERSION, true );  // PROD
 		}
 
 		/**

@@ -266,7 +266,7 @@ global $g_lbp_secondary_options;
 			</th>
 			<td>
 				<input type="hidden" name="fixed_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If check, the lightbox will always be displayed in a fixed position within the viewport. In otherwords it will stay within the viewport while scolling on the page.  This is unlike the default absolute positioning relative to the document. DEFAULT:  Unchecked', 'lightboxplus' ) ?>" name="fixed_sec" id="fixed_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['fixed'] ) ) {
+				<input type="checkbox" title="<?php _e( 'If check, the lightbox will always be displayed in a fixed position within the viewport. In other words it will stay within the viewport while scrolling on the page.  This is unlike the default absolute positioning relative to the document. DEFAULT:  Unchecked', 'lightboxplus' ) ?>" name="fixed_sec" id="fixed_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['fixed'] ) ) {
 					checked( '1', $g_lbp_secondary_options['fixed'] );
 				} ?> />
 			</td>
@@ -329,17 +329,17 @@ global $g_lbp_secondary_options;
 			</th>
 			<td>
 				<input type="hidden" name="rel_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked will disbale the useage of grouping labels. DEFAULT:  Unchecked', 'lightboxplus' ) ?>" id="rel_sec" name="rel_sec" value="nofollow"<?php if ( $g_lbp_secondary_options['rel_sec'] == 'nofollow' ) {
+				<input type="checkbox" title="<?php _e( 'If checked will disable the usage of grouping labels. DEFAULT:  Unchecked', 'lightboxplus' ) ?>" id="rel_sec" name="rel_sec" value="nofollow"<?php if ( $g_lbp_secondary_options['rel_sec'] == 'nofollow' ) {
 					echo ' checked="checked"';
 				} ?> />
 			</td>
 		</tr>
 		<tr class="grouping_sec">
 			<th scope="row">
-				<label for="label_imag_sec"><?php _e( 'Grouping Labels', 'lightboxplus' ) ?></label>:
+				<label for="label_image_sec"><?php _e( 'Grouping Labels', 'lightboxplus' ) ?></label>:
 			</th>
 			<td>
-				<input type="text" title="<?php _e( 'Text format for the content group / gallery count. {current} and {total} are detected and replaced with actual numbers while Colorbox runs.DEFAULT:  Image {current} of {total}', 'lightboxplus' ) ?>" size="15" name="label_image_sec" id="label_imag_sec" value="<?php if ( empty( $g_lbp_secondary_options['label_image_sec'] ) ) {
+				<input type="text" title="<?php _e( 'Text format for the content group / gallery count. {current} and {total} are detected and replaced with actual numbers while Colorbox runs.DEFAULT:  Image {current} of {total}', 'lightboxplus' ) ?>" size="15" name="label_image_sec" id="label_image_sec" value="<?php if ( empty( $g_lbp_secondary_options['label_image_sec'] ) ) {
 					echo '';
 				} else {
 					echo $g_lbp_secondary_options['label_image_sec'];
@@ -406,7 +406,7 @@ global $g_lbp_secondary_options;
 			</th>
 			<td>
 				<input type="hidden" name="slideshow_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked, adds slideshow capablity to a content group / gallery. DEFAULT:  Unchecked', 'lightboxplus' ) ?>" name="slideshow_sec" id="slideshow_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['slideshow_auto'] ) ) {
+				<input type="checkbox" title="<?php _e( 'If checked, adds slideshow capability to a content group / gallery. DEFAULT:  Unchecked', 'lightboxplus' ) ?>" name="slideshow_sec" id="slideshow_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['slideshow_auto'] ) ) {
 					checked( '1', $g_lbp_secondary_options['slideshow_sec'] );
 				} ?> />
 			</td>
@@ -417,7 +417,7 @@ global $g_lbp_secondary_options;
 			</th>
 			<td>
 				<input type="hidden" name="slideshow_auto_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked, the slideshows will automatically start to play when content grou opened. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="slideshow_auto_sec" id="slideshow_auto_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['slideshow_auto'] ) ) {
+				<input type="checkbox" title="<?php _e( 'If checked, the slideshows will automatically start to play when content group opened. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="slideshow_auto_sec" id="slideshow_auto_sec" value="1"<?php if ( isset( $g_lbp_secondary_options['slideshow_auto'] ) ) {
 					checked( '1', $g_lbp_secondary_options['slideshow_auto'] );
 				} ?> />
 			</td>

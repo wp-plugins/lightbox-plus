@@ -174,11 +174,10 @@ You can get community support for Lightbox Plus Colorbox via the <a href="http:/
 * Does not work correctly with W3 Total Cache if you are using automatic minify settings.  You can manually set up minify to work correctly bypassing Lightbox Plus Colorbox (jquery-colorbox.min.js)
  * It generally seems to work though I just don't support it as I don't have an iPad.
 * In some instances performance may be slow in older versions IE - this may be due to plugin conflicts or slow JavaScript performance in IE.
-* Lightboxed video does not seem to work in IE on locally installed sites, for example viewing in IE 7.0 while running XAMPP; this seems to be a Windows only issue.
 
 = Plugin Conflicts =
 
-* Jetpack Carousel - When carousel is activate it take precedence over Lightbox Plus Colorbox for image use as of LBP 2.x
+* Jetpack Carousel - When carousel is activated it take precedence over Lightbox Plus Colorbox for image use as of LBP 2.x
 * Flickr Mini Gallery - Verified.  Download hot fix for <a href="http://23systems.net/downloads/file/flickr-mini-gallery-jquery-hotfix.zip">Flickr Mini Gallery</a> (includes instructions) as of LBP 1.6.3
 * Tabbed Widgets - Verified as of LBP 1.6.3
 * DMSGuestbook - Un-verified as of LBP 1.6.3

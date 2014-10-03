@@ -198,7 +198,7 @@ if ( ! class_exists( 'LBP_Shortcode' ) ) {
 				}
 				$output .= "</{$itemtag}>";
 				if ( $columns > 0 && ++ $i % $columns == 0 ) {
-					$output .= '<br style="clear: both" />';
+					$output .= '<br style="clear: both;" />';
 				}
 			}
 

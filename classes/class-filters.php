@@ -43,7 +43,7 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 		}
 
 		/**
-		 * New method to parse page content navigating the dom and replacing found elements with modified HTML to acomodate LBP appropriate HTML
+		 * New method to parse page content navigating the dom and replacing found elements with modified HTML to accommodate LBP appropriate HTML
 		 *
 		 * @param $html_content
 		 * @param $unq_id
@@ -69,14 +69,8 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 			/**
 			 * Find all image links (text and images)
 			 *
-			 * If (autolightbox text links) then
+			 * If (auto-lightbox text links) then
 			 */
-//			if (isset($g_lbp_primary_options['text_links'])) {
-//				$switch_value = $g_lbp_primary_options['text_links'];
-//			} else {
-//				$switch_value = false;
-//			}
-
 			switch ( $g_lbp_primary_options['text_links'] ) {
 				case 1:
 					foreach ( $html->find( 'a[href*=jpg$], a[href*=gif$], a[href*=png$], a[href*=jpeg$], a[href*=bmp$]' ) as $e ) {
@@ -166,7 +160,7 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 					break;
 				default:
 					/**
-					 *  find all links with image only else if (do not autolightbox textlinks) then
+					 *  find all links with image only else if (do not auto lightbox textlinks) then
 					 */
 					foreach ( $html->find( 'a[href*=jpg$] img, a[href*=gif$] img, a[href*=png$] img, a[href*=jpeg$] img, a[href*=bmp$] img' ) as $e ) {
 						/**

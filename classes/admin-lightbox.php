@@ -65,7 +65,7 @@ if ( isset( $g_lbp_base_options ) ) {
 			<h4><?php _e( 'Thank you for downloading and installing Lightbox Plus Colorbox for WordPress', 'lightboxplus' ); ?></h4>
 
 			<p style="text-align: justify;">
-				<?php _e( 'Lightbox Plus Colorbox implements Colorbox as a lightbox image overlay tool for WordPress.  Colorbox was created by <a href="http://www.jacklmoore.com/colorbox">Jack Moore</a> and is licensed under the MIT License. Lightbox Plus Colorbox allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/asset/lbp-css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  Lightbox Plus Colorbox uses the built in WordPress jQuery library. Lightbox Plus Colorbox also uses the <a href="http://simplehtmldom.sourceforge.net/" title="PHP Simple HTML DOM Parser">PHP Simple HTML DOM Parser</a> helper class to navigate page content for inserting the Lightbox attibutes into elements. See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.', 'lightboxplus' ); ?>
+				<?php _e( 'Lightbox Plus Colorbox implements Colorbox as a lightbox image overlay tool for WordPress.  Colorbox was created by <a href="http://www.jacklmoore.com/colorbox">Jack Moore</a> and is licensed under the MIT License. Lightbox Plus Colorbox allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lightbox-plus/asset/lbp-css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  Lightbox Plus Colorbox uses the built in WordPress jQuery library. Lightbox Plus Colorbox also uses the <a href="http://simplehtmldom.sourceforge.net/" title="PHP Simple HTML DOM Parser">PHP Simple HTML DOM Parser</a> helper class to navigate page content for inserting the Lightbox attributes into elements. See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.', 'lightboxplus' ); ?>
 			</p>
 
 			<p style="text-align: justify;">
@@ -77,7 +77,7 @@ if ( isset( $g_lbp_base_options ) ) {
 		</div>
 	</div>
 </div>
-
+<?php flush(); ?>
 <!-- Settings/Options -->
 <form name="lightboxplus-settings" id="lightboxplus-settings" method="post" action="<?php echo LBP_ADMIN_PAGE; ?>">
 <input type="hidden" name="action" value="basic" />
@@ -114,7 +114,7 @@ if ( isset( $g_lbp_base_options ) ) {
 			</th>
 			<td>
 				<input type="hidden" name="use_inline" value="0">
-				<input type="checkbox" name="use_inline" id="use_inline" value="1"<?php checked( '1', $g_lbp_base_options['use_inline'] ); ?> title="<?php _e( 'If checked, Lightbox Plus Colorbox will add the selected number of addtional lightboxes that you can use to manuall add inline lightboxed content to.  Additional controls will be available at the bottom of the Lightbox Plus Colorbox admin page. DEFAULT: Unchecked', 'lightboxplus' ) ?>" />
+				<input type="checkbox" name="use_inline" id="use_inline" value="1"<?php checked( '1', $g_lbp_base_options['use_inline'] ); ?> title="<?php _e( 'If checked, Lightbox Plus Colorbox will add the selected number of additional lightboxes that you can use to manual add inline lightboxed content to.  Additional controls will be available at the bottom of the Lightbox Plus Colorbox admin page. DEFAULT: Unchecked', 'lightboxplus' ) ?>" />
 			</td>
 		</tr>
 		<tr class="base_gen">
@@ -298,6 +298,7 @@ if ( isset( $g_lbp_base_options ) ) {
 		</tr>
 	</table>
 </div>
+<?php flush(); ?>
 <!-- Support -->
 <div id="blbp-tabs-4">
 	<h4><?php _e( 'Support for 23Systems Free WordPress Plugins', 'lightboxplus' ); ?></h4>
@@ -369,7 +370,7 @@ if ( isset( $g_lbp_base_options ) ) {
 		</tr>
 		</tbody>
 	</table>
-	<p><?php _e( 'It would also be a good idea to read the <a title="Lightbox Plus Colorbox Frequently Asked Questions" href="httphttp://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">Lightbox Plus Colorbox FAQ</a> to see if you question is answered there. For more in-depth support or if you need extra help with one of our plugins you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.', 'lightboxplus' ); ?></p>
+	<p><?php _e( 'It would also be a good idea to read the <a title="Lightbox Plus Colorbox Frequently Asked Questions" href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">Lightbox Plus Colorbox FAQ</a> to see if you question is answered there. For more in-depth support or if you need extra help with one of our plugins you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.', 'lightboxplus' ); ?></p>
 
 	<p><?php _e( '23Systems does not offer phone support for any of our plugs unless you are an existing client.  If you are an <b>existing client</b> and would like phone support please fill out the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support</a> page and request phone support.  Once we receive the support request we can contact you with rates and information.', 'lightboxplus' ); ?></p>
 
@@ -384,7 +385,7 @@ if ( isset( $g_lbp_base_options ) ) {
 </div>
 </div>
 </form>
-
+<?php flush(); ?>
 <form name="lightboxplus-settings-primary" id="lightboxplus-settings-primary" method="post" action="<?php echo LBP_ADMIN_PAGE; ?>">
 <input type="hidden" name="action" value="primary" />
 <input type="hidden" name="sub" id="primary-sub" value="primary" />
@@ -595,7 +596,7 @@ if ( isset( $g_lbp_base_options ) ) {
 			</th>
 			<td>
 				<input type="hidden" name="resize" value="0">
-				<input type="checkbox" name="resize" id="resize" value="1"<?php checked( '1', $g_lbp_primary_options['resize'] ); ?> title="<?php _e( 'If checked and if Maximum Width or Maximum Height have been defined, Lightbx Plus will resize photos to fit within the those values. DEFAULT: Checked', "lightboxplus" ) ?>" />
+				<input type="checkbox" name="resize" id="resize" value="1"<?php checked( '1', $g_lbp_primary_options['resize'] ); ?> title="<?php _e( 'If checked and if Maximum Width or Maximum Height have been defined, Lightbox Plus will resize photos to fit within the those values. DEFAULT: Checked', "lightboxplus" ) ?>" />
 			</td>
 		</tr>
 	</table>
@@ -787,7 +788,7 @@ if ( isset( $g_lbp_base_options ) ) {
 			</th>
 			<td>
 				<input type="hidden" name="slideshow" value="0">
-				<input type="checkbox" name="slideshow" id="slideshow" value="1"<?php checked( '1', $g_lbp_primary_options['slideshow'] ); ?> title="<?php _e( 'If checked, adds slideshow capablity to a content group / gallery. DEFAULT: Unchecked', "lightboxplus" ) ?>" />
+				<input type="checkbox" name="slideshow" id="slideshow" value="1"<?php checked( '1', $g_lbp_primary_options['slideshow'] ); ?> title="<?php _e( 'If checked, adds slideshow capability to a content group / gallery. DEFAULT: Unchecked', "lightboxplus" ) ?>" />
 			</td>
 		</tr>
 		<tr class="slideshow_prim">
@@ -796,7 +797,7 @@ if ( isset( $g_lbp_base_options ) ) {
 			</th>
 			<td>
 				<input type="hidden" name="slideshow_auto" value="0">
-				<input type="checkbox" name="slideshow_auto" id="slideshow_auto" value="1"<?php checked( '1', $g_lbp_primary_options['slideshow_auto'] ); ?> title="<?php _e( 'If checked, the slideshows will automatically start to play when content grou opened. DEFAULT: Checked', "lightboxplus" ) ?>" />
+				<input type="checkbox" name="slideshow_auto" id="slideshow_auto" value="1"<?php checked( '1', $g_lbp_primary_options['slideshow_auto'] ); ?> title="<?php _e( 'If checked, the slideshows will automatically start to play when content group opened. DEFAULT: Checked', "lightboxplus" ) ?>" />
 			</td>
 		</tr>
 		<tr class="slideshow_prim">
@@ -971,7 +972,7 @@ if ( isset( $g_lbp_base_options ) ) {
 				<p><?php _e( 'Set the options for how the user interacts with the lightbox and whether to group images or not.', 'lightboxplus' ) ?></p>
 				<h5 class="subhelp"><?php _e( 'Slideshow Tab', 'lightboxplus' ) ?></h5>
 
-				<p><?php _e( 'Lightbox Plus Colorbox supports simple slideshows, here you can the the timings and if it should startr automatically.', 'lightboxplus' ) ?></p>
+				<p><?php _e( 'Lightbox Plus Colorbox supports simple slideshows, here you can the the timings and if it should started automatically.', 'lightboxplus' ) ?></p>
 				<h5 class="subhelp"><?php _e( 'Other Tab', 'lightboxplus' ) ?></h5>
 
 				<p><?php _e( 'All additional options for lightboxes such as using for galleries, alternate methods for triggering, etc.', 'lightboxplus' ) ?></p>
@@ -1042,9 +1043,11 @@ if ( isset( $g_lbp_base_options ) ) {
 <?php
 if ( $g_lbp_base_options['lightboxplus_multi'] ) {
 	require( LBP_CLASS_PATH . '/admin-lightbox-secondary.php' );
+	flush();
 }
 if ( $g_lbp_base_options['use_inline'] ) {
 	require( LBP_CLASS_PATH . '/admin-lightbox-inline.php' );
+	flush();
 }
 ?>
 
@@ -1078,12 +1081,12 @@ if ( $g_lbp_base_options['use_inline'] ) {
 </div>
 
 <!-- Inline Demo Form -->
-<div style="display:none">
+<div style="display:none;">
 	<div class="<?php if ( isset( $inline_hrefs[1] ) ) {
 		echo $inline_hrefs[1];
 	} ?>" id="<?php if ( isset( $inline_hrefs[1] ) ) {
 		echo $inline_hrefs[1];
-	} ?>" style="padding: 10px;background: #fff">
+	} ?>" style="padding: 10px;background: #fff;">
 		<h3><?php _e( 'About Lightbox Plus Colorbox for WordPress', 'lightboxplus' ); ?>: </h3>
 
 		<div class="donate">
@@ -1102,7 +1105,7 @@ if ( $g_lbp_base_options['use_inline'] ) {
 		<h4><?php _e( 'Thank you for downloading and installing Lightbox Plus Colorbox for WordPress', 'lightboxplus' ); ?></h4>
 
 		<p style="text-align: justify;">
-			<?php _e( 'Lightbox Plus Colorbox implements Colorbox as a lightbox image overlay tool for WordPress.  Colorbox was created by Jack Moore of <a href="http://www.jacklmoore.com/colorbox">Color Powered</a> and is licensed under the MIT License. Lightbox Plus Colorbox allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lighbox-plus/assets/lbp-css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.', 'lightboxplus' ); ?>
+			<?php _e( 'Lightbox Plus Colorbox implements Colorbox as a lightbox image overlay tool for WordPress.  Colorbox was created by Jack Moore of <a href="http://www.jacklmoore.com/colorbox">Color Powered</a> and is licensed under the MIT License. Lightbox Plus Colorbox allows you to easily integrate and customize a powerful and light-weight lightbox plugin for jQuery into your WordPress site.  You can easily create additional styles by adding a new folder to the css directory under <code>wp-content/plugins/lightbox-plus/assets/lbp-css/</code> by duplicating and modifying any of the existing themes or using them as examples to create your own.  See the <a href="http://www.23systems.net/plugins/lightbox-plus/">changelog</a> for important details on this upgrade.', 'lightboxplus' ); ?>
 		</p>
 
 		<p style="text-align: justify;">
@@ -1114,5 +1117,5 @@ if ( $g_lbp_base_options['use_inline'] ) {
 	</div>
 </div>
 
-<!-- Fix for end of page conent -->
+<!-- Fix for end of page content -->
 <div class="clear">&nbsp;</div>

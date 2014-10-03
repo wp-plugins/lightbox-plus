@@ -43,6 +43,41 @@ if ( ! interface_exists( 'LBP_Update_Interface' ) ) {
 		function lbp_inline_convert( $array );
 
 		/**
+		 * @param $num
+		 *
+		 * @return mixed
+		 */
+		function fix_inline_num( $num );
+
+		/**
+		 * @param $value
+		 *
+		 * @return string
+		 */
+		function fix_output_htmlv( $value );
+
+		/**
+		 * @param $value
+		 *
+		 * @return string
+		 */
+		function fix_data_name( $value );
+
+		/**
+		 * @param $value
+		 *
+		 * @return string
+		 */
+		function fix_load_location( $value );
+
+		/**
+		 * @param $value
+		 *
+		 * @return string
+		 */
+		function fix_load_priority( $value );
+
+		/**
 		 * @param $value
 		 * @param $num
 		 *
@@ -162,19 +197,19 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 			return array(
 				"lightboxplus_multi" => $array['lightboxplus_multi'],
 				"use_inline"         => $array['use_inline'],
-				"inline_num"         => $array['inline_num'],
+				"inline_num"         => $this->fix_inline_num( $array['inline_num'] ),
 				"lightboxplus_style" => $array['lightboxplus_style'],
 				"use_custom_style"   => $array['use_custom_style'],
 				"disable_css"        => $array['disable_css'],
 				"hide_about"         => $array['hide_about'],
-				"output_htmlv"       => $array['output_htmlv'],
-				"data_name"          => $array['data_name'],
+				"output_htmlv"       => $this->fix_output_htmlv($array['output_htmlv']),
+				"data_name"          => $this->fix_data_name(['data_name']),
 				"disable_mobile"     => '0',
 				"use_perpage"        => $array['use_perpage'],
 				"use_forpage"        => $array['use_forpage'],
 				"use_forpost"        => $array['use_forpost'],
-				"load_location"      => $array['load_location'],
-				"load_priority"      => $array['load_priority']
+				"load_location"      => $this->fix_load_location($array['load_location']),
+				"load_priority"      => $this->fix_load_priority($array['load_priority'])
 			);
 		}
 
@@ -336,9 +371,6 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 				}
 			}
 
-			/**
-			 *
-			 */
 			return array(
 				"inline_links"            => $inline_links,
 				"inline_hrefs"            => $inline_hrefs,
@@ -359,6 +391,74 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 				"inline_reuses"           => $inline_reuses,
 				"inline_opacitys"         => $inline_opacitys
 			);
+		}
+
+		/**
+		 * @param $num
+		 *
+		 * @return int
+		 */
+		function fix_inline_num( $num ) {
+			if (is_numeric($num)) {
+				$num = intval($num);
+			}
+			if ( 50 >= $num ) {
+				return $num;
+			} else {
+				return 50;
+			}
+		}
+
+		/**
+		 * @param $value
+		 *
+		 * @return string
+		 */
+		function fix_output_htmlv( $value ) {
+			if ( empty( $value ) || null == $value ) {
+				return '0';
+			} else {
+				return $value;
+			}
+		}
+
+		/**
+		 * @param $value
+		 *
+		 * @return string
+		 */
+		function fix_data_name( $value ) {
+			if ( empty( $value ) || null == $value ) {
+				return 'lightboxplus';
+			} else {
+				return $value;
+			}
+		}
+
+		/**
+		 * @param $value
+		 *
+		 * @return string
+		 */
+		function fix_load_location( $value ) {
+			if ( empty( $value ) || null == $value ) {
+				return 'wp_footer';
+			} else {
+				return $value;
+			}
+		}
+
+		/**
+		 * @param $value
+		 *
+		 * @return string
+		 */
+		function fix_load_priority( $value ) {
+			if ( empty( $value ) || null == $value ) {
+				return '10';
+			} else {
+				return $value;
+			}
 		}
 
 		/**
