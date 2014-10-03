@@ -204,16 +204,6 @@ if ( ! interface_exists( 'LBP_Lightboxplus_Interface' ) ) {
 		function lbp_final();
 
 		/**
-		 * Remove the following line after a few versions or 2.8+ is the prevelent version
-		 * This is for manual updaters only
-		 *
-		 * @param $lbp_old_options
-		 *
-		 * @return null
-		 */
-		function in_place_update( $lbp_old_options );
-
-		/**
 		 * @param $links
 		 * @param $file
 		 *
@@ -267,6 +257,8 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			$g_lbp_primary_options   = get_option( 'lightboxplus_options_primary' );
 			$g_lbp_secondary_options = get_option( 'lightboxplus_options_secondary' );
 			$g_lbp_inline_options    = get_option( 'lightboxplus_options_inline' );
+
+			$g_lbp_base_options = $g_lbp_base_options;
 
 			/**
 			 * If user is in the admin panel
@@ -333,24 +325,13 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			global $g_lbp_base_options;
 			global $g_lbp_primary_options;
 
-			/**
-			 * Get lightbox options to check for auto-lightbox and gallery
-			 */
-
-			/**
-			 * Remove following line after a few versions or 2.6 is the prevelent version
-			 */
-			if ( isset( $g_lbp_base_options ) ) {
-				$g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options );
-			}
-
 			add_action( 'wp_print_styles', array(
 				&$this,
 				'lbp_add_header'
 			), intval( $g_lbp_base_options['load_priority'] ) );
 
 			/**
-			 * Check to see if users wants images auto-lightboxed
+			 * Get lightbox options to check for auto-lightbox and gallery
 			 */
 			if ( $g_lbp_primary_options['no_auto_lightbox'] != 1 ) {
 				/**
@@ -364,35 +345,11 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 					add_filter( 'the_content', array( &$this, 'lbp_replace_content' ), 11 );
 				}
 			}
-			//add_action( 'wp_footer', array( &$this, 'lbp_colorbox' ) );
+
 			add_action( $g_lbp_base_options['load_location'], array(
-				&$this,
-				'lbp_colorbox'
-			), ( intval( $g_lbp_base_options['load_priority'] ) + 4 ) );
-		}
-
-		/**
-		 * Remove the following line after a few versions or 2.8+ is the prevelent version
-		 * This is for manual updaters only
-		 *
-		 * @param $lbp_old_options
-		 *
-		 * @return null
-		 */
-		function in_place_update( $lbp_old_options ) {
-			if ( isset( $lbp_old_options ) ) {
-				require_once( LBP_CLASS_PATH . '/class-update.php' );
-				$lbp_update = new LBP_Update();
-				$success    = $lbp_update->lbp_convert( $lbp_old_options );
-				if ( isset( $success ) && true == $success ) {
-					update_option( 'lightboxplus_options_old', $lbp_old_options );
-					unset( $lbp_update );
-
-					return true;
-				} else {
-					return false;
-				}
-			}
+					&$this,
+					'lbp_colorbox'
+				), intval( $g_lbp_base_options['load_priority'] ) + 4 );
 		}
 
 		/**

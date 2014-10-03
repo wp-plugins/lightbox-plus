@@ -83,13 +83,6 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 
 			$g_lbp_base_options = get_option( 'lightboxplus_options_base' );
 
-			/**
-			 * Remove following line after a few versions or 2.6 is the prevelent version
-			 */
-			if ( isset( $g_lbp_base_options ) ) {
-				$g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options );
-			}
-
 			if ( ! is_admin() ) {
 				if ( floatval( $wp_version ) < 3.1 ) {
 					wp_deregister_script( 'jquery' );
@@ -120,7 +113,11 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 				}
 			}
 
-			return $post->ID;
+			if ( isset( $post->ID ) ) {
+				return $post->ID;
+			} else {
+				return null;
+			}
 		}
 
 		/**
@@ -135,17 +132,18 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 			global $g_lbp_secondary_options;
 			global $g_lbp_inline_options;
 
+			/**
+			 * Get options again because they don't load properly for the wp_foot()
+			 * @TODO Solve this
+			 */
+			$g_lbp_base_options    = get_option( 'lightboxplus_options_base' );
+			$g_lbp_primary_options = get_option( 'lightboxplus_options_primary' );
+			$g_lbp_secondary_options = get_option( 'lightboxplus_options_secondary' );
+			$g_lbp_inline_options    = get_option( 'lightboxplus_options_inline' );
+
 			if ( isset( $g_lbp_base_options ) ) {
-
-				/**
-				 * @TODO Remove following line after a few versions or 2.6 is the prevelent version
-				 */
-				if ( isset( $g_lbp_base_options ) ) {
-					$g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options );
-				}
-
 				$st_lbp_javascript = "";
-				$st_lbp_javascript .= '<!-- Lightbox Plus Colorbox v' . LBP_VERSION . '/' . LBP_COLORBOX_VERSION . ' - 2013.01.24 - Message: ' . $g_lbp_base_options['lightboxplus_multi'] . '-->' . PHP_EOL;
+				$st_lbp_javascript .= '<!-- Lightbox Plus Colorbox v' . LBP_VERSION . '/' . LBP_COLORBOX_VERSION . ' - 2014.10.03 - Message: ' . $g_lbp_base_options['lightboxplus_multi'] . '-->' . PHP_EOL;
 				$st_lbp_javascript .= '<script type="text/javascript">' . PHP_EOL;
 				$st_lbp_javascript .= 'jQuery(document).ready(function($){' . PHP_EOL;
 				$ar_lbp_primary = array();
@@ -262,9 +260,11 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 					}
 				}
 				if ( ! is_admin() ) {
-					$lbp_autoload = get_post_meta( $post->ID, '_lbp_autoload', true );
-					if ( $lbp_autoload == '1' ) {
-						$ar_lbp_primary[] = 'open:true';
+					if ( isset( $post->ID ) ) {
+						$lbp_autoload = get_post_meta( $post->ID, '_lbp_autoload', true );
+						if ( $lbp_autoload == '1' ) {
+							$ar_lbp_primary[] = 'open:true';
+						}
 					}
 				}
 				switch ( $g_lbp_base_options['output_htmlv'] ) {
@@ -296,143 +296,139 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 						}
 						break;
 				}
-				switch ( $g_lbp_base_options['lightboxplus_multi'] ) {
-					case 1:
-						$ar_lbp_secondary = array();
-						if ( $g_lbp_secondary_options['transition_sec'] != 'elastic' ) {
-							$ar_lbp_secondary[] = 'transition:"' . $g_lbp_secondary_options['transition_sec'] . '"';
+				if ( isset( $g_lbp_base_options['lightboxplus_multi'] ) && 1 == $g_lbp_base_options['lightboxplus_multi'] ) {
+					$ar_lbp_secondary = array();
+					if ( $g_lbp_secondary_options['transition_sec'] != 'elastic' ) {
+						$ar_lbp_secondary[] = 'transition:"' . $g_lbp_secondary_options['transition_sec'] . '"';
+					}
+					if ( $g_lbp_secondary_options['speed_sec'] != '350' ) {
+						$ar_lbp_secondary[] = 'speed:' . $g_lbp_secondary_options['speed_sec'];
+					}
+					if ( $g_lbp_secondary_options['width_sec'] && $g_lbp_secondary_options['width_sec'] != 'false' ) {
+						$ar_lbp_secondary[] = 'width:' . $this->set_value( $g_lbp_secondary_options['width_sec'] );
+					}
+					if ( $g_lbp_secondary_options['height_sec'] && $g_lbp_secondary_options['height_sec'] != 'false' ) {
+						$ar_lbp_secondary[] = 'height:' . $this->set_value( $g_lbp_secondary_options['height_sec'] );
+					}
+					if ( $g_lbp_secondary_options['inner_width_sec'] && $g_lbp_secondary_options['inner_width_sec'] != 'false' ) {
+						$ar_lbp_secondary[] = 'innerWidth:' . $this->set_value( $g_lbp_secondary_options['inner_width_sec'] );
+					}
+					if ( $g_lbp_secondary_options['inner_height_sec'] && $g_lbp_secondary_options['inner_height_sec'] != 'false' ) {
+						$ar_lbp_secondary[] = 'innerHeight:' . $this->set_value( $g_lbp_secondary_options['inner_height_sec'] );
+					}
+					if ( $g_lbp_secondary_options['initial_width_sec'] && $g_lbp_secondary_options['initial_width_sec'] != '600' ) {
+						$ar_lbp_secondary[] = 'initialWidth:' . $this->set_value( $g_lbp_secondary_options['initial_width_sec'] );
+					}
+					if ( $g_lbp_secondary_options['initial_height_sec'] && $g_lbp_secondary_options['initial_height_sec'] != '450' ) {
+						$ar_lbp_secondary[] = 'initialHeight:' . $this->set_value( $g_lbp_secondary_options['initial_height_sec'] );
+					}
+					if ( $g_lbp_secondary_options['max_width_sec'] && $g_lbp_secondary_options['max_width_sec'] != 'false' ) {
+						$ar_lbp_secondary[] = 'maxWidth:' . $this->set_value( $g_lbp_secondary_options['max_width_sec'] );
+					}
+					if ( $g_lbp_secondary_options['max_height_sec'] && $g_lbp_secondary_options['max_height_sec'] != 'false' ) {
+						$ar_lbp_secondary[] = 'maxHeight:' . $this->set_value( $g_lbp_secondary_options['max_height_sec'] );
+					}
+					if ( $g_lbp_secondary_options['resize_sec'] != '1' ) {
+						$ar_lbp_secondary[] = 'scalePhotos:' . $this->set_boolean( $g_lbp_secondary_options['resize_sec'] );
+					}
+					if ( $g_lbp_secondary_options['rel_sec'] == 'nofollow' ) {
+						$ar_lbp_primary[] = 'rel:' . $this->set_value( $g_lbp_secondary_options['rel'] );
+					}
+					if ( $g_lbp_secondary_options['opacity_sec'] != '0.9' ) {
+						$ar_lbp_secondary[] = 'opacity:' . $g_lbp_secondary_options['opacity_sec'];
+					}
+					if ( $g_lbp_secondary_options['preloading_sec'] != '1' ) {
+						$ar_lbp_secondary[] = 'preloading:' . $this->set_boolean( $g_lbp_secondary_options['preloading_sec'] );
+					}
+					if ( ( isset( $g_lbp_secondary_options['label_image_sec'] ) && 'Image' != $g_lbp_secondary_options['label_image_sec'] ) && ( isset( $g_lbp_secondary_options['label_of_sec'] ) && 'of' != $g_lbp_secondary_options['label_of_sec'] ) ) {
+						$ar_lbp_secondary[] = 'current:"' . $g_lbp_secondary_options['label_image_sec'] . ' {current} ' . $g_lbp_secondary_options['label_of_sec'] . ' {total}"';
+					}
+					if ( isset( $g_lbp_secondary_options['previous_sec'] ) && 'previous' != $g_lbp_secondary_options['previous_sec'] ) {
+						$ar_lbp_secondary[] = 'previous:"' . $g_lbp_secondary_options['previous_sec'] . '"';
+					}
+					if ( isset( $g_lbp_secondary_options['next_sec'] ) && 'next' != $g_lbp_secondary_options['next_sec'] ) {
+						$ar_lbp_secondary[] = 'next:"' . $g_lbp_secondary_options['next_sec'] . '"';
+					}
+					if ( isset( $g_lbp_secondary_options['close_sec'] ) && 'close' != $g_lbp_secondary_options['close_sec'] ) {
+						$ar_lbp_secondary[] = 'close:"' . $g_lbp_secondary_options['close_sec'] . '"';
+					}
+					if ( isset( $g_lbp_secondary_options['overlay_close_sec'] ) && '1' != $g_lbp_secondary_options['overlay_close_sec'] ) {
+						$ar_lbp_secondary[] = 'overlayClose:' . $this->set_boolean( $g_lbp_secondary_options['overlay_close_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['loop_sec'] ) && '1' != $g_lbp_secondary_options['loop_sec'] ) {
+						$ar_lbp_primary[] = 'loop:' . $this->set_boolean( $g_lbp_secondary_options['loop_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['slideshow_sec'] ) && '1' == $g_lbp_secondary_options['slideshow_sec'] ) {
+						$ar_lbp_secondary[] = 'slideshow:' . $this->set_boolean( $g_lbp_secondary_options['slideshow_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['slideshow_sec'] ) && '1' == $g_lbp_secondary_options['slideshow_sec'] ) {
+						if ( isset( $g_lbp_secondary_options['slideshow_auto_sec'] ) && '1' != $g_lbp_secondary_options['slideshow_auto_sec'] ) {
+							$ar_lbp_secondary[] = 'slideshowAuto:' . $this->set_boolean( $g_lbp_secondary_options['slideshow_auto_sec'] );
 						}
-						if ( $g_lbp_secondary_options['speed_sec'] != '350' ) {
-							$ar_lbp_secondary[] = 'speed:' . $g_lbp_secondary_options['speed_sec'];
+						if ( isset( $g_lbp_secondary_options['slideshow_speed_sec'] ) ) {
+							$ar_lbp_secondary[] = 'slideshowSpeed:' . $g_lbp_secondary_options['slideshow_speed_sec'];
 						}
-						if ( $g_lbp_secondary_options['width_sec'] && $g_lbp_secondary_options['width_sec'] != 'false' ) {
-							$ar_lbp_secondary[] = 'width:' . $this->set_value( $g_lbp_secondary_options['width_sec'] );
+						if ( isset( $g_lbp_secondary_options['slideshow_start_sec'] ) ) {
+							$ar_lbp_secondary[] = 'slideshowStart:"' . $g_lbp_secondary_options['slideshow_start_sec'] . '"';
 						}
-						if ( $g_lbp_secondary_options['height_sec'] && $g_lbp_secondary_options['height_sec'] != 'false' ) {
-							$ar_lbp_secondary[] = 'height:' . $this->set_value( $g_lbp_secondary_options['height_sec'] );
+						if ( isset( $g_lbp_secondary_options['slideshow_stop_sec'] ) ) {
+							$ar_lbp_secondary[] = 'slideshowStop:"' . $g_lbp_secondary_options['slideshow_stop_sec'] . '"';
 						}
-						if ( $g_lbp_secondary_options['inner_width_sec'] && $g_lbp_secondary_options['inner_width_sec'] != 'false' ) {
-							$ar_lbp_secondary[] = 'innerWidth:' . $this->set_value( $g_lbp_secondary_options['inner_width_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['iframe_sec'] ) && '0' != $g_lbp_secondary_options['iframe_sec'] ) {
+						$ar_lbp_secondary[] = 'iframe:' . $this->set_boolean( $g_lbp_secondary_options['iframe_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['scrolling_sec'] ) && '1' != $g_lbp_secondary_options['scrolling_sec'] ) {
+						$ar_lbp_secondary[] = 'scrolling:' . $this->set_boolean( $g_lbp_secondary_options['scrolling_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['esc_key_sec'] ) && '1' != $g_lbp_secondary_options['esc_key_sec'] ) {
+						$ar_lbp_secondary[] = 'escKey:' . $this->set_boolean( $g_lbp_secondary_options['esc_key_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['arrow_key_sec'] ) && '1' != $g_lbp_secondary_options['arrow_key_sec'] ) {
+						$ar_lbp_secondary[] = 'arrowKey:' . $this->set_boolean( $g_lbp_secondary_options['arrow_key_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['top_sec'] ) && 'false' != $g_lbp_secondary_options['top_sec'] ) {
+						$ar_lbp_secondary[] = 'top:' . $this->set_value( $g_lbp_secondary_options['top_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['right_sec'] ) && 'false' != $g_lbp_secondary_options['right_sec'] ) {
+						$ar_lbp_secondary[] = 'right:' . $this->set_value( $g_lbp_secondary_options['right_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['bottom_sec'] ) && 'false' != $g_lbp_secondary_options['bottom_sec'] ) {
+						$ar_lbp_secondary[] = 'bottom:' . $this->set_value( $g_lbp_secondary_options['bottom_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['left_sec'] ) && 'false' != $g_lbp_secondary_options['left_sec'] ) {
+						$ar_lbp_secondary[] = 'left:' . $this->set_value( $g_lbp_secondary_options['left_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['fixed_sec'] ) && '1' == $g_lbp_secondary_options['fixed_sec'] ) {
+						$ar_lbp_secondary[] = 'fixed:' . $this->set_boolean( $g_lbp_secondary_options['fixed_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['retina_image_sec'] ) && '1' == $g_lbp_secondary_options['retina_image_sec'] ) {
+						$ar_lbp_secondary[] = 'retinaImage:' . $this->set_boolean( $g_lbp_secondary_options['retina_image_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['retina_url_sec'] ) && '1' == $g_lbp_secondary_options['retina_url_sec'] ) {
+						$ar_lbp_secondary[] = 'retinaUrl:' . $this->set_boolean( $g_lbp_secondary_options['retina_url_sec'] );
+					}
+					if ( isset( $g_lbp_secondary_options['retina_url_sec'] ) && '1' == $g_lbp_secondary_options['retina_url_sec'] ) {
+						if ( isset( $g_lbp_primary_options['retina_suffix_sec'] ) ) {
+							$ar_lbp_secondary[] = "retinaSuffix:'" . $g_lbp_secondary_options['retina_suffix_sec'] . "'";
 						}
-						if ( $g_lbp_secondary_options['inner_height_sec'] && $g_lbp_secondary_options['inner_height_sec'] != 'false' ) {
-							$ar_lbp_secondary[] = 'innerHeight:' . $this->set_value( $g_lbp_secondary_options['inner_height_sec'] );
-						}
-						if ( $g_lbp_secondary_options['initial_width_sec'] && $g_lbp_secondary_options['initial_width_sec'] != '600' ) {
-							$ar_lbp_secondary[] = 'initialWidth:' . $this->set_value( $g_lbp_secondary_options['initial_width_sec'] );
-						}
-						if ( $g_lbp_secondary_options['initial_height_sec'] && $g_lbp_secondary_options['initial_height_sec'] != '450' ) {
-							$ar_lbp_secondary[] = 'initialHeight:' . $this->set_value( $g_lbp_secondary_options['initial_height_sec'] );
-						}
-						if ( $g_lbp_secondary_options['max_width_sec'] && $g_lbp_secondary_options['max_width_sec'] != 'false' ) {
-							$ar_lbp_secondary[] = 'maxWidth:' . $this->set_value( $g_lbp_secondary_options['max_width_sec'] );
-						}
-						if ( $g_lbp_secondary_options['max_height_sec'] && $g_lbp_secondary_options['max_height_sec'] != 'false' ) {
-							$ar_lbp_secondary[] = 'maxHeight:' . $this->set_value( $g_lbp_secondary_options['max_height_sec'] );
-						}
-						if ( $g_lbp_secondary_options['resize_sec'] != '1' ) {
-							$ar_lbp_secondary[] = 'scalePhotos:' . $this->set_boolean( $g_lbp_secondary_options['resize_sec'] );
-						}
-						if ( $g_lbp_secondary_options['rel_sec'] == 'nofollow' ) {
-							$ar_lbp_primary[] = 'rel:' . $this->set_value( $g_lbp_secondary_options['rel'] );
-						}
-						if ( $g_lbp_secondary_options['opacity_sec'] != '0.9' ) {
-							$ar_lbp_secondary[] = 'opacity:' . $g_lbp_secondary_options['opacity_sec'];
-						}
-						if ( $g_lbp_secondary_options['preloading_sec'] != '1' ) {
-							$ar_lbp_secondary[] = 'preloading:' . $this->set_boolean( $g_lbp_secondary_options['preloading_sec'] );
-						}
-						if ( ( isset( $g_lbp_secondary_options['label_image_sec'] ) && 'Image' != $g_lbp_secondary_options['label_image_sec'] ) && ( isset( $g_lbp_secondary_options['label_of_sec'] ) && 'of' != $g_lbp_secondary_options['label_of_sec'] ) ) {
-							$ar_lbp_secondary[] = 'current:"' . $g_lbp_secondary_options['label_image_sec'] . ' {current} ' . $g_lbp_secondary_options['label_of_sec'] . ' {total}"';
-						}
-						if ( isset( $g_lbp_secondary_options['previous_sec'] ) && 'previous' != $g_lbp_secondary_options['previous_sec'] ) {
-							$ar_lbp_secondary[] = 'previous:"' . $g_lbp_secondary_options['previous_sec'] . '"';
-						}
-						if ( isset( $g_lbp_secondary_options['next_sec'] ) && 'next' != $g_lbp_secondary_options['next_sec'] ) {
-							$ar_lbp_secondary[] = 'next:"' . $g_lbp_secondary_options['next_sec'] . '"';
-						}
-						if ( isset( $g_lbp_secondary_options['close_sec'] ) && 'close' != $g_lbp_secondary_options['close_sec'] ) {
-							$ar_lbp_secondary[] = 'close:"' . $g_lbp_secondary_options['close_sec'] . '"';
-						}
-						if ( isset( $g_lbp_secondary_options['overlay_close_sec'] ) && '1' != $g_lbp_secondary_options['overlay_close_sec'] ) {
-							$ar_lbp_secondary[] = 'overlayClose:' . $this->set_boolean( $g_lbp_secondary_options['overlay_close_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['loop_sec'] ) && '1' != $g_lbp_secondary_options['loop_sec'] ) {
-							$ar_lbp_primary[] = 'loop:' . $this->set_boolean( $g_lbp_secondary_options['loop_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['slideshow_sec'] ) && '1' == $g_lbp_secondary_options['slideshow_sec'] ) {
-							$ar_lbp_secondary[] = 'slideshow:' . $this->set_boolean( $g_lbp_secondary_options['slideshow_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['slideshow_sec'] ) && '1' == $g_lbp_secondary_options['slideshow_sec'] ) {
-							if ( isset( $g_lbp_secondary_options['slideshow_auto_sec'] ) && '1' != $g_lbp_secondary_options['slideshow_auto_sec'] ) {
-								$ar_lbp_secondary[] = 'slideshowAuto:' . $this->set_boolean( $g_lbp_secondary_options['slideshow_auto_sec'] );
-							}
-							if ( isset( $g_lbp_secondary_options['slideshow_speed_sec'] ) ) {
-								$ar_lbp_secondary[] = 'slideshowSpeed:' . $g_lbp_secondary_options['slideshow_speed_sec'];
-							}
-							if ( isset( $g_lbp_secondary_options['slideshow_start_sec'] ) ) {
-								$ar_lbp_secondary[] = 'slideshowStart:"' . $g_lbp_secondary_options['slideshow_start_sec'] . '"';
-							}
-							if ( isset( $g_lbp_secondary_options['slideshow_stop_sec'] ) ) {
-								$ar_lbp_secondary[] = 'slideshowStop:"' . $g_lbp_secondary_options['slideshow_stop_sec'] . '"';
-							}
-						}
-						if ( isset( $g_lbp_secondary_options['iframe_sec'] ) && '0' != $g_lbp_secondary_options['iframe_sec'] ) {
-							$ar_lbp_secondary[] = 'iframe:' . $this->set_boolean( $g_lbp_secondary_options['iframe_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['scrolling_sec'] ) && '1' != $g_lbp_secondary_options['scrolling_sec'] ) {
-							$ar_lbp_secondary[] = 'scrolling:' . $this->set_boolean( $g_lbp_secondary_options['scrolling_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['esc_key_sec'] ) && '1' != $g_lbp_secondary_options['esc_key_sec'] ) {
-							$ar_lbp_secondary[] = 'escKey:' . $this->set_boolean( $g_lbp_secondary_options['esc_key_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['arrow_key_sec'] ) && '1' != $g_lbp_secondary_options['arrow_key_sec'] ) {
-							$ar_lbp_secondary[] = 'arrowKey:' . $this->set_boolean( $g_lbp_secondary_options['arrow_key_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['top_sec'] ) && 'false' != $g_lbp_secondary_options['top_sec'] ) {
-							$ar_lbp_secondary[] = 'top:' . $this->set_value( $g_lbp_secondary_options['top_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['right_sec'] ) && 'false' != $g_lbp_secondary_options['right_sec'] ) {
-							$ar_lbp_secondary[] = 'right:' . $this->set_value( $g_lbp_secondary_options['right_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['bottom_sec'] ) && 'false' != $g_lbp_secondary_options['bottom_sec'] ) {
-							$ar_lbp_secondary[] = 'bottom:' . $this->set_value( $g_lbp_secondary_options['bottom_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['left_sec'] ) && 'false' != $g_lbp_secondary_options['left_sec'] ) {
-							$ar_lbp_secondary[] = 'left:' . $this->set_value( $g_lbp_secondary_options['left_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['fixed_sec'] ) && '1' == $g_lbp_secondary_options['fixed_sec'] ) {
-							$ar_lbp_secondary[] = 'fixed:' . $this->set_boolean( $g_lbp_secondary_options['fixed_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['retina_image_sec'] ) && '1' == $g_lbp_secondary_options['retina_image_sec'] ) {
-							$ar_lbp_secondary[] = 'retinaImage:' . $this->set_boolean( $g_lbp_secondary_options['retina_image_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['retina_url_sec'] ) && '1' == $g_lbp_secondary_options['retina_url_sec'] ) {
-							$ar_lbp_secondary[] = 'retinaUrl:' . $this->set_boolean( $g_lbp_secondary_options['retina_url_sec'] );
-						}
-						if ( isset( $g_lbp_secondary_options['retina_url_sec'] ) && '1' == $g_lbp_secondary_options['retina_url_sec'] ) {
-							if ( isset( $g_lbp_primary_options['retina_suffix_sec'] ) ) {
-								$ar_lbp_secondary[] = "retinaSuffix:'" . $g_lbp_secondary_options['retina_suffix_sec'] . "'";
-							}
-						}
-						switch ( $g_lbp_base_options['output_htmlv'] ) {
-							case 1:
-								$htmlv_prop                  = 'data-' . $g_lbp_base_options['data_name'];
-								$st_lbp_secondary_javascript = '{rel:$(this).attr("' . $htmlv_prop . '"),' . implode( ",", $ar_lbp_secondary ) . '}';
-								$st_lbp_javascript .= '  $(".' . $g_lbp_secondary_options['class_name_sec'] . '").each(function(){' . PHP_EOL;
-								$st_lbp_javascript .= '    $(this).colorbox(' . $st_lbp_secondary_javascript . ');' . PHP_EOL;
-								$st_lbp_javascript .= '  });' . PHP_EOL;
-								break;
-							default:
-								$st_lbp_secondary_javascript = '{' . implode( ",", $ar_lbp_secondary ) . '}';
-								$st_lbp_javascript .= '  $(".' . $g_lbp_secondary_options['class_name_sec'] . '").colorbox(' . $st_lbp_secondary_javascript . ');' . PHP_EOL;
-								break;
-						}
-						break;
-					default:
-						break;
+					}
+					switch ( $g_lbp_base_options['output_htmlv'] ) {
+						case 1:
+							$htmlv_prop                  = 'data-' . $g_lbp_base_options['data_name'];
+							$st_lbp_secondary_javascript = '{rel:$(this).attr("' . $htmlv_prop . '"),' . implode( ",", $ar_lbp_secondary ) . '}';
+							$st_lbp_javascript .= '  $(".' . $g_lbp_secondary_options['class_name_sec'] . '").each(function(){' . PHP_EOL;
+							$st_lbp_javascript .= '    $(this).colorbox(' . $st_lbp_secondary_javascript . ');' . PHP_EOL;
+							$st_lbp_javascript .= '  });' . PHP_EOL;
+							break;
+						default:
+							$st_lbp_secondary_javascript = '{' . implode( ",", $ar_lbp_secondary ) . '}';
+							$st_lbp_javascript .= '  $(".' . $g_lbp_secondary_options['class_name_sec'] . '").colorbox(' . $st_lbp_secondary_javascript . ');' . PHP_EOL;
+							break;
+					}
 				}
 
-				if ( isset( $g_lbp_base_options['use_inline'] ) && '' != $g_lbp_base_options['inline_num'] ) {
+				if ( isset( $g_lbp_base_options['use_inline'] ) && ! empty( $g_lbp_base_options['inline_num'] ) ) {
 					$ar_inline_links            = $g_lbp_inline_options['inline_links'];
 					$ar_inline_hrefs            = $g_lbp_inline_options['inline_hrefs'];
 					$ar_inline_transitions      = $g_lbp_inline_options['inline_transitions'];
