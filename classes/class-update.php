@@ -203,7 +203,7 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 				"disable_css"        => $array['disable_css'],
 				"hide_about"         => $array['hide_about'],
 				"output_htmlv"       => $this->fix_output_htmlv($array['output_htmlv']),
-				"data_name"          => $this->fix_data_name(['data_name']),
+				"data_name"          => $this->fix_data_name($array['data_name']),
 				"disable_mobile"     => '0',
 				"use_perpage"        => $array['use_perpage'],
 				"use_forpage"        => $array['use_forpage'],
