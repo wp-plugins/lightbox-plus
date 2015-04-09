@@ -204,7 +204,7 @@ global $g_lbp_secondary_options;
 			</th>
 			<td>
 				<input type="hidden" name="resize_sec" value="0" />
-				<input type="checkbox" title="<?php _e( 'If checked and if Maximum Width or Maximum Height have been defined, Lightbx Plus will resize photos to fit within the those values. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="resize_sec" id="resize_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['resize_sec'] ); ?> />
+				<input type="checkbox" title="<?php _e( 'If checked and if Maximum Width or Maximum Height have been defined, Lightbox Plus will resize photos to fit within the those values. DEFAULT:  Checked', 'lightboxplus' ) ?>" name="resize_sec" id="resize_sec" value="1"<?php checked( '1', $g_lbp_secondary_options['resize_sec'] ); ?> />
 			</td>
 		</tr>
 	</table>

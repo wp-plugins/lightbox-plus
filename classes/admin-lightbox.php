@@ -301,75 +301,116 @@ if ( isset( $g_lbp_base_options ) ) {
 <?php flush(); ?>
 <!-- Support -->
 <div id="blbp-tabs-4">
+
 	<h4><?php _e( 'Support for 23Systems Free WordPress Plugins', 'lightboxplus' ); ?></h4>
 
-	<p><?php _e( '23Systems has created a number of free WordPress plugins and we offer limited support for Lightbox Plus Colorbox via the <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Colorbox Direct Support">support forums</a>.  Please include the following information when requesting support:', 'lightboxplus' ); ?></p>
-	<table width="100%" border="0" class="lbp-support-info">
-		<tbody>
+	<p><?php _e( '23Systems has created a number of free WordPress plugins and we offer limited support for Lightbox Plus Colorbox via the <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Colorbox Direct Support">support forums</a>.  Check the following box to display information about your WordPress installation and enable support and debug options.  Please include the following information when requesting support:', 'lightboxplus' ); ?></p>
+	<table class="form-table">
 		<tr>
-			<td width="50%" valign="top">
-				<h4>WordPress Information</h4>
-				<strong>WordPress Version:</strong> <?php echo $wp_version; ?><br />
-				<strong>jQuery Version:</strong>
-				<script type="text/javascript">document.write(jQuery.fn.jquery);</script>
-				<br />
-			</td>
-			<td width="50%" valign="top">
-				<h4>Server Information</h4>
-				<strong>Site URL:</strong> <?php echo get_site_url(); ?><br />
-				<strong>PHP Version:</strong> <?php echo phpversion(); ?><br />
-				<strong>Server Software:</strong> <?php echo $_SERVER['SERVER_SOFTWARE']; ?>
+			<th scope="row">
+				<label for="enable_dev"><?php _e( 'Enable Support and Development Options', 'lightboxplus' ) ?></label>:
+			</th>
+			<td>
+				<input type="hidden" name="enable_dev" value="0">
+				<input type="checkbox" name="enable_dev" id="enable_dev" value="1"<?php checked( '1', $g_lbp_base_options['enable_dev'] ); ?> title="<?php _e( 'If checked enables development and debug options for plugin including loading non-minified javascript and css. DEFAULT: Unchecked', "lightboxplus" ); ?>" />
 			</td>
 		</tr>
-		<tr>
-			<td width="50%" valign="top">
-				<h4>Plugin Information</h4>
-				<strong>Lightbox Plus Colorbox Version:</strong> <?php echo LBP_VERSION; ?><br />
-				<strong>LBP Shortcode Version:</strong> <?php echo LBP_SHORTCODE_VERSION; ?><br />
-				<strong>Colorbox Version:</strong> <?php echo LBP_COLORBOX_VERSION; ?><br />
-				<strong>Simple PHP HTML DOM Parser Version:</strong> <?php echo LBP_SHD_VERSION; ?>
-			</td>
-			<td width="50%" valign="top">
-				<h4>Client Information</h4>
-				<strong>Browser:</strong> <?php echo $_SERVER['HTTP_USER_AGENT']; ?><br />
-				<strong>Viewport:</strong>
-				<script type="text/javascript">document.write(jQuery(window).width() + 'x' + jQuery(window).height());</script>
-				<br />
-				<strong>Platform:</strong>
-				<script type="text/javascript">document.write(navigator.platform);</script>
-				<br />
-				<strong>Javascript:</strong>
-				<noscript>No</noscript>
-				<script type="text/javascript">document.write('Yes');</script>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" valign="top">
-				<a class="button" id="lbp_setting_detail">Display Raw Settings</a>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" valign="top" id="lbp_detail">
+	</table>
+	<?php
+	if ( isset( $g_lbp_base_options['enable_dev'] ) && 1 == $g_lbp_base_options['enable_dev'] ) {
+		?>
+		<table width="100%" border="0" class="lbp-support-info">
+			<tbody>
+			<tr>
+				<td width="50%" valign="top">
+					<h4>WordPress Information</h4>
+					<strong>WordPress Version:</strong> <?php echo $wp_version; ?><br />
+					<strong>jQuery Version:</strong>
+					<script type="text/javascript">document.write(jQuery.fn.jquery);</script>
+					<br />
+				</td>
+				<td width="50%" valign="top">
+					<h4>Server Information</h4>
+					<strong>Site URL:</strong> <?php echo get_site_url(); ?><br />
+					<strong>PHP Version:</strong> <?php echo phpversion(); ?><br />
+					<strong>Server Software:</strong> <?php echo $_SERVER['SERVER_SOFTWARE']; ?>
+				</td>
+			</tr>
+			<tr>
+				<td width="50%" valign="top">
+					<h4>Plugin Information</h4>
+					<strong>Lightbox Plus Colorbox Version:</strong> <?php echo LBP_VERSION; ?><br />
+					<strong>LBP Shortcode Version:</strong> <?php echo LBP_SHORTCODE_VERSION; ?><br />
+					<strong>Colorbox Version:</strong> <?php echo LBP_COLORBOX_VERSION; ?><br />
+					<strong>Simple PHP HTML DOM Parser Version:</strong> <?php echo LBP_SHD_VERSION; ?>
+				</td>
+				<td width="50%" valign="top">
+					<h4>Client Information</h4>
+					<strong>Browser:</strong> <?php echo $_SERVER['HTTP_USER_AGENT']; ?><br />
+					<strong>Viewport:</strong>
+					<script type="text/javascript">document.write(jQuery(window).width() + 'x' + jQuery(window).height());</script>
+					<br />
+					<strong>Platform:</strong>
+					<script type="text/javascript">document.write(navigator.platform);</script>
+					<br />
+					<strong>Javascript:</strong>
+					<noscript>No</noscript>
+					<script type="text/javascript">document.write('Yes');</script>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<h3>
+			<a class="button" id="lbp_setting_detail">Display Raw Settings</a></h3>
+		<table width="100%" border="0" class="lbp-support-info" id="lbp_detail">
+			<tbody>
+			<tr>
+				<td>Lightbox Plus Colorbox Basic Settings - Raw</td>
+				<td>Lightbox Plus Colorbox Primary Settings - Raw</td>
 				<?php
-				echo "<h4>Lightbox Plus Colorbox Basic Settings - Raw<h4>";
-				echo '<pre>' . $this->json_pretty( json_encode( $g_lbp_base_options ) ) . '</pre>';
-				echo "<h4>Lightbox Plus Colorbox Primary Settings - Raw<h4>";
-				echo '<pre>' . $this->json_pretty( json_encode( $g_lbp_primary_options ) ) . '</pre>';
 				$secondary_init = get_option( 'lightboxplus_init_secondary' );
-				if ( isset( $secondary_init ) && $secondary_init == 1 ) {
-					echo "<h4>Lightbox Plus Colorbox Secondary Settings - Raw<h4>";
-					echo '<pre>' . $this->json_pretty( json_encode( $g_lbp_secondary_options ) ) . '</pre>';
+				if ( isset( $secondary_init ) && 1 == $secondary_init ) {
+					?>
+					<td>Lightbox Plus Colorbox Secondary Settings - Raw</td>
+				<?php
 				}
 				$inline_init = get_option( 'lightboxplus_init_inline' );
-				if ( isset( $inline_init ) && $inline_init == 1 ) {
-					echo "<h4>Lightbox Plus Colorbox Primary Settings - Raw<h4>";
-					echo '<pre>' . $this->json_pretty( json_encode( $g_lbp_inline_options ) ) . '</pre>';
+				if ( isset( $inline_init ) && 1 == $inline_init ) {
+					?>
+					<td>Lightbox Plus Colorbox Primary Settings - Raw</td>
+				<?php
 				}
 				?>
-			</td>
-		</tr>
-		</tbody>
-	</table>
+			</tr>
+			<tr>
+				<td valign="top">
+					<pre><?php echo $this->json_pretty( json_encode( $g_lbp_base_options ) ); ?></pre>
+				</td>
+				<td valign="top">
+					<pre><?php echo $this->json_pretty( json_encode( $g_lbp_primary_options ) ); ?></pre>
+				</td>
+				<?php
+				if ( isset( $secondary_init ) && $secondary_init == 1 ) {
+					?>
+					<td valign="top">
+						<pre><?php echo $this->json_pretty( json_encode( $g_lbp_secondary_options ) ); ?></pre>
+					</td>
+				<?php
+				}
+				if ( isset( $inline_init ) && $inline_init == 1 ) {
+					?>
+					<td valign="top">
+						<pre><?php echo $this->json_pretty( json_encode( $g_lbp_inline_options ) ); ?></pre>
+					</td>
+				<?php
+				}
+				?>
+			</tr>
+			</tbody>
+		</table>
+	<?php
+	}
+	?>
 	<p><?php _e( 'It would also be a good idea to read the <a title="Lightbox Plus Colorbox Frequently Asked Questions" href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">Lightbox Plus Colorbox FAQ</a> to see if you question is answered there. For more in-depth support or if you need extra help with one of our plugins you may place a service request using the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support Request</a> page.', 'lightboxplus' ); ?></p>
 
 	<p><?php _e( '23Systems does not offer phone support for any of our plugs unless you are an existing client.  If you are an <b>existing client</b> and would like phone support please fill out the form on the <a title="Get technical support for 23Systems free WordPress plugins" href="http://www.23systems.net/services/support/plugin-support/">Plugin Support</a> page and request phone support.  Once we receive the support request we can contact you with rates and information.', 'lightboxplus' ); ?></p>

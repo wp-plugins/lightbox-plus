@@ -91,8 +91,11 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 				} else {
 					wp_enqueue_script( 'jquery', '', '', '', true );
 				}
-				wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '-min.js', array( 'jquery' ), LBP_COLORBOX_VERSION, $this->set_load_location( $g_lbp_base_options['load_location'] ) );  // PROD
-				//wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '.js', array( 'jquery' ), LBP_COLORBOX_VERSION, $this->set_load_location( $g_lbp_base_options['load_location'] ) ); // DEV
+				if ( isset( $g_lbp_base_options['enable_dev'] ) && 1 == $g_lbp_base_options['enable_dev'] ) {
+					wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '.js', array( 'jquery' ), LBP_COLORBOX_VERSION, $this->set_load_location( $g_lbp_base_options['load_location'] ) ); // DEV
+				} else {
+					wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '.min.js', array( 'jquery' ), LBP_COLORBOX_VERSION, $this->set_load_location( $g_lbp_base_options['load_location'] ) );  // PROD
+				}
 			}
 
 			if ( $g_lbp_base_options['use_custom_style'] ) {
@@ -106,12 +109,21 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 			if ( $g_lbp_base_options['disable_css'] ) {
 				echo "<!-- User set lightbox styles -->" . PHP_EOL;
 			} else {
-				wp_register_style( 'lightboxStyle', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/colorbox.css', '', LBP_VERSION, 'screen' );
-				wp_enqueue_style( 'lightboxStyle' );
-				if ( file_exists( $style_path_dir . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.js' ) ) {
-					wp_enqueue_script( 'lbp-helper', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.js', '', LBP_VERSION, $this->set_load_location( $g_lbp_base_options['load_location'] ) );
+				if ( isset( $g_lbp_base_options['enable_dev'] ) && 1 == $g_lbp_base_options['enable_dev'] ) {
+					wp_register_style( 'lightboxStyle', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/colorbox.css', '', LBP_VERSION, 'screen' );  // DEV
+					wp_enqueue_style( 'lightboxStyle' );
+					if ( file_exists( $style_path_dir . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.js' ) ) {
+						wp_enqueue_script( 'lbp-helper', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.js', '', LBP_VERSION, $this->set_load_location( $g_lbp_base_options['load_location'] ) );  //DEV
+					}
+				} else {
+					wp_register_style( 'lightboxStyle', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/colorbox.min.css', '', LBP_VERSION, 'screen' );  //PROD
+					wp_enqueue_style( 'lightboxStyle' );
+					if ( file_exists( $style_path_dir . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.js' ) ) {
+						wp_enqueue_script( 'lbp-helper', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.js', '', LBP_VERSION, $this->set_load_location( $g_lbp_base_options['load_location'] ) ); // PROD
+					}
 				}
 			}
+
 
 			if ( isset( $post->ID ) ) {
 				return $post->ID;
@@ -136,15 +148,15 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 			 * Get options again because they don't load properly for the wp_foot()
 			 * @TODO Solve this
 			 */
-			$g_lbp_base_options    = get_option( 'lightboxplus_options_base' );
-			$g_lbp_primary_options = get_option( 'lightboxplus_options_primary' );
+			$g_lbp_base_options      = get_option( 'lightboxplus_options_base' );
+			$g_lbp_primary_options   = get_option( 'lightboxplus_options_primary' );
 			$g_lbp_secondary_options = get_option( 'lightboxplus_options_secondary' );
 			$g_lbp_inline_options    = get_option( 'lightboxplus_options_inline' );
 
 			if ( isset( $g_lbp_base_options ) ) {
 				$st_lbp_javascript = "";
 				$st_lbp_javascript .= '<!-- Lightbox Plus Colorbox v' . LBP_VERSION . '/' . LBP_COLORBOX_VERSION . ' - 2014.10.03 - Message: ' . $g_lbp_base_options['lightboxplus_multi'] . '-->' . PHP_EOL;
-				$st_lbp_javascript .= '<script type="text/javascript">' . PHP_EOL;
+				$st_lbp_javascript .= '<script ' . 'type="text/javascript">' . PHP_EOL;
 				$st_lbp_javascript .= 'jQuery(document).ready(function($){' . PHP_EOL;
 				$ar_lbp_primary = array();
 				if ( isset( $g_lbp_primary_options['transition'] ) && 'elastic' != $g_lbp_primary_options['transition'] ) {
@@ -461,7 +473,7 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 				}
 
 				$st_lbp_javascript .= '});' . PHP_EOL;
-				$st_lbp_javascript .= '</script>' . PHP_EOL;
+				$st_lbp_javascript .= '</' . 'script>' . PHP_EOL;
 				echo $st_lbp_javascript;
 			}
 		}
@@ -485,15 +497,21 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 		 * Tells WordPress to load the jquery, jquery-ui-core and jquery-ui-dialog in the lightbox plus admin panel
 		 */
 		function lbp_admin_scripts() {
+			global $g_lbp_base_options;
+
 			wp_enqueue_script( 'jquery', '', '', '', true );
 			wp_enqueue_script( 'jquery-ui-core', '', '', '', true );
 			wp_enqueue_script( 'jquery-ui-dialog', '', '', '', true );
 			wp_enqueue_script( 'jquery-ui-tabs', '', '', '', true );
 			wp_enqueue_script( 'jquery-ui-tooltip', '', '', '', true );
-			//wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '.js', array( 'jquery' ), LBP_COLORBOX_VERSION, true ); // DEV
-			wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '-min.js', array( 'jquery' ), LBP_COLORBOX_VERSION, true ); //PROD
-			//wp_enqueue_script( 'lightboxplus-admin', LBP_ASSETS_URL . '/js/lightbox.admin.js', array( 'jquery' ), LBP_VERSION, true );   // DEV
-			wp_enqueue_script( 'lightboxplus-admin', LBP_ASSETS_URL . '/js/lightbox.admin.min.js', array( 'jquery' ), LBP_VERSION, true );  // PROD
+
+			if ( isset( $g_lbp_base_options['enable_dev'] ) && 1 == $g_lbp_base_options['enable_dev'] ) {
+				wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '.js', array( 'jquery' ), LBP_COLORBOX_VERSION, true ); // DEV
+				wp_enqueue_script( 'lightboxplus-admin', LBP_ASSETS_URL . '/js/lightbox.admin.js', array( 'jquery' ), LBP_VERSION, true );   // DEV
+			} else {
+				wp_enqueue_script( 'jquery-colorbox', LBP_ASSETS_URL . '/js/jquery.colorbox.' . LBP_COLORBOX_VERSION . '.min.js', array( 'jquery' ), LBP_COLORBOX_VERSION, true ); //PROD
+				wp_enqueue_script( 'lightboxplus-admin', LBP_ASSETS_URL . '/js/lightbox.admin.min.js', array( 'jquery' ), LBP_VERSION, true );  // PROD
+			}
 		}
 
 		/**
@@ -501,10 +519,16 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 		 */
 		function lbp_admin_styles() {
 			global $g_lbp_base_options;
+
 			if ( ! isset( $g_lbp_base_options ) ) {
 				$g_lbp_base_options = get_option( 'lightboxplus_options_base' );
 			}
-			wp_register_style( 'lbp_styles', LBP_ASSETS_URL . '/css/lightbox-admin.css', '', LBP_VERSION, 'screen' );
+
+			if ( isset( $g_lbp_base_options['enable_dev'] ) && 1 == $g_lbp_base_options['enable_dev'] ) {
+				wp_register_style( 'lbp_styles', LBP_ASSETS_URL . '/css/lightbox-admin.css', '', LBP_VERSION, 'screen' );
+			} else {
+				wp_register_style( 'lbp_styles', LBP_ASSETS_URL . '/css/lightbox-admin.min.css', '', LBP_VERSION, 'screen' );
+			}
 			wp_enqueue_style( 'lbp_styles' );
 
 			if ( isset( $g_lbp_base_options ) ) {
@@ -519,11 +543,20 @@ if ( ! class_exists( 'LBP_Actions' ) ) {
 				if ( $g_lbp_base_options['disable_css'] ) {
 					echo "<!-- User set lightbox styles -->" . PHP_EOL;
 				} else {
-					wp_register_style( 'lightbox-style', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/colorbox.css', '', LBP_VERSION, 'screen' );
-					wp_register_style( 'lightbox-stylebase', $style_path_url . '/colorbox-base.css', '', LBP_VERSION, 'screen' );
-					wp_enqueue_style( 'lightbox-style', 'lightbox-stylebase' );
-					if ( file_exists( $style_path_dir . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.js' ) ) {
-						wp_enqueue_script( 'lbp-helper', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.js', '', LBP_VERSION, true );
+					if ( isset( $g_lbp_base_options['enable_dev'] ) && 1 == $g_lbp_base_options['enable_dev'] ) {
+						wp_register_style( 'lightbox-style', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/colorbox.css', '', LBP_VERSION, 'screen' );
+						wp_register_style( 'lightbox-stylebase', $style_path_url . '/colorbox-base.css', '', LBP_VERSION, 'screen' );
+						wp_enqueue_style( 'lightbox-style', 'lightbox-stylebase' );
+						if ( file_exists( $style_path_dir . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.js' ) ) {
+							wp_enqueue_script( 'lbp-helper', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.js', '', LBP_VERSION, true );
+						}
+					} else {
+						wp_register_style( 'lightbox-style', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/colorbox.min.css', '', LBP_VERSION, 'screen' );
+						wp_register_style( 'lightbox-stylebase', $style_path_url . '/colorbox-base.min.css', '', LBP_VERSION, 'screen' );
+						wp_enqueue_style( 'lightbox-style', 'lightbox-stylebase' );
+						if ( file_exists( $style_path_dir . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.min.js' ) ) {
+							wp_enqueue_script( 'lbp-helper', $style_path_url . '/' . $g_lbp_base_options['lightboxplus_style'] . '/helper.min.js', '', LBP_VERSION, true );
+						}
 					}
 				}
 			}

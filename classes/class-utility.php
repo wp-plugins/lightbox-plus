@@ -100,6 +100,8 @@ if ( ! class_exists( 'LBP_Utilities' ) ) {
 	 * Lightbox Plus Colorbox Utility Functions used throughout plugin
 	 *
 	 * Not sure if WordPress has equivalents but cannot locate in API docs if so
+	 *
+	 * @property LBP_Utilities $attr
 	 */
 	class LBP_Utilities implements LBP_Utilities_Interface {
 		/**

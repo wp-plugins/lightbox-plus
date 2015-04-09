@@ -87,11 +87,9 @@ require_once( LBP_CLASS_PATH . '/class-filters.php' );
 require_once( LBP_CLASS_PATH . '/class-actions.php' );
 require_once( LBP_CLASS_PATH . '/class-init.php' );
 /**
- * Require PHP HTML Parser - This thing is slow-ish should be replaced someday
- * Write one when you have the time
+ * Require Simple HTML DOM Parser
  */
 require_once( LBP_CLASS_PATH . '/class-shd.php' );
-
 /**
  * Register activation/deactivation/uninstall hooks and text domain
  */
@@ -143,16 +141,7 @@ if ( ! function_exists( 'activate_lbp' ) ) {
 				return true;
 			}
 		}
-//		else {
-//			/**
-//			 * If none of the above - initilize settings.
-//			 */
-//			$lbp_activate = new LBP_Init();
-//			$lbp_activate->lbp_install();
-//			unset( $lbp_activate );
-//
-//			return true;
-//		}
+
 		return null;
 	}
 }
@@ -258,8 +247,6 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			$g_lbp_secondary_options = get_option( 'lightboxplus_options_secondary' );
 			$g_lbp_inline_options    = get_option( 'lightboxplus_options_inline' );
 
-			$g_lbp_base_options = $g_lbp_base_options;
-
 			/**
 			 * If user is in the admin panel
 			 */
@@ -347,9 +334,9 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 			}
 
 			add_action( $g_lbp_base_options['load_location'], array(
-					&$this,
-					'lbp_colorbox'
-				), intval( $g_lbp_base_options['load_priority'] ) + 4 );
+				&$this,
+				'lbp_colorbox'
+			), intval( $g_lbp_base_options['load_priority'] ) + 4 );
 		}
 
 		/**
@@ -413,7 +400,8 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 						"load_priority"      => $_POST['load_priority'],
 						"use_perpage"        => $_POST['use_perpage'],
 						"use_forpage"        => $_POST['use_forpage'],
-						"use_forpost"        => $_POST['use_forpost']
+						"use_forpost"        => $_POST['use_forpost'],
+						"enable_dev"         => $_POST['enable_dev']
 					);
 
 					if ( isset( $_POST['lightboxplus_multi'] ) ) {
@@ -653,7 +641,7 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 					}
 
 					/**
-					 * Will reinitilize on reload where option lightboxplus_init is null
+					 * Will reinitialize on reload where option lightboxplus_init is null
 					 *
 					 * @var LBP_Lightboxplus
 					 */
@@ -720,7 +708,6 @@ if ( ! class_exists( 'LBP_Lightboxplus' ) ) {
 								$g_lbp_messages .= '<h3>' . __( 'Lightbox Plus Colorbox Reset', 'lightboxplus' ) . '</h3>';
 								$g_lbp_messages .= '<strong>' . __( 'Lightbox Plus Colorbox has been completely reset to default settings.', 'lightboxplus' ) . '</strong><br />';
 								$g_lbp_messages .= '<strong>' . __( 'Please check and update your Lightbox Plus Colorbox settings before continuing!', 'lightboxplus' ) . '</strong>';
-
 						}
 					}
 					if ( $g_lbp_messages ) {

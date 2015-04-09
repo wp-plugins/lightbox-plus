@@ -82,7 +82,7 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 			 * Call Initialize Inline Lightboxes if enabled
 			 *
 			 * Generate and saved options and...
-			*/
+			 */
 			update_option( 'lightboxplus_options_base', $this->lbp_base_init() );
 			update_option( 'lightboxplus_options_primary', $this->lbp_primary_init() );
 			update_option( 'lightboxplus_options_secondary', $this->lbp_secondary_init() );
@@ -211,7 +211,8 @@ if ( ! class_exists( 'LBP_Init' ) ) {
 				"use_forpage"        => '0',
 				"use_forpost"        => '0',
 				"load_location"      => 'wp_footer',
-				"load_priority"      => '10'
+				"load_priority"      => '10',
+				"enable_dev"         => '0'
 			);
 		}
 

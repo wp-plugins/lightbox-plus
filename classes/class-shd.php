@@ -110,6 +110,7 @@ function dump_html_tree( $node, $show_attr = true, $deep = 0 ) {
  * PaperG - added $tag_start to track the start position of the tag in the total byte index
  *
  * @package PlaceLocalInclude
+ *
  */
 class simple_html_dom_node {
 	public $nodetype = HDOM_TYPE_TEXT;
@@ -198,8 +199,8 @@ class simple_html_dom_node {
 		}
 
 		$string .= " HDOM_INNER_INFO: '";
-		if ( isset( $node->_[ HDOM_INFO_INNER ] ) ) {
-			$string .= $node->_[ HDOM_INFO_INNER ] . "'";
+		if ( isset( $this->node->_[ HDOM_INFO_INNER ] ) ) {
+			$string .= $this->node->_[ HDOM_INFO_INNER ] . "'";
 		} else {
 			$string .= ' NULL ';
 		}
@@ -1092,6 +1093,7 @@ class simple_html_dom_node {
  * Paperg - added ForceTagsClosed in the constructor which tells us whether we trust the html or not.  Default is to NOT trust it.
  *
  * @package PlaceLocalInclude
+ *
  */
 class simple_html_dom {
 	public $root = null;

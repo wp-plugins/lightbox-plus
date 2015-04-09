@@ -5,7 +5,7 @@
 * @$Id: colorbox.css 651378 2013-01-11 17:20:40Z dzappone $
 * @$URL: http://plugins.svn.wordpress.org/lightbox-plus/trunk/css/black/colorbox.css $
 */
-#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;font-family:Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;}
 #cboxOverlay{position:fixed; width:100%; height:100%;}
 #cboxMiddleLeft, #cboxBottomLeft{clear:left;}
 #cboxContent{position:relative; overflow:visible;}
@@ -37,8 +37,8 @@
         #cboxLoadedContent{margin-top:0px;}
         #cboxLoadingOverlay{width: 100%; height: 100%; background:url(images/loading_background.png) no-repeat center center;}
 	    #cboxLoadingGraphic{background:url(images/loading.gif) no-repeat center center;}
-        #cboxTitle{position:absolute; top: -23px; left:0; background-image: url(images/fb-icon.gif); background-repeat: no-repeat; background-position: 10px -1px; padding: 0px 0px 0px 8px; text-indent: 30; font-size: 13px !important; text-indent: 30px; font-family: Lucida Grande; text-align: left; width:100%; font-weight:bold; color:#fff;}
-        #cboxCurrent{position:absolute; bottom: 0px; background: #f0f0f0; border-top: 1px solid #888; width: 100%; padding: 14px 0px 14px 0px; text-indent: 90px; font-family: Lucida Grande; font-size: 14px !important; font-weight:bold; color:#666; }
+        #cboxTitle{position:absolute; top: -23px; left:0; background-image: url(images/fb-icon.gif); background-repeat: no-repeat; background-position: 10px -1px; padding: 0px 0px 0px 8px; text-indent: 30; font-size: 13px !important; text-indent: 30px; font-family: Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;; text-align: left; width:100%; font-weight:bold; color:#fff;}
+        #cboxCurrent{position:absolute; bottom: 0px; background: #f0f0f0; border-top: 1px solid #888; width: 100%; padding: 14px 0px 14px 0px; text-indent: 90px; font-family:Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;; font-size: 14px !important; font-weight:bold; color:#666; }
         
         /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
         #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; width:auto; background:none; }

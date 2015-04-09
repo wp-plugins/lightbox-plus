@@ -209,7 +209,8 @@ if ( ! interface_exists( 'LBP_Update' ) ) {
 				"use_forpage"        => $array['use_forpage'],
 				"use_forpost"        => $array['use_forpost'],
 				"load_location"      => $this->fix_load_location($array['load_location']),
-				"load_priority"      => $this->fix_load_priority($array['load_priority'])
+				"load_priority"      => $this->fix_load_priority($array['load_priority']),
+				"enable_dev"         => '0'
 			);
 		}
 

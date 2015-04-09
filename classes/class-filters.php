@@ -10,6 +10,10 @@
  */
 
 if ( ! interface_exists( 'LBP_Filters_Interface' ) ) {
+	/**
+	 * Interface LBP_Filters_SHD_Interface
+	 *
+	 */
 	interface LBP_Filters_Interface {
 		/**
 		 * @param $content
@@ -29,14 +33,19 @@ if ( ! interface_exists( 'LBP_Filters_Interface' ) ) {
 }
 
 if ( ! class_exists( 'LBP_Filters' ) ) {
+	/**
+	 * Class LBP_Filters_SHD
+	 *
+	 * @method removeAttr
+	 */
 	class LBP_Filters extends LBP_Shortcode implements LBP_Filters_Interface {
 
 		/**
 		 * Filter to call page parsing
 		 *
-		 * @param mixed $content
+		 * @param $content
 		 *
-		 * @return simple_html_dom
+		 * @return mixed
 		 */
 		function lbp_replace_content( $content ) {
 			return $this->lbp_replace( $content, '' );
@@ -55,11 +64,6 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 			global $g_lbp_base_options;
 			global $g_lbp_primary_options;
 
-			/**
-			 * TODO: Remove following line after a few versions or 2.6 is the prevelent version
-			 */
-			if (isset($g_lbp_base_options)) { $g_lbp_base_options = $this->set_missing_options( $g_lbp_base_options ); }
-
 			$postGroupID    = $post->ID;
 			$postGroupTitle = $post->post_title;
 
@@ -67,13 +71,12 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 			$html->load( $html_content, false, false );
 
 			/**
-			 * Find all image links (text and images)
-			 *
-			 * If (auto-lightbox text links) then
+			 * AUTO LIGHTBOX ALL IMAGE LINKS
+			 * Find all a elements that have images as their links whether the inner is plain text or an img elemen if *do auto-lightbox text links* is checked
 			 */
 			switch ( $g_lbp_primary_options['text_links'] ) {
 				case 1:
-					foreach ( $html->find( 'a[href*=jpg$], a[href*=gif$], a[href*=png$], a[href*=jpeg$], a[href*=bmp$]' ) as $e ) {
+					foreach ( $html->find( 'a[href*=jpg$],a[href*=gif$],a[href*=png$], a[href*=jpeg$], a[href*=bmp$], a[href*=svg$], a[href*=webp$]' ) as $element ) {
 						/**
 						 * Use Class Method is selected - yes/no
 						 */
@@ -82,21 +85,16 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 								$htmlv_prop = 'data-' . $g_lbp_base_options['data_name'];
 								switch ( $g_lbp_primary_options['use_class_method'] ) {
 									case 1:
-										if ( $e->class && $e->class != $g_lbp_primary_options['class_name'] ) {
-											$e->class .= ' ' . $g_lbp_primary_options['class_name'];
-											if ( ! $e->$htmlv_prop ) {
-												$e->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
-											}
-										} else {
-											$e->class = $g_lbp_primary_options['class_name'];
-											if ( ! $e->$htmlv_prop ) {
-												$e->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
+										if ( ! strpos( $element->class, $g_lbp_primary_options['class_name'] ) ) {
+											$element->class .= ' ' . $g_lbp_primary_options['class_name'];
+											if ( ! $element->$htmlv_prop ) {
+												$element->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
 										}
 										break;
 									default:
-										if ( ! $e->$htmlv_prop ) {
-											$e->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
+										if ( ! $element->$htmlv_prop ) {
+											$element->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
 										}
 										break;
 								}
@@ -104,21 +102,16 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 							default:
 								switch ( $g_lbp_primary_options['use_class_method'] ) {
 									case 1:
-										if ( $e->class && $e->class != $g_lbp_primary_options['class_name'] ) {
-											$e->class .= ' ' . $g_lbp_primary_options['class_name'];
-											if ( ! $e->rel ) {
-												$e->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
-											}
-										} else {
-											$e->class = $g_lbp_primary_options['class_name'];
-											if ( ! $e->rel ) {
-												$e->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
+										if ( ! strpos( $element->class, $g_lbp_primary_options['class_name'] ) ) {
+											$element->class .= ' ' . $g_lbp_primary_options['class_name'];
+											if ( ! $element->rel ) {
+												$element->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
 										}
 										break;
 									default:
-										if ( ! $e->rel ) {
-											$e->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
+										if ( ! $element->rel ) {
+											$element->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
 										}
 										break;
 								}
@@ -129,30 +122,33 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 						 */
 						switch ( $g_lbp_primary_options['no_display_title'] ) {
 							case 1:
-								$e->title = null;
+								$element->removeAttr( 'title' );
 								break;
 							default:
 								/**
 								 * If title doesn't exist then get a title
-								 * Set to caption title->image->post title by default then set to image title is exists
-								 */
-								if ( ! $e->title && $e->first_child() ) {
-									if ( $e->first_child()->alt ) {
-										$e->title = $e->first_child()->alt;
-									} else {
-										$e->title = $postGroupTitle;
-									}
-								}
-								/**
+								 *
+								 * Set to caption title->image->post title by default then set to image title if exists
+								 *
 								 * If use caption for title try to get the text from the caption - this could be wrong
 								 */
 								if ( $g_lbp_primary_options['use_caption_title'] ) {
-									if ( $e->next_sibling()->class = 'wp-caption-text' ) {
-										$e->title = $e->next_sibling()->innertext;
-									} elseif ( $e->parent()->next_sibling()->class = 'gallery-caption' ) {
-										$e->title = $e->parent()->next_sibling()->innertext;
+									if ( 'wp-caption-text' == $element->next_sibling()->class ) {
+										$element->title = $element->next_sibling()->innertext;
+									} elseif ( 'gallery-caption' == $element->parent()->next_sibling()->class ) {
+										$element->title = $element->parent()->next_sibling()->innertext;
+									}
+								} else {
+								if ( ! $element->title && $element->first_child() ) {
+									if ( $element->first_child()->alt ) {
+										$element->title = $element->first_child()->alt;
+									} else {
+										$element->title = $postGroupTitle;
 									}
 								}
+								}
+
+
 
 								break;
 						}
@@ -160,9 +156,11 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 					break;
 				default:
 					/**
-					 *  find all links with image only else if (do not auto lightbox textlinks) then
+					 * DO NOT AUTO LIGHTBOX TEXT LINKS
+					 *
+					 * Find all a elements that contain img elements if *do not auto lightbox textlinks* is checked
 					 */
-					foreach ( $html->find( 'a[href*=jpg$] img, a[href*=gif$] img, a[href*=png$] img, a[href*=jpeg$] img, a[href*=bmp$] img' ) as $e ) {
+					foreach ( $html->find( 'a[href*=jpg$],a[href*=gif$],a[href*=png$], a[href*=jpeg$], a[href*=bmp$], a[href*=svg$], a[href*=webp$]' ) as $element ) {
 						/**
 						 * Generate HTML5 yes/no
 						 */
@@ -174,21 +172,16 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 									 * Use Class Method is selected - yes/no
 									 */
 									case 1:
-										if ( $e->parent()->class && $e->parent()->class != $g_lbp_primary_options['class_name'] ) {
-											$e->parent()->class .= ' ' . $g_lbp_primary_options['class_name'];
-											if ( ! $e->parent()->$htmlv_prop ) {
-												$e->parent()->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
-											}
-										} else {
-											$e->parent()->class = $g_lbp_primary_options['class_name'];
-											if ( ! $e->parent()->$htmlv_prop ) {
-												$e->parent()->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
+										if ( ! strpos( $element->parent()->class, $g_lbp_primary_options['class_name'] ) ) {
+											$element->parent()->class .= ' ' . $g_lbp_primary_options['class_name'];
+											if ( ! $element->parent()->$htmlv_prop ) {
+												$element->parent()->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
 										}
 										break;
 									default:
-										if ( ! $e->parent()->$htmlv_prop ) {
-											$e->parent()->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
+										if ( ! $element->parent()->$htmlv_prop ) {
+											$element->parent()->$htmlv_prop = 'lightbox[' . $postGroupID . $unq_id . ']';
 										}
 										break;
 								}
@@ -199,51 +192,55 @@ if ( ! class_exists( 'LBP_Filters' ) ) {
 									 * Use Class Method is selected - yes/no
 									 */
 									case 1:
-										if ( $e->parent()->class && $e->parent()->class != $g_lbp_primary_options['class_name'] ) {
-											$e->parent()->class .= ' ' . $g_lbp_primary_options['class_name'];
-											if ( ! $e->parent()->rel ) {
-												$e->parent()->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
+										if ( ! strpos( $element->parent()->class, $g_lbp_primary_options['class_name'] ) ) {
+											$element->parent()->class .= ' ' . $g_lbp_primary_options['class_name'];
+											if ( ! $element->parent()->rel ) {
+												$element->parent()->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
 										} else {
-											$e->parent()->class = $g_lbp_primary_options['class_name'];
-											if ( ! $e->parent()->rel ) {
-												$e->parent()->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
+											$element->parent()->class = $g_lbp_primary_options['class_name'];
+											if ( ! $element->parent()->rel ) {
+												$element->parent()->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
 											}
 										}
 										break;
 									default:
-										if ( ! $e->parent()->rel ) {
-											$e->parent()->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
+										if ( ! $element->parent()->rel ) {
+											$element->parent()->rel = 'lightbox[' . $postGroupID . $unq_id . ']';
 										}
 										break;
 								}
 								break;
 						}
 
-
 						/**
-						 * Do Not Display Title is select - yes/no
+						 * Do Not Display Title is selected - yes/no
 						 */
 						switch ( $g_lbp_primary_options['no_display_title'] ) {
 							case 1:
-								$e->parent()->title = null;
+								$element->parent()->removeAttr( 'title' );
 								break;
 							default:
-								if ( ! $e->parent()->title ) {
-									if ( $e->title ) {
-										$e->parent()->title = $e->title;
-									} else {
-										$e->parent()->title = $postGroupTitle;
-									}
-								}
+								/**
+								 * If title doesn't exist then get a title
+								 *
+								 * Set to caption title->image->post title by default then set to image title if exists
+								 *
+								 * If use caption for title try to get the text from the caption - this could be wrong
+								 */
 								if ( $g_lbp_primary_options['use_caption_title'] ) {
-									//if ($e->parent()->next_sibling()->innertext) { $e->parent()->title = $e->parent()->next_sibling()->innertext; }
-									//if ($e->parent()->next_sibling()->innertext) { $e->title = $e->parent()->next_sibling()->innertext; }
-
-									if ( $e->find( 'img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]' ) && $e->next_sibling()->class = 'wp-caption-text' ) {
-										$e->title = $e->next_sibling()->innertext;
-									} elseif ( $e->find( 'img[src*=jpg$], img[src*=gif$], img[src*=png$], img[src*=jpeg$], img[src*=bmp$]' ) && $e->parent()->next_sibling()->class = 'gallery-caption' ) {
-										$e->title = $e->parent()->next_sibling()->innertext;
+									if ( $element->find( 'a[href*=jpg$],a[href*=gif$],a[href*=png$], a[href*=jpeg$], a[href*=bmp$], a[href*=svg$], a[href*=webp$]' ) && 'wp-caption-text' == $element->next_sibling()->class ) {
+										$element->title = $element->next_sibling()->innertext;
+									} elseif ( $element->find( 'a[href*=jpg$],a[href*=gif$],a[href*=png$], a[href*=jpeg$], a[href*=bmp$], a[href*=svg$], a[href*=webp$]' ) && 'gallery-caption' == $element->parent()->next_sibling()->class ) {
+										$element->title = $element->parent()->next_sibling()->innertext;
+									}
+								} else {
+									if ( ! $element->parent()->title ) {
+										if ( $element->title ) {
+											$element->parent()->title = $element->title;
+										} else {
+											$element->parent()->title = $postGroupTitle;
+										}
 									}
 								}
 								break;

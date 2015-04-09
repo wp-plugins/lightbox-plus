@@ -39,6 +39,8 @@ jQuery(document).ready(function ($) {
 		$('.slideshow_sec').hide();
 	}
 
+	$('#lbp_detail').hide()
+
 	$("input[title]").tooltip({
 		position: {
 			my: "left top",
