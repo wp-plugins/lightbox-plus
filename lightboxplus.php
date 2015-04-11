@@ -5,17 +5,17 @@
     Description: Lightbox Plus Colorbox implements Colorbox as a lightbox image overlay tool for WordPress.  <a href="http://www.jacklmoore.com/colorbox">Colorbox</a> was created by Jack Moore of Color Powered and is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.
     Author: Dan Zappone
     Author URI: http://www.23systems.net/
-    Version: 2.7
+    Version: 2.7.1
     */
 
     /**
     * @package Lightbox Plus Colorbox
-    * @subpackage lightboxplus.php DEV VERSION 
+    * @subpackage lightboxplus.php DEV VERSION
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
     * @version 2.7.1
     * @$Id$
-    * @$URL$ 
+    * @$URL$
     */
     /**
     * WordPress Globals
@@ -614,13 +614,13 @@
             <div class="wrap" id="lightbox">
                 <h2><?php _e( 'Lightbox Plus Colorbox (v'.$g_lbp_version.') Options', 'lightboxplus' )?></h2>
                 <h3><?php _e( 'With Colorbox (v'.$g_lbp_colorbox_version.') and PHP Simple HTML DOM Parser (v'.$g_lbp_simple_html_dom_version.')', 'lightboxplus' )?></h3>
-                <h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | 
-                        <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus Colorbox FAQ">FAQ</a> | 
-                        <a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus Colorbox Direct Support">Request Support</a> | 
-                        <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Colorbox Support Forum">Support Forum</a> | 
-                        <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Twitter</a> | 
-                        <a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">Facebook</a> | 
-                        <a href="http://www.linkedin.com/company/23systems" title="23Systems of LinkedIn">LinkedIn</a> | 
+                <h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> |
+                        <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus Colorbox FAQ">FAQ</a> |
+                        <a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus Colorbox Direct Support">Request Support</a> |
+                        <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Colorbox Support Forum">Support Forum</a> |
+                        <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Twitter</a> |
+                        <a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">Facebook</a> |
+                        <a href="http://www.linkedin.com/company/23systems" title="23Systems of LinkedIn">LinkedIn</a> |
                     <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+</a>' ); ?></h4>
 
                 <?php
