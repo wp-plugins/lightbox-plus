@@ -3,8 +3,8 @@ Contributors: dzappone
 Donate link: http://www.23systems.net/plugins/donate/
 Tags: lightbox, photo, photos, image, images, video, ajax, gallery, colorbox, lightview, picture, overlay
 Requires at least: 3.6
-Tested up to: 3.9.1
-Stable tag: 2.7
+Tested up to: 4.1.1
+Stable tag: 2.7.1
 License: GPLv2 and (components under MIT License)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,7 +116,7 @@ Here are things to try in order to see what the problem is.
  * There may be a style conflict of some sort
 6. Try deleting the plugin and reinstalling - it may have not completely updated correctly.
  * You'll have to reset your settings so you might want to write them down.
- 
+
 = It works for some images and not others, why not? =
 
 The problem may be with your WordPress theme, mangling image display properties. Try using another theme, that doesn't interfere with posted images.
@@ -226,6 +226,13 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Fixed bug where setting opacity to 0 was ignored. Fixes #628.
  * Minor misc. tweaks (merging pull requests #611, #612, #615, #619, #620).
 
+= 2.7.1 =
+* Validated against WordPress 4.0-4.1.x
+* Fixed minified files not being minified
+* Temporary update prior to release of newly re-written version
+* NOTE: some issue still persist in this version most obvious among them:
+ * Initial setting no set up and must be manually entered and saved before plugin will display lightbox
+
 = 2.7 =
 * Initial release of version 2.7
 * Validated against WordPress 3.9.x
@@ -296,7 +303,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Added styles to clean up borders around buttons in the lightbox
 
 = 2.6 =
-* Added option to generate HTML5 valid code.  Checkbox under Base Settings -> Advanced.  
+* Added option to generate HTML5 valid code.  Checkbox under Base Settings -> Advanced.
  * When checked will add data- instead if rel attributes.
  * Can specify specify data- attribute so it can be site specific
  * Does not affect inline lightboxes which were class based already
@@ -311,7 +318,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Low, Normal, High with priorities as follows 5, 11, 15 relative to other plugin loads
  * May resolve some plugin conflicts due to load order
 * Fixed removal of settings on deactivate
- * Will now only remove settings on uninstall 
+ * Will now only remove settings on uninstall
 * Fixed gallery short code issues with WordPress 3.0.x and version 3.1.x to 3.4.x.
  * Now creates correct gallery output for specific versions of WordPress
 * Moved 'Use for WordPress Galleries' option to first tab to ease location
@@ -378,7 +385,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 * Page/Post Options
  * Auto launch on page.  If Lightbox Plus Colorbox auto-launch is set Lightbox Plus will automatically open the first lightboxed item on the page.
  * Per page loading. If per page options are set Lightbox JavaScript will only load for specified pages.
- * Blog/posts only loading. if per page options are set Lightbox JavaScript will only load for specified pages. 
+ * Blog/posts only loading. if per page options are set Lightbox JavaScript will only load for specified pages.
 * Image grouping
  * Added more control over image grouping
  * Fixed image X of X problem, can disable Image X of X
@@ -406,13 +413,13 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Added safety check to make sure that Colorbox's markup is only added to the DOM a single time, even if $.colorbox.init() is called multiple times.  This will allow site owners to manually initialize Colorbox if they need it before the DOM has finished loading.
  * Updated the example index.html files to be HTML5 compliant.
  * Changed the slideshow behavior so that it immediately moves to the next slide when the slideshow is started.
- * Minor regex bug fix to allow automatic detection of image URLs that include fragments. 
+ * Minor regex bug fix to allow automatic detection of image URLs that include fragments.
 
 = 2.4 =
 * Removed all support for PHP 4.
  * If you still need a version that works with PHP 4 <b>DO NOT UPGRADE</b>
  * If you get this error: <code>Parse error: syntax error, unexpected T_OBJECT_OPERATOR in /path/to/plugin/classes/filters.class.php on line 81</code> you have PHP 4.
- * Contact your host provider to see if they can upgrade to PHP 5. 
+ * Contact your host provider to see if they can upgrade to PHP 5.
 * Fixed issue where PHP Simple HTML DOM Parser was stripping returns causing issue with HTML output in several plugins (including SyntaxHighlighter Evolved)
  * This issue should be fairly rare.
 * Patched PHP Simple HTML DOM Parser (<code>shd.class.php</code>) to verify <code>mb_detect_encoding()</code> function exist before calling
@@ -427,7 +434,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Added support for detecting the source html character set.  This is used to convert characters when plaintext is requested.
  * Other little fixes and features, too numerous to categorize.
  * Error of "file_get_contents()" will be thrown as an exception.
- * Add flag: LOCK_EX while calling "file_put_contents()". 
+ * Add flag: LOCK_EX while calling "file_put_contents()".
  * Fix the typo of "token_blank_t".
  * Supports xpath generated from Firebug.
  * New method "dump" of "simple_html_dom_node".
@@ -453,7 +460,7 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
  * Added property "fixed" which can provide fixed positioning for Colorbox, rather than absolute positioning.  This will allow Colorbox to remain in a fixed position within the visitor’s viewport, despite scrolling.  IE6 support for this was not added, it will continue to use the default absolute positioning.
  * Fixed Clear Type problem with IE7.
  * Minor fixes.
-* Updated Colorbox to version 1.3.16  
+* Updated Colorbox to version 1.3.16
  * Better IE related transparency workarounds.  IE7 and up now uses the same background image sprite as other browsers.
  * Added error handling for broken image links. A message will be displayed telling the user that the image could not be loaded.
  * Added new property: 'fastIframe' and set it to true by default.  Setting to fastIframe:false will delay the loading graphic removal and onComplete event until iframe has completely loaded.
@@ -786,4 +793,3 @@ Note: Some of these conflicts were with very old versions of Lightbox Plus Color
 == More Information ==
 
 <a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> | <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/">FAQ</a> | <a href="http://wordpress.org/support/plugin/lightbox-plus">Support</a> | <a href="http://twitter.com/23systems">Follow on Twitter</a> | <a href="http://www.facebook.com/23Systems">Add Facebook Page</a>
-
