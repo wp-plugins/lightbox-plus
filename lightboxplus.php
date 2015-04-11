@@ -13,7 +13,7 @@ Version: 2.7.1
  * @subpackage lightboxplus.php DEV VERSION
  * @internal   2014.09.30
  * @author     Dan Zappone / 23Systems
- * @version    2.7
+ * @version    2.7.1
  * @$Id$
  * @$URL$
  */
