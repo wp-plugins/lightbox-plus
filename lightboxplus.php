@@ -13,7 +13,7 @@
     * @subpackage lightboxplus.php DEV VERSION 
     * @internal 2013.01.16
     * @author Dan Zappone / 23Systems
-    * @version 2.7
+    * @version 2.7.1
     * @$Id$
     * @$URL$ 
     */
@@ -47,7 +47,7 @@
     global $g_lbp_local_style_url;
     global $g_lbp_global_style_url;
 
-    $g_lbp_version = '2.7';
+    $g_lbp_version = '2.7.1';
     $g_lbp_simple_html_dom_version = '1.5 Rev: 202';
     /**
     * Instantiate Lightbox Plus Colorbox Globals
