@@ -47,7 +47,7 @@ global $g_lbp_global_style_path;
 global $g_lbp_local_style_url;
 global $g_lbp_global_style_url;
 
-$g_lbp_version                 = '2.7.1';
+$g_lbp_version                 = '2.7.2';
 $g_lbp_simple_html_dom_version = '1.5 Rev: 202';
 /**
  * Instantiate Lightbox Plus Colorbox Globals
