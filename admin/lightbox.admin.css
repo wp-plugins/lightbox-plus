@@ -40,7 +40,14 @@ a.togbox:hover{border:1px solid #cccccc;background:#ffffff;color:#999999;}
 #lbp-style-screenshot {border:1px solid #999;width:150px;height:150px;float:left;}
 .lbp-sample{display:none;}
 .lbp-sample-current{display:block;}
-.donate{float:right;margin:30px;text-align:center;}
+.info{width:100%}
+.recommend{float:left;margin:0 30px 0 30px;padding-right: 30px;display: block; text-align: center; height: 100%; border-right: 1px #000 solid}
+.recommend h5 {font-weight:normal;font-size:1.3em; margin: 20px auto 20px auto}
+.tryout {color:#fff;background-color: #4D559E}
+.tryout a, .tryout a:visited, .tryout a:hover {color:#fff;}
+.tryout h5 {font-weight:normal;font-size:1.3em; margin: 30px}
+.thanks{margin:30px;display: block; height: 100%;}
+.donate{float:right;margin:30px;display: block; text-align: center; height: 100%;}
 .codebox {border:1px solid #999999;background-color:#eaeaea;display:block;padding: 15px; margin: 15px;font-size:1.1em;}
 .subhelp {font-size:0.9em;}
 .clear{clear:both;}
