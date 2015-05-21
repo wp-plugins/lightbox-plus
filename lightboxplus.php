@@ -293,13 +293,11 @@ if ( ! class_exists( 'wp_lightboxplus' ) ) {
 			if ( $file == $base ) {
 				$links[] = '<a href="themes.php?page=lightboxplus" title="Lightbox Plus Colorbox Settings">' . __( 'Settings', 'lightboxplus' ) . '</a>';
 				$links[] = '<a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus Colorbox FAQ">' . __( 'FAQ', 'lightboxplus' ) . '</a>';
-				$links[] = '<a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus Colorbox Direct Support">' . __( 'Request Support', 'lightboxplus' ) . '</a>';
-				$links[] = '<a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Colorbox Support Forum">' . __( 'Support Forum', 'lightboxplus' ) . '</a>';
-				$links[] = '<a href="http://www.23systems.net/donate/" title="Donate to Lightbox Plus Colorbox">' . __( 'Donate', 'lightboxplus' ) . '</a>';
 				$links[] = '<a href="http://twitter.com/23systems" title="@23System on Twitter">' . __( 'Twitter', 'lightboxplus' ) . '</a>';
 				$links[] = '<a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">' . __( 'Facebook', 'lightboxplus' ) . '</a>';
 				$links[] = '<a href="http://www.linkedin.com/company/23systems" title="23Systems on LinkedIn">' . __( 'LinkedIn', 'lightboxplus' ) . '</a>';
 				$links[] = '<a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">' . __( 'Google+', 'lightboxplus' ) . '</a>';
+				$links[] = '<a href="http://www.23systems.net/donate/" title="Donate to Lightbox Plus Colorbox">' . __( 'Donate', 'lightboxplus' ) . '</a>';
 			}
 
 			return $links;
@@ -629,13 +627,19 @@ if ( ! class_exists( 'wp_lightboxplus' ) ) {
 
 				<h3><?php _e( 'With Colorbox (v' . $g_lbp_colorbox_version . ') and PHP Simple HTML DOM Parser (v' . $g_lbp_simple_html_dom_version . ')', 'lightboxplus' ) ?></h3>
 				<h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> |
-                        <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus Colorbox FAQ">FAQ</a> | 
-                        <a href="http://www.23systems.net/wordpress-php-development-services/wordpress-plugin-client-support/wordpress-plugin-support/" title="Lightbox Plus Colorbox Direct Support">Request Support</a> | 
-                        <a href="http://wordpress.org/support/plugin/lightbox-plus" title="Lightbox Plus Colorbox Support Forum">Support Forum</a> | 
+                        <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus Colorbox FAQ">FAQ</a> |
                         <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Twitter</a> | 
                         <a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">Facebook</a> | 
                         <a href="http://www.linkedin.com/company/23systems" title="23Systems of LinkedIn">LinkedIn</a> | 
-                    <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+</a>' ); ?></h4>
+                    <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+</a>' ); ?> |
+					Contribute to Lightbox Plus development costs -
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="inline-donate">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="hosted_button_id" value="9BKF2TJGV84S6">
+						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+					</form>
+				</h4>
 
 				<?php
 				if ( $g_lbp_messages ) {
