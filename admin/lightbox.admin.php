@@ -29,7 +29,7 @@
 			<div class="postbox">
 				<div class="recommend">
 				<h5>Checkout our Friends!</h5>
-				<a href="http://clixtrac.com/goto/?199901" title="SumoMe" class="reclink"><img src="<?php echo $g_lightbox_plus_url.'admin/images/aflt-265x70-sumome.png';?>" alt="SumoMe"></a>
+				<a href="http://linktrack.info/.13jgu" title="SumoMe" class="reclink"><img src="<?php echo $g_lightbox_plus_url.'admin/images/aflt-265x70-sumome.png';?>" alt="SumoMe"></a>
 				<h5>Tools to Grow Your Website’s Traffic</h5>
 				</div>
 			</div>
@@ -380,7 +380,7 @@
 
 	<div id="poststuff" class="lbp">
 		<div class="postbox tryout">
-				<h5>Tools to Grow Your Website’s Traffic?&nbsp;&nbsp;Try out our friends, <a href="http://clixtrac.com/goto/?199903" title="SumoMe">SumoMe WordPress Plugin</a>!</h5>
+				<h5>Tools to Grow Your Website’s Traffic?&nbsp;&nbsp;Try out our friends, <a href="http://linktrack.info/.13jgz" title="SumoMe">SumoMe WordPress Plugin</a>!</h5>
 		</div>
 	</div>
     <!-- Primary Lightbox Settings -->
